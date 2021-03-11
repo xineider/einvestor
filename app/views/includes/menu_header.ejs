@@ -1,0 +1,37 @@
+<nav id="sidebar" class="">        
+	<ul class="list-unstyled">
+		<li class="<%= data[usuario.id +'_numero_menu'] == 1 ? 'active' : ''%>"><a class="ajax-load" href="/sistema"> <i class="fas fa-home"></i>Home </a></li>
+		<li class="<%= data[usuario.id +'_numero_menu'] == 2 ? 'active' : ''%>" ><a class="ajax-load" href="/sistema/automacao"> <i class="fas fa-hand-pointer"></i>Automação </a></li>
+		<li class="<%= data[usuario.id +'_numero_menu'] == 3 ? 'active' : ''%>" ><a class="ajax-load" href="/sistema/sistemas"> <i class="fas fa-desktop"></i>Sistemas </a></li>
+		<li class="<%= data[usuario.id +'_numero_menu'] == 4 ? 'active' : ''%>" ><a class="ajax-load" href="/sistema/relatorios"> <i class="fas fa-chart-pie"></i>Relátorios </a></li>
+		<li class="<%= data[usuario.id +'_numero_menu'] == 5 ? 'active' : ''%>" ><a class="ajax-load" href="/sistema/educacao"> <i class="fas fa-graduation-cap"></i>Educação </a></li>
+		<li class="<%= data[usuario.id +'_numero_menu'] == 6 ? 'active' : ''%>" ><a class="ajax-load" href="/sistema/treinamento"> <i class="fas fa-bullseye"></i>Treinamento </a></li>
+		<li class="<%= data[usuario.id +'_numero_menu'] == 7 ? 'active' : ''%>" ><a class="ajax-load" href="/sistema/white_paper"> <i class="fas fa-chalkboard-teacher"></i>Whitepaper </a></li>
+
+	</ul>
+
+	<div class="sidebar-suporte">
+		<div class="primary-text d-block pointer">
+			<i class="fas fa-headset"></i> <strong class="f24">Suporte</strong> 
+		</div>
+
+
+		<a class="ajax-load menu-color underline d-block item-menu <%= data[usuario.id +'_numero_menu'] == 8 ? 'active' : ''%>" href="/sistema/quem_somos">
+			Quem somos
+		</a>
+
+		<a class="ajax-load menu-color underline d-block item-menu <%= data[usuario.id +'_numero_menu'] == 9 ? 'active' : ''%>" href="/sistema/politica_privacidade">
+			<div>Política de privacidade</div>
+		</a>
+
+		<a class="ajax-load menu-color underline d-block item-menu <%= data[usuario.id +'_numero_menu'] == 10 ? 'active' : ''%>" href="/sistema/termos_uso">
+			<div>Termos e condições de uso</div>
+		</a>
+
+		<a class="ajax-load primary-text d-block item-menu <%= data[usuario.id +'_numero_menu'] == 11 ? 'active' : ''%>" href="/sistema/faq">
+			<div>F.A.Q</div>
+		</a>
+
+		
+	</div>
+</nav>

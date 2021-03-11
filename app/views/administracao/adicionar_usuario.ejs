@@ -1,0 +1,91 @@
+<%- include('../includes/menu_header'); %>
+<% if(usuario.nivel == 1){%>
+
+
+<div class="page-content">
+
+
+	<section class="no-padding-bottom">
+		<div class="container-fluid">
+			<div class="card">
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="padding-20">
+							<a class="btn btn-primary ajax-load margin-b-10" href="/sistema">Voltar</a>
+							<h5>
+								Adicionar Usuário							
+							</h5>
+
+							<form method="POST" action="" enctype="multipart/form-data">
+
+								<div class="mb-3 row">
+									<label for="nome" class="col-sm-2 col-form-label">Nome</label>
+									<div class="col-sm-10">
+										<input type="text" name="nome" class="form-control" placeholder="Nome">
+									</div>
+								</div>
+
+
+								<div class="mb-3 row">
+									<label for="nome" class="col-sm-2 col-form-label">CPF</label>
+									<div class="col-sm-10">
+										<input type="text" name="cpf" class="form-control" placeholder="000.000.000-00">
+									</div>
+								</div>
+
+								<div class="mb-3 row">
+									<label for="email" class="col-sm-2 col-form-label">Email</label>
+									<div class="col-sm-10">
+										<input type="text" name="email" class="form-control" placeholder="email@email.com">
+									</div>
+								</div>
+
+
+
+
+								<div class="mb-3 row">
+									<label for="nivel" class="col-sm-2 col-form-label">Tipo</label>
+									<div class="col-sm-10">
+										<select id="adicionar_usuario_nivel_select" class="form-control" aria-label="Default select example" name="nivel">
+											<option value="3" selected>Cliente</option>
+											<option value="2">Parceiro</option>
+										</select>
+									</div>
+
+								</div>
+
+								<div class="mb-3 row adicionar_usuario_parceiro_container">
+									<%-include('carregar_parceiros')%>
+								</div>
+
+
+								<button type="button" data-href="/sistema/administracao/adicionar-usuario/" class="btn btn-primary ajax-submit" title="Salvar Usuário" data-action="/sistema" data-dismiss="modal">Salvar Usuário</button>
+
+							</form>
+
+
+
+						</div>
+					</div>
+
+
+				</div>
+			</div>
+		</div>
+	</section>
+</div>
+
+
+
+
+<%}else{%>
+<div class="page-content">
+	<div class="container-fluid">
+		<div class="alert error-block margin-t-10">
+			Você não pode acessar essa página!
+		</div>
+	</div>
+</div>
+
+
+<%}%>

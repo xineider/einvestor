@@ -1,0 +1,127 @@
+
+<%
+if (typeof data[usuario.id +'_robo'] != 'undefined' && data[usuario.id +'_robo'].length > 0) {
+	for (var i = 0 ; i < data[usuario.id +'_robo'].length; i++) {
+		%>
+
+		<div class="price-table-container">
+
+			<div class="price-table-border-top"></div>
+			<div class="price-table">
+				<div class="price-table-title tertiary-color">E-Investor Variable White Box E-I <%=data[usuario.id +'_robo'][i].valor < 10 ? '00' + data[usuario.id +'_robo'][i].valor : data[usuario.id +'_robo'][i].valor < 100 ? '0' + data[usuario.id +'_robo'][i].valor : data[usuario.id +'_robo'][i].valor  %> </div>
+				<div class="price-table-rentabilidade-container">
+					<div class="price-table-image">
+						<img src="/public/images/robot-icones/ei<%=data[usuario.id +'_robo'][i].valor < 10 ? '00' + data[usuario.id +'_robo'][i].valor : data[usuario.id +'_robo'][i].valor < 100 ? '0' + data[usuario.id +'_robo'][i].valor : data[usuario.id +'_robo'][i].valor  %>g.png">
+					</div>
+					<div class="price-table-porcentagem-container">
+						<span class="price-table-porcentagem">
+							 <%=data[usuario.id +'_robo'][i].rentabilidade_aa %>% <span class="f20">a.a.</span>
+						</span>
+						<br>
+						Volatilidade <span class="bold negative-color"><%=data[usuario.id +'_robo'][i].maximo_rebaixamento %>%</span>
+
+						
+					</div>
+				</div>
+			
+
+				<div class="price-table-tabela">
+<!-- 					<div class="price-table-tabela-row">
+						<div class="price-table-tabela-left">
+							Máximo Rebaixamento							
+						</div>
+						<div class="price-table-tabela-right">
+							Volatilidade
+						</div>
+					</div>
+
+					<div class="price-table-tabela-row">
+						<div class="price-table-tabela-left bold negative-color">
+							<label class="money"><%#=data[usuario.id +'_robo'][i].volatilidade %></label>
+						</div>
+						<div class="price-table-tabela-right negative-color bold">
+							<%#=data[usuario.id +'_robo'][i].maximo_rebaixamento %>%
+							
+						</div>
+					</div> -->
+
+					<div class="price-table-tabela-row">
+						<div class="price-table-tabela-left">
+							Melhor Mês
+						</div>
+						<div class="price-table-tabela-right">
+							Pior Mês
+						</div>
+					</div>
+
+					<div class="price-table-tabela-row">
+						<div class="price-table-tabela-left primary-text bold">
+							<%=data[usuario.id +'_robo'][i].melhor_mes %>%
+						</div>
+						<div class="price-table-tabela-right negative-color bold">
+							- <%=data[usuario.id +'_robo'][i].pior_mes %>%
+						</div>
+					</div>
+
+					<div class="price-table-tabela-row">
+						<div class="price-table-tabela-left">
+							Meses Positivos
+						</div>
+						<div class="price-table-tabela-right">
+							Meses Negativos
+						</div>
+					</div>
+
+					<div class="price-table-tabela-row">
+						<div class="price-table-tabela-left primary-text bold">
+							<%=data[usuario.id +'_algoritimo'][0].meses_positivos%>/<%=data[usuario.id +'_algoritimo'][0].meses%>
+						</div>
+						<div class="price-table-tabela-right primary-text bold">
+							<%=data[usuario.id +'_algoritimo'][0].meses_negativos%>/<%=data[usuario.id +'_algoritimo'][0].meses%>
+						</div>
+					</div>
+
+					<div class="price-table-tabela-row">
+						<div class="price-table-tabela-left">
+							N° de Operações
+						</div>
+						<div class="price-table-tabela-right">
+							Percentual de acerto
+						</div>
+					</div>
+
+					<div class="price-table-tabela-row">
+						<div class="price-table-tabela-left primary-text bold">
+							868
+						</div>
+						<div class="price-table-tabela-right primary-text bold">
+							91.82%
+						</div>
+					</div>
+
+				</div>
+
+				<div class="price-table-footer">
+					<div class="price-table-footer-group-buttons">
+						<div class="btn btn-submit price-table-footer-button-price">
+							<%= data[usuario.id +'_robo'][i].preco_robo %>/mes
+						</div>
+
+						<div class="btn ajax-load price-table-footer-button-signup" href="/sistema/sistemas/forma_pagamento">
+							Assinar
+						</div>
+
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+
+
+		<%}
+	}else{%>
+		<div class="alert alert-warning">Ocorreu algum problema por-favor informar o suporte por-favor.</div>
+
+
+	<%}%>

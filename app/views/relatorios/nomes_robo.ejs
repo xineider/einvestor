@@ -1,0 +1,13 @@
+<option value="0">Selecione o sistema</option>
+<%
+if (typeof data[usuario.id +'_robo'] != 'undefined' && data[usuario.id +'_robo'].length > 0) {
+	for (var i = 0 ; i < data[usuario.id +'_robo'].length; i++) {
+		%>
+
+
+<option value="<%=data[usuario.id +'_robo'][i]._id%>"><%=data[usuario.id +'_robo'][i].nome %> <%=data[usuario.id +'_robo'][i].valor < 10 ? '00' + data[usuario.id +'_robo'][i].valor : data[usuario.id +'_robo'][i].valor < 100 ? '0' + data[usuario.id +'_robo'][i].valor : data[usuario.id +'_robo'][i].valor %></option>
+
+
+
+<%}
+}%>
