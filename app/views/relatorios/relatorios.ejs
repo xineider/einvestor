@@ -6,20 +6,21 @@
 		<div class="container-fluid">
 			<div class="card">
 
-				<div class="row margin-t-10">
-					<div class="col-sm-12">
-						<div class="valor_alocado_container">
+				<form method="POST" action="" enctype="multipart/form-data">
+					<div class="row margin-t-10">
+						<div class="col-sm-12">
+							<div class="valor_alocado_container">
 
 
-							<label class="valor_alocado_price_table">
-								Valor Alocado:								
-							</label>
-							<div class="valor_alocado_value_container">
+								<label class="valor_alocado_price_table">
+									Valor Alocado:								
+								</label>
+								<div class="valor_alocado_value_container">
 
 
-								<form method="POST" action="" enctype="multipart/form-data">
 
-									<select class="form-select table-price-selector" data-href="/sistema/relatorios/select_nome_robo" data-to="select-nome-robo" aria-label="Selecione um valor" name="valor_minimo">
+
+									<select class="form-select table-price-selector clean-container-message" data-href="/sistema/relatorios/select_nome_robo" data-clean="relatorios-container" data-clean-mensagem="Por favor escolha um valor e um sistema para gerar o relatório!" data-to="select-nome-robo" aria-label="Selecione um valor" name="valor_minimo">
 										<option selected disabled>Selecione um valor</option>
 										<%
 										if (typeof data[usuario.id +'_robo_t'] != 'undefined' && data[usuario.id +'_robo_t'].length > 0) {
@@ -33,20 +34,20 @@
 										</select>
 
 
-									</form>
+
+									</div>
 								</div>
-							</div>
 
-							<div class="valor_alocado_container">
-
-
-								<label class="valor_alocado_price_table">
-									Selecione um Sistema:								
-								</label>
-								<div class="valor_alocado_value_container">
+								<div class="valor_alocado_container">
 
 
-									<form method="POST" action="" enctype="multipart/form-data">
+									<label class="valor_alocado_price_table">
+										Selecione um Sistema:								
+									</label>
+									<div class="valor_alocado_value_container">
+
+
+
 
 										<select class="form-select table-price-selector select-nome-robo" data-href="/sistema/relatorios/gerar_relatorio_robo" data-to="relatorios-container" aria-label="Selecione um valor" name="id_robo">
 											<option selected disabled>Por favor escolha um valor para poder escolher o sistema!</option>
@@ -55,12 +56,13 @@
 										</select>
 
 
-									</form>
-								</div>
-							</div>
 
+									</div>
+								</div>
+
+							</div>
 						</div>
-					</div>
+					</form>
 
 
 

@@ -30,10 +30,10 @@
 									<%= data[usuario.id +'_relatorio'][0].estrategias[i].nome %>
 								</td>
 								<td>
-									<%= data[usuario.id +'_relatorio'][0].estrategias[i].net_profit_exib %>
+									<%= data[usuario.id +'_relatorio'][0].estrategias[i].net_profit_exib_perc %>%
 								</td>
 								<td>
-									<%= data[usuario.id +'_relatorio'][0].estrategias[i].drawdown_exib %>
+									<%= data[usuario.id +'_relatorio'][0].estrategias[i].drawdown_exib_perc %>%
 								</td>
 								<td>
 									<%= data[usuario.id +'_relatorio'][0].estrategias[i].trades %>
@@ -48,7 +48,7 @@
 									<%= data[usuario.id +'_relatorio'][0].estrategias[i].return %>
 								</td>
 								<td>
-									<%= data[usuario.id +'_relatorio'][0].estrategias[i].average_trade_exib %>
+									<%= data[usuario.id +'_relatorio'][0].estrategias[i].average_trade_exib_perc %>%
 								</td>
 							</tr>
 
@@ -66,11 +66,11 @@
 					<div class="col-sm-12 col-md-3">
 						<div class="border-bottom-pontilhado">
 							<span class="f24 bold black-text margin-r-10">Total Profit</span> 
-							<span class="f30 primary-text bold"><%=data[usuario.id +'_relatorio'][0].estrategias[2].net_profit_exib %></span>
+							<span class="f30 primary-text bold"><%=data[usuario.id +'_relatorio'][0].estrategias[2].net_profit_exib_perc %>%</span>
 						</div>
 						<div class="">
 							<span class="uppercase margin-r-10">YEARLY AVG RETURN</span>
-							<span class="f20 primary-text"><%=data[usuario.id +'_relatorio'][0].estrategias[2].year_average_exib %></span>
+							<span class="f20 primary-text"><%=data[usuario.id +'_relatorio'][0].estrategias[2].year_average_exib_perc %>%</span>
 						</div>
 					</div>
 
@@ -129,7 +129,7 @@
 								<div class="fake_input_group">
 									<label class="uppercase black-text margin-b-0">Drawdown</label>
 									<div class="fake_input">
-										<%= data[usuario.id +'_relatorio'][0].estrategias[2].drawdown_exib %>
+										<%= data[usuario.id +'_relatorio'][0].estrategias[2].drawdown_exib_perc %>%
 									</div>
 								</div>
 
@@ -140,7 +140,7 @@
 								<div class="fake_input_group">
 									<label class="uppercase black-text margin-b-0">Daily Avg Profit</label>
 									<div class="fake_input">
-										<%= data[usuario.id +'_relatorio'][0].estrategias[2].daily_profit_exib %>
+										<%= data[usuario.id +'_relatorio'][0].estrategias[2].daily_profit_exib_perc %>%
 									</div>
 								</div>
 
@@ -151,7 +151,7 @@
 								<div class="fake_input_group">
 									<label class="uppercase black-text margin-b-0">Monthly Avg Profit</label>
 									<div class="fake_input bold primary-text">
-										<%= data[usuario.id +'_relatorio'][0].estrategias[2].month_profit_exib %>
+										<%= data[usuario.id +'_relatorio'][0].estrategias[2].month_profit_exib_perc %>%
 									</div>
 								</div>
 
@@ -162,7 +162,7 @@
 								<div class="fake_input_group">
 									<label class="uppercase black-text margin-b-0">Average Trade</label>
 									<div class="fake_input">
-										<%= data[usuario.id +'_relatorio'][0].estrategias[2].average_trade_exib %>
+										<%= data[usuario.id +'_relatorio'][0].estrategias[2].average_trade_exib_perc %>%
 									</div>
 								</div>
 
@@ -210,7 +210,7 @@
 										<%= data[usuario.id +'_relatorio'][0].resume_performance[i].period %>
 									</td>
 									<td>
-										<%= data[usuario.id +'_relatorio'][0].resume_performance[i].net_profit %>
+										<%= data[usuario.id +'_relatorio'][0].resume_performance[i].net_profit_exib_perc %>%
 									</td>
 									<td>
 										<%= data[usuario.id +'_relatorio'][0].resume_performance[i].profit_factor %>
@@ -278,14 +278,14 @@
 									<%= data[usuario.id +'_relatorio'][0].estrategias[0].nome %>
 								</td>
 								<td></td>
-								<td>
+								<td class="secondary-color-background">
 									-0.08
 								</td>
 							</tr>
 
 							<tr>
 								<td><%= data[usuario.id +'_relatorio'][0].estrategias[1].nome %></td>
-								<td>-0.08</td>
+								<td class="secondary-color-background">-0.08</td>
 								<td></td>
 							</tr>
 
@@ -343,43 +343,43 @@
 										<%= data[usuario.id +'_relatorio'][0].monthly_performance[i].year %>
 									</td>
 									<td>
-										<%= data[usuario.id +'_relatorio'][0].monthly_performance[i].jav %>
+										<%= data[usuario.id +'_relatorio'][0].monthly_performance[i].jan_exib_perc %>%
 									</td>
 									<td>
-										<%= data[usuario.id +'_relatorio'][0].monthly_performance[i].fev %>
+										<%= data[usuario.id +'_relatorio'][0].monthly_performance[i].fev_exib_perc %>%
 									</td>
 									<td>
-										<%= data[usuario.id +'_relatorio'][0].monthly_performance[i].mar %>
+										<%= data[usuario.id +'_relatorio'][0].monthly_performance[i].mar_exib_perc %>%
 									</td>
 									<td>
-										<%= data[usuario.id +'_relatorio'][0].monthly_performance[i].apr %>
+										<%= data[usuario.id +'_relatorio'][0].monthly_performance[i].apr_exib_perc %>%
 									</td>
 									<td>
-										<%= data[usuario.id +'_relatorio'][0].monthly_performance[i].may %>
+										<%= data[usuario.id +'_relatorio'][0].monthly_performance[i].may_exib_perc %>%
 									</td>
 									<td>
-										<%= data[usuario.id +'_relatorio'][0].monthly_performance[i].jun %>
+										<%= data[usuario.id +'_relatorio'][0].monthly_performance[i].jun_exib_perc %>%
 									</td>
 									<td>
-										<%= data[usuario.id +'_relatorio'][0].monthly_performance[i].jul %>
+										<%= data[usuario.id +'_relatorio'][0].monthly_performance[i].jul_exib_perc %>%
 									</td>
 									<td>
-										<%= data[usuario.id +'_relatorio'][0].monthly_performance[i].aug %>
+										<%= data[usuario.id +'_relatorio'][0].monthly_performance[i].aug_exib_perc %>%
 									</td>
 									<td>
-										<%= data[usuario.id +'_relatorio'][0].monthly_performance[i].sep %>
+										<%= data[usuario.id +'_relatorio'][0].monthly_performance[i].sep_exib_perc %>%
 									</td>
 									<td>
-										<%= data[usuario.id +'_relatorio'][0].monthly_performance[i].oct %>
+										<%= data[usuario.id +'_relatorio'][0].monthly_performance[i].oct_exib_perc %>%
 									</td>
 									<td>
-										<%= data[usuario.id +'_relatorio'][0].monthly_performance[i].nov %>
+										<%= data[usuario.id +'_relatorio'][0].monthly_performance[i].nov_exib_perc %>%
 									</td>
 									<td>
-										<%= data[usuario.id +'_relatorio'][0].monthly_performance[i].dec %>
+										<%= data[usuario.id +'_relatorio'][0].monthly_performance[i].dec_exib_perc %>%
 									</td>
 									<td>
-										<%= data[usuario.id +'_relatorio'][0].monthly_performance[i].ytd %>
+										<%= data[usuario.id +'_relatorio'][0].monthly_performance[i].ytd_exib_perc %>%
 									</td>
 								</tr>
 
@@ -558,7 +558,7 @@
 								</div>
 								<div class="col-sm-5">								
 									<div class="fake_input w100 text-right">
-										<%= data[usuario.id +'_relatorio'][0].stats[0].deviation %>
+										<%= data[usuario.id +'_relatorio'][0].stats[0].deviation_exib_perc %>%
 									</div>
 								</div>
 
@@ -645,7 +645,7 @@
 
 				<div class="row margin-t-20">
 
-					<div class="col-sm-12 col-md-3">
+					<div class="col-sm-12 col-md-4 col-lg-3">
 
 						<div class="fake_input_group">
 
@@ -665,7 +665,7 @@
 
 					</div>
 
-					<div class="col-sm-12 col-md-3">
+					<div class="col-sm-12 col-md-4 col-lg-3">
 
 						<div class="fake_input_group">
 
@@ -685,7 +685,7 @@
 
 					</div>
 
-					<div class="col-sm-12 col-md-3">
+					<div class="col-sm-12 col-md-4 col-lg-3">
 
 						<div class="fake_input_group">
 
@@ -705,7 +705,7 @@
 
 					</div>
 
-					<div class="col-sm-12 col-md-3">
+					<div class="col-sm-12 col-md-4 col-lg-3">
 
 						<div class="fake_input_group">
 
@@ -730,7 +730,7 @@
 
 				<div class="row margin-t-20">
 
-					<div class="col-sm-12 col-md-3">
+					<div class="col-sm-12 col-md-4 col-lg-3">
 
 						<div class="fake_input_group">
 
@@ -741,7 +741,7 @@
 								</div>
 								<div class="col-sm-5">								
 									<div class="fake_input w100 text-right">
-										<%= data[usuario.id +'_relatorio'][0].trades[0].gross_profit %>
+										<%= data[usuario.id +'_relatorio'][0].trades[0].gross_profit_exib_perc %>%
 									</div>
 								</div>
 
@@ -750,7 +750,7 @@
 
 					</div>
 
-					<div class="col-sm-12 col-md-3">
+					<div class="col-sm-12 col-md-4 col-lg-3">
 
 						<div class="fake_input_group">
 
@@ -761,7 +761,7 @@
 								</div>
 								<div class="col-sm-5">								
 									<div class="fake_input w100 text-right">
-										<%= data[usuario.id +'_relatorio'][0].trades[0].gross_loss %>
+										<%= data[usuario.id +'_relatorio'][0].trades[0].gross_loss_exib_perc %>%
 									</div>
 								</div>
 
@@ -770,7 +770,7 @@
 
 					</div>
 
-					<div class="col-sm-12 col-md-3">
+					<div class="col-sm-12 col-md-4 col-lg-3">
 
 						<div class="fake_input_group">
 
@@ -781,7 +781,7 @@
 								</div>
 								<div class="col-sm-5">								
 									<div class="fake_input w100 text-right">
-										<%= data[usuario.id +'_relatorio'][0].trades[0].average_win %>
+										<%= data[usuario.id +'_relatorio'][0].trades[0].average_win_exib_perc %>%
 									</div>
 								</div>
 
@@ -790,7 +790,7 @@
 
 					</div>
 
-					<div class="col-sm-12 col-md-3">
+					<div class="col-sm-12 col-md-4 col-lg-3">
 
 						<div class="fake_input_group">
 
@@ -801,7 +801,7 @@
 								</div>
 								<div class="col-sm-5">								
 									<div class="fake_input w100 text-right">
-										<%= data[usuario.id +'_relatorio'][0].trades[0].average_loss %>
+										<%= data[usuario.id +'_relatorio'][0].trades[0].average_loss_exib_perc %>%
 									</div>
 								</div>
 
@@ -814,7 +814,7 @@
 
 				<div class="row margin-t-20">
 
-					<div class="col-sm-12 col-md-3">
+					<div class="col-sm-12 col-md-4 col-lg-3">
 
 						<div class="fake_input_group">
 
@@ -825,7 +825,7 @@
 								</div>
 								<div class="col-sm-5">								
 									<div class="fake_input w100 text-right">
-										<%= data[usuario.id +'_relatorio'][0].trades[0].largest_win %>
+										<%= data[usuario.id +'_relatorio'][0].trades[0].largest_win_exib_perc %>%
 									</div>
 								</div>
 
@@ -834,7 +834,7 @@
 
 					</div>
 
-					<div class="col-sm-12 col-md-3">
+					<div class="col-sm-12 col-md-4 col-lg-3">
 
 						<div class="fake_input_group">
 
@@ -845,7 +845,7 @@
 								</div>
 								<div class="col-sm-5">								
 									<div class="fake_input w100 text-right">
-										<%= data[usuario.id +'_relatorio'][0].trades[0].largest_loss %>
+										<%= data[usuario.id +'_relatorio'][0].trades[0].largest_loss_exib_perc %>%
 									</div>
 								</div>
 
@@ -854,7 +854,7 @@
 
 					</div>
 
-					<div class="col-sm-12 col-md-3">
+					<div class="col-sm-12 col-md-4 col-lg-3">
 
 						<div class="fake_input_group">
 
@@ -874,7 +874,7 @@
 
 					</div>
 
-					<div class="col-sm-12 col-md-3">
+					<div class="col-sm-12 col-md-4 col-lg-3">
 
 						<div class="fake_input_group">
 
@@ -898,7 +898,7 @@
 
 				<div class="row margin-t-20">
 
-					<div class="col-sm-12 col-md-3">
+					<div class="col-sm-12 col-md-4 col-lg-3">
 
 						<div class="fake_input_group">
 
@@ -918,7 +918,7 @@
 
 					</div>
 
-					<div class="col-sm-12 col-md-3">
+					<div class="col-sm-12 col-md-4 col-lg-3">
 
 						<div class="fake_input_group">
 

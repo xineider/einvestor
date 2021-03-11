@@ -734,7 +734,7 @@ nav#sidebar .sidebar-suporte{
 	select{
 		border: none;
 		width: 100%;
-		padding: 5px 15px;
+		padding: 0px 15px;
 
 		&:focus{
 			border:none;
@@ -815,4 +815,8 @@ nav#sidebar .sidebar-suporte{
 .accordion .card-header{
 	background:#fff;
 	border-bottom:1px solid #afafaf;
+}
+
+.secondary-color-background{
+	background:$secondary-color;
 }

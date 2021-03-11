@@ -209,6 +209,17 @@ $(document).ready(function () {
 
 	});
 
+	$(document).on('change','.clean-container-message',function(e){
+		e.preventDefault();
+
+
+		console.log('estou alterando o clean container message');
+		var clean = $(this).data('clean');
+		var mensagem = $(this).data('clean-mensagem');
+		$('.'+clean).empty();
+		$('.'+clean).html('<div class="text-center">'+mensagem+'</div>');
+	});
+
 	
 
 
@@ -404,6 +415,8 @@ $(document).ready(function () {
 			}
 		}
 	});
+
+
 
 
 
