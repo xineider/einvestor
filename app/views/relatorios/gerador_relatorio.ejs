@@ -63,7 +63,7 @@
 
 				<div class="row">
 					
-					<div class="col-sm-12 col-md-3">
+					<div class="col-sm-12 col-md-2 col-lg-3">
 						<div class="border-bottom-pontilhado">
 							<span class="f24 bold black-text margin-r-10">Total Profit</span> 
 							<span class="f30 primary-text bold"><%=data[usuario.id +'_relatorio'][0].estrategias[2].net_profit_exib_perc %>%</span>
@@ -74,12 +74,12 @@
 						</div>
 					</div>
 
-					<div class="col-sm-12 col-md-9">
+					<div class="col-sm-12 col-md-10 col-lg-9">
 						<div class="row">
 							<div class="col-sm-12 col-md-3">
 
 								<div class="fake_input_group">
-									<label class="uppercase black-text margin-b-0"># of Trades</label>
+									<label class="uppercase black-text margin-b-0 f12"># of Trades</label>
 									<div class="fake_input">
 										<%= data[usuario.id +'_relatorio'][0].estrategias[2].trades %>
 									</div>
@@ -90,7 +90,7 @@
 							<div class="col-sm-12 col-md-3">
 
 								<div class="fake_input_group">
-									<label class="uppercase black-text margin-b-0">Sharpe Ratio</label>
+									<label class="uppercase black-text margin-b-0 f12">Sharpe Ratio</label>
 									<div class="fake_input">
 										<%= data[usuario.id +'_relatorio'][0].estrategias[2].sharpe_ratio %>
 									</div>
@@ -101,7 +101,7 @@
 							<div class="col-sm-12 col-md-3">
 
 								<div class="fake_input_group">
-									<label class="uppercase black-text margin-b-0">Profit Factor</label>
+									<label class="uppercase black-text margin-b-0 f12">Profit Factor</label>
 									<div class="fake_input">
 										<%= data[usuario.id +'_relatorio'][0].estrategias[2].profit_factor %>
 									</div>
@@ -112,7 +112,7 @@
 							<div class="col-sm-12 col-md-3">
 
 								<div class="fake_input_group">
-									<label class="uppercase black-text margin-b-0">Winning</label>
+									<label class="uppercase black-text margin-b-0 f12">Winning</label>
 									<div class="fake_input primary-text bold">
 										<%= data[usuario.id +'_relatorio'][0].estrategias[2].winning %>%
 									</div>
@@ -127,7 +127,7 @@
 							<div class="col-sm-12 col-md-3">
 
 								<div class="fake_input_group">
-									<label class="uppercase black-text margin-b-0">Drawdown</label>
+									<label class="uppercase black-text margin-b-0 f12">Drawdown</label>
 									<div class="fake_input">
 										<%= data[usuario.id +'_relatorio'][0].estrategias[2].drawdown_exib_perc %>%
 									</div>
@@ -138,7 +138,7 @@
 							<div class="col-sm-12 col-md-3">
 
 								<div class="fake_input_group">
-									<label class="uppercase black-text margin-b-0">Daily Avg Profit</label>
+									<label class="uppercase black-text margin-b-0 f12">Daily Avg Profit</label>
 									<div class="fake_input">
 										<%= data[usuario.id +'_relatorio'][0].estrategias[2].daily_profit_exib_perc %>%
 									</div>
@@ -149,7 +149,7 @@
 							<div class="col-sm-12 col-md-3">
 
 								<div class="fake_input_group">
-									<label class="uppercase black-text margin-b-0">Monthly Avg Profit</label>
+									<label class="uppercase black-text margin-b-0 f12">Monthly Avg Profit</label>
 									<div class="fake_input bold primary-text">
 										<%= data[usuario.id +'_relatorio'][0].estrategias[2].month_profit_exib_perc %>%
 									</div>
@@ -160,7 +160,7 @@
 							<div class="col-sm-12 col-md-3">
 
 								<div class="fake_input_group">
-									<label class="uppercase black-text margin-b-0">Average Trade</label>
+									<label class="uppercase black-text margin-b-0 f12">Average Trade</label>
 									<div class="fake_input">
 										<%= data[usuario.id +'_relatorio'][0].estrategias[2].average_trade_exib_perc %>%
 									</div>
@@ -244,7 +244,7 @@
 
 					<div class="col-sm-6">
 						<div class="border-bottom-pontilhado-primary">
-							<div class="row primary-text">
+							<div class="row primary-text f12">
 								<div class="col-sm-3">< 0.4 MODERATE</div>
 								<div class="col-sm-6">0.4 - 0.7 MODERATE HIGH</div>
 								<div class="col-sm-3">0. - 1.0 HIGH</div>
@@ -402,10 +402,10 @@
 
 							<div class="row align-items-center">
 
-								<div class="col-sm-7">
+								<div class="col-sm-6">
 									<label class="black-text margin-b-0">Wins/Losses Ratio</label>
 								</div>
-								<div class="col-sm-5">								
+								<div class="col-sm-6">								
 									<div class="fake_input w100 text-right">
 										<%= data[usuario.id +'_relatorio'][0].stats[0].win_loss_ratio %>
 									</div>
@@ -422,10 +422,10 @@
 
 							<div class="row align-items-center">
 
-								<div class="col-sm-7">
+								<div class="col-sm-6">
 									<label class="black-text margin-b-0">Payout Ratio(Avg Win/Loss)</label>
 								</div>
-								<div class="col-sm-5">								
+								<div class="col-sm-6">								
 									<div class="fake_input w100 text-right">
 										<%= data[usuario.id +'_relatorio'][0].stats[0].payout_ratio %>
 									</div>
@@ -443,10 +443,10 @@
 
 							<div class="row align-items-center">
 
-								<div class="col-sm-7">
+								<div class="col-sm-6">
 									<label class="black-text margin-b-0">Average # Of Bars Trade</label>
 								</div>
-								<div class="col-sm-5">								
+								<div class="col-sm-6">								
 									<div class="fake_input w100 text-right">
 										<%= data[usuario.id +'_relatorio'][0].stats[0].average_of_bars %>
 									</div>
@@ -467,10 +467,10 @@
 
 							<div class="row align-items-center">
 
-								<div class="col-sm-7">
+								<div class="col-sm-6">
 									<label class="black-text margin-b-0">AHPR</label>
 								</div>
-								<div class="col-sm-5">								
+								<div class="col-sm-6">								
 									<div class="fake_input w100 text-right">
 										<%= data[usuario.id +'_relatorio'][0].stats[0].ahpr %>
 									</div>
@@ -487,10 +487,10 @@
 
 							<div class="row align-items-center">
 
-								<div class="col-sm-7">
+								<div class="col-sm-6">
 									<label class="black-text margin-b-0">Z-Score</label>
 								</div>
-								<div class="col-sm-5">								
+								<div class="col-sm-6">								
 									<div class="fake_input w100 text-right">
 										<%= data[usuario.id +'_relatorio'][0].stats[0].z_score %>
 									</div>
@@ -507,10 +507,10 @@
 
 							<div class="row align-items-center">
 
-								<div class="col-sm-7">
+								<div class="col-sm-6">
 									<label class="black-text margin-b-0">Z-Probability</label>
 								</div>
-								<div class="col-sm-5">								
+								<div class="col-sm-6">								
 									<div class="fake_input w100 text-right">
 										<%= data[usuario.id +'_relatorio'][0].stats[0].z_probability %>%
 									</div>
@@ -532,10 +532,10 @@
 
 							<div class="row align-items-center">
 
-								<div class="col-sm-7">
+								<div class="col-sm-6">
 									<label class="black-text margin-b-0">Expectancy</label>
 								</div>
-								<div class="col-sm-5">								
+								<div class="col-sm-6">								
 									<div class="fake_input w100 text-right">
 										<%= data[usuario.id +'_relatorio'][0].stats[0].expectancy %>
 									</div>
@@ -553,10 +553,10 @@
 
 							<div class="row align-items-center">
 
-								<div class="col-sm-7">
+								<div class="col-sm-6">
 									<label class="black-text margin-b-0">Deviation</label>
 								</div>
-								<div class="col-sm-5">								
+								<div class="col-sm-6">								
 									<div class="fake_input w100 text-right">
 										<%= data[usuario.id +'_relatorio'][0].stats[0].deviation_exib_perc %>%
 									</div>
@@ -574,10 +574,10 @@
 
 							<div class="row align-items-center">
 
-								<div class="col-sm-7">
+								<div class="col-sm-6">
 									<label class="black-text margin-b-0">Exposure</label>
 								</div>
-								<div class="col-sm-5">								
+								<div class="col-sm-6">								
 									<div class="fake_input w100 text-right">
 										<%= data[usuario.id +'_relatorio'][0].stats[0].exposure %>%
 									</div>
@@ -600,10 +600,10 @@
 
 							<div class="row align-items-center">
 
-								<div class="col-sm-7">
+								<div class="col-sm-6">
 									<label class="black-text margin-b-0">Stagnation in Days</label>
 								</div>
-								<div class="col-sm-5">								
+								<div class="col-sm-6">								
 									<div class="fake_input w100 text-right">
 										<%= data[usuario.id +'_relatorio'][0].stats[0].stagnation_days %>
 									</div>
@@ -620,10 +620,10 @@
 
 							<div class="row align-items-center">
 
-								<div class="col-sm-7">
+								<div class="col-sm-6">
 									<label class="black-text margin-b-0">Stagnation in %</label>
 								</div>
-								<div class="col-sm-5">								
+								<div class="col-sm-6">								
 									<div class="fake_input w100 text-right">
 										<%= data[usuario.id +'_relatorio'][0].stats[0].stagnation_percentage %>%
 									</div>
@@ -643,18 +643,18 @@
 			<section class="margin-t-20">
 				<h5 class="black-text bold border-bottom-solid">Trades</h5>
 
-				<div class="row margin-t-20">
+				<div class="row">
 
-					<div class="col-sm-12 col-md-4 col-lg-3">
+					<div class="col-sm-12 col-md-6 col-xl-4 margin-t-20">
 
 						<div class="fake_input_group">
 
 							<div class="row align-items-center">
 
-								<div class="col-sm-7">
+								<div class="col-sm-6">
 									<label class="black-text margin-b-0">Total Trades</label>
 								</div>
-								<div class="col-sm-5">								
+								<div class="col-sm-6">								
 									<div class="fake_input w100 text-right">
 										<%= data[usuario.id +'_relatorio'][0].trades[0].total_trades %>
 									</div>
@@ -665,16 +665,16 @@
 
 					</div>
 
-					<div class="col-sm-12 col-md-4 col-lg-3">
+					<div class="col-sm-12 col-md-6 col-xl-4 margin-t-20">
 
 						<div class="fake_input_group">
 
 							<div class="row align-items-center">
 
-								<div class="col-sm-7">
+								<div class="col-sm-6">
 									<label class="black-text margin-b-0"># of Wins</label>
 								</div>
-								<div class="col-sm-5">								
+								<div class="col-sm-6">								
 									<div class="fake_input w100 text-right">
 										<%= data[usuario.id +'_relatorio'][0].trades[0].wins %>
 									</div>
@@ -685,16 +685,16 @@
 
 					</div>
 
-					<div class="col-sm-12 col-md-4 col-lg-3">
+					<div class="col-sm-12 col-md-6 col-xl-4 margin-t-20">
 
 						<div class="fake_input_group">
 
 							<div class="row align-items-center">
 
-								<div class="col-sm-7">
+								<div class="col-sm-6">
 									<label class="black-text margin-b-0"># of Losses</label>
 								</div>
-								<div class="col-sm-5">								
+								<div class="col-sm-6">								
 									<div class="fake_input w100 text-right">
 										<%= data[usuario.id +'_relatorio'][0].trades[0].loss %>
 									</div>
@@ -705,16 +705,16 @@
 
 					</div>
 
-					<div class="col-sm-12 col-md-4 col-lg-3">
+					<div class="col-sm-12 col-md-6 col-xl-4 margin-t-20">
 
 						<div class="fake_input_group">
 
 							<div class="row align-items-center">
 
-								<div class="col-sm-7">
+								<div class="col-sm-6">
 									<label class="black-text margin-b-0"># of Cancelled/Expired</label>
 								</div>
-								<div class="col-sm-5">								
+								<div class="col-sm-6">								
 									<div class="fake_input w100 text-right">
 										<%= data[usuario.id +'_relatorio'][0].trades[0].cancelled %>
 									</div>
@@ -725,21 +725,16 @@
 
 					</div>
 
-				</div>
-
-
-				<div class="row margin-t-20">
-
-					<div class="col-sm-12 col-md-4 col-lg-3">
+					<div class="col-sm-12 col-md-6 col-xl-4 margin-t-20">
 
 						<div class="fake_input_group">
 
 							<div class="row align-items-center">
 
-								<div class="col-sm-7">
+								<div class="col-sm-6">
 									<label class="black-text margin-b-0">Gross Profit</label>
 								</div>
-								<div class="col-sm-5">								
+								<div class="col-sm-6">								
 									<div class="fake_input w100 text-right">
 										<%= data[usuario.id +'_relatorio'][0].trades[0].gross_profit_exib_perc %>%
 									</div>
@@ -750,16 +745,16 @@
 
 					</div>
 
-					<div class="col-sm-12 col-md-4 col-lg-3">
+					<div class="col-sm-12 col-md-6 col-xl-4 margin-t-20">
 
 						<div class="fake_input_group">
 
 							<div class="row align-items-center">
 
-								<div class="col-sm-7">
+								<div class="col-sm-6">
 									<label class="black-text margin-b-0">Gross Loss</label>
 								</div>
-								<div class="col-sm-5">								
+								<div class="col-sm-6">								
 									<div class="fake_input w100 text-right">
 										<%= data[usuario.id +'_relatorio'][0].trades[0].gross_loss_exib_perc %>%
 									</div>
@@ -770,16 +765,16 @@
 
 					</div>
 
-					<div class="col-sm-12 col-md-4 col-lg-3">
+					<div class="col-sm-12 col-md-6 col-xl-4 margin-t-20">
 
 						<div class="fake_input_group">
 
 							<div class="row align-items-center">
 
-								<div class="col-sm-7">
+								<div class="col-sm-6">
 									<label class="black-text margin-b-0">Average Win</label>
 								</div>
-								<div class="col-sm-5">								
+								<div class="col-sm-6">								
 									<div class="fake_input w100 text-right">
 										<%= data[usuario.id +'_relatorio'][0].trades[0].average_win_exib_perc %>%
 									</div>
@@ -790,16 +785,16 @@
 
 					</div>
 
-					<div class="col-sm-12 col-md-4 col-lg-3">
+					<div class="col-sm-12 col-md-6 col-xl-4 margin-t-20">
 
 						<div class="fake_input_group">
 
 							<div class="row align-items-center">
 
-								<div class="col-sm-7">
+								<div class="col-sm-6">
 									<label class="black-text margin-b-0">Average Loss</label>
 								</div>
-								<div class="col-sm-5">								
+								<div class="col-sm-6">								
 									<div class="fake_input w100 text-right">
 										<%= data[usuario.id +'_relatorio'][0].trades[0].average_loss_exib_perc %>%
 									</div>
@@ -810,20 +805,16 @@
 
 					</div>
 
-				</div>
-
-				<div class="row margin-t-20">
-
-					<div class="col-sm-12 col-md-4 col-lg-3">
+					<div class="col-sm-12 col-md-6 col-xl-4 margin-t-20">
 
 						<div class="fake_input_group">
 
 							<div class="row align-items-center">
 
-								<div class="col-sm-7">
+								<div class="col-sm-6">
 									<label class="black-text margin-b-0">Largest Win</label>
 								</div>
-								<div class="col-sm-5">								
+								<div class="col-sm-6">								
 									<div class="fake_input w100 text-right">
 										<%= data[usuario.id +'_relatorio'][0].trades[0].largest_win_exib_perc %>%
 									</div>
@@ -834,16 +825,16 @@
 
 					</div>
 
-					<div class="col-sm-12 col-md-4 col-lg-3">
+					<div class="col-sm-12 col-md-6 col-xl-4 margin-t-20">
 
 						<div class="fake_input_group">
 
 							<div class="row align-items-center">
 
-								<div class="col-sm-7">
+								<div class="col-sm-6">
 									<label class="black-text margin-b-0">Largest Loss</label>
 								</div>
-								<div class="col-sm-5">								
+								<div class="col-sm-6">								
 									<div class="fake_input w100 text-right">
 										<%= data[usuario.id +'_relatorio'][0].trades[0].largest_loss_exib_perc %>%
 									</div>
@@ -854,16 +845,16 @@
 
 					</div>
 
-					<div class="col-sm-12 col-md-4 col-lg-3">
+					<div class="col-sm-12 col-md-6 col-xl-4 margin-t-20">
 
 						<div class="fake_input_group">
 
 							<div class="row align-items-center">
 
-								<div class="col-sm-7">
+								<div class="col-sm-6">
 									<label class="black-text margin-b-0">Max Consec Wins</label>
 								</div>
-								<div class="col-sm-5">								
+								<div class="col-sm-6">								
 									<div class="fake_input w100 text-right">
 										<%= data[usuario.id +'_relatorio'][0].trades[0].max_consec_wins %>
 									</div>
@@ -874,16 +865,16 @@
 
 					</div>
 
-					<div class="col-sm-12 col-md-4 col-lg-3">
+					<div class="col-sm-12 col-md-6 col-xl-4 margin-t-20">
 
 						<div class="fake_input_group">
 
 							<div class="row align-items-center">
 
-								<div class="col-sm-7">
+								<div class="col-sm-6">
 									<label class="black-text margin-b-0">Max Consec Loss</label>
 								</div>
-								<div class="col-sm-5">								
+								<div class="col-sm-6">								
 									<div class="fake_input w100 text-right">
 										<%= data[usuario.id +'_relatorio'][0].trades[0].max_consec_loss %>
 									</div>
@@ -894,20 +885,16 @@
 
 					</div>
 
-				</div>
-
-				<div class="row margin-t-20">
-
-					<div class="col-sm-12 col-md-4 col-lg-3">
+					<div class="col-sm-12 col-md-6 col-xl-4 margin-t-20">
 
 						<div class="fake_input_group">
 
 							<div class="row align-items-center">
 
-								<div class="col-sm-7">
+								<div class="col-sm-6">
 									<label class="black-text margin-b-0">Avg Consec Wins</label>
 								</div>
-								<div class="col-sm-5">								
+								<div class="col-sm-6">								
 									<div class="fake_input w100 text-right">
 										<%= data[usuario.id +'_relatorio'][0].trades[0].avg_consec_wins %>
 									</div>
@@ -918,16 +905,16 @@
 
 					</div>
 
-					<div class="col-sm-12 col-md-4 col-lg-3">
+					<div class="col-sm-12 col-md-6 col-xl-4 margin-t-20">
 
 						<div class="fake_input_group">
 
 							<div class="row align-items-center">
 
-								<div class="col-sm-7">
+								<div class="col-sm-6">
 									<label class="black-text margin-b-0">Avg Consec Loss</label>
 								</div>
-								<div class="col-sm-5">								
+								<div class="col-sm-6">								
 									<div class="fake_input w100 text-right">
 										<%= data[usuario.id +'_relatorio'][0].trades[0].avg_consec_loss %>
 									</div>
@@ -939,7 +926,6 @@
 					</div>
 
 				</div>
-
 
 
 			</section>

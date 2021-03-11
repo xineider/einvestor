@@ -35,6 +35,7 @@ const relatorioSchema = new mongoose.Schema({
 		jul:Number,
 		aug:Number,
 		sep:Number,
+		oct:Number,
 		nov:Number,
 		dec:Number,
 		ytd:Number
