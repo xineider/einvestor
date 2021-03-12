@@ -34,13 +34,32 @@
 		<div class="container_login">
 
 			<div class="row row_min">
-				<div class="col-sm-9 login_background"></div>
+				<div class="col-sm-9 login_background">
+					
+
+				</div>
 				<div class="col-sm-3">
 					<div class="form-holder has-shadow">
-						<div class="row">
-							<!-- Form Panel    -->
+						<div class="row" style="height:100%;">
+							
 							<div class="col-lg-12 bg-white">
-								<div class="form d-flex align-items-center">
+								<div class="form">
+
+									<div class="system_cpu_type text-center">
+										<strong class="black-text">System CPU Type</strong>
+										<div>Multiple Intel Xeon Gold 6130</div>
+									</div>
+
+									<div class="traffic_and_bandwidth text-center">
+										<strong class="black-text">Traffic and Bandwidth</strong>
+										<div>Multiple Global Internet 10Tb@5Gbps</div>
+									</div>
+
+									<div class="logo_investor">
+										<img src="/public/images/e_investor_logo.png">
+									</div>
+									<div class="login_subtitulo">Bem-vindo a E-Investor. Acesso restrito e privado</div>
+
 									<div class="content" id="conteudo_form">
 
 										<form method="POST" action="/">
@@ -58,7 +77,7 @@
 													<div class="card-panel red darken-1 center-align" style="margin-bottom: 25px;">
 														<span class="red-text bold">* Login ou senha incorreta!</span>
 													</div>
-													
+
 
 													<%
 												} else if(typeof erro != 'undefined' && typeof tipo_erro != 'undefined' && tipo_erro == '410' ){ %>
@@ -78,70 +97,75 @@
 
 
 											<div>
-												<!-- <input type="checkbox" class="checkbox-template" id="exibir_senha">
-													<label class="form-check-label" for="exibir_senha" >Exibir senha</label> -->
-													<a data-toggle="modal" data-target="#modal_forgot_password" class="forgot-pass pointer">Redefinir sua senha</a>
-												</div>
+												
+												<a data-toggle="modal" data-target="#modal_forgot_password" class="forgot-pass pointer">Esqueceu sua senha?</a>
+											</div>
 
-												<button class="btn btn-primary primary primary_login">
-													LOGIN
-												</button>
+											<button class="btn btn-primary primary primary_login">
+												LOGIN
+											</button>
 
-											</form>
+										</form>
+
+										<div class="w100 e_investor_smart_cloud">
+											<img src="/public/images/e_investor_smart_cloud.jpg">
 										</div>
+
+
 									</div>
 								</div>
 							</div>
 						</div>
-
 					</div>
 
 				</div>
 
-
-
-
-
 			</div>
 
 
-			<!-- Modal -->
-			<div class="modal fade" id="modal_forgot_password" tabindex="-1" role="dialog"  aria-hidden="true">
-				<div class="modal-dialog" role="document">
-					<div class="modal-content">
-
-						<div class="modal-header primary">
-							<h5 class="modal-title">Redefinir sua Senha</h5>
-							<button type="button" class="close pointer" data-dismiss="modal" aria-label="Fechar">
-								<span aria-hidden="true">&times;</span>
-							</button>
-						</div>
-						<form id="recupera-senha" method="POST" action="" onsubmit="">
-							<div class="modal-body">
-								Informe o seu e-mail no campo abaixo que será gerado uma nova senha de acesso.
-
-								<div class="row no-gutters margin-t-10">
-									<input required="true" name="email" class="form-control" type="email" placeholder="Email">
-								</div>
-
-								<div class="error_container_resend hide red-text text-center">
-									<div class="error_resend_mensagem "></div>
-								</div>
 
 
-							</div>
-							<div class="modal-footer">
-								<button class="btn btn_modal btn_modal_close margin-r-10 pointer" data-dismiss="modal">Fechar</button>
-								<button type="submit" class="btn pointer resend-pass">Restaurar Senha</button>
-							</div>
-						</form>
+
+		</div>
+
+
+		<!-- Modal -->
+		<div class="modal fade" id="modal_forgot_password" tabindex="-1" role="dialog"  aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+
+					<div class="modal-header primary">
+						<h5 class="modal-title">Redefinir sua Senha</h5>
+						<button type="button" class="close pointer" data-dismiss="modal" aria-label="Fechar">
+							<span aria-hidden="true">&times;</span>
+						</button>
 					</div>
+					<form id="recupera-senha" method="POST" action="" onsubmit="">
+						<div class="modal-body">
+							Informe o seu e-mail no campo abaixo que será gerado uma nova senha de acesso.
+
+							<div class="row no-gutters margin-t-10">
+								<input required="true" name="email" class="form-control" type="email" placeholder="Email">
+							</div>
+
+							<div class="error_container_resend hide red-text text-center">
+								<div class="error_resend_mensagem "></div>
+							</div>
+
+
+						</div>
+						<div class="modal-footer">
+							<button class="btn btn_modal btn_modal_close margin-r-10 pointer" data-dismiss="modal">Fechar</button>
+							<button type="submit" class="btn pointer resend-pass">Restaurar Senha</button>
+						</div>
+					</form>
 				</div>
 			</div>
 		</div>
+	</div>
 
-	</body>
-	</html>
+</body>
+</html>
 
 
 
