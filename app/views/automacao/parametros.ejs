@@ -25,15 +25,13 @@
 									<div class="inline w100">
 
 
-										<button data-to='container_formulario'  data-link="/sistema/automacao/popup-carregar-algoritmo-termos" class="btn modal-mount btn-success-light margin-t-10 margin-b-10 float-left" data-modal='#modalinfo'>Clique aqui para carregar o algoritimo otimizado por I.A. Última atualização <%= data[usuario.id +'_header_data_atualizada'] %>											
+										<button data-link="/sistema/automacao/popup-carregar-algoritmo-termos" class="btn modal-mount btn-success-light margin-t-10 margin-b-10 float-left carregar_parametros_algoritmo h45px" data-modal='#modalinfo'>Clique aqui para carregar o algoritimo otimizado por I.A. Última atualização <%= data[usuario.id +'_header_data_atualizada'] %>											
 										</button>
 
-
-
-
+										<div class="inline primary-background padding-10 white-text margin-t-10 margin-b-10 float-left h45px text-center w150px border-radius-025rem carregado_header_formulario none">Carregado</div>
 										
 
-										<button type="button" disabled data-href="/sistema/adicionar_usuario_corretora/" class="btn btn-disabled float-right margin-t-10 margin-b-10" title="Sincronizar" data-action="/sistema">Sincronizar Estratégia Otimizada Metaquotes</button>
+										<button type="button" data-modal='#modalinfo' disabled class="btn modal-mount btn-disabled float-right margin-t-10 margin-b-10 sincronizar_estrategia_otimizada h45px" title="Sincronizar" data-link="/sistema/automacao/popup-sincronizar-estrategia-termos">Sincronizar Estratégia Otimizada Metaquotes</button>
 
 									</div>
 

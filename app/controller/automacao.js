@@ -83,12 +83,13 @@ router.get('/parametros', function(req, res, next) {
 router.get('/popup-carregar-algoritmo-termos', function(req, res, next) {
 
 	console.log('estou no popup-carregar-algoritmo-termos');
-
-
 	res.render(req.isAjaxRequest() == true ? 'api' : 'montador', {html: 'automacao/popup_carregar_algoritmo_termos', data: data, usuario: req.session.usuario});
+});
 
+router.get('/popup-sincronizar-estrategia-termos', function(req, res, next) {
 
-
+	console.log('estou no popup-sincronizar-estrategia-termos');
+	res.render(req.isAjaxRequest() == true ? 'api' : 'montador', {html: 'automacao/popup_sincronizar_estrategia_termos', data: data, usuario: req.session.usuario});
 });
 
 
@@ -119,6 +120,19 @@ router.get('/carregar_parametros_algoritmo', function(req, res, next) {
 	}).sort({'_id':-1}).limit(1);
 
 });
+
+
+router.post('/sincronizar_estrategia_algoritmo', function(req, res, next) {
+
+	console.log('estou no sincronizar_estrategia_algoritmo');
+
+	POST = req.body;
+
+	console.log('POST');
+	console.log(POST);
+	console.log('XXXXXXXXXXXXX');
+
+})
 
 
 

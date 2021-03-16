@@ -342,6 +342,34 @@ $(document).ready(function () {
 		SubmitAjaxClean(data, link, back);
 	});
 
+	$(document).on('click', '.carregar_parametros_algoritmo_popup', function(e) {
+		e.preventDefault();
+
+		console.log('carregar_parametros_algoritmo');
+		$('.carregar_parametros_algoritmo').addClass('none');
+		$('.carregado_header_formulario').removeClass('none');
+		$('.sincronizar_estrategia_otimizada').removeClass('btn-disabled').prop('disabled',false).addClass('btn-success-light');
+	});
+
+
+	$(document).on('change','.aceito-termos',function(e){
+		e.preventDefault();
+		var data_disabled = $(this).data('disabled');
+		console.log('data_disabled: ' + data_disabled);
+		console.log('estou alterando aceitar os termos');
+		console.log('yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy');
+
+		if($(this).is(':checked')){
+			console.log('entrei aqui no checked');
+			$('.' + data_disabled).removeClass('btn-disabled').prop('disabled',false).addClass('btn-success-light');;
+		}else{
+			console.log('entrei aqui no não checked');
+			$('.' + data_disabled).addClass('btn-disabled').prop('disabled',true).removeClass('btn-success-light');
+		}
+
+	});
+	
+
 
 
 
