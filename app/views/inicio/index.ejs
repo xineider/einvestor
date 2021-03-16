@@ -62,7 +62,7 @@
 					<div class="card primary-text margin-b-0">
 						<div class="padding-5 text-center f12">
 							<span class="margin-t-5">Meu consumo atual é de R$900,00 por mês</span>
-							<a href="/sistema/sistemas" class="ajax-load btn btn-primary btn-small float-right">Upgrade</a>
+							<a href="/sistema/sistemas" class="ajax-load btn btn-transparent btn-small float-right">Upgrade</a>
 						</div>
 					</div>
 				</div>
@@ -70,11 +70,26 @@
 				<div class="col-sm-12 col-md-6">
 					<div class="card h-100 primary-background margin-b-0">
 						<div class="padding-5 f12 text-center">
-							<span class="white-text inline">Status:</span> <span class="green-text inline margin-l-5">ON</span>
-							<span class="white-text inline margin-l-5">Pgto: </span><span class="green-text inline margin-l-5">OK  </span>
-							<span class="white-text inline margin-l-5">Conta: </span><span class="green-text inline margin-l-5">Sincronizada  </span>
-							<span class="white-text inline margin-l-5">Algoritmo: </span><span class="green-text inline margin-l-5">Atual  </span>
-							<span class="white-text inline margin-l-5">Versão: </span><span class="green-text inline margin-l-5">12/03/2021</span>
+							<span class="white-text inline">Status:</span> 
+							<span class="<%= data[usuario.id +'_usuario_dados'][0].sistema_online == true ? 'green-text' : 'red-text'%> inline margin-l-5">
+								<%= data[usuario.id +'_usuario_dados'][0].sistema_online == true ? 'ON' : 'OFF'%>			
+							</span>
+
+							<span class="white-text inline margin-l-5">Pgto: </span>
+							<span class="<%= data[usuario.id +'_usuario_dados'][0].pagamento == true ? 'green-text' : 'red-text'%> inline margin-l-5">
+								<%= data[usuario.id +'_usuario_dados'][0].sistema_online == true ? 'ON' : 'OFF'%>  
+							</span>
+
+							<span class="white-text inline margin-l-5">Conta: </span>
+							<span class="<%= data[usuario.id +'_usuario_corretora'][0].sincronizado == true ? 'green-text' : 'red-text'%> inline margin-l-5">
+								<%= data[usuario.id +'_usuario_corretora'][0].sincronizado == true ? 'Sincronizada' : 'Dessincronizada'%>
+							</span>
+
+							<span class="white-text inline margin-l-5">Algoritmo: </span>
+							<span class="green-text inline margin-l-5">Atual  </span>
+
+							<span class="white-text inline margin-l-5">Versão: </span>
+							<span class="green-text inline margin-l-5"><%= data[usuario.id +'_header_data_atualizada']%></span>
 						</div>
 					</div>
 				</div>
@@ -89,23 +104,23 @@
 								<div class="row no-gutters">
 									<div class="col-sm-4">Capital alocado</div>
 									<div class="col-sm-5"><img class="w100" src="/public/images/progress_bar1.png"></div>
-									<div class="col-sm-3"><img class="w100" style="margin-top:-35px;" src="/public/images/img1.png"></div>
+									
 								</div>					
 							</div>
 
 							<div class="margin-t-30">
 								<div class="row no-gutters">
-									<div class="col-sm-4">Capital alocado</div>
+									<div class="col-sm-4">Número de Lotes</div>
 									<div class="col-sm-5"><img class="w100" src="/public/images/progress_bar2.png"></div>
-									<div class="col-sm-3"><img class="w100" style="margin-top:-35px;" src="/public/images/img2.png"></div>
+									
 								</div>					
 							</div>
 
 							<div class="margin-t-30">
 								<div class="row no-gutters">
-									<div class="col-sm-4">Capital alocado</div>
+									<div class="col-sm-4">Consumo de H.B.Tech</div>
 									<div class="col-sm-5"><img class="w100" src="/public/images/progress_bar3.png"></div>
-									<div class="col-sm-3"><img class="w100" style="margin-top:-35px;" src="/public/images/img3.png"></div>
+									
 								</div>					
 							</div>
 							
@@ -138,15 +153,43 @@
 				</div>
 				<div class="col-sm-12 col-md-6">
 					<div class="card">
+
+
+
 						<div class="padding-5 text-center f12">
-							<span class="black-text inline">Melhor mês:</span> <span class="green-text inline margin-l-5">30.51%</span>
-							<span class="black-text inline margin-l-5">Meses positivos: </span><span class="green-text inline margin-l-5">03  </span>
-							<span class="black-text inline margin-l-5">NºOperações: </span><span class="green-text inline margin-l-5">63  </span>
-							<span class="black-text inline margin-l-5">Pior mês: </span><span class="red-text inline margin-l-5">-5,26%  </span>
-							<span class="black-text inline margin-l-5">Meses negativos: </span><span class="red-text inline margin-l-5">01</span>
+							<span class="black-text inline">Melhor mês:</span> 
+							<span class="<%=data[usuario.id +'_usuario_grafico_header'].melhor > 0 ? 'green-text': 'red-text' %> inline margin-l-5 badge primary-background padding-5">
+								<%= data[usuario.id +'_usuario_grafico_header'].melhor_exib%>%
+							</span>
+
+							<span class="black-text inline margin-l-5">Meses positivos: </span>
+							<span class="white-text inline badge primary-background padding-5 margin-l-5">
+								<%= data[usuario.id +'_usuario_grafico_header'].meses_positivos%>							
+							</span>
+
+							<span class="black-text inline margin-l-5">NºOperações: </span>
+							<span class="white-text inline badge primary-background padding-5 margin-l-5">
+								<%= data[usuario.id +'_usuario_grafico_header'].numero_operacoes %>  
+							</span>
+
+							<span class="black-text inline margin-l-5">Pior mês: </span>
+							<span class="<%=data[usuario.id +'_usuario_grafico_header'].pior > 0 ? 'green-text': 'red-text' %> inline badge primary-background padding-5 margin-l-5">
+								<%= data[usuario.id +'_usuario_grafico_header'].pior_exib%>%  
+							</span>
+
+							<span class="black-text inline margin-l-5">Meses negativos: </span>
+							<span class="red-text inline primary-background padding-5 margin-l-5">
+								<%= data[usuario.id +'_usuario_grafico_header'].meses_negativos%>							
+							</span>
 						</div>
+
+
+
+						<canvas id="grafico_evolucao_patrimonial" width="400" height="400"></canvas>
+						<span class="f12 grey-text">"Utilizando o sistema a 90 dias, os dados tem por base o capital inicial e desconsideram se o usuário fez algum saque</span>
+
 						
-						<img class="w100" src="/public/images/grafd2.png">
+						<!-- 	<img class="w100" src="/public/images/grafd2.png"> -->
 					</div>
 					
 				</div>
@@ -167,6 +210,58 @@
 	$('.slide-item').slick({
 		dots: false
 	});
+
+
+
+
+
+
+
+	var ctx = document.getElementById('grafico_evolucao_patrimonial').getContext('2d');
+	var myChart = new Chart(ctx, {
+		type: 'line',
+		data: {
+			labels: ['<%=data[usuario.id +'_usuario_grafico'][2].mes %>', '<%=data[usuario.id +'_usuario_grafico'][1].mes %>', '<%=data[usuario.id +'_usuario_grafico'][0].mes %>'],
+			datasets: [{
+				label: 'Evolução Patrimonial',
+				data: [<%=data[usuario.id +'_usuario_grafico'][2].valor %>,<%=data[usuario.id +'_usuario_grafico'][1].valor %>,<%=data[usuario.id +'_usuario_grafico'][0].valor %>],
+				backgroundColor:'#d8e9ef',
+				borderColor: '#003475',
+				fill:true,
+				borderWidth: 1
+			}]
+		},
+		options: {
+			scales: {
+				yAxes: [{
+					ticks: {
+						beginAtZero: false
+					}
+				}]
+			}
+		}
+	});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 </script>
 

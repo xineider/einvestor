@@ -17,7 +17,7 @@ const usuarioModel = require('../model/usuariosModel.js');
 
 const roboModel = require('../model/roboModel.js');
 
-const regrasAlgoritimoModel = require('../model/regrasAlgoritimoModel.js');
+const regrasAlgoritmoModel = require('../model/regrasAlgoritmoModel.js');
 
 const formCurrency = new Intl.NumberFormat('pt-BR', {
 	style: 'currency',
@@ -73,11 +73,11 @@ router.post('/select_table_price', function(req, res, next) {
 
 	console.log('valor_minimo: ' + valor_minimo);
 
-	regrasAlgoritimoModel.find({deletado:false},function(err,data_algoritimo){
-		console.log('-data_algoritimo aaaaaaaaaaaaaaaaaa');
-		console.log(data_algoritimo);
+	regrasAlgoritmoModel.find({deletado:false},function(err,data_algoritmo){
+		console.log('-data_algoritmo aaaaaaaaaaaaaaaaaa');
+		console.log(data_algoritmo);
 		console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
-		data[req.session.usuario.id+'_algoritimo'] = data_algoritimo;
+		data[req.session.usuario.id+'_algoritimo'] = data_algoritmo;
 
 
 		roboModel.find({valor_minimo:{$lte:valor_minimo}},function(err,data_robo){
@@ -93,11 +93,11 @@ router.post('/select_table_price', function(req, res, next) {
 			
 
 			for(i=0;i < data_robo.length; i++){
-				var rentabilidade_aa = ((data_algoritimo[0].media_ano * data_robo[i].multiplicador) / valor_minimo) * 100;
-				var volatilidade = data_algoritimo[0].volatilidade * data_robo[i].multiplicador;
+				var rentabilidade_aa = ((data_algoritmo[0].media_ano * data_robo[i].multiplicador) / valor_minimo) * 100;
+				var volatilidade = data_algoritmo[0].volatilidade * data_robo[i].multiplicador;
 				var maximo_rebaixamento = volatilidade /  valor_minimo * 100;
-				var melhor_mes = data_algoritimo[0].melhor_mes * data_robo[i].multiplicador / valor_minimo * 100;
-				var pior_mes = data_algoritimo[0].pior_mes * data_robo[i].multiplicador / valor_minimo * 100;
+				var melhor_mes = data_algoritmo[0].melhor_mes * data_robo[i].multiplicador / valor_minimo * 100;
+				var pior_mes = data_algoritmo[0].pior_mes * data_robo[i].multiplicador / valor_minimo * 100;
 
 				volatilidade = formCurrency.format(volatilidade);
 				volatilidade = ((volatilidade.replace('.','#')).replace(',','.')).replace('#',',');

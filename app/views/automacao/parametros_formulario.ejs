@@ -1,0 +1,1458 @@
+										<div class="table-responsive">
+											<table class="table table-striped table_white_box">
+												<thead>
+													<tr>
+														<th class="text-center">Optimize</th>
+														<th class="text-center">Variable</th>
+														<th class="text-center">Value</th>
+														<th class="text-center">Start</th>
+														<th class="text-center">Step</th>
+														<th class="text-center">Stop</th>
+														<th class="text-center">Steps</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td>
+															<div class="form-check text-center">
+																<input class="form-check-input" type="checkbox" value="">
+															</div>
+														</td>
+														<td>
+															Setup name
+														</td>
+														<td>
+															<input class="form-control form-small text-center" type="text" name="setup_name_value" value="<%= data[usuario.id +'_parametros'].length > 0 ? data[usuario.id +'_parametros'][0].setup_name[0] : ''%>">
+															
+														</td>
+														<td>
+															<input class="form-control form-small text-center" type="text" name="setup_name_start" value="<%= data[usuario.id +'_parametros'].length > 0 ? data[usuario.id +'_parametros'][0].setup_name[1] : ''%>">
+														</td>
+														<td>
+															<input class="form-control form-small text-center" type="text" name="setup_name_step" value="<%= data[usuario.id +'_parametros'].length > 0 ? data[usuario.id +'_parametros'][0].setup_name[2] : ''%>">
+														</td>
+														<td>
+															<input class="form-control form-small text-center" type="text" name="setup_name_stop" value="<%= data[usuario.id +'_parametros'].length > 0 ? data[usuario.id +'_parametros'][0].setup_name[3] : ''%>">
+														</td>
+														<td>
+															<input class="form-control form-small text-center" type="text" name="setup_name_steps" value="<%= data[usuario.id +'_parametros'].length > 0 ? data[usuario.id +'_parametros'][0].setup_name[4] : ''%>">
+														</td>
+													</tr>
+													<tr>
+														<td>
+															<div class="form-check text-center">
+																<input class="form-check-input" type="checkbox" value="">
+															</div>
+														</td>
+														<td>
+															Symbol Name (1)
+														</td>
+														<td>
+															<input class="form-control form-small" type="text" name="symbol_name_value">
+														</td>
+														<td>
+															<input class="form-control form-small" type="text" name="symbol_name_value">
+														</td>
+														<td>
+															<input class="form-control form-small" type="text" name="symbol_name_value">
+														</td>
+														<td>
+															<input class="form-control form-small" type="text" name="symbol_name_value">
+														</td>
+														<td>
+															<input class="form-control form-small" type="text" name="symbol_name_value">
+														</td>
+													</tr>
+													<tr>
+														<td>
+															<div class="form-check text-center">
+																<input class="form-check-input" type="checkbox" value="">
+															</div>
+														</td>
+														<td>
+															Symbol Hedge Name (2)
+														</td>
+														<td></td>
+														<td></td>
+														<td></td>
+														<td></td>
+														<td></td>
+													</tr>
+													<tr>
+														<td>
+															<div class="form-check text-center">
+																<input class="form-check-input" type="checkbox" value="">
+															</div>
+														</td>
+														<td>
+															Magic Number
+														</td>
+														<td></td>
+														<td></td>
+														<td></td>
+														<td></td>
+														<td></td>
+													</tr>
+													<tr>
+														<td>
+
+														</td>
+														<td>
+															[A] Security
+														</td>
+														<td></td>
+														<td></td>
+														<td></td>
+														<td></td>
+														<td></td>
+													</tr>
+													<tr>
+														<td>
+															<div class="form-check text-center">
+																<input class="form-check-input" type="checkbox" value="">
+															</div>
+														</td>
+														<td>
+															[03]Max op lot size (1)
+														</td>
+														<td></td>
+														<td></td>
+														<td></td>
+														<td></td>
+														<td></td>
+													</tr>
+													<tr>
+														<td>
+															<div class="form-check text-center">
+																<input class="form-check-input" type="checkbox" value="">
+															</div>
+														</td>
+														<td>
+															[03]Max op lot size (2)
+														</td>
+														<td></td>
+														<td></td>
+														<td></td>
+														<td></td>
+														<td></td>
+													</tr>
+													<tr>
+														<td>
+															<div class="form-check text-center">
+																<input class="form-check-input" type="checkbox" value="">
+															</div>
+														</td>
+														<td>
+															[04]Number (1) ID
+														</td>
+														<td></td>
+														<td></td>
+														<td></td>
+														<td></td>
+														<td></td>
+													</tr>
+													<tr>
+														<td>
+															<div class="form-check text-center">
+																<input class="form-check-input" type="checkbox" value="">
+															</div>
+														</td>
+														<td>
+															[04]Number (2) ID
+														</td>
+														<td></td>
+														<td></td>
+														<td></td>
+														<td></td>
+														<td></td>
+													</tr>
+													<tr>
+														<td>
+
+														</td>
+														<td>
+															[B] E
+														</td>
+														<td></td>
+														<td></td>
+														<td></td>
+														<td></td>
+														<td></td>
+													</tr>
+													<tr>
+														<td>
+															<div class="form-check text-center">
+																<input class="form-check-input" type="checkbox" value="">
+															</div>
+														</td>
+														<td>
+															[A1] Lot size (1)
+														</td>
+														<td></td>
+														<td></td>
+														<td></td>
+														<td></td>
+														<td></td>
+													</tr>
+													<tr>
+														<td>
+															<div class="form-check text-center">
+																<input class="form-check-input" type="checkbox" value="">
+															</div>
+														</td>
+														<td>
+															[A1] Lot size (2)
+														</td>
+														<td></td>
+														<td></td>
+														<td></td>
+														<td></td>
+														<td></td>
+													</tr>
+													<tr>
+														<td>
+															<div class="form-check text-center">
+																<input class="form-check-input" type="checkbox" value="">
+															</div>
+														</td>
+														<td>
+															[A2] Mode (1)
+														</td>
+														<td></td>
+														<td>
+															<select class="form-control select-small" id="exampleFormControlSelect1">
+																<option>B</option>
+																<option>S</option>
+																<option>B&S</option>
+																<option>None</option>
+
+															</select>
+														</td>
+														<td></td>
+														<td>
+															<select class="form-control select-small" id="exampleFormControlSelect1">
+																<option>B</option>
+																<option>S</option>
+																<option>B&S</option>
+																<option>None</option>
+															</select>
+														</td>
+														<td></td>
+													</tr>
+													<tr>
+														<td>
+															<div class="form-check text-center">
+																<input class="form-check-input" type="checkbox" value="">
+															</div>
+														</td>
+														<td>
+															[A2] Mode (2)
+														</td>
+														<td></td>
+														<td>
+															<select class="form-control select-small" id="exampleFormControlSelect1">
+																<option>B</option>
+																<option>S</option>
+																<option>B&S</option>
+																<option>None</option>
+															</select>
+														</td>
+														<td></td>
+														<td>
+															<select class="form-control select-small" id="exampleFormControlSelect1">
+																<option>B</option>
+																<option>S</option>
+																<option>B&S</option>
+																<option>None</option>
+															</select>
+														</td>
+														<td></td>
+													</tr>
+													<tr>
+														<td>
+
+														</td>
+														<td>
+															[C] SL
+														</td>
+														<td></td>
+														<td></td>
+														<td></td>
+														<td></td>
+														<td></td>
+													</tr>
+													<tr>
+														<td>
+															<div class="form-check text-center">
+																<input class="form-check-input" type="checkbox" value="">
+															</div>
+														</td>
+														<td>
+															[B1] Measure (1)
+														</td>
+														<td></td>
+														<td>
+															<select class="form-control select-small" id="exampleFormControlSelect1">
+																<option>Points</option>
+																<option>Pips</option>
+															</select>
+														</td>
+														<td></td>
+														<td>
+															<select class="form-control select-small" id="exampleFormControlSelect1">
+																<option>Points</option>
+																<option>Pips</option>
+															</select>
+														</td>
+														<td></td>
+													</tr>
+													<tr>
+														<td>
+															<div class="form-check text-center">
+																<input class="form-check-input" type="checkbox" value="">
+															</div>
+														</td>
+														<td>
+															[B1] Measure (2)
+														</td>
+														<td></td>
+														<td>
+															<select class="form-control select-small" id="exampleFormControlSelect1">
+																<option>Points</option>
+																<option>Pips</option>
+															</select>
+														</td>
+														<td></td>
+														<td>
+															<select class="form-control select-small" id="exampleFormControlSelect1">
+																<option>Points</option>
+																<option>Pips</option>
+															</select>
+														</td>
+														<td></td>
+													</tr>
+													<tr>
+														<td>
+															<div class="form-check text-center">
+																<input class="form-check-input" type="checkbox" value="">
+															</div>
+														</td>
+														<td>
+															[B2] Distance (1)
+														</td>
+														<td></td>
+														<td>
+
+														</td>
+														<td></td>
+														<td>
+
+														</td>
+														<td></td>
+													</tr>
+													<tr>
+														<td>
+															<div class="form-check text-center">
+																<input class="form-check-input" type="checkbox" value="">
+															</div>
+														</td>
+														<td>
+															[B2] Distance (2)
+														</td>
+														<td></td>
+														<td></td>
+														<td></td>
+														<td></td>
+														<td></td>
+													</tr>
+													<tr>
+														<td>
+
+														</td>
+														<td>
+															[D] PE
+														</td>
+														<td></td>
+														<td></td>
+														<td></td>
+														<td></td>
+														<td></td>
+													</tr>
+													<tr>
+														<td>
+															<div class="form-check text-center">
+																<input class="form-check-input" type="checkbox" value="">
+															</div>
+														</td>
+														<td>
+															[E1] Direction (1)
+														</td>
+														<td></td>
+														<td>
+															<select class="form-control select-small" id="exampleFormControlSelect1">
+																<option>On the way</option>
+																<option>Back out</option>
+															</select>
+														</td>
+														<td></td>
+														<td>
+															<select class="form-control select-small" id="exampleFormControlSelect1">
+																<option>On the way</option>
+																<option>Back out</option>
+															</select>
+														</td>
+														<td></td>
+													</tr>
+													<tr>
+														<td>
+															<div class="form-check text-center">
+																<input class="form-check-input" type="checkbox" value="">
+															</div>
+														</td>
+														<td>
+															[E1] Direction (2)
+														</td>
+														<td></td>
+														<td>
+															<select class="form-control select-small" id="exampleFormControlSelect1">
+																<option>On the way</option>
+																<option>Back out</option>
+															</select>
+														</td>
+														<td></td>
+														<td>
+															<select class="form-control select-small" id="exampleFormControlSelect1">
+																<option>On the way</option>
+																<option>Back out</option>
+															</select>
+														</td>
+														<td></td>
+													</tr>
+
+													<tr>
+														<td>
+															<div class="form-check text-center">
+																<input class="form-check-input" type="checkbox" value="">
+															</div>
+														</td>
+														<td>
+															[E2] Measure (1)
+														</td>
+														<td></td>
+														<td>
+															<select class="form-control select-small" id="exampleFormControlSelect1">
+																<option>Points</option>
+																<option>Pips</option>
+															</select>
+														</td>
+														<td></td>
+														<td>
+															<select class="form-control select-small" id="exampleFormControlSelect1">
+																<option>Points</option>
+																<option>Pips</option>
+															</select>
+														</td>
+														<td></td>
+													</tr>
+
+													<tr>
+														<td>
+															<div class="form-check text-center">
+																<input class="form-check-input" type="checkbox" value="">
+															</div>
+														</td>
+														<td>
+															[E2] Measure (2)
+														</td>
+														<td></td>
+														<td>
+															<select class="form-control select-small" id="exampleFormControlSelect1">
+																<option>Points</option>
+																<option>Pips</option>
+															</select>
+														</td>
+														<td></td>
+														<td>
+															<select class="form-control select-small" id="exampleFormControlSelect1">
+																<option>Points</option>
+																<option>Pips</option>
+															</select>
+														</td>
+														<td></td>
+													</tr>
+													<tr>
+														<td>
+															<div class="form-check text-center">
+																<input class="form-check-input" type="checkbox" value="">
+															</div>
+														</td>
+														<td>
+															[D1] Distance (1)
+														</td>
+														<td></td>
+														<td></td>
+														<td></td>
+														<td></td>
+														<td></td>
+													</tr>
+													<tr>
+														<td>
+															<div class="form-check text-center">
+																<input class="form-check-input" type="checkbox" value="">
+															</div>
+														</td>
+														<td>
+															[G1] Size (1)
+														</td>
+														<td></td>
+														<td></td>
+														<td></td>
+														<td></td>
+														<td></td>
+													</tr>
+													<tr>
+														<td>
+															<div class="form-check text-center">
+																<input class="form-check-input" type="checkbox" value="">
+															</div>
+														</td>
+														<td>
+															[D1] Distance (2)
+														</td>
+														<td></td>
+														<td></td>
+														<td></td>
+														<td></td>
+														<td></td>
+													</tr>
+													<tr>
+														<td>
+															<div class="form-check text-center">
+																<input class="form-check-input" type="checkbox" value="">
+															</div>
+														</td>
+														<td>
+															[G1] Size (2)
+														</td>
+														<td></td>
+														<td></td>
+														<td></td>
+														<td></td>
+														<td></td>
+													</tr>
+													<tr>
+														<td>
+
+														</td>
+														<td>
+															[E] TP
+														</td>
+														<td></td>
+														<td></td>
+														<td></td>
+														<td></td>
+														<td></td>
+													</tr>
+													<tr>
+														<td>
+															<div class="form-check text-center">
+																<input class="form-check-input" type="checkbox" value="">
+															</div>
+														</td>
+														<td>
+															[G1] Measure (1)
+														</td>
+														<td>
+															<select class="form-control select-small" id="exampleFormControlSelect1">
+																<option>Points</option>
+																<option>Pips</option>
+															</select>
+														</td>
+														<td>
+															<select class="form-control select-small" id="exampleFormControlSelect1">
+																<option>Points</option>
+																<option>Pips</option>
+															</select>
+														</td>
+														<td></td>
+														<td>
+															<select class="form-control select-small" id="exampleFormControlSelect1">
+																<option>Points</option>
+																<option>Pips</option>
+															</select>
+														</td>
+														<td></td>
+													</tr>
+													<tr>
+														<td>
+															<div class="form-check text-center">
+																<input class="form-check-input" type="checkbox" value="">
+															</div>
+														</td>
+														<td>
+															[G2] Distance (1)
+														</td>
+														<td></td>
+														<td></td>
+														<td></td>
+														<td></td>
+														<td></td>
+													</tr>
+													<tr>
+														<td>
+															<div class="form-check text-center">
+																<input class="form-check-input" type="checkbox" value="">
+															</div>
+														</td>
+														<td>
+															[G1] Measure (2)
+														</td>
+														<td>
+															<select class="form-control select-small" id="exampleFormControlSelect1">
+																<option>Points</option>
+																<option>Pips</option>
+															</select>
+														</td>
+														<td>
+															<select class="form-control select-small" id="exampleFormControlSelect1">
+																<option>Points</option>
+																<option>Pips</option>
+															</select>
+														</td>
+														<td></td>
+														<td>
+															<select class="form-control select-small" id="exampleFormControlSelect1">
+																<option>Points</option>
+																<option>Pips</option>
+															</select>
+														</td>
+														<td></td>
+													</tr>
+													<tr>
+														<td>
+															<div class="form-check text-center">
+																<input class="form-check-input" type="checkbox" value="">
+															</div>
+														</td>
+														<td>
+															[G2] Distance (2)
+														</td>
+														<td></td>
+														<td></td>
+														<td></td>
+														<td></td>
+														<td></td>
+													</tr>
+													<tr>
+														<td>
+
+														</td>
+														<td>
+															[F] ACT
+														</td>
+														<td></td>
+														<td></td>
+														<td></td>
+														<td></td>
+														<td></td>
+													</tr>
+
+													<tr>
+														<td>
+															<div class="form-check text-center">
+																<input class="form-check-input" type="checkbox" value="">
+															</div>
+														</td>
+														<td>
+															[T1] Time (1)
+														</td>
+														<td>
+															<select class="form-control select-small" id="exampleFormControlSelect1">
+																<option>00:00</option>
+																<option>00:05</option>
+																<option>-  ...</option>
+																<option>23:55</option>
+																<option>24:00:00</option>
+															</select>
+														</td>
+														<td>
+															<select class="form-control select-small" id="exampleFormControlSelect1">
+																<option>00:00</option>
+																<option>00:05</option>
+																<option>-  ...</option>
+																<option>23:55</option>
+																<option>24:00:00</option>
+															</select>
+														</td>
+														<td>
+
+														</td>
+														<td>
+															<select class="form-control select-small" id="exampleFormControlSelect1">
+																<option>00:00</option>
+																<option>00:05</option>
+																<option>-  ...</option>
+																<option>23:55</option>
+																<option>24:00:00</option>
+															</select>
+														</td>
+														<td></td>
+													</tr>
+
+													<tr>
+														<td>
+															<div class="form-check text-center">
+																<input class="form-check-input" type="checkbox" value="">
+															</div>
+														</td>
+														<td>
+															[A1] Action (1)
+														</td>
+														<td>
+															<select class="form-control select-small" id="exampleFormControlSelect1">
+																<option>B</option>
+																<option>S</option>
+																<option>None</option>
+																<option>c</option>
+																<option>d</option>
+																<option>Turn over</option>
+
+															</select>
+														</td>
+														<td>
+															<select class="form-control select-small" id="exampleFormControlSelect1">
+																<option>B</option>
+																<option>S</option>
+																<option>None</option>
+																<option>c</option>
+																<option>d</option>
+																<option>Turn over</option>
+
+															</select>
+														</td>
+														<td></td>
+														<td>
+															<select class="form-control select-small" id="exampleFormControlSelect1">
+																<option>B</option>
+																<option>S</option>
+																<option>None</option>
+																<option>c</option>
+																<option>d</option>
+																<option>Turn over</option>
+
+															</select>
+														</td>
+														<td></td>
+													</tr>
+
+													<tr>
+														<td>
+															<div class="form-check text-center">
+																<input class="form-check-input" type="checkbox" value="">
+															</div>
+														</td>
+														<td>
+															[F1] Filter (1)
+														</td>
+														<td>
+															<select class="form-control select-small" id="exampleFormControlSelect1">
+																<option>If-a</option>
+																<option>If-b</option>
+																<option>Always</option>
+																<option>Np</option>
+																<option>None</option>
+
+															</select>
+														</td>
+														<td>
+															<select class="form-control select-small" id="exampleFormControlSelect1">
+																<option>If-a</option>
+																<option>If-b</option>
+																<option>Always</option>
+																<option>Np</option>
+																<option>None</option>
+
+															</select>
+														</td>
+														<td></td>
+														<td>
+															<select class="form-control select-small" id="exampleFormControlSelect1">
+																<option>If-a</option>
+																<option>If-b</option>
+																<option>Always</option>
+																<option>Np</option>
+																<option>None</option>
+
+															</select>
+														</td>
+														<td></td>
+													</tr>
+
+													<tr>
+														<td>
+															<div class="form-check text-center">
+																<input class="form-check-input" type="checkbox" value="">
+															</div>
+														</td>
+														<td>
+															[T2] Time (1)
+														</td>
+														<td>
+															<select class="form-control select-small" id="exampleFormControlSelect1">
+																<option>00:00</option>
+																<option>00:05</option>
+																<option>-  ...</option>
+																<option>23:55</option>
+																<option>24:00:00</option>
+
+															</select>
+														</td>
+														<td>
+															<select class="form-control select-small" id="exampleFormControlSelect1">
+																<option>00:00</option>
+																<option>00:05</option>
+																<option>-  ...</option>
+																<option>23:55</option>
+																<option>24:00:00</option>
+
+															</select>
+														</td>
+														<td></td>
+														<td>
+															<select class="form-control select-small" id="exampleFormControlSelect1">
+																<option>00:00</option>
+																<option>00:05</option>
+																<option>-  ...</option>
+																<option>23:55</option>
+																<option>24:00:00</option>
+
+															</select>
+														</td>
+														<td></td>
+													</tr>
+
+													<tr>
+														<td>
+															<div class="form-check text-center">
+																<input class="form-check-input" type="checkbox" value="">
+															</div>
+														</td>
+														<td>
+															[A2] Action (1)
+														</td>
+														<td>
+															<select class="form-control select-small" id="exampleFormControlSelect1">
+																<option>B</option>
+																<option>S</option>
+																<option>None</option>
+																<option>c</option>
+																<option>d</option>
+																<option>Turn over</option>
+
+															</select>
+														</td>
+														<td>
+															<select class="form-control select-small" id="exampleFormControlSelect1">
+																<option>B</option>
+																<option>S</option>
+																<option>None</option>
+																<option>c</option>
+																<option>d</option>
+																<option>Turn over</option>
+
+															</select>
+														</td>
+														<td></td>
+														<td>
+															<select class="form-control select-small" id="exampleFormControlSelect1">
+																<option>B</option>
+																<option>S</option>
+																<option>None</option>
+																<option>c</option>
+																<option>d</option>
+																<option>Turn over</option>
+
+															</select>
+														</td>
+														<td></td>
+													</tr>
+
+													<tr>
+														<td>
+															<div class="form-check text-center">
+																<input class="form-check-input" type="checkbox" value="">
+															</div>
+														</td>
+														<td>
+															[F2] Filter (1)
+														</td>
+														<td>
+															<select class="form-control select-small" id="exampleFormControlSelect1">
+																<option>If-a</option>
+																<option>If-b</option>
+																<option>Always</option>
+																<option>Np</option>
+																<option>None</option>
+
+															</select>
+														</td>
+														<td>
+															<select class="form-control select-small" id="exampleFormControlSelect1">
+																<option>If-a</option>
+																<option>If-b</option>
+																<option>Always</option>
+																<option>Np</option>
+																<option>None</option>
+
+															</select>
+														</td>
+														<td></td>
+														<td>
+															<select class="form-control select-small" id="exampleFormControlSelect1">
+																<option>If-a</option>
+																<option>If-b</option>
+																<option>Always</option>
+																<option>Np</option>
+																<option>None</option>
+
+															</select>
+														</td>
+														<td></td>
+													</tr>
+
+													<tr>
+														<td>
+															<div class="form-check text-center">
+																<input class="form-check-input" type="checkbox" value="">
+															</div>
+														</td>
+														<td>
+															[T3] Time (1)
+														</td>
+														<td>
+															<select class="form-control select-small" id="exampleFormControlSelect1">
+																<option>00:00</option>
+																<option>00:05</option>
+																<option>-  ...</option>
+																<option>23:55</option>
+																<option>24:00:00</option>
+
+															</select>
+														</td>
+														<td>
+															<select class="form-control select-small" id="exampleFormControlSelect1">
+																<option>00:00</option>
+																<option>00:05</option>
+																<option>-  ...</option>
+																<option>23:55</option>
+																<option>24:00:00</option>
+
+															</select>
+														</td>
+														<td></td>
+														<td>
+															<select class="form-control select-small" id="exampleFormControlSelect1">
+																<option>00:00</option>
+																<option>00:05</option>
+																<option>-  ...</option>
+																<option>23:55</option>
+																<option>24:00:00</option>
+
+															</select>
+														</td>
+														<td></td>
+													</tr>
+
+													<tr>
+														<td>
+															<div class="form-check text-center">
+																<input class="form-check-input" type="checkbox" value="">
+															</div>
+														</td>
+														<td>
+															[A3] Action (1)
+														</td>
+														<td>
+															<select class="form-control select-small" id="exampleFormControlSelect1">
+																<option>B</option>
+																<option>S</option>
+																<option>None</option>
+																<option>c</option>
+																<option>d</option>
+																<option>Turn over</option>
+
+															</select>
+														</td>
+														<td>
+															<select class="form-control select-small" id="exampleFormControlSelect1">
+																<option>B</option>
+																<option>S</option>
+																<option>None</option>
+																<option>c</option>
+																<option>d</option>
+																<option>Turn over</option>
+
+															</select>
+														</td>
+														<td></td>
+														<td>
+															<select class="form-control select-small" id="exampleFormControlSelect1">
+																<option>B</option>
+																<option>S</option>
+																<option>None</option>
+																<option>c</option>
+																<option>d</option>
+																<option>Turn over</option>
+
+															</select>
+														</td>
+														<td></td>
+													</tr>
+
+													<tr>
+														<td>
+															<div class="form-check text-center">
+																<input class="form-check-input" type="checkbox" value="">
+															</div>
+														</td>
+														<td>
+															[F3] Filter (1)
+														</td>
+														<td>
+															<select class="form-control select-small" id="exampleFormControlSelect1">
+																<option>If-a</option>
+																<option>If-b</option>
+																<option>Always</option>
+																<option>Np</option>
+																<option>None</option>
+
+															</select>
+														</td>
+														<td>
+															<select class="form-control select-small" id="exampleFormControlSelect1">
+																<option>If-a</option>
+																<option>If-b</option>
+																<option>Always</option>
+																<option>Np</option>
+																<option>None</option>
+
+															</select>
+														</td>
+														<td></td>
+														<td>
+															<select class="form-control select-small" id="exampleFormControlSelect1">
+																<option>If-a</option>
+																<option>If-b</option>
+																<option>Always</option>
+																<option>Np</option>
+																<option>None</option>
+
+															</select>
+														</td>
+														<td></td>
+													</tr>
+
+													<tr>
+														<td>
+															<div class="form-check text-center">
+																<input class="form-check-input" type="checkbox" value="">
+															</div>
+														</td>
+														<td>
+															[T4] Time (2)
+														</td>
+														<td>
+															<select class="form-control select-small" id="exampleFormControlSelect1">
+																<option>00:00</option>
+																<option>00:05</option>
+																<option>-  ...</option>
+																<option>23:55</option>
+																<option>24:00:00</option>
+
+															</select>
+														</td>
+														<td>
+															<select class="form-control select-small" id="exampleFormControlSelect1">
+																<option>00:00</option>
+																<option>00:05</option>
+																<option>-  ...</option>
+																<option>23:55</option>
+																<option>24:00:00</option>
+
+															</select>
+														</td>
+														<td></td>
+														<td>
+															<select class="form-control select-small" id="exampleFormControlSelect1">
+																<option>00:00</option>
+																<option>00:05</option>
+																<option>-  ...</option>
+																<option>23:55</option>
+																<option>24:00:00</option>
+
+															</select>
+														</td>
+														<td></td>
+													</tr>
+
+													<tr>
+														<td>
+															<div class="form-check text-center">
+																<input class="form-check-input" type="checkbox" value="">
+															</div>
+														</td>
+														<td>
+															[A4] Action (2)
+														</td>
+														<td>
+															<select class="form-control select-small" id="exampleFormControlSelect1">
+																<option>B</option>
+																<option>S</option>
+																<option>None</option>
+																<option>c</option>
+																<option>d</option>
+																<option>Turn over</option>
+
+															</select>
+														</td>
+														<td>
+															<select class="form-control select-small" id="exampleFormControlSelect1">
+																<option>B</option>
+																<option>S</option>
+																<option>None</option>
+																<option>c</option>
+																<option>d</option>
+																<option>Turn over</option>
+
+															</select>
+														</td>
+														<td></td>
+														<td>
+															<select class="form-control select-small" id="exampleFormControlSelect1">
+																<option>B</option>
+																<option>S</option>
+																<option>None</option>
+																<option>c</option>
+																<option>d</option>
+																<option>Turn over</option>
+
+															</select>
+														</td>
+														<td></td>
+													</tr>
+
+													<tr>
+														<td>
+															<div class="form-check text-center">
+																<input class="form-check-input" type="checkbox" value="">
+															</div>
+														</td>
+														<td>
+															[F4] Filter (2)
+														</td>
+														<td>
+															<select class="form-control select-small" id="exampleFormControlSelect1">
+																<option>If-a</option>
+																<option>If-b</option>
+																<option>Always</option>
+																<option>Np</option>
+																<option>None</option>
+
+															</select>
+														</td>
+														<td>
+															<select class="form-control select-small" id="exampleFormControlSelect1">
+																<option>If-a</option>
+																<option>If-b</option>
+																<option>Always</option>
+																<option>Np</option>
+																<option>None</option>
+
+															</select>
+														</td>
+														<td></td>
+														<td>
+															<select class="form-control select-small" id="exampleFormControlSelect1">
+																<option>If-a</option>
+																<option>If-b</option>
+																<option>Always</option>
+																<option>Np</option>
+																<option>None</option>
+
+															</select>
+														</td>
+														<td></td>
+													</tr>
+
+													<tr>
+														<td>
+															<div class="form-check text-center">
+																<input class="form-check-input" type="checkbox" value="">
+															</div>
+														</td>
+														<td>
+															[T5] Time (2)
+														</td>
+														<td>
+															<select class="form-control select-small" id="exampleFormControlSelect1">
+																<option>00:00</option>
+																<option>00:05</option>
+																<option>-  ...</option>
+																<option>23:55</option>
+																<option>24:00:00</option>
+
+															</select>
+														</td>
+														<td>
+															<select class="form-control select-small" id="exampleFormControlSelect1">
+																<option>00:00</option>
+																<option>00:05</option>
+																<option>-  ...</option>
+																<option>23:55</option>
+																<option>24:00:00</option>
+
+															</select>
+														</td>
+														<td></td>
+														<td>
+															<select class="form-control select-small" id="exampleFormControlSelect1">
+																<option>00:00</option>
+																<option>00:05</option>
+																<option>-  ...</option>
+																<option>23:55</option>
+																<option>24:00:00</option>
+
+															</select>
+														</td>
+														<td></td>
+													</tr>
+
+													<tr>
+														<td>
+															<div class="form-check text-center">
+																<input class="form-check-input" type="checkbox" value="">
+															</div>
+														</td>
+														<td>
+															[A5] Action (2)
+														</td>
+														<td>
+															<select class="form-control select-small" id="exampleFormControlSelect1">
+																<option>B</option>
+																<option>S</option>
+																<option>None</option>
+																<option>c</option>
+																<option>d</option>
+																<option>Turn over</option>
+
+															</select>
+														</td>
+														<td>
+															<select class="form-control select-small" id="exampleFormControlSelect1">
+																<option>B</option>
+																<option>S</option>
+																<option>None</option>
+																<option>c</option>
+																<option>d</option>
+																<option>Turn over</option>
+
+															</select>
+														</td>
+														<td></td>
+														<td>
+															<select class="form-control select-small" id="exampleFormControlSelect1">
+																<option>B</option>
+																<option>S</option>
+																<option>None</option>
+																<option>c</option>
+																<option>d</option>
+																<option>Turn over</option>
+
+															</select>
+														</td>
+														<td></td>
+													</tr>
+
+													<tr>
+														<td>
+															<div class="form-check text-center">
+																<input class="form-check-input" type="checkbox" value="">
+															</div>
+														</td>
+														<td>
+															[F5] Filter (2)
+														</td>
+														<td>
+															<select class="form-control select-small" id="exampleFormControlSelect1">
+																<option>If-a</option>
+																<option>If-b</option>
+																<option>Always</option>
+																<option>Np</option>
+																<option>None</option>
+
+															</select>
+														</td>
+														<td>
+															<select class="form-control select-small" id="exampleFormControlSelect1">
+																<option>If-a</option>
+																<option>If-b</option>
+																<option>Always</option>
+																<option>Np</option>
+																<option>None</option>
+
+															</select>
+														</td>
+														<td></td>
+														<td>
+															<select class="form-control select-small" id="exampleFormControlSelect1">
+																<option>If-a</option>
+																<option>If-b</option>
+																<option>Always</option>
+																<option>Np</option>
+																<option>None</option>
+
+															</select>
+														</td>
+														<td></td>
+													</tr>
+
+													<tr>
+														<td>
+															<div class="form-check text-center">
+																<input class="form-check-input" type="checkbox" value="">
+															</div>
+														</td>
+														<td>
+															[T6] Time (2)
+														</td>
+														<td>
+															<select class="form-control select-small" id="exampleFormControlSelect1">
+																<option>00:00</option>
+																<option>00:05</option>
+																<option>-  ...</option>
+																<option>23:55</option>
+																<option>24:00:00</option>
+
+															</select>
+														</td>
+														<td>
+															<select class="form-control select-small" id="exampleFormControlSelect1">
+																<option>00:00</option>
+																<option>00:05</option>
+																<option>-  ...</option>
+																<option>23:55</option>
+																<option>24:00:00</option>
+
+															</select>
+														</td>
+														<td></td>
+														<td>
+															<select class="form-control select-small" id="exampleFormControlSelect1">
+																<option>00:00</option>
+																<option>00:05</option>
+																<option>-  ...</option>
+																<option>23:55</option>
+																<option>24:00:00</option>
+
+															</select>
+														</td>
+														<td></td>
+													</tr>
+
+													<tr>
+														<td>
+															<div class="form-check text-center">
+																<input class="form-check-input" type="checkbox" value="">
+															</div>
+														</td>
+														<td>
+															[A6] Action (2)
+														</td>
+														<td>
+															<select class="form-control select-small" id="exampleFormControlSelect1">
+																<option>B</option>
+																<option>S</option>
+																<option>None</option>
+																<option>c</option>
+																<option>d</option>
+																<option>Turn over</option>
+
+															</select>
+														</td>
+														<td>
+															<select class="form-control select-small" id="exampleFormControlSelect1">
+																<option>B</option>
+																<option>S</option>
+																<option>None</option>
+																<option>c</option>
+																<option>d</option>
+																<option>Turn over</option>
+
+															</select>
+														</td>
+														<td></td>
+														<td>
+															<select class="form-control select-small" id="exampleFormControlSelect1">
+																<option>B</option>
+																<option>S</option>
+																<option>None</option>
+																<option>c</option>
+																<option>d</option>
+																<option>Turn over</option>
+
+															</select>
+														</td>
+														<td></td>
+													</tr>
+
+													<tr>
+														<td>
+															<div class="form-check text-center">
+																<input class="form-check-input" type="checkbox" value="">
+															</div>
+														</td>
+														<td>
+															[F6] Filter (2)
+														</td>
+														<td>
+															<select class="form-control select-small" id="exampleFormControlSelect1">
+																<option>If-a</option>
+																<option>If-b</option>
+																<option>Always</option>
+																<option>Np</option>
+																<option>None</option>
+
+															</select>
+														</td>
+														<td>
+															<select class="form-control select-small" id="exampleFormControlSelect1">
+																<option>If-a</option>
+																<option>If-b</option>
+																<option>Always</option>
+																<option>Np</option>
+																<option>None</option>
+
+															</select>
+														</td>
+														<td></td>
+														<td>
+															<select class="form-control select-small" id="exampleFormControlSelect1">
+																<option>If-a</option>
+																<option>If-b</option>
+																<option>Always</option>
+																<option>Np</option>
+																<option>None</option>
+
+															</select>
+														</td>
+														<td></td>
+													</tr>
+
+
+
+												</tbody>
+
+											</table>
+
+
+										</div>

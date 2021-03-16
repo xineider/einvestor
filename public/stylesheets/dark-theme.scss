@@ -1,6 +1,8 @@
 $primary-color:#003475;
 $secondary-color:#ffffff;
 $tertiary-color:#576271;
+$quartiary-color:#d5e1f2;
+
 
 .block {
 	color: $secondary-color;
@@ -841,6 +843,70 @@ nav#sidebar .sidebar-suporte{
 
 .select-small{
 	height: 20px!important;
-    padding: 2px!important;
-    font-size: 12px!important;
+	padding: 2px!important;
+	font-size: 12px!important;
+}
+
+.form-small{
+	height: 20px!important;
+	padding: 2px!important;
+	font-size: 12px!important;
+}
+
+.btn-transparent{
+	background:transparent;
+	border:2px solid $primary-color;
+
+	&:hover{
+		background:$primary-color;
+		color:$secondary-color;
+	}
+}
+
+.tab_container{
+	width: 100%;
+	border-bottom:2px solid #f5f6f4;
+}
+
+.tab_header{
+	padding:20px;
+	margin-left:20px;
+	min-width: 150px;
+	text-align: center;
+	font-size:18px;
+	color:#000;
+
+	&.active{
+		color:$primary-color;
+		border-bottom:5px solid $quartiary-color;
+	}
+
+}
+
+.btn-success-light{
+	background:#7bc24d;
+	color: #fff;
+
+	&:hover{
+		background:#64a53a;
+		color:#fff;
+	}
+}
+
+.grey-background{
+	background:#e6e7e8;
+}
+
+.parametros_button_container button{
+	height: 44px;
+}
+
+.btn-disabled{
+	background:#a9abae;
+	color:#fff;
+	&:hover{
+		background:#a9abae;
+		color:#fff;
+		cursor:default;
+	}
 }

@@ -13,33 +13,112 @@ app.use(require('express-is-ajax-request'));
 
 const mongoose = require('mongoose');
 
-const usuarioModel = require('../model/usuariosModel.js');
+const usuarioRoboModel = require('../model/usuarioRoboModel.js');
 
-const roboModel = require('../model/roboModel.js');
+var regrasAlgoritmoModel = require('../model/regrasAlgoritmoModel.js');
 
-const regrasAlgoritimoModel = require('../model/regrasAlgoritimoModel.js');
-
-const formCurrency = new Intl.NumberFormat('pt-BR', {
-	style: 'currency',
-	currency: 'BRL',
-	minimumFractionDigits: 2
-});
+var parametrosAlgoritmoModel = require('../model/parametrosAlgoritmoModel');
 
 
 router.get('/', function(req, res, next) {
 
 	data.link_sistema = '/sistema';
 	data[req.session.usuario.id+'_numero_menu'] = 2;
-	roboModel.find({},function(err,data_robo_t){
-		data[req.session.usuario.id+'_robo_t']= data_robo_t;
+	
 
-		console.log('wwwwwwwwwwwwwwwwwwwww');
-		console.log(data);
-		console.log('wwwwwwwwwwwwwwwwwwwww');
-		res.render(req.isAjaxRequest() == true ? 'api' : 'montador', {html: 'automacao/white_box', data: data, usuario: req.session.usuario});
+	console.log('wwwwwwwwwwwwwwwwwwwww');
+	console.log(data);
+	console.log('wwwwwwwwwwwwwwwwwwwww');
+	res.render(req.isAjaxRequest() == true ? 'api' : 'montador', {html: 'automacao/conta', data: data, usuario: req.session.usuario});
+
+});
+
+
+
+router.get('/parametros', function(req, res, next) {
+
+	data.link_sistema = '/sistema';
+	data[req.session.usuario.id+'_numero_menu'] = 2;
+
+	//get do robo para identificar o nome para o usuário, regra de 1x1
+	usuarioRoboModel.aggregate([
+	{
+		$match:{id_usuario:mongoose.Types.ObjectId(req.session.usuario.id)}
+	},
+	{
+		$lookup:{
+			from:'robo',
+			localField:'id_robo',
+			foreignField:'_id',
+			as:'algoritmo'
+		}
+
+	}
+
+	]).exec(function(err,data_algoritmo){
+
+		console.log('-------------------data_algoritmo---------------------');
+		console.log(data_algoritmo);
+		console.log('------------------------------------------------------');
+
+		
+		data[req.session.usuario.id+'_usuario_algoritmo'] = data_algoritmo;
+
+		regrasAlgoritmoModel.find({},function(err,data_regras_algoritmo){
+			var data_atualizacao = data_regras_algoritmo[0].data_cadastro;
+			var dataFormatada = ("0" + data_atualizacao.getDate()).substr(-2) + "/" + ("0" + (data_atualizacao.getMonth() + 1)).substr(-2) + "/" + data_atualizacao.getFullYear();
+			data[req.session.usuario.id+'_header_data_atualizada'] = dataFormatada;
+			data[req.session.usuario.id+'_parametros'] = '';
+
+			console.log('wwwwwwwwwwwwwwwwwwwww');
+			console.log(data);
+			console.log('wwwwwwwwwwwwwwwwwwwww');
+			res.render(req.isAjaxRequest() == true ? 'api' : 'montador', {html: 'automacao/parametros', data: data, usuario: req.session.usuario});
+
+		}).sort({'_id':-1}).limit(1);
 	});
 });
 
+
+router.get('/popup-carregar-algoritmo-termos', function(req, res, next) {
+
+	console.log('estou no popup-carregar-algoritmo-termos');
+
+
+	res.render(req.isAjaxRequest() == true ? 'api' : 'montador', {html: 'automacao/popup_carregar_algoritmo_termos', data: data, usuario: req.session.usuario});
+
+
+
+});
+
+
+
+
+router.get('/carregar_parametros_algoritmo', function(req, res, next) {
+
+	console.log('estou no carregar parametros algoritmo');
+
+
+
+	parametrosAlgoritmoModel.find({},function(err,data_parametros){
+		console.log('------------- data parametros ---------------------');
+		console.log(data_parametros);
+		console.log('---------------------------------------------------');
+
+		data[req.session.usuario.id+'_parametros'] = data_parametros;
+
+		console.log('-------------------------------');
+		console.log(data);
+		console.log('-------------------------------');
+		console.log(data_parametros[0].setup_name[0]);
+
+
+		res.render(req.isAjaxRequest() == true ? 'api' : 'montador', {html: 'automacao/parametros_formulario', data: data, usuario: req.session.usuario});
+
+
+	}).sort({'_id':-1}).limit(1);
+
+});
 
 
 

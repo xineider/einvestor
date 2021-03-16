@@ -1,0 +1,67 @@
+<%- include('../includes/menu_header'); %>
+
+<div class="page-content">
+
+	<section class="margin-bottom-sm">
+		<div class="container-fluid">
+			<div class="card">
+
+				<div class="tab_container">
+					<a class="ajax-load" href="/sistema/automacao">
+						<div class="tab_header inline">Conta</div>
+					</a>
+					<div class="tab_header active inline">Parâmetros</div>
+				</div>
+
+				<div class="row margin-t-10">
+					<div class="col-sm-12">
+						<div class="padding-20">
+
+							<div class="container">
+								<form method="POST" action="" enctype="multipart/form-data">
+
+									<div class="text-center primary-background white-text padding-5 border-radius-10">Parâmetros do algoritmo <%=data[usuario.id +'_usuario_algoritmo'][0].algoritmo[0].nome %></div>
+
+									<div class="inline w100">
+
+
+										<button data-to='container_formulario'  data-link="/sistema/automacao/popup-carregar-algoritmo-termos" class="btn modal-mount btn-success-light margin-t-10 margin-b-10 float-left" data-modal='#modalinfo'>Clique aqui para carregar o algoritimo otimizado por I.A. Última atualização <%= data[usuario.id +'_header_data_atualizada'] %>											
+										</button>
+
+
+
+
+										
+
+										<button type="button" disabled data-href="/sistema/adicionar_usuario_corretora/" class="btn btn-disabled float-right margin-t-10 margin-b-10" title="Sincronizar" data-action="/sistema">Sincronizar Estratégia Otimizada Metaquotes</button>
+
+									</div>
+
+
+
+
+
+
+									<div class="margin-t-20 container_formulario">
+
+										<%-include('parametros_formulario')%>
+
+									</div>
+
+
+									<div class="margin-t-20">
+										<button type="button"  data-href="/sistema/adicionar_usuario_corretora/" class="btn btn-primary float-right margin-t-10 margin-b-10" title="Enviar" data-action="/sistema">Sincronizar Estratégia</button>
+									</div>
+
+								</form>
+
+							</div>
+
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</div>

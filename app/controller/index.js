@@ -15,6 +15,9 @@ const log = require('../model/logModel.js');
 
 var usuariosModel = require('../model/usuariosModel.js');
 var usuarioCorretoraModel = require('../model/usuarioCorretoraModel.js');
+var usuarioAlgoritmoModel = require('../model/usuarioAlgoritmoModel.js');
+var usuariosDadosModel = require('../model/usuarioDadosModel.js');
+var regrasAlgoritmoModel = require('../model/regrasAlgoritmoModel.js');
 
 router.get('/', function(req, res, next) {
 	data.link_sistema = '/sistema';
@@ -26,11 +29,92 @@ router.get('/', function(req, res, next) {
 	if(req.session.usuario.nivel >= 3){
 		usuarioCorretoraModel.find({id_usuario:mongoose.Types.ObjectId(req.session.usuario.id)},function(err,data_usuario_corretora){
 			data[req.session.usuario.id+'_usuario_corretora']= data_usuario_corretora;
-			console.log('qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq');
-			console.log(data);
-			console.log('qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq');
+			console.log(data_usuario_corretora);
 
-			res.render(req.isAjaxRequest() == true ? 'api' : 'montador', {html: 'inicio/index',  data: data, usuario: req.session.usuario});
+			regrasAlgoritmoModel.find({},function(err,data_regras_algoritmo){
+				var data_atualizacao = data_regras_algoritmo[0].data_cadastro;
+				var dataFormatada = ("0" + data_atualizacao.getDate()).substr(-2) + "/" + ("0" + (data_atualizacao.getMonth() + 1)).substr(-2) + "/" + data_atualizacao.getFullYear();
+				data[req.session.usuario.id+'_header_data_atualizada'] = dataFormatada;
+
+				console.log('dataFormatada: ' + dataFormatada);
+
+
+				usuariosDadosModel.find({id_usuario:mongoose.Types.ObjectId(req.session.usuario.id)},function(err,data_usuario_dados){
+					data[req.session.usuario.id+'_usuario_dados'] = data_usuario_dados;
+
+
+
+					usuarioAlgoritmoModel.find({id_usuario:mongoose.Types.ObjectId(req.session.usuario.id)},function(err,data_usuario_algoritmo){
+						console.log('00000000000000000000000000000000000');
+						console.log(data_usuario_algoritmo);
+						console.log('00000000000000000000000000000000000');
+
+						var data_header_grafico = {}
+
+						console.log('data_usuario_algoritmo.length: ' + data_usuario_algoritmo.length);
+
+
+						if(data_usuario_algoritmo.length > 0 ){
+
+							var melhor,pior;
+							var meses_positivos = 0;
+							var meses_negativos = 0;
+
+							for(i=0;i < data_usuario_algoritmo.length; i++){
+
+								if(melhor == undefined){
+									melhor = data_usuario_algoritmo[i].porcentagem;
+								}
+
+								if(pior == undefined){
+									pior = data_usuario_algoritmo[i].porcentagem;
+								}
+
+								if(data_usuario_algoritmo[i].porcentagem > melhor){
+									melhor = data_usuario_algoritmo[i].porcentagem;
+								}
+
+								if(data_usuario_algoritmo[i].porcentagem < pior){
+									pior = data_usuario_algoritmo[i].porcentagem;
+								}
+
+								if(data_usuario_algoritmo[i].porcentagem>0){
+									meses_positivos++;
+								}
+
+								if(data_usuario_algoritmo[i].porcentagem < 0){
+									meses_negativos++;
+								}
+
+
+							}
+
+							var melhor_exib = melhor.toString().replace('.',',');
+							var pior_exib = pior.toString().replace('.',',');
+
+							data_header_grafico = {melhor:melhor,melhor_exib:melhor_exib,pior:pior,pior_exib:pior_exib,meses_positivos:meses_positivos,meses_negativos:meses_negativos,numero_operacoes:data_usuario_dados[0].numero_operacoes};
+
+
+							console.log('data_header_grafico');
+							console.log(data_header_grafico);
+
+
+						}else{
+							data_header_grafico = {melhor:0,melhor_exib:0,pior:0,pior_exib:0,meses_positivos:0,meses_negativos:0,numero_operacoes:0};
+						}
+
+						data[req.session.usuario.id+'_usuario_grafico']= data_usuario_algoritmo;
+						data[req.session.usuario.id+'_usuario_grafico_header'] = data_header_grafico;
+
+						console.log('qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq');
+						console.log(data);
+						console.log('qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq');
+
+						res.render(req.isAjaxRequest() == true ? 'api' : 'montador', {html: 'inicio/index',  data: data, usuario: req.session.usuario});
+					}).sort({'_id':-1}).limit(3);
+				})
+
+			}).sort({'_id':-1}).limit(1);
 		}).sort({'_id':-1}).limit(1);
 
 

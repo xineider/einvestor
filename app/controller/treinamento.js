@@ -19,7 +19,7 @@ const roboModel = require('../model/roboModel.js');
 
 const relatorioModel = require('../model/relatorioModel.js');
 
-const regrasAlgoritimoModel = require('../model/regrasAlgoritimoModel.js');
+const regrasAlgoritmoModel = require('../model/regrasAlgoritmoModel.js');
 
 
 

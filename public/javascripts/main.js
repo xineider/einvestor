@@ -90,8 +90,20 @@ $(document).ready(function () {
 		e.preventDefault();
 		var link = $(this).attr('href');
 		var to = $(this).data('to');
-		console.log(to);
-		console.log(link);
+		console.log('ajax-load-to to:' +to);
+		console.log('ajax-load-to link: ' + link);
+		LoadTo(link, to);
+		$('.ajax-load-to').removeClass('active');
+		$('#grafico_botao_tudo').removeClass('active');
+		$(this).addClass('active');
+	});
+
+	$(document).on('click', '.ajax-load-to-btn', function(e) {
+		e.preventDefault();
+		var link = $(this).data('href');
+		var to = $(this).data('to');
+		console.log('ajax-load-to to:' +to);
+		console.log('ajax-load-to link: ' + link);
 		LoadTo(link, to);
 		$('.ajax-load-to').removeClass('active');
 		$('#grafico_botao_tudo').removeClass('active');
@@ -1360,19 +1372,19 @@ function LogSistema(metodo,rota){
 	var ip;
 	var arrayValores = [];
 
-	// $.getJSON("https://api.ipify.org/?format=json", function(e) {
-	// 	ip = e.ip;
-	// 	arrayValores = [ip,metodo,rota,navigator.userAgent,$('input[name="id_usuario_sessao"]').val()];
+	$.getJSON("https://api.ipify.org/?format=json", function(e) {
+		ip = e.ip;
+		arrayValores = [ip,metodo,rota,navigator.userAgent,$('input[name="id_usuario_sessao"]').val()];
 
-	// 	$.ajax({
-	// 		url:'/sistema/log',
-	// 		type:'POST',
-	// 		data:JSON.stringify(arrayValores),
-	// 		contentType: 'application/json', 
-	// 		beforeSend: function(request) {
-	// 		}
-	// 	});
-	// });
+		$.ajax({
+			url:'/sistema/log',
+			type:'POST',
+			data:JSON.stringify(arrayValores),
+			contentType: 'application/json', 
+			beforeSend: function(request) {
+			}
+		});
+	});
 }
 
 function filtrarTabelaDataTablePt(tabela){
