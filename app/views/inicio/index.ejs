@@ -2,9 +2,6 @@
 
 <div class="page-content">
 
-	
-
-
 
 	<section class="no-padding-bottom">
 		<div class="container-fluid">
@@ -58,45 +55,32 @@
 	<section>
 		<div class="container-fluid">
 			<div class="row">
+
 				<div class="col-sm-12 col-md-6">
-					<div class="card primary-text margin-b-0">
-						<div class="padding-5 text-center f12">
-							<span class="margin-t-5">Meu consumo atual é de R$900,00 por mês</span>
-							<a href="/sistema/sistemas" class="ajax-load btn btn-transparent btn-small float-right">Upgrade</a>
+					<div class="card h-100">
+
+						<div class="padding-5 f12 primary-background">
+							<div class="inline float-left">
+								<span class="white-text margin-l-10">Sistema Atual:</span>
+								<span class="green-text inline margin-l-5">
+									<%= data[usuario.id +'_usuario_algoritmo'][0].algoritmo[0].nome %>
+								</span>
+							</div>
+							<div class="inline float-left">
+
+								<span class="white-text margin-l-5">Rentabilidade histórica</span>
+								<span class="green-text inline margin-l-5">
+									<%= data[usuario.id +'_usuario_algoritmo'][0].rentabilidade_aa_exib %>% a.a
+								</span>
+							</div>
+							<div class="inline float-right">
+
+								<span class="white-text margin-l-5 float-right ">Meu consumo atual é de <%= data[usuario.id +'_usuario_algoritmo'][0].algoritmo[0].preco_exib %> por mês</span>
+							</div>
+							
 						</div>
-					</div>
-				</div>
-
-				<div class="col-sm-12 col-md-6">
-					<div class="card h-100 primary-background margin-b-0">
-						<div class="padding-5 f12 text-center">
-							<span class="white-text inline">Status:</span> 
-							<span class="<%= data[usuario.id +'_usuario_dados'][0].sistema_online == true ? 'green-text' : 'red-text'%> inline margin-l-5">
-								<%= data[usuario.id +'_usuario_dados'][0].sistema_online == true ? 'ON' : 'OFF'%>			
-							</span>
-
-							<span class="white-text inline margin-l-5">Pgto: </span>
-							<span class="<%= data[usuario.id +'_usuario_dados'][0].pagamento == true ? 'green-text' : 'red-text'%> inline margin-l-5">
-								<%= data[usuario.id +'_usuario_dados'][0].sistema_online == true ? 'ON' : 'OFF'%>  
-							</span>
-
-							<span class="white-text inline margin-l-5">Conta: </span>
-							<span class="<%= data[usuario.id +'_usuario_corretora'][0].sincronizado == true ? 'green-text' : 'red-text'%> inline margin-l-5">
-								<%= data[usuario.id +'_usuario_corretora'][0].sincronizado == true ? 'Sincronizada' : 'Dessincronizada'%>
-							</span>
-
-							<span class="white-text inline margin-l-5">Algoritmo: </span>
-							<span class="green-text inline margin-l-5">Atual  </span>
-
-							<span class="white-text inline margin-l-5">Versão: </span>
-							<span class="green-text inline margin-l-5"><%= data[usuario.id +'_header_data_atualizada']%></span>
-						</div>
-					</div>
-				</div>
 
 
-				<div class="col-sm-12 col-md-6">
-					<div class="card" style="padding-bottom: 18px;">
 						<div class="padding-20">
 							<h5>Configuração do sistema</h5>
 							<hr>
@@ -152,7 +136,30 @@
 					
 				</div>
 				<div class="col-sm-12 col-md-6">
-					<div class="card">
+					<div class="card h-100">
+
+						<div class="padding-5 f12 text-center primary-background">
+							<span class="white-text inline">Status:</span> 
+							<span class="<%= data[usuario.id +'_usuario_dados'][0].sistema_online == true ? 'green-text' : 'red-text'%> inline margin-l-5">
+								<%= data[usuario.id +'_usuario_dados'][0].sistema_online == true ? 'ON' : 'OFF'%>			
+							</span>
+
+							<span class="white-text inline margin-l-5">Pgto: </span>
+							<span class="<%= data[usuario.id +'_usuario_dados'][0].pagamento == true ? 'green-text' : 'red-text'%> inline margin-l-5">
+								<%= data[usuario.id +'_usuario_dados'][0].sistema_online == true ? 'ON' : 'OFF'%>  
+							</span>
+
+							<span class="white-text inline margin-l-5">Conta: </span>
+							<span class="<%= data[usuario.id +'_usuario_corretora'][0].sincronizado == true ? 'green-text' : 'red-text'%> inline margin-l-5">
+								<%= data[usuario.id +'_usuario_corretora'][0].sincronizado == true ? 'Sincronizada' : 'Dessincronizada'%>
+							</span>
+
+							<span class="white-text inline margin-l-5">Algoritmo: </span>
+							<span class="green-text inline margin-l-5">Atual  </span>
+
+							<span class="white-text inline margin-l-5">Versão: </span>
+							<span class="green-text inline margin-l-5"><%= data[usuario.id +'_header_data_atualizada']%></span>
+						</div>
 
 
 

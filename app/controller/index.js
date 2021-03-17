@@ -17,7 +17,16 @@ var usuariosModel = require('../model/usuariosModel.js');
 var usuarioCorretoraModel = require('../model/usuarioCorretoraModel.js');
 var usuarioAlgoritmoModel = require('../model/usuarioAlgoritmoModel.js');
 var usuariosDadosModel = require('../model/usuarioDadosModel.js');
+var usuarioRoboModel = require('../model/usuarioRoboModel.js');
 var regrasAlgoritmoModel = require('../model/regrasAlgoritmoModel.js');
+
+const formCurrency = new Intl.NumberFormat('pt-BR', {
+	style: 'currency',
+	currency: 'BRL',
+	minimumFractionDigits: 2
+});
+
+
 
 router.get('/', function(req, res, next) {
 	data.link_sistema = '/sistema';
@@ -106,11 +115,50 @@ router.get('/', function(req, res, next) {
 						data[req.session.usuario.id+'_usuario_grafico']= data_usuario_algoritmo;
 						data[req.session.usuario.id+'_usuario_grafico_header'] = data_header_grafico;
 
-						console.log('qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq');
-						console.log(data);
-						console.log('qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq');
+						//get do robo para identificar o nome para o usuário, regra de 1x1
+						usuarioRoboModel.aggregate([
+						{
+							$match:{id_usuario:mongoose.Types.ObjectId(req.session.usuario.id)}
+						},
+						{
+							$lookup:{
+								from:'robo',
+								localField:'id_robo',
+								foreignField:'_id',
+								as:'algoritmo'
+							}
 
-						res.render(req.isAjaxRequest() == true ? 'api' : 'montador', {html: 'inicio/index',  data: data, usuario: req.session.usuario});
+						}
+
+						]).exec(function(err,data_algoritmo){
+
+							
+							console.log(data_algoritmo[0].algoritmo[0].nome);
+
+							var preco_robo = formCurrency.format(data_algoritmo[0].algoritmo[0].preco);
+							preco_robo = ((preco_robo.replace('.','#')).replace(',','.')).replace('#',',');
+
+							data_algoritmo[0].algoritmo[0].preco_exib = preco_robo;
+
+
+
+							console.log('ggggggggggg data_algoritmo[0] gggggggggggggg');
+							console.log(data_algoritmo[0]);
+
+
+							data_algoritmo[0].rentabilidade_aa_exib = data_algoritmo[0].rentabilidade_aa.toString().replace('.',',');
+
+							
+
+							console.log('preco_robo: ' + preco_robo);
+
+							console.log('qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq');
+							console.log(data);
+							console.log('qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq');
+
+							data[req.session.usuario.id+'_usuario_algoritmo'] = data_algoritmo;
+							res.render(req.isAjaxRequest() == true ? 'api' : 'montador', {html: 'inicio/index',  data: data, usuario: req.session.usuario});
+						});
 					}).sort({'_id':-1}).limit(3);
 				})
 
