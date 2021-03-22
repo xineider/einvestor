@@ -13,6 +13,7 @@ const mongoose = require('mongoose');
 const MongoStore = require('connect-mongo')(session);
 
 var login = require('./app/controller/login');
+var landpage = require('./app/controller/landpage');
 var index = require('./app/controller/index');
 var api = require('./app/controller/api');
 var minha_conta = require('./app/controller/minha_conta');
@@ -42,10 +43,10 @@ app.set('trust proxy', 1); // trust first proxy
 const uri = 'mongodb+srv://admin_21:1UNb6gtwBmRoJud2@cluster0.xohbs.mongodb.net/e12o)1?retryWrites=true&w=majority';
 
 mongoose.connect(uri, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useFindAndModify: false,
-    useCreateIndex: true
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useFindAndModify: false,
+  useCreateIndex: true
 });
 
 
@@ -124,9 +125,9 @@ app.use(cookieParser());
 
 
 app.use(sassMiddleware({
-    src: __dirname,
-    debug: true,
-    outputStyle: 'compressed'
+  src: __dirname,
+  debug: true,
+  outputStyle: 'compressed'
 }));
 
 
@@ -139,7 +140,8 @@ app.use("/public", express.static(__dirname + '/public'));
 // app.use(express.static(path.join(__dirname, '/assets')));
 // console.log(path.join(__dirname, 'assets'));
 
-app.use('/', login);
+app.use('/', landpage);
+app.use('/plataforma', login);
 app.use('/sistema', index);
 app.use('/sistema/administracao', administracao);
 app.use('/sistema/api', api);
@@ -174,18 +176,34 @@ app.use(function(err, req, res, next) {
   console.log('req.session');
   console.log(req.session);
 
-  if(err.message == 'Not Found'){
-    console.log('nao foi achado!!');
-    res.render('login/index', { erro: 'Página não existente, faça o login para acessar o sistema.', tipo_erro: '404' });
-  }
+ //  if(err.message == 'Not Found'){
+ //    console.log('nao foi achado!!');
+ //    res.render('login/index', { erro: 'Página não existente, faça o login para acessar o sistema.', tipo_erro: '404' });
+ //  }
 
-	if (typeof req.session.id_usuario != 'undefined' && req.session.id_usuario != 0) {
-    console.log('entrei no primeiro if');
-  	res.render('error', { erro: 'Página não existente.', tipo_erro: '404' });
-  } else {
-    console.log('entrei aqui')
-  	res.render('login/index', { erro: 'Usuário Deslogado.', tipo_erro: '410' });
-  }
+	// if (typeof req.session.id_usuario != 'undefined' && req.session.id_usuario != 0) {
+ //    console.log('entrei no primeiro if');
+ //  	res.render('error', { erro: 'Página não existente.', tipo_erro: '404' });
+ //  } else {
+ //    console.log('entrei aqui')
+ //  	res.render('login/index', { erro: 'Usuário Deslogado.', tipo_erro: '410' });
+ //  }
+
+ if(err.message == 'Not Found'){
+  console.log('nao foi achado!!');
+  res.render('landpage/landpage', { erro: 'Página não existente, faça o login para acessar o sistema.', tipo_erro: '404' });
+}
+
+if (typeof req.session.id_usuario != 'undefined' && req.session.id_usuario != 0) {
+  console.log('entrei no primeiro if');
+  res.render('error', { erro: 'Página não existente.', tipo_erro: '404' });
+} else {
+  console.log('entrei aqui')
+  res.render('landpage/landpage', { erro: 'Usuário Deslogado.', tipo_erro: '410' });
+}
+
+
+
 });
 // app.listen(3000);
 

@@ -19,12 +19,13 @@ var regrasAlgoritmoModel = require('../model/regrasAlgoritmoModel.js');
 
 var parametrosAlgoritmoModel = require('../model/parametrosAlgoritmoModel');
 
+var parametrosSelectModel = require('../model/parametrosAlgoritmoSelectModel');
+
 
 router.get('/', function(req, res, next) {
 
 	data.link_sistema = '/sistema';
 	data[req.session.usuario.id+'_numero_menu'] = 2;
-	
 
 	console.log('wwwwwwwwwwwwwwwwwwwww');
 	console.log(data);
@@ -70,11 +71,15 @@ router.get('/parametros', function(req, res, next) {
 			data[req.session.usuario.id+'_header_data_atualizada'] = dataFormatada;
 			data[req.session.usuario.id+'_parametros'] = '';
 
-			console.log('wwwwwwwwwwwwwwwwwwwww');
-			console.log(data);
-			console.log('wwwwwwwwwwwwwwwwwwwww');
-			res.render(req.isAjaxRequest() == true ? 'api' : 'montador', {html: 'automacao/parametros', data: data, usuario: req.session.usuario});
+			parametrosSelectModel.find({},function(err,data_select_parametros){
+				data[req.session.usuario.id+'_select_parametros'] = data_select_parametros;
 
+
+				console.log('wwwwwwwwwwwwwwwwwwwww');
+				console.log(data);
+				console.log('wwwwwwwwwwwwwwwwwwwww');
+				res.render(req.isAjaxRequest() == true ? 'api' : 'montador', {html: 'automacao/parametros', data: data, usuario: req.session.usuario});
+			}).sort({'_id':-1}).limit(1);
 		}).sort({'_id':-1}).limit(1);
 	});
 });

@@ -15,6 +15,10 @@ const mongoose = require('mongoose');
 /* Conexão Mongo Db*/
 
 
+console.log('ACESSEI O LOGIN AAAAAAAAAAAAAAAAAAAAAAAAAAAA');
+
+console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA');
+
 
 
 const usuarioModel = require('../model/usuariosModel.js');
@@ -25,8 +29,13 @@ const usuarioModel = require('../model/usuariosModel.js');
 router.get('/', function(req, res, next) {
 	if (typeof req.session.id_usuario != 'undefined' && req.session.id_usuario != 0) {
 		res.redirect('/sistema');
+		console.log('entrei aqui onde o usuario está definido');
+
+
+
 	} else {
 		res.render('login/index', {});
+		console.log('não definido');
 	}
 });
 

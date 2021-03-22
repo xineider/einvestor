@@ -1,0 +1,52 @@
+
+<%
+if (typeof data[usuario.id +'_robo'] != 'undefined' && data[usuario.id +'_robo'].length > 0) {
+	for (var i = 0 ; i < data[usuario.id +'_robo'].length; i++) {
+		%>
+
+		<div class="escolha_algoritmo_barras_box">
+
+			<div class="escolha_algoritmo_barras_progress">
+
+				<div class="barra_maximo_rebaixamento" style="width: 15%;">
+					<%=data[usuario.id +'_robo'][i].maximo_rebaixamento %>% a.a ou <br>
+					<%=data[usuario.id +'_robo'][i].volatilidade%> a.a
+				</div>
+
+				<div class="barra_media_rentabilidade" style="width:70%;">
+					+ <%=data[usuario.id +'_robo'][i].rentabilidade_aa %>% ou <br>
+					+ <%=data[usuario.id +'_robo'][i].rentabilidade_aa_reais %>
+				</div>
+
+				<div class="escolha_algoritmo_relatorio">
+					<i class="fas fa-book"></i>
+				</div>
+
+
+			</div>
+
+			<div class="escolha_algoritmo_assinar_box">
+				<div class="text-center">
+					<button class="btn btn-assinar-algoritmo">
+						Assinar <br>
+						<%=data[usuario.id +'_robo'][i].preco_robo %>
+					</button>
+					<div>
+						Sistema E-008
+					</div>
+
+
+
+				</div>
+			</div>
+
+
+		</div>
+
+
+		<%}
+	}else{%>
+	<div class="alert alert-warning">Ocorreu algum problema por-favor informar o suporte por-favor.</div>
+
+
+	<%}%>
