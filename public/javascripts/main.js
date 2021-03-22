@@ -1404,14 +1404,14 @@ function LogSistema(metodo,rota){
 		ip = e.ip;
 		arrayValores = [ip,metodo,rota,navigator.userAgent,$('input[name="id_usuario_sessao"]').val()];
 
-		$.ajax({
-			url:'/sistema/log',
-			type:'POST',
-			data:JSON.stringify(arrayValores),
-			contentType: 'application/json', 
-			beforeSend: function(request) {
-			}
-		});
+		// $.ajax({
+		// 	url:'/sistema/log',
+		// 	type:'POST',
+		// 	data:JSON.stringify(arrayValores),
+		// 	contentType: 'application/json', 
+		// 	beforeSend: function(request) {
+		// 	}
+		// });
 	});
 }
 

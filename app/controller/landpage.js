@@ -151,4 +151,28 @@ router.post('/select_table_price', function(req, res, next) {
 });
 
 
+router.post('/log', function(req, res, next) {
+	POST = req.body;
+
+	const new_log = new log({ 
+		id_usuario:mongoose.Types.ObjectId(req.session.usuario.id),
+		ip: POST[0], 
+		method:POST[1],
+		rota:POST[2],
+		user_agent:POST[3],
+		deletado:0,
+		data_cadastro: new Date()
+	});
+
+	new_log.save(function (err) {
+		if (err) {
+			return handleError(err);
+		}else{
+			res.json(data);
+		}
+	});
+
+});
+
+
 module.exports = router;
