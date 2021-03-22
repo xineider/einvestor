@@ -1029,7 +1029,7 @@ nav#sidebar .sidebar-suporte{
 
 .escolha_algoritmo_barras_box{
 	margin-bottom:40px;
-	height: 60px;
+	height: 70px;
 	display: flex;
 }
 
@@ -1049,7 +1049,10 @@ nav#sidebar .sidebar-suporte{
 	display: inline-block;
 	border:1px solid #08337D;
 	border-right-color:transparent;
-	height: 50px;
+	height: 60px;
+	padding: 10px;
+    font-size: 14px;
+    min-width: 170px;
 
 }
 
@@ -1060,8 +1063,12 @@ nav#sidebar .sidebar-suporte{
 	border:1px solid #08337D;
 	border-left-color:transparent;
 	color:#fff;
-	height: 50px;
+	height: 60px;
 	margin-left:5px;
+	padding: 10px;
+    font-size: 14px;
+    min-width: 150px;
+    text-align: right;
 
 }
 
@@ -1100,4 +1107,8 @@ nav#sidebar .sidebar-suporte{
 	margin-right: auto;
 	margin-left: auto;
 	max-width: 1350px;
+}
+
+.down-color{
+	color: #f2ad66;
 }

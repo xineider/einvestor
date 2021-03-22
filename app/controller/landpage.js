@@ -40,7 +40,7 @@ router.get('/', function(req, res, next) {
 		data.regras_algoritmo = data_algoritmo;
 
 		roboModel.find({},function(err,data_algoritmo){
-			//data.algoritmo = data_algoritmo;
+			data.algoritmo = data_algoritmo;
 			console.log('ggggggggggggggggggg get do landpage ggggggggggggggg');
 			console.log(data);
 			console.log('ggggggggggggggggggggggggggggggggggggggggggggggggggg');

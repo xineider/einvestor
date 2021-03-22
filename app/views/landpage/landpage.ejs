@@ -342,7 +342,7 @@
 					</div>
 
 					<div class="text-center white-text f20 margin-t-20">
-						High-Availability Multiple Intel Xeon Gold 6130 vCores <%= data.regras_algoritmo[0].media_ano %>
+						High-Availability Multiple Intel Xeon Gold 6130 vCores
 					</div>
 
 				</div>
@@ -364,11 +364,6 @@
 </body>
 </html>
 
-
-
-
-
-
 <script>
 	
 	var media_ano = <%= data.regras_algoritmo[0].media_ano %>;
@@ -376,6 +371,13 @@
 
 	console.log('media_ano: ' + media_ano);
 	console.log('volatilidade: ' + volatilidade);
+
+	const formCurrency = new Intl.NumberFormat('pt-BR', {
+		style: 'currency',
+		currency: 'BRL',
+		minimumFractionDigits: 2
+	});
+
 
 	$(document).on('input', '.form-control-range', function(e) {
 		e.preventDefault();
@@ -391,6 +393,101 @@
 		console.log('capital_form: '+ capital_form);
 
 		$('#capital_inicial').text(capital_form);
+
+		console.log('data.algoritmo.length: ' + <%=data.algoritmo.length%>);
+
+		var html = '';
+
+		<%
+		if (typeof data.algoritmo != 'undefined' && data.algoritmo.length > 0) {
+			for (var i = 0 ; i < data.algoritmo.length; i++) {
+				%>
+
+				if(capital >= <%= data.algoritmo[i].valor_minimo %>){
+
+					var rentabilidade_aa = ((media_ano * <%=data.algoritmo[i].multiplicador%>) / capital) * 100;
+					var rentabilidade_aa_reais = (rentabilidade_aa * capital ) / 100;
+					rentabilidade_aa = parseFloat(rentabilidade_aa).toFixed(2).replace('.',',');
+
+					var rentablidade_aa_reais_F = formCurrency.format(rentabilidade_aa_reais);
+					rentablidade_aa_reais_F = ((rentablidade_aa_reais_F.replace('.','#')).replace(',','.')).replace('#',',');
+
+
+					var volatilidade_algoritmo = volatilidade * <%=data.algoritmo[i].multiplicador%>;
+					var maximo_rebaixamento = volatilidade_algoritmo /  capital * 100;
+					maximo_rebaixamento = parseFloat(maximo_rebaixamento).toFixed(2).replace('.',',');
+
+
+					var preco_robo = formCurrency.format(<%=data.algoritmo[i].preco%>);
+					preco_robo = ((preco_robo.replace('.','#')).replace(',','.')).replace('#',',');
+
+
+					volatilidade_algoritmo = formCurrency.format(volatilidade_algoritmo);
+					volatilidade_algoritmo = ((volatilidade_algoritmo.replace('.','#')).replace(',','.')).replace('#',',');
+
+					console.log('i: ' + <%=i%>);
+
+					var largura = 30 - <%=i%> - 0.5;
+					console.log('largura: ' + largura);
+
+					console.log('rentabilidade_aa: ' + rentabilidade_aa);
+					console.log('rentabilidade_aa_reais: ' + rentabilidade_aa_reais);
+					console.log('data.algoritmo[i].nome: ' + '<%= data.algoritmo[i].nome %>');
+					console.log('-----------------------------------------------------------');
+
+
+
+
+					html = html + '<div class="escolha_algoritmo_barras_box">' +
+
+					'<div class="escolha_algoritmo_barras_progress">' +
+					'<div class="barra_maximo_rebaixamento" style="width: ' + largura +'%;">' +
+					'<div class="inline">'+
+					'<i class="fas fa-sort-down down-color f40"></i>'+
+					'</div>'+
+					'<div class="inline">'+
+					maximo_rebaixamento + '% a.a ou <br>' +
+					volatilidade_algoritmo +' a.a' + 
+					'</div>'+
+					'</div>'+
+					'<div class="barra_media_rentabilidade" style="width:65%;">' +
+					'<div class="inline">'+
+					'<i class="fas fa-sort-up primary-text f40"></i>'+
+					'</div>'+
+					'<div class="inline">'+
+					'+' + rentabilidade_aa + '% ou <br>' +
+					'+' + rentablidade_aa_reais_F +
+					'</div>'+
+					'</div>'+
+					'<div class="escolha_algoritmo_relatorio">'+
+					'<i class="fas fa-book"></i>'+
+					'</div>'+
+					'</div>'+
+
+					'<div class="escolha_algoritmo_assinar_box">'+
+					'<div class="text-center">'+
+					'<button class="btn btn-assinar-algoritmo">'+
+					'Assinar <br>'+
+					preco_robo +
+					'</button>'+
+					'<div>'+
+					'Sistema <%= data.algoritmo[i].nome %>' +
+					'</div>'+
+					'</div>'+
+					'</div>'+
+
+					'</div>'
+					;
+				}
+
+
+				<%}
+			}%>
+
+			$('.escolha_algoritmo_barras_container').html(html)
+
+
+
 
 
 		});
