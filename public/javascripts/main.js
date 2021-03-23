@@ -11,7 +11,7 @@ $(document).ready(function () {
 
 	console.log('estou aqui no ready do começo');
 	FormatInputs();
-	LogSistema('GET','/sistema');
+	LogSistema('GET','/plataforma/sistema');
 
 
 	$(document).ajaxError(function () {
@@ -392,7 +392,7 @@ $(document).ready(function () {
 		if($(this).val() == 2){
 			$('.adicionar_usuario_parceiro_container').empty();
 		}else{
-			LoadTo('/sistema/administracao/carregar-parceiros', 'adicionar_usuario_parceiro_container');
+			LoadTo('/plataforma/sistema/administracao/carregar-parceiros', 'adicionar_usuario_parceiro_container');
 		}
 	});
 
@@ -426,10 +426,10 @@ $(document).ready(function () {
 		if($(this).val() != 0){
 			$('#tempo_expiracao_trader_escolha').prop('disabled',false);
 			if($(this).val() == 'Binária'){
-				LoadTo('/sistema/load-trader-opcoes-binarias', 'tempo_expiracao_trader_escolha');
+				LoadTo('/plataforma/sistema/load-trader-opcoes-binarias', 'tempo_expiracao_trader_escolha');
 
 			}else if($(this).val() == 'Digital'){
-				LoadTo('/sistema/load-trader-opcoes-digital', 'tempo_expiracao_trader_escolha');
+				LoadTo('/plataforma/sistema/load-trader-opcoes-digital', 'tempo_expiracao_trader_escolha');
 			}
 
 		}
@@ -1405,7 +1405,7 @@ function LogSistema(metodo,rota){
 		arrayValores = [ip,metodo,rota,navigator.userAgent,$('input[name="id_usuario_sessao"]').val()];
 
 		// $.ajax({
-		// 	url:'/sistema/log',
+		// 	url:'/plataforma/sistema/log',
 		// 	type:'POST',
 		// 	data:JSON.stringify(arrayValores),
 		// 	contentType: 'application/json', 

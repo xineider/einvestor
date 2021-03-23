@@ -14,25 +14,15 @@ const mongoose = require('mongoose');
 
 /* Conexão Mongo Db*/
 
-
-console.log('ACESSEI O LOGIN AAAAAAAAAAAAAAAAAAAAAAAAAAAA');
-
-console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA');
-
-
-
 const usuarioModel = require('../model/usuariosModel.js');
 
 
 
 /* GET pagina de login. */
 router.get('/', function(req, res, next) {
-	if (typeof req.session.id_usuario != 'undefined' && req.session.id_usuario != 0) {
-		res.redirect('/sistema');
+	if (typeof req.session.usuario != 'undefined' && req.session.id_usuario != 0) {
+		res.redirect('/plataforma/sistema');
 		console.log('entrei aqui onde o usuario está definido');
-
-
-
 	} else {
 		res.render('login/index', {});
 		console.log('não definido');
@@ -63,7 +53,7 @@ router.post('/', function(req, res, next) {
 			req.session.usuario.email = data_login['email'];
 			console.log('req.session.usuario');
 			console.log(req.session.usuario);
-			res.redirect('/sistema');
+			res.redirect('/plataforma/sistema');
 		}else{
 			console.log('estou caindo aqui no erro do login ou senha incorreto');
 			res.render('login/index', { erro: 'Login ou senha incorreto(s).', tipo_erro: 'login' });

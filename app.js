@@ -142,20 +142,20 @@ app.use("/public", express.static(__dirname + '/public'));
 
 app.use('/', landpage);
 app.use('/plataforma', login);
-app.use('/sistema', index);
-app.use('/sistema/administracao', administracao);
-app.use('/sistema/api', api);
-app.use('/sistema/minha_conta', minha_conta);
-app.use('/sistema/automacao', automacao);
-app.use('/sistema/relatorios', relatorios);
-app.use('/sistema/white_paper', white_paper);
-app.use('/sistema/treinamento', treinamento);
-app.use('/sistema/educacao', educacao);
-app.use('/sistema/quem_somos', quem_somos);
-app.use('/sistema/politica_privacidade', politica_privacidade);
-app.use('/sistema/termos_uso', termos_uso);
-app.use('/sistema/faq', faq);
-app.use('/sistema/sistemas', sistemas);
+app.use('/plataforma/sistema', index);
+app.use('/plataforma/sistema/administracao', administracao);
+app.use('/plataforma/sistema/api', api);
+app.use('/plataforma/sistema/minha_conta', minha_conta);
+app.use('/plataforma/sistema/automacao', automacao);
+app.use('/plataforma/sistema/relatorios', relatorios);
+app.use('/plataforma/sistema/white_paper', white_paper);
+app.use('/plataforma/sistema/treinamento', treinamento);
+app.use('/plataforma/sistema/educacao', educacao);
+app.use('/plataforma/sistema/quem_somos', quem_somos);
+app.use('/plataforma/sistema/politica_privacidade', politica_privacidade);
+app.use('/plataforma/sistema/termos_uso', termos_uso);
+app.use('/plataforma/sistema/faq', faq);
+app.use('/plataforma/sistema/sistemas', sistemas);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
@@ -191,7 +191,7 @@ app.use(function(err, req, res, next) {
 
  if(err.message == 'Not Found'){
   console.log('nao foi achado!!');
-  res.render('landpage/landpage', { erro: 'Página não existente, faça o login para acessar o sistema.', tipo_erro: '404' });
+  res.render('landpage/index', { erro: 'Página não existente, faça o login para acessar o sistema.', tipo_erro: '404' });
 }
 
 if (typeof req.session.id_usuario != 'undefined' && req.session.id_usuario != 0) {
@@ -199,7 +199,7 @@ if (typeof req.session.id_usuario != 'undefined' && req.session.id_usuario != 0)
   res.render('error', { erro: 'Página não existente.', tipo_erro: '404' });
 } else {
   console.log('entrei aqui')
-  res.render('landpage/landpage', { erro: 'Usuário Deslogado.', tipo_erro: '410' });
+  res.render('landpage/index', { erro: 'Usuário Deslogado.', tipo_erro: '410' });
 }
 
 
