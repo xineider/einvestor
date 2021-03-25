@@ -232,13 +232,13 @@ nav#sidebar a[aria-expanded="true"] {
 }
 
 .form-control:-webkit-autofill {
-	-webkit-box-shadow: 0 0 0px 1000px #505358 inset;
-	-webkit-text-fill-color: #afafaf;
+	-webkit-box-shadow: 0 0 0px 1000px #ffffff inset;
+	-webkit-text-fill-color: #000000;
 }
 
 .form-control:-webkit-autofill:focus {
-	-webkit-box-shadow: 0 0 0 50px #505358 inset;
-	-webkit-text-fill-color: #afafaf;
+	-webkit-box-shadow: 0 0 0 50px #ffffff inset;
+	-webkit-text-fill-color: #000000;
 }
 
 .color-disabled{
@@ -1111,4 +1111,13 @@ nav#sidebar .sidebar-suporte{
 
 .down-color{
 	color: #f2ad66;
+}
+
+
+.minha_conta_landpage{
+	display: flex;
+	align-items:center;
+	justify-content: center;
+	height: 100%;
+	margin-right: 20px;
 }

@@ -149,6 +149,17 @@ $(document).ready(function () {
 		}
 	});
 
+	$(document).on('click', '.btn-continuar-conhecer', function(e) {
+		e.preventDefault();
+		var form = $(this).parents('form');
+		var post = form.serializeArray();
+		var link = $(this).data('href');
+		var element = $('.escolha_algoritmo');
+		if (VerificarForm(form) == true) {
+			SubmitLandpageConhecer(post, link,element);
+		}
+	});
+
 
 	$(document).on('click', '.ajax-submit-change-element', function(e) {
 		e.preventDefault();
@@ -916,6 +927,9 @@ function SubmitAjaxNoBack(post, link) {
 		}
 	});
 }
+
+
+
 
 
 

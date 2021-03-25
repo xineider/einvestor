@@ -1,46 +1,44 @@
 $(document).ready(function () {
 	console.log('estou no ready do landpage');
 
-	// $(document).on('input', '.form-control-range', function(e) {
-	// 	e.preventDefault();
-		
-	// 	console.log('estou alterando o range');
-	// 	console.log($(this).val());
+	$(document).on('change','.investe-renda-variavel',function(e){
+		e.preventDefault();
+		console.log('estou alterando o radio');
 
-	// 	var capital = parseFloat($(this).val());
+		console.log($(this).val());
 
+		if($(this).val() == 'sim'){
+			$('.container_pretencao_investimento').removeClass('none');
 
-	// 	var capital_form = capital.toLocaleString('pt-br', {minimumFractionDigits: 2});
+			console.log('is checked');
+			console.log($('.pretencao_investimento').is(':checked'));
 
-	// 	console.log('capital_form: '+ capital_form);
+			//se o pretencao_investimento estiver checkado e o usuário mudar para o sim deve aparecer o botão
 
-	// 	$('#capital_inicial').text(capital_form);
-
-
-
-	// 	var form = $(this).parents('form');
-	// 	console.log('fffffff form ffffffff');
-	// 	console.log(form);
-	// 	console.log('------------');
-
-	// 	var post = form.serializeArray();
-
-
-	// 	var to = 'escolha_algoritmo_barras_container';
-	// 	var link = '/select_table_price';
-
-	// 	console.log('to: ' + to);
-
-	// 	console.log('link: ' + link);
-
-	// 	SubmitAjaxLoadTo(post, link, to);
+			if($('.pretencao_investimento').is(':checked')){
+				$('.btn-continuar-conhecer').removeClass('none');
+			}else{
+				$('.btn-continuar-conhecer').addClass('none');
+			}
+		}else{
+			$('.container_pretencao_investimento').addClass('none');
+			$('.btn-continuar-conhecer').removeClass('none');
+		}
 
 
 
 
-	// });
+	});
 
 
+	$(document).on('change','.pretencao_investimento',function(e){
+		e.preventDefault();
+		console.log('estou alterando a pretencao investimento');
+		console.log($(this).val());
+
+		$('.btn-continuar-conhecer').removeClass('none');
+
+	});
 
 
 });
