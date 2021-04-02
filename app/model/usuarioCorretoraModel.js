@@ -4,6 +4,7 @@ const usuarioCorretoraSchema = new mongoose.Schema({
 	id_usuario:mongoose.Types.ObjectId,
 	email:String,
 	senha:String,
+	corretora:String,
 	validado: Boolean,
 	sincronizado:Boolean,
 	deletado:Boolean

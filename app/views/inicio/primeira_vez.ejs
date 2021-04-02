@@ -1,0 +1,38 @@
+	
+
+
+<% if(data[usuario.id +'_usuario_corretora'].length == 0 || data[usuario.id +'_usuario_parametros'].length == 0) {%>
+
+<section class="no-padding-top no-padding-bottom">
+	<div class="container-fluid">
+		<div class="alert welcome-box">
+			<div class="text-center">
+				<h1>Bem-vindo ao E-Investor</h1>
+				<div class="text-center">
+					Para utilizar a plataforma E-Investor você precisa fazer somente <strong>2</strong> items, leia os atentamente antes de utilizar o sistema:
+					<div class="w100 margin-t-10">
+						<div class="margin-center inline">
+							<div class="text-left">
+								<a href="/plataforma/sistema/automacao" class="ajax-load">
+									<span class="d-block <%= data[usuario.id +'_usuario_status'][0].conta == 'Sincronizando' ? 'text-decoration-line-meio' : data[usuario.id +'_usuario_status'][0].conta == 'Sincronizado' ? 'text-decoration-line-meio' : '' %>">
+										<span class="number-bigger">1</span> - Sincronizar sua Conta</span>
+									</a>
+									<div>
+										<a href="/plataforma/sistema/automacao/parametros" class="ajax-load"><span class="d-block <%= data[usuario.id +'_usuario_status'][0].algoritmo == 'Sincronizando' ? 'text-decoration-line-meio' : data[usuario.id +'_usuario_status'][0].algoritmo == 'Sincronizado' ? 'text-decoration-line-meio' : '' %>"><span class="number-bigger">2</span> - Sincronizar a sua estratégia.</span>
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+
+
+
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<%}%>

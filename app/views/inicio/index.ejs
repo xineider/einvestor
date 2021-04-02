@@ -1,12 +1,27 @@
-<%- include('../includes/menu_header'); %>
+<%- include('../includes/navbar'); %>
 
-<div class="page-content">
+<div class="flex align-items-stretch">
 
 
-	<section class="no-padding-bottom">
-		<div class="container-fluid">
-			<div class="card margin-b-10">
-				<div class="row">
+	<%- include('../includes/sidebar'); %>
+
+	<div class="page-content">
+
+		<%- include('primeira_vez'); %>
+
+		<%- include('popup_termos_uso');%>
+
+
+		<section class="no-padding-bottom">
+			<div class="container-fluid">
+				<div class="card margin-b-10">
+
+					<div class="alert alert-success text-center none parametros_sincronizando">
+						Sua estratégia está <strong>sincronizando</strong>, agora é só esperar de 1 a 3 dias úteis.
+					</div>
+
+
+<!-- 				<div class="row">
 					<div class="col-sm-12">
 						<div class="text-center bg-background-1 header-actions">
 							<div class="container mx-auto" style="max-width: 600px">
@@ -31,7 +46,7 @@
 					</div>
 
 
-				</div>
+				</div> -->
 
 				<div class="row">
 					<div class="col-sm-12">
@@ -59,7 +74,7 @@
 				<div class="col-sm-12 col-md-6">
 					<div class="card h-100">
 
-						<div class="padding-5 f12 primary-background">
+						<div class="padding-10 f12 primary-background data_header_algoritmo">
 							<div class="inline float-left">
 								<span class="white-text margin-l-10">Sistema Atual:</span>
 								<span class="green-text inline margin-l-5">
@@ -83,9 +98,8 @@
 
 						<div class="padding-20">
 
-							<h5>Investa</h5>
+							
 
-							<input id="ex1" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="20" data-slider-step="1" data-slider-value="14"/>
 							
 							<div class="margin-t-30">
 								<div class="row no-gutters">
@@ -141,62 +155,51 @@
 				<div class="col-sm-12 col-md-6">
 					<div class="card h-100">
 
-						<div class="padding-5 f12 text-center primary-background">
-							<span class="white-text inline">Status:</span> 
-							<span class="<%= data[usuario.id +'_usuario_dados'][0].sistema_online == true ? 'green-text' : 'red-text'%> inline margin-l-5">
-								<%= data[usuario.id +'_usuario_dados'][0].sistema_online == true ? 'ON' : 'OFF'%>			
-							</span>
+						<div class="padding-10 f12 primary-background data_header_grafico">
 
-							<span class="white-text inline margin-l-5">Pgto: </span>
-							<span class="<%= data[usuario.id +'_usuario_dados'][0].pagamento == true ? 'green-text' : 'red-text'%> inline margin-l-5">
-								<%= data[usuario.id +'_usuario_dados'][0].sistema_online == true ? 'ON' : 'OFF'%>  
-							</span>
+							<div class="inline float-left">
+								<span class="white-text margin-l-10">Melhor mês:</span> 
+								<span class="<%=data[usuario.id +'_usuario_grafico_header'].melhor > 0 ? 'green-text': 'orange-text' %> margin-l-5">
+									<%= data[usuario.id +'_usuario_grafico_header'].melhor_exib%>%
+								</span>
+							</div>
 
-							<span class="white-text inline margin-l-5">Conta: </span>
-							<span class="<%= data[usuario.id +'_usuario_corretora'][0].sincronizado == true ? 'green-text' : 'red-text'%> inline margin-l-5">
-								<%= data[usuario.id +'_usuario_corretora'][0].sincronizado == true ? 'Sincronizada' : 'Dessincronizada'%>
-							</span>
+							<div class="inline float-left">
+								<span class="white-text inline margin-l-10">Meses positivos: </span>
+								<span class="margin-l-5 <%= data[usuario.id +'_usuario_grafico_header'].meses_positivos > 0 ? 'green-text': 'white-text' %>">
+									<%= data[usuario.id +'_usuario_grafico_header'].meses_positivos%>							
+								</span>
 
-							<span class="white-text inline margin-l-5">Algoritmo: </span>
-							<span class="green-text inline margin-l-5">Atual  </span>
+							</div>
 
-							<span class="white-text inline margin-l-5">Versão: </span>
-							<span class="green-text inline margin-l-5"><%= data[usuario.id +'_header_data_atualizada']%></span>
-						</div>
+							<div class="inline float-left">
+								<span class="white-text margin-l-5">NºOperações: </span>
+								<span class="<%= data[usuario.id +'_usuario_grafico_header'].numero_operacoes > 0 ? 'green-text': 'white-text' %> margin-l-5">
+									<%= data[usuario.id +'_usuario_grafico_header'].numero_operacoes %>  
+								</span>
+							</div>
 
+							<div class="inline float-left">
 
+								<span class="white-text inline margin-l-5">Pior mês: </span>
+								<span class="<%=data[usuario.id +'_usuario_grafico_header'].pior > 0 ? 'green-text': 'orange-text' %> inline margin-l-5">
+									<%= data[usuario.id +'_usuario_grafico_header'].pior_exib%>%  
+								</span>
+							</div>
 
-						<div class="padding-5 text-center f12">
-							<span class="black-text inline">Melhor mês:</span> 
-							<span class="<%=data[usuario.id +'_usuario_grafico_header'].melhor > 0 ? 'green-text': 'red-text' %> inline margin-l-5 badge primary-background padding-5">
-								<%= data[usuario.id +'_usuario_grafico_header'].melhor_exib%>%
-							</span>
+							<div class="inline float-left">
+								<span class="white-text inline margin-l-5">Meses negativos: </span>
+								<span class="orange-text inline margin-l-5">
+									<%= data[usuario.id +'_usuario_grafico_header'].meses_negativos%>							
+								</span>
+							</div>
 
-							<span class="black-text inline margin-l-5">Meses positivos: </span>
-							<span class="white-text inline badge primary-background padding-5 margin-l-5">
-								<%= data[usuario.id +'_usuario_grafico_header'].meses_positivos%>							
-							</span>
-
-							<span class="black-text inline margin-l-5">NºOperações: </span>
-							<span class="white-text inline badge primary-background padding-5 margin-l-5">
-								<%= data[usuario.id +'_usuario_grafico_header'].numero_operacoes %>  
-							</span>
-
-							<span class="black-text inline margin-l-5">Pior mês: </span>
-							<span class="<%=data[usuario.id +'_usuario_grafico_header'].pior > 0 ? 'green-text': 'red-text' %> inline badge primary-background padding-5 margin-l-5">
-								<%= data[usuario.id +'_usuario_grafico_header'].pior_exib%>%  
-							</span>
-
-							<span class="black-text inline margin-l-5">Meses negativos: </span>
-							<span class="red-text inline primary-background padding-5 margin-l-5">
-								<%= data[usuario.id +'_usuario_grafico_header'].meses_negativos%>							
-							</span>
 						</div>
 
 
 
 						<canvas id="grafico_evolucao_patrimonial" width="400" height="400"></canvas>
-						<span class="f12 grey-text">"Utilizando o sistema a 90 dias, os dados tem por base o capital inicial e desconsideram se o usuário fez algum saque</span>
+						<span class="f12 grey-text text-center">"Utilizando o sistema a 90 dias, os dados tem por base o capital inicial e desconsideram se o usuário fez algum saque</span>
 
 						
 						<!-- 	<img class="w100" src="/public/images/grafd2.png"> -->
@@ -229,33 +232,36 @@
 	});
 
 
+	<% if (data[usuario.id +'_usuario_grafico'].length> 0){ %>
 
-
-	var ctx = document.getElementById('grafico_evolucao_patrimonial').getContext('2d');
-	var myChart = new Chart(ctx, {
-		type: 'line',
-		data: {
-			labels: ['<%=data[usuario.id +'_usuario_grafico'][2].mes %>', '<%=data[usuario.id +'_usuario_grafico'][1].mes %>', '<%=data[usuario.id +'_usuario_grafico'][0].mes %>'],
-			datasets: [{
-				label: 'Evolução Patrimonial',
-				data: [<%=data[usuario.id +'_usuario_grafico'][2].valor %>,<%=data[usuario.id +'_usuario_grafico'][1].valor %>,<%=data[usuario.id +'_usuario_grafico'][0].valor %>],
-				backgroundColor:'#d8e9ef',
-				borderColor: '#003475',
-				fill:true,
-				borderWidth: 1
-			}]
-		},
-		options: {
-			scales: {
-				yAxes: [{
-					ticks: {
-						beginAtZero: false
-					}
+		var ctx = document.getElementById('grafico_evolucao_patrimonial').getContext('2d');
+		var myChart = new Chart(ctx, {
+			type: 'line',
+			data: {
+				labels: ['<%=data[usuario.id +'_usuario_grafico'][2].mes %>', '<%=data[usuario.id +'_usuario_grafico'][1].mes %>', '<%=data[usuario.id +'_usuario_grafico'][0].mes %>'],
+				datasets: [{
+					label: 'Evolução Patrimonial',
+					data: [<%=data[usuario.id +'_usuario_grafico'][2].valor %>,<%=data[usuario.id +'_usuario_grafico'][1].valor %>,<%=data[usuario.id +'_usuario_grafico'][0].valor %>],
+					backgroundColor:'#d8e9ef',
+					borderColor: '#003475',
+					fill:true,
+					borderWidth: 1
 				}]
+			},
+			options: {
+				scales: {
+					yAxes: [{
+						ticks: {
+							beginAtZero: false
+						}
+					}]
+				}
 			}
-		}
-	});
-</script>
+		});
+
+
+		<% } %>
+	</script>
 
 
 
@@ -281,3 +287,4 @@
 
 
 
+</div>

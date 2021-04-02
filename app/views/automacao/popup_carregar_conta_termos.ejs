@@ -1,0 +1,55 @@
+<div class="padding-10">
+	<h5>Integrar Conta</h5>
+
+	<div class="margin-b-10">
+
+		<p>O usuário deste sistema, denominado apenas "USUÁRIO", declara que aceita todos os termos e compreende todas as informações abaixo, ao clicar em ACEITAR:</p>
+
+		<div class="f12 pop_up_container_termos">
+
+			<p>O início de funcionamento do sistema será em até 3 (três) dias úteis após a confirmação da integração de conta e do algoritmo, e tendo todos os pré-requisitos cumpridos, conforme item 2 dos Termos e condições de uso - Avisos legais e de responsabilidade.</p>
+
+			<p>2. Para utilizar o sistema Variable White Box Hedge, estou ciente que devo estar enquadrado via Suitability (API - Análise de Perfil do Investidor) de minha corretora, para que seja disponibilizada operações em renda variável e autorizada contratação da plataforma externa em sua conta, cumprindo a Instrução 539 da CVM. É necessário ter a conta em uma das corretoras compatíveis e contratar a plataforma de negociação da MetaQuotes Ltd. MetaTrader 5, Netting, de respeitar o capital inicial mínimo necessário em conta (Limite MT5) de acordo com seu perfil de risco selecionado previamente em nosso sistema. Você deve sempre checar com a corretora se o capital necessário já está alocado como limite na conta MetaTrader 5 e se a mesma já está habilitada a realizar operações nos ativos futuros mini Índice e mini Dólar. Recomendamos a ativação da RLP na corretora para maior liquidez e custo zero de corretagem.</p>
+
+			<p>Autorizo e tenho ciência do uso do sistema e servidor para realizar a integração e envio de ordens pelo sistema contratado integrado a minha plataforma de negociação sincronizada com minha autorização para os ativos futuros de mini Índice Bovespa (WIN) e cambial Real-Dólar (WDO). Declaro estar ciente de todos os pré-requisitos para poder iniciar o serviço contratado e não obstante qualquer atraso ou não cumprimento de algum item por parte do usuário não onera a contratada nem atrasa o início de prazo da contratação paga pelo sistema.</p>
+
+		</div>
+
+
+		<div class="form-group form-check">
+			<input type="checkbox" class="form-check-input aceito-termos-condicoes" id="li_aceito_termos_condicoes" data-disabled="sincronizar_conta_popup">
+			<label class="form-check-label" for="li_aceito_termos_condicoes"> 
+				<span>
+					Li e aceito os <a class="d-initial bold" href="/plataforma/sistema/termos_uso" target="_blank">Termos e condições de uso - Avisos legais e de responsabilidade.</a>
+				</span>
+			</label>
+		</div>
+
+		<div class="form-group form-check">
+			<input type="checkbox" class="form-check-input aceito-termos-politica" id="li_aceito_termos_politica" data-disabled="sincronizar_conta_popup">
+			<label class="form-check-label" for="li_aceito_termos_politica">
+				<span>
+					Li e aceito os <a class="d-initial bold" href="/plataforma/sistema/politica_privacidade" target="_blank">Termos de política de privacidade.</a>
+				</span>
+			</label>
+		</div>
+
+	</div>
+
+	<form method="POST" action="" enctype="multipart/form-data">
+
+		<div class="modal-footer">
+
+			
+			<button class="btn btn_modal btn_modal_close margin-r-10 pointer" data-dismiss="modal">Fechar</button>
+
+			<button disabled data-href="/plataforma/sistema/automacao/adicionar_conta_usuario_corretora/" class="btn btn-disabled ajax-submit-form-other margin-t-10 margin-b-10 float-left sincronizar_conta_popup" data-dismiss="modal" data-action="/plataforma/sistema/automacao/parametros" data-form="#conta_carregar_popup" data-sucesso-id=".parametros_conta_sincronizando">
+				Integrar Conta											
+			</button>
+
+
+		</div>
+	</form>
+
+</div>
+

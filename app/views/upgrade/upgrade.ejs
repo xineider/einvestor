@@ -1,0 +1,167 @@
+<%- include('../includes/navbar'); %>
+
+<div class="flex align-items-stretch">
+
+
+	<%- include('../includes/sidebar'); %>
+
+	<div class="page-content">
+
+		<section class="margin-bottom-sm">
+			<div class="container-fluid">
+				<div class="card">
+
+					<div class="padding-20">
+
+						<div class="f20">
+							Seu Valor Aplicado: R$ <%= data[usuario.id +'_usuario_status'][0].valor_aplicado_f %>
+						</div>
+
+
+						<div class="f20">
+							Seu Algoritmo Atual é: <%= data[usuario.id +'_usuario_status'][0].nome_algoritmo_escolhido %>
+						</div>
+
+
+
+
+						<div class="margin-t-20">
+							<div class="row">
+								
+								<div class="col-sm-12 col-md-8">
+
+
+									Capital: R$<span id="capital_inicial"><%= data[usuario.id +'_usuario_status'][0].valor_aplicado_f %></span>
+
+									<form>
+										<div class="form-group">
+											<label for="formControlRange"></label>
+											<input name="valor_minimo" type="range" min="80000" max="1500000" step="10000" class="form-control-range" id="formControlRange" value="<%= data[usuario.id +'_usuario_status'][0].valor_aplicado %>">
+										</div>
+									</form>
+
+								</div>
+
+								<div class="col-sm-12 col-md-4">
+
+									<div class="escolha_algoritmo_legenda">
+
+										<div class="escolha_algoritmo_legenda_max_reb">
+											<div class="ret_cor_max_reb"></div>
+											<div class="legenda_max_reb">Máx. rebaixamento histórico de capital</div>
+
+
+										</div>
+
+										<div class="">
+											<div class="ret_cor_med_ren"></div>
+											<div class="legenda_med_ren">
+												Média rentabilidade histórica de capital
+											</div>
+
+										</div>
+
+									</div>
+
+								</div>
+							</div>
+						</div>
+
+
+						
+
+
+						<div class="col-sm-12">
+
+
+							<div class="escolha_algoritmo_barras_container">
+
+
+
+							</div>
+
+						</div>
+
+
+
+					</div>
+
+
+
+				</div>
+			</div>
+		</section>
+
+	</div>
+
+
+
+
+
+</div>
+
+
+<script type="text/javascript">
+
+	var formCurrency = new Intl.NumberFormat('pt-BR', {
+		style: 'currency',
+		currency: 'BRL',
+		minimumFractionDigits: 2
+	});
+
+
+	<% if( typeof data[usuario.id +'_regras_algoritmo'] != 'undefined'){ %>
+		var media_ano = <%=data[usuario.id +'_regras_algoritmo'][0].media_ano%>;
+		var volatilidade = <%= data[usuario.id +'_regras_algoritmo'][0].volatilidade %>;
+
+
+
+		console.log('media_ano: ' + media_ano);
+		console.log('volatilidade: ' + volatilidade);
+
+		$(document).on('input', '.form-control-range', function(e) {
+			e.preventDefault();
+
+			console.log('estou alterando o range');
+			console.log($(this).val());
+
+			var capital = parseFloat($(this).val());
+			var capital_form = capital.toLocaleString('pt-br', {minimumFractionDigits: 2});
+			console.log('capital_form: '+ capital_form);
+
+			$('#capital_inicial').text(capital_form);
+
+			<%-include('function_barra')%>;
+
+
+
+
+		});
+
+		<%}%>
+
+
+		var capital = <%= data[usuario.id +'_usuario_status'][0].valor_aplicado %>;
+
+		console.log('----------------------');
+		console.log(capital);
+
+
+		if(capital>0){
+			var capital_form = capital.toLocaleString('pt-br', {minimumFractionDigits: 2});
+			$('.form-control-range').val(capital)
+			console.log('capital_form: '+ capital_form);
+			$('#capital_inicial').text(capital_form);
+			<%-include('function_barra');%>
+		}
+
+
+
+
+
+
+
+
+
+
+	</script>

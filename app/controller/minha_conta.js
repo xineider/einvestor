@@ -15,16 +15,27 @@ const mongoose = require('mongoose');
 
 const usuarioModel = require('../model/usuariosModel.js');
 
+var usuarioStatusModel = require('../model/usuarioStatusModel.js');
+var moment = require('moment');
+moment.locale('pt-br');
+
 
 
 router.get('/', function(req, res, next) {
 
 	data.link_sistema = '/sistema';
 	data.numero_menu = 2;
-	
+
+	usuarioStatusModel.find({id_usuario:mongoose.Types.ObjectId(req.session.usuario.id)},function(err,data_usuario_status){
+
+		var data_atualizacao_u = data_usuario_status[0].data_atualizacao;
+		var data_atualizacao_uf = moment(data_atualizacao_u).utc().format('DD/MM/YYYY');
+		data_usuario_status[0].data_atualizacao_f = data_atualizacao_uf;
+		data[req.session.usuario.id+'_usuario_status'] = data_usuario_status;
 
 
-	res.render(req.isAjaxRequest() == true ? 'api' : 'montador', {html: 'minha_conta/minha_conta', data: data, usuario: req.session.usuario});
+		res.render(req.isAjaxRequest() == true ? 'api' : 'montador', {html: 'minha_conta/minha_conta', data: data, usuario: req.session.usuario});
+	}).sort({'_id':-1}).limit(1);
 });
 
 

@@ -89,28 +89,14 @@
 			<div class="modal-content"></div>
 		</div>
 	</div>
-	<div class="loader none" id="conectando-loader">
-		<div class="loader-container text-loader">
-			<i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
-			<div class="text-center f25 margin-t-10">Conectando ...</div>
+
+	<div id="modalscroll" class="modal fade" tabindex="-1" role="dialog">
+		<div class="modal-dialog modal-dialog-scrollable" role="document">
+			<div class="modal-content"></div>
 		</div>
 	</div>
 
-	<div class="loader none" id="desconectando-loader">
-		<div class="loader-container text-loader">
-			<i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
-			<div class="text-center f25 margin-t-10">Desconectando ...</div>
-		</div>
-	</div>
-
-
-	<div class="loader none" id="testando-loader">
-		<div class="loader-container text-loader">
-			<i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
-			<div class="text-center f25 margin-t-10">Testando Conexão...</div>
-		</div>
-	</div>
-
+	
 
 
 	<div class="loader" id="padrao-loader">
@@ -120,45 +106,6 @@
 	</div>
 
 
-	<div class="overlay_menu"></div>
+	<div class="overlay_menu none"></div>
 
 
-	<nav class="header">
-			<div class="navbar-header">
-				<!-- Navbar Header-->
-				<a href="/plataforma/sistema" class="navbar-brand ajax-load">
-					<div class="logo">
-						E-Investor
-					</div>
-				</a>
-
-				<div class="float-right header-items">
-
-					<a class="ajax-load minha-conta-container" href="/plataforma/sistema/minha_conta">
-						<div class="">
-							Minha Conta
-						</div>
-					</a>
-
-					<div class="notificacoes-container">
-						<i class="fas fa-bell"></i>
-					</div>
-
-					<div class="profile-container">
-						<div class="circle-profile-photo">
-						 <img src="/public/profile/<%= usuario.id + '_profile.png' %>">				
-						</div>
-					</div>
-
-					<div class="logout-container">
-						<a class="logout" href="/plataforma/logout" onclick="return confirm('Você deseja sair?');"> 
-							Logout
-						</a>
-					</div>
-
-
-				</div>
-
-			</div>
-
-	</nav>

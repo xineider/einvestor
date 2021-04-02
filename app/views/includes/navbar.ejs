@@ -1,0 +1,119 @@
+	<nav class="header">
+		<div class="navbar-header">
+			<!-- Navbar Header-->
+			<a href="/plataforma/sistema" class="navbar-brand ajax-load">
+				<div class="logo">
+					E-Investor
+				</div>
+			</a>
+
+
+			<div class="white-text inline status_header">
+
+				<% if (data[usuario.id +'_usuario_status'].length> 0){ %>
+				<div class="inline">
+					<%if(data[usuario.id +'_usuario_status'][0].sistema_online == true){%>
+					<i class="fas fa-check-circle green-text f24"></i>
+					<%}else{%>
+					<i class="fas fa-times-circle orange-text f24"></i>
+					<%}%>
+
+					<span class="margin-l-5">Status sistema:</span>
+					<span class="<%=data[usuario.id +'_usuario_status'][0].sistema_online == true ? 'green-text' : 'orange-text' %>">
+						<%= data[usuario.id +'_usuario_status'][0].nome_algoritmo_escolhido %> <%= data[usuario.id +'_usuario_status'][0].sistema_online == true ? '- ONLINE' : ' - OFFLINE'%>
+					</span>
+				</div>
+
+				<div class="inline margin-l-5">
+					<%if(data[usuario.id +'_usuario_status'][0].pagamento == true){%>
+					<i class="fas fa-check-circle green-text f24"></i>
+					<%}else{%>
+					<i class="fas fa-times-circle orange-text f24"></i>
+					<%}%>
+
+					<span class="margin-l-5">Pagamento:</span>
+					<span class="<%=data[usuario.id +'_usuario_status'][0].pagamento == true ? 'green-text' : 'orange-text' %>">
+						<%=data[usuario.id +'_usuario_status'][0].pagamento == true ? 'OK' : 'Erro'%>
+					</span>
+				</div>
+
+				<a class="ajax-load" href="/plataforma/sistema/automacao">
+					<div class="inline margin-l-5" >
+						<%if(data[usuario.id +'_usuario_status'][0].conta == 'Sincronizada'){%>
+						<i class="fas fa-info-circle green-text f24"></i>
+						<%}else if(data[usuario.id +'_usuario_status'][0].conta == 'Sincronizando'){%>
+						<i class="fas fa-info-circle orange-text f24"></i>
+						<%}else{%>
+						<i class="fas fa-info-circle red-text f24"></i>
+						<%}%>
+
+						<span class="margin-l-5">Conta:</span>
+						<span class="<%=data[usuario.id +'_usuario_status'][0].conta == 'Sincronizada' ? 'green-text' : data[usuario.id +'_usuario_status'][0].conta == 'Sincronizando' ? 'orange-text' : 'red-text' %>">
+							<%=data[usuario.id +'_usuario_status'][0].conta%>
+						</span>
+					</div>
+				</a>
+
+				<a class="ajax-load" href="/plataforma/sistema/automacao/parametros">
+					<div class="inline margin-l-5">
+						<%if(data[usuario.id +'_usuario_status'][0].algoritmo == 'Sincronizada'){%>
+						<i class="fas fa-check-circle green-text f24"></i>
+						<%}else if(data[usuario.id +'_usuario_status'][0].algoritmo == 'Sincronizando'){%>
+						<i class="fas fa-exclamation-circle orange-text f24"></i>
+						<%}else{%>
+						<i class="fas fa-times-circle red-text f24"></i>
+						<%}%>
+
+						<span class="margin-l-5">Algoritmo:</span>
+						<span class="<%=data[usuario.id +'_usuario_status'][0].algoritmo == 'Sincronizada' ? 'green-text' : data[usuario.id +'_usuario_status'][0].algoritmo == 'Sincronizando' ? 'orange-text' : 'red-text' %>">
+							<%=data[usuario.id +'_usuario_status'][0].algoritmo%>
+						</span>
+					</div>
+				</a>
+
+				<div class="inline margin-l-5">
+					<i class="fas fa-check-circle green-text f24"></i>
+					<span class="margin-l-5">Data da atualização:</span>
+					<%=data[usuario.id +'_usuario_status'][0].data_atualizacao_f%>
+				</div>
+
+
+				<%}%>
+
+
+			</div>
+
+
+
+			<div class="float-right header-items">
+
+				<a class="ajax-load minha-conta-container" href="/plataforma/sistema/minha_conta">
+					<div class="">
+						Minha Conta
+					</div>
+				</a>
+
+<!-- 				<div class="notificacoes-container">
+					<i class="fas fa-bell"></i>
+				</div> -->
+
+				<div class="profile-container">
+					<div class="circle-profile-photo">
+						<img src="/public/profile/<%= usuario.id + '_profile.png' %>">				
+					</div>
+				</div>
+
+				<div class="logout-container">
+					<a class="logout" href="/plataforma/logout" onclick="return confirm('Você deseja sair?');"> 
+						Logout
+					</a>
+				</div>
+
+				<button class="sidebar-toggle"><i class="fas fa-bars"></i></button>
+
+
+			</div>
+
+		</div>
+
+	</nav>

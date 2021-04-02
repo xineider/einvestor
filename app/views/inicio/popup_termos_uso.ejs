@@ -1,0 +1,51 @@
+<% if (data[usuario.id +'_usuario_status'].length> 0){ %>
+
+<% if(data[usuario.id +'_usuario_status'][0].aceite_termos_inicio == false ){ %>
+
+
+<div id="modalstatico" class="modal fade show" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-scrollable" role="document">
+		<div class="modal-content">
+
+			<div class="modal-header">Termos de Uso</div>
+
+			<div class="modal-body">
+				<%- include('../suporte/termos_uso_conteudo'); %>
+
+				<div class="form-group form-check">
+					<input type="checkbox" class="form-check-input aceito-termos" id="li_aceito_termos_estrategia" data-disabled="aceitar_termos_popup">
+					<label class="form-check-label" for="li_aceito_termos_estrategia">Li e aceito os termos</label>
+				</div>
+
+			</div>
+
+			<form method="POST" action="" enctype="multipart/form-data">
+
+				<div class="modal-footer">
+
+					<button disabled data-href="/plataforma/sistema/aceitar_termos_popup/" class="btn ajax-submit btn-disabled margin-t-10 margin-b-10 float-left aceitar_termos_popup" data-dismiss="modal" data-action="/plataforma/sistema">
+						Entendido											
+					</button>
+
+
+				</div>
+			</form>
+			
+
+
+
+
+
+		</div>
+	</div>
+</div>
+
+
+
+
+<script>
+	$('#modalstatico').modal('show');
+</script>
+
+<%}
+} %>

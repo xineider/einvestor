@@ -15,10 +15,16 @@ const log = require('../model/logModel.js');
 
 var usuariosModel = require('../model/usuariosModel.js');
 var usuarioCorretoraModel = require('../model/usuarioCorretoraModel.js');
-var usuarioAlgoritmoModel = require('../model/usuarioAlgoritmoModel.js');
-var usuariosDadosModel = require('../model/usuarioDadosModel.js');
+var usuarioAlgoritmoHistoricoModel = require('../model/usuarioAlgoritmoHistoricoModel.js');
 var usuarioRoboModel = require('../model/usuarioRoboModel.js');
 var regrasAlgoritmoModel = require('../model/regrasAlgoritmoModel.js');
+
+var usuarioParametrosAlgoritmoModel = require('../model/usuarioParametrosAlgoritmoModel');
+
+
+var usuarioStatusModel = require('../model/usuarioStatusModel.js');
+var moment = require('moment');
+moment.locale('pt-br');
 
 const formCurrency = new Intl.NumberFormat('pt-BR', {
 	style: 'currency',
@@ -40,179 +46,189 @@ router.get('/', function(req, res, next) {
 			data[req.session.usuario.id+'_usuario_corretora']= data_usuario_corretora;
 			console.log(data_usuario_corretora);
 
-			regrasAlgoritmoModel.find({},function(err,data_regras_algoritmo){
-				var data_atualizacao = data_regras_algoritmo[0].data_cadastro;
-				var dataFormatada = ("0" + data_atualizacao.getDate()).substr(-2) + "/" + ("0" + (data_atualizacao.getMonth() + 1)).substr(-2) + "/" + data_atualizacao.getFullYear();
-				data[req.session.usuario.id+'_header_data_atualizada'] = dataFormatada;
+			usuarioParametrosAlgoritmoModel.find({},function(err,data_parametros_usuario){
+				data[req.session.usuario.id+'_usuario_parametros'] = data_parametros_usuario;
 
-				console.log('dataFormatada: ' + dataFormatada);
+				regrasAlgoritmoModel.find({},function(err,data_regras_algoritmo){
+					var data_atualizacao_r = data_regras_algoritmo[0].data_cadastro;
+					var dataFormatada_r = moment(data_atualizacao_r).utc().format('DD/MM/YYYY');
+					data[req.session.usuario.id+'_header_data_atualizada'] = dataFormatada_r;
 
-
-				usuariosDadosModel.find({id_usuario:mongoose.Types.ObjectId(req.session.usuario.id)},function(err,data_usuario_dados){
-					data[req.session.usuario.id+'_usuario_dados'] = data_usuario_dados;
-
+					console.log('dataFormatada_r: ' + dataFormatada_r);
 
 
-					usuarioAlgoritmoModel.find({id_usuario:mongoose.Types.ObjectId(req.session.usuario.id)},function(err,data_usuario_algoritmo){
-						console.log('00000000000000000000000000000000000');
-						console.log(data_usuario_algoritmo);
-						console.log('00000000000000000000000000000000000');
+					usuarioStatusModel.find({id_usuario:mongoose.Types.ObjectId(req.session.usuario.id)},function(err,data_usuario_status){
 
-						var data_header_grafico = {}
-
-						console.log('data_usuario_algoritmo.length: ' + data_usuario_algoritmo.length);
+						var data_atualizacao_u = data_usuario_status[0].data_atualizacao;
+						var data_atualizacao_uf = moment(data_atualizacao_u).utc().format('DD/MM/YYYY');
+						data_usuario_status[0].data_atualizacao_f = data_atualizacao_uf;
+						data[req.session.usuario.id+'_usuario_status'] = data_usuario_status;
 
 
-						if(data_usuario_algoritmo.length > 0 ){
 
-							var melhor,pior;
-							var meses_positivos = 0;
-							var meses_negativos = 0;
+						usuarioAlgoritmoHistoricoModel.find({id_usuario:mongoose.Types.ObjectId(req.session.usuario.id)},function(err,data_usuario_algoritmo_historico){
+								// console.log('0000000000 data_usuario_algoritmo 0000000000000000000000000');
+								// console.log(data_usuario_algoritmo_historico);
+								// console.log('00000000000000000000000000000000000');
 
-							for(i=0;i < data_usuario_algoritmo.length; i++){
+								var data_header_grafico = {}
 
-								if(melhor == undefined){
-									melhor = data_usuario_algoritmo[i].porcentagem;
+								// console.log('data_usuario_algoritmo_historico.length: ' + data_usuario_algoritmo_historico.length);
+
+
+								if(data_usuario_algoritmo_historico.length > 0 ){
+
+									var melhor,pior;
+									var meses_positivos = 0;
+									var meses_negativos = 0;
+									var numero_operacoes_t = 0;
+
+									for(i=0;i < data_usuario_algoritmo_historico.length; i++){
+
+										if(melhor == undefined){
+											melhor = data_usuario_algoritmo_historico[i].porcentagem;
+										}
+
+										if(pior == undefined){
+											pior = data_usuario_algoritmo_historico[i].porcentagem;
+										}
+
+										if(data_usuario_algoritmo_historico[i].porcentagem > melhor){
+											melhor = data_usuario_algoritmo_historico[i].porcentagem;
+										}
+
+										if(data_usuario_algoritmo_historico[i].porcentagem < pior){
+											pior = data_usuario_algoritmo_historico[i].porcentagem;
+										}
+
+										if(data_usuario_algoritmo_historico[i].porcentagem>0){
+											meses_positivos++;
+										}
+
+										if(data_usuario_algoritmo_historico[i].porcentagem < 0){
+											meses_negativos++;
+										}
+
+										numero_operacoes_t = numero_operacoes_t + data_usuario_algoritmo_historico[i].numero_operacoes;
+
+
+									}
+
+									var melhor_exib = melhor.toString().replace('.',',');
+									var pior_exib = pior.toString().replace('.',',');
+
+									data_header_grafico = {melhor:melhor,melhor_exib:melhor_exib,pior:pior,pior_exib:pior_exib,meses_positivos:meses_positivos,meses_negativos:meses_negativos,numero_operacoes:numero_operacoes_t};
+
+
+									// console.log('data_header_grafico');
+									// console.log(data_header_grafico);
+
+
+								}else{
+									data_header_grafico = {melhor:0,melhor_exib:0,pior:0,pior_exib:0,meses_positivos:0,meses_negativos:0,numero_operacoes:0};
 								}
 
-								if(pior == undefined){
-									pior = data_usuario_algoritmo[i].porcentagem;
+								data[req.session.usuario.id+'_usuario_grafico']= data_usuario_algoritmo_historico;
+								data[req.session.usuario.id+'_usuario_grafico_header'] = data_header_grafico;
+
+								//get do robo para identificar o nome para o usuário, regra de 1x1
+								usuarioRoboModel.aggregate([
+								{
+									$match:{id_usuario:mongoose.Types.ObjectId(req.session.usuario.id)}
+								},
+								{
+									$lookup:{
+										from:'robo',
+										localField:'id_robo',
+										foreignField:'_id',
+										as:'algoritmo'
+									}
+
 								}
 
-								if(data_usuario_algoritmo[i].porcentagem > melhor){
-									melhor = data_usuario_algoritmo[i].porcentagem;
-								}
-
-								if(data_usuario_algoritmo[i].porcentagem < pior){
-									pior = data_usuario_algoritmo[i].porcentagem;
-								}
-
-								if(data_usuario_algoritmo[i].porcentagem>0){
-									meses_positivos++;
-								}
-
-								if(data_usuario_algoritmo[i].porcentagem < 0){
-									meses_negativos++;
-								}
+								]).exec(function(err,data_algoritmo){
 
 
-							}
+									console.log(data_algoritmo[0].algoritmo[0].nome);
 
-							var melhor_exib = melhor.toString().replace('.',',');
-							var pior_exib = pior.toString().replace('.',',');
-
-							data_header_grafico = {melhor:melhor,melhor_exib:melhor_exib,pior:pior,pior_exib:pior_exib,meses_positivos:meses_positivos,meses_negativos:meses_negativos,numero_operacoes:data_usuario_dados[0].numero_operacoes};
+									var preco_robo = formCurrency.format(data_algoritmo[0].algoritmo[0].preco);
 
 
-							console.log('data_header_grafico');
-							console.log(data_header_grafico);
-
-
-						}else{
-							data_header_grafico = {melhor:0,melhor_exib:0,pior:0,pior_exib:0,meses_positivos:0,meses_negativos:0,numero_operacoes:0};
-						}
-
-						data[req.session.usuario.id+'_usuario_grafico']= data_usuario_algoritmo;
-						data[req.session.usuario.id+'_usuario_grafico_header'] = data_header_grafico;
-
-						//get do robo para identificar o nome para o usuário, regra de 1x1
-						usuarioRoboModel.aggregate([
-						{
-							$match:{id_usuario:mongoose.Types.ObjectId(req.session.usuario.id)}
-						},
-						{
-							$lookup:{
-								from:'robo',
-								localField:'id_robo',
-								foreignField:'_id',
-								as:'algoritmo'
-							}
-
-						}
-
-						]).exec(function(err,data_algoritmo){
-
-							
-							console.log(data_algoritmo[0].algoritmo[0].nome);
-
-							var preco_robo = formCurrency.format(data_algoritmo[0].algoritmo[0].preco);
-							preco_robo = ((preco_robo.replace('.','#')).replace(',','.')).replace('#',',');
-
-							data_algoritmo[0].algoritmo[0].preco_exib = preco_robo;
+									data_algoritmo[0].algoritmo[0].preco_exib = preco_robo;
 
 
 
-							console.log('ggggggggggg data_algoritmo[0] gggggggggggggg');
-							console.log(data_algoritmo[0]);
+									// console.log('ggggggggggg data_algoritmo[0] gggggggggggggg');
+									// console.log(data_algoritmo[0]);
 
 
-							data_algoritmo[0].rentabilidade_aa_exib = data_algoritmo[0].rentabilidade_aa.toString().replace('.',',');
-
-							
-
-							console.log('preco_robo: ' + preco_robo);
-
-							console.log('qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq');
-							console.log(data);
-							console.log('qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq');
-
-							data[req.session.usuario.id+'_usuario_algoritmo'] = data_algoritmo;
-							res.render(req.isAjaxRequest() == true ? 'api' : 'montador', {html: 'inicio/index',  data: data, usuario: req.session.usuario});
-						});
-					}).sort({'_id':-1}).limit(3);
-				})
-
-			}).sort({'_id':-1}).limit(1);
-		}).sort({'_id':-1}).limit(1);
-
-
-	}else if(req.session.usuario.nivel == 2){
-		usuariosModel.find({id_parceiro:mongoose.Types.ObjectId(req.session.usuario.id)},function(err,data_usuarios){
-			data[req.session.usuario.id+'_usuarios']= data_usuarios;
-			console.log('-----------parceiro usuarios--------------------------------');
-			console.log(data_usuarios);
-			console.log('------------------------------------------------------------');
-
-			res.render(req.isAjaxRequest() == true ? 'api' : 'montador', {html: 'inicio/indexParceiro',  data: data, usuario: req.session.usuario});
-
-		});
+									data_algoritmo[0].rentabilidade_aa_exib = data_algoritmo[0].rentabilidade_aa.toString().replace('.',',');
 
 
 
-	}else if(req.session.usuario.nivel == 1){
+									// console.log('preco_robo: ' + preco_robo);
 
-		usuariosModel.aggregate([
-		{
-			$match:{nivel:{$gt:1},deletado:false}
-		},
-		{
-			$lookup:{
-				from:'usuarios',
-				localField:'id_parceiro',
-				foreignField:'_id',
-				as:'parceiro'
+									// console.log('qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq');
+									// console.log(data);
+									// console.log('qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq');
 
-			}
-		},
-		{
-			$lookup:{
-				from:'usuario_corretora',
-				localField:'_id',
-				foreignField:'id_usuario',
-				as:'corretora'
-			}
+									data[req.session.usuario.id+'_usuario_algoritmo'] = data_algoritmo;
+									res.render(req.isAjaxRequest() == true ? 'api' : 'montador', {html: 'inicio/index',  data: data, usuario: req.session.usuario});
+								});
+							});
+					}).sort({'_id':-1}).limit(1);
+});
+}).sort({'_id':-1}).limit(1);
+}).sort({'_id':-1}).limit(1);
+
+
+}else if(req.session.usuario.nivel == 2){
+	usuariosModel.find({id_parceiro:mongoose.Types.ObjectId(req.session.usuario.id)},function(err,data_usuarios){
+		data[req.session.usuario.id+'_usuarios']= data_usuarios;
+		console.log('-----------parceiro usuarios--------------------------------');
+		console.log(data_usuarios);
+		console.log('------------------------------------------------------------');
+
+		res.render(req.isAjaxRequest() == true ? 'api' : 'montador', {html: 'inicio/indexParceiro',  data: data, usuario: req.session.usuario});
+
+	});
+
+
+
+}else if(req.session.usuario.nivel == 1){
+
+	usuariosModel.aggregate([
+	{
+		$match:{nivel:{$gt:1},deletado:false}
+	},
+	{
+		$lookup:{
+			from:'usuarios',
+			localField:'id_parceiro',
+			foreignField:'_id',
+			as:'parceiro'
 
 		}
-		]).exec(function(err,data_usuarios){
+	},
+	{
+		$lookup:{
+			from:'usuario_corretora',
+			localField:'_id',
+			foreignField:'id_usuario',
+			as:'corretora'
+		}
 
-			console.log('aaaaaaaaaaaaaaaaaaaaaaaaa administracao aaaaaaaaaaaaaaaaaaaaaa');
-			console.log(data_usuarios);
-			console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
-			data[req.session.usuario.id+'_usuarios']= data_usuarios;
-			res.render(req.isAjaxRequest() == true ? 'api' : 'montador', {html: 'administracao/administracao',  data: data, usuario: req.session.usuario});
-
-		});
 	}
+	]).exec(function(err,data_usuarios){
+
+		console.log('aaaaaaaaaaaaaaaaaaaaaaaaa administracao aaaaaaaaaaaaaaaaaaaaaa');
+		console.log(data_usuarios);
+		console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
+		data[req.session.usuario.id+'_usuarios']= data_usuarios;
+		res.render(req.isAjaxRequest() == true ? 'api' : 'montador', {html: 'administracao/administracao',  data: data, usuario: req.session.usuario});
+
+	});
+}
 });
 
 
@@ -237,6 +253,19 @@ router.post('/log', function(req, res, next) {
 			res.json(data);
 		}
 	});
+
+});
+
+
+router.post('/aceitar_termos_popup', function(req, res, next) {
+	POST = req.body;
+
+	console.log('estou no aceitar termos popup');
+
+	usuarioStatusModel.findOneAndUpdate({id_usuario:mongoose.Types.ObjectId(req.session.usuario.id)},{'$set':{'aceite_termos_inicio':true}},function(err){
+				res.json(data);
+	});
+
 
 });
 

@@ -1,67 +1,138 @@
-<%- include('../includes/menu_header'); %>
+<%- include('../includes/navbar'); %>
 
-<div class="page-content">
+<div class="flex align-items-stretch">
 
-	<section class="margin-bottom-sm">
-		<div class="container-fluid">
-			<div class="card">
+	<%- include('../includes/sidebar'); %>
 
-				<div class="tab_container">
-					<a class="ajax-load" href="/plataforma/sistema/automacao">
-						<div class="tab_header inline">Conta</div>
-					</a>
-					<div class="tab_header active inline">Parâmetros</div>
-				</div>
+	<div class="page-content">
 
-				<div class="row margin-t-10">
-					<div class="col-sm-12">
-						<div class="padding-20">
+		<%- include('../inicio/primeira_vez'); %>
 
-							<div class="container">
-								<form method="POST" action="" enctype="multipart/form-data">
+		
+		<section class="margin-bottom-sm">
+			<div class="container-fluid">
+				<div class="card">
 
-									<div class="text-center primary-background white-text padding-5 border-radius-10">Parâmetros do algoritmo <%=data[usuario.id +'_usuario_algoritmo'][0].algoritmo[0].nome %></div>
+					<div class="tab_container">
+						<a class="ajax-load" href="/plataforma/sistema/automacao">
+							<div class="tab_header inline">Conta</div>
+						</a>
+						<div class="tab_header active inline">Parâmetros</div>
+					</div>
 
-									<div class="inline w100">
+					<div class="row margin-t-10">
+						<div class="col-sm-12">
+							<div class="padding-20">
+
+								<div class="container">
+									<form method="POST" action="" enctype="multipart/form-data">
+
+										<div class="header_formulario_parametros">
+											
+											<p>
+												Olá, aqui você vai criar sua estratégia com auxílio da Inteligência Artificial do testador de estratégias da MetaQuotes, basta você escolher o nome de sua estratégia, e clicar no botão verde para carregar o algoritmo otimizado, ou seja o código que obteve o melhor resultado no teste de parâmetros. Você poderá checar o desempenho passado da estratégia no menu Relatório.
+											</p>
+
+											<form class="formulario_nome_estrategia">
+
+												<div class="row">
+													<div class="form-group col-sm-12 align-items-center">
+														<label class="inline margin-r-10">Nome da Estratégia:</label>
+														<input class="form-control input_nome_estrategia" name="nome_estrategia" placeholder="Nome da Estratégia" required="true">
+													</div>
+												</div>
+
+												<button data-href="/plataforma/sistema/automacao/carregar_parametros_algoritmo/" class="btn btn-success-light margin-t-10 margin-b-10 w100 carregar_parametros_algoritmo" data-to='container_formulario'>Clique aqui para carregar o algoritmo otimizado por I.A											
+												</button>
+
+											</form>
+
+										</div>
 
 
-										<button data-link="/plataforma/sistema/automacao/popup-carregar-algoritmo-termos" class="btn modal-mount btn-success-light margin-t-10 margin-b-10 float-left carregar_parametros_algoritmo h45px" data-modal='#modalinfo'>Clique aqui para carregar o algoritimo otimizado por I.A. Última atualização <%= data[usuario.id +'_header_data_atualizada'] %>											
-										</button>
 
-										<div class="inline primary-background padding-10 white-text margin-t-10 margin-b-10 float-left h45px text-center w150px border-radius-025rem carregado_header_formulario none">Carregado</div>
-										
+										<% if (data[usuario.id +'_usuario_status'].length> 0){ %>
 
-										<button type="button" data-modal='#modalinfo' disabled class="btn modal-mount btn-disabled float-right margin-t-10 margin-b-10 sincronizar_estrategia_otimizada h45px" title="Sincronizar" data-link="/plataforma/sistema/automacao/popup-sincronizar-estrategia-termos">Sincronizar Estratégia Otimizada Metaquotes</button>
+										<%if(data[usuario.id +'_usuario_status'][0].algoritmo == 'Sincronizada'){%>
 
-									</div>
+										<div class="alert alert-success text-center margin-t-10 margin-b-10">
+											Sua estrátegia foi <strong>sincronizada</strong> com sucesso!
+										</div>
 
-									<p>Disponibilizamos aqui a otimização de algoritmo pelo usuário com auxílio do testador de estratégias da MetaQuotes através da seleção do melhor resultado em Backtest feito por Inteligência Artificial.</p>
+										<%}else if(data[usuario.id +'_usuario_status'][0].algoritmo == 'Sincronizando'){%>
+
+										<div class="alert alert-warning text-center margin-t-10 margin-b-10">
+											Sua estrátegia está <strong>sincronizando</strong>, esperar de 1 a 3 dias úteis para que ela esteja funcionando!
+										</div>
+
+										<%}else if(data[usuario.id +'_usuario_status'][0].algoritmo == 'Dessincronizado'){%>
+										<div class="alert alert-danger text-center margin-t-10 margin-b-10">
+											Sua estrátegia está <strong>dessincronizada</strong>, algo de errado aconteceu, por-favor enviar novamente a sincronização
+										</div>
+
+										<%}%>
+
+										<%}%>
+
+										<form method="POST" action="" enctype="multipart/form-data">
+
+											<div class="inline w100">
+
+
+												<% if(data[usuario.id +'_usuario_parametros'].length == 0 || data[usuario.id +'_usuario_status'][0].algoritmo == 'Dessincronizado'){ %>
 
 
 
 
+												<div class="alert alert-warning mensagem_algoritmo_carregado margin-t-10 margin-b-0 text-center none">
+
+													Agora você precisa clicar no botão abaixo para sincronizar a sua estratégia "<strong class="nome_estrategia"></strong>" otimizada
 
 
-									<div class="margin-t-20 container_formulario">
-
-										<%-include('parametros_formulario')%>
-
-									</div>
+												</div>
 
 
-									<div class="margin-t-20">
-										<button type="button"  data-href="/plataforma/sistema/adicionar_usuario_corretora/" class="btn btn-primary float-right margin-t-10 margin-b-10" title="Enviar" data-action="/sistema">Sincronizar Estratégia</button>
-									</div>
+												<button id="sincronizar_estrategia_otimizada" type="button" data-modal='#modalinfo' class="btn modal-mount btn-success-light float-right margin-t-10 margin-b-10 sincronizar_estrategia_otimizada none w100 pulse" title="Sincronizar" data-link="/plataforma/sistema/automacao/popup-sincronizar-estrategia-termos">Sincronizar Estratégia <span class="nome_estrategia"></span></button>
 
-								</form>
+												<%} %>
+
+											</div>
+
+											<div class="text-center primary-background white-text padding-5 border-radius-10">Parâmetros do algoritmo <%=data[usuario.id +'_usuario_algoritmo'][0].algoritmo[0].nome %></div>
+
+
+
+
+											<div class="margin-t-20 container_formulario">
+
+												<%-include('parametros_formulario')%>
+
+											</div>
+
+										</form>
+
+
+
+										<% if(data[usuario.id +'_usuario_parametros'].length == 0 || data[usuario.id +'_usuario_status'][0].algoritmo == 'Dessincronizado'){ %>
+
+<!-- 										<div class="margin-t-20">
+											<button type="button" data-modal='#modalinfo' class="btn btn-primary modal-mount float-right margin-t-10 margin-b-10 sincronizar_estrategia_propria" title="Sincronizar Estratégia própria" data-link="/plataforma/sistema/automacao/popup-sincronizar-estrategia-propria">Sincronizar Estratégia Própria</button>
+										</div> -->
+
+
+										<%} %>
+
+									</form>
+
+								</div>
+
 
 							</div>
-
-
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-	</section>
+		</section>
+	</div>
+
 </div>

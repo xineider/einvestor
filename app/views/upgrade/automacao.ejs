@@ -1,0 +1,71 @@
+<%- include('../includes/navbar'); %>
+
+<div class="flex align-items-stretch">
+
+
+	<%- include('../includes/sidebar'); %>
+
+	<div class="page-content">
+
+		<section class="margin-bottom-sm">
+			<div class="container-fluid">
+				<div class="card" style="min-height: 420px;">
+
+					<form method="POST" action="" enctype="multipart/form-data">
+						<div class="row margin-t-10">
+							<div class="col-sm-12">
+								<div class="valor_alocado_container">
+
+
+									<label class="valor_alocado_price_table">
+										Valor Alocado:								
+									</label>
+									<div class="valor_alocado_value_container">
+
+
+
+										<select class="form-select table-price-selector" data-href="/plataforma/sistema/upgrade/select_table_price" data-to="price-container" aria-label="Selecione um valor" name="valor_minimo">
+											<option selected disabled>Selecione um valor</option>
+											<%
+											if (typeof data[usuario.id +'_robo_t'] != 'undefined' && data[usuario.id +'_robo_t'].length > 0) {
+												for (var i = 0 ; i < data[usuario.id +'_robo_t'].length; i++) {
+													%>
+													<option value="<%= data[usuario.id +'_robo_t'][i].valor_minimo %>"><%=data[usuario.id +'_robo_t'][i].valor_minimo_robo %></option>
+													<%}
+												} %>
+
+											</select>
+										</div>
+									</div>
+
+								</div>
+							</div>
+						</form>
+
+
+
+						<div class="row">
+							<div class="col-sm-12">
+
+
+								<div class="price-container">
+
+
+									<div class="text-center">Por-favor escolha um valor para selecionar um robô!</div>
+
+
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</section>
+
+		</div>
+
+
+
+
+
+	</div>

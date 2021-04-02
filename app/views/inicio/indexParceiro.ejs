@@ -1,78 +1,85 @@
-<%- include('../includes/menu_header'); %>
-<% if(usuario.nivel == 2){%>
+<%- include('../includes/navbar'); %>
+
+<div class="flex align-items-stretch">
 
 
-<div class="page-content">
+	<%- include('../includes/sidebar'); %>
+	<% if(usuario.nivel == 2){%>
 
 
-	<section class="no-padding-bottom">
-		<div class="container-fluid">
-			<div class="card">
-				<div class="row">
-					<div class="col-sm-12">
-						<h5>
-							Usuários							
-						</h5>
+	<div class="page-content">
 
-						<table class="table centered highlight responsive-table cell-border tabela_filtrada" id="tabela_administracao">
-							<thead>
-								<tr>
-									<th>Nome</th>
-									<th>E-mail</th>
-									<th>Posição</th>
-									<th>Status Pagto</th>
-									<th>Status Setup</th>
-								</tr>
-							</thead>
-							<tbody>
-								<%
-								if (typeof data[usuario.id +'_usuarios'] != 'undefined' && data[usuario.id +'_usuarios'].length > 0) {
-									for (var i = 0 ; i < data[usuario.id +'_usuarios'].length; i++) {
-										%>
-										<tr>
-											<td>
-												<%= data[usuario.id +'_usuarios'][i].nome %>
-											</td>
-											<td>
-												<%= data[usuario.id +'_usuarios'][i].email %>
-											</td>
-											<td>
-												<%if( data[usuario.id +'_usuarios'][i].nivel == 3){%>
-												Cliente
-												<%}%>
-												
-											</td>
 
-										</tr>
-										<%
+		<section class="no-padding-bottom">
+			<div class="container-fluid">
+				<div class="card">
+					<div class="row">
+						<div class="col-sm-12">
+							<h5>
+								Usuários							
+							</h5>
+
+							<table class="table centered highlight responsive-table cell-border tabela_filtrada" id="tabela_administracao">
+								<thead>
+									<tr>
+										<th>Nome</th>
+										<th>E-mail</th>
+										<th>Posição</th>
+										<th>Status Pagto</th>
+										<th>Status Setup</th>
+									</tr>
+								</thead>
+								<tbody>
+									<%
+									if (typeof data[usuario.id +'_usuarios'] != 'undefined' && data[usuario.id +'_usuarios'].length > 0) {
+										for (var i = 0 ; i < data[usuario.id +'_usuarios'].length; i++) {
+											%>
+											<tr>
+												<td>
+													<%= data[usuario.id +'_usuarios'][i].nome %>
+												</td>
+												<td>
+													<%= data[usuario.id +'_usuarios'][i].email %>
+												</td>
+												<td>
+													<%if( data[usuario.id +'_usuarios'][i].nivel == 3){%>
+													Cliente
+													<%}%>
+													
+												</td>
+
+											</tr>
+											<%
+										}
 									}
-								}
-								%>
-							</tbody>
-						</table>
+									%>
+								</tbody>
+							</table>
 
-						
-						
+							
+							
+						</div>
+
+
 					</div>
-
-
 				</div>
 			</div>
-		</div>
-	</section>
-</div>
+		</section>
+	</div>
 
 
 
 
-<%}else{%>
-<div class="page-content">
-	<div class="container-fluid">
-		<div class="alert error-block margin-t-10">
-			Você não pode acessar essa página!
+	<%}else{%>
+	<div class="page-content">
+		<div class="container-fluid">
+			<div class="alert error-block margin-t-10">
+				Você não pode acessar essa página!
+			</div>
 		</div>
 	</div>
+
+
+	<%}%>
+
 </div>
-
-
-<%}%>

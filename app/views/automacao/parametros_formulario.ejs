@@ -16,87 +16,261 @@
 													
 													<tr>
 														<td>
-															<div class="form-check text-center">
-																<input class="form-check-input" type="checkbox" value="">
-															</div>
+															
 														</td>
 														<td>
 															Setup name
 														</td>
 														<td>
-															<input <%= data[usuario.id +'_parametros'].length > 0 ? 'disabled' : ''%> class="form-control form-small text-center" type="text" name="setup_name_value" value="<%= data[usuario.id +'_parametros'].length > 0 ? data[usuario.id +'_parametros'][0].setup_name[0] : ''%>">
+															<input <%= data[usuario.id +'_usuario_parametros'].length > 0 ? 'readonly tabindex="-1"' : ''%> class="form-control form-small text-center <%= data[usuario.id +'_usuario_parametros'].length > 0 ? 'disabled' : ''%>" name="setup_name_value" value="<%= typeof data[usuario.id +'_nome_estrategia'] != 'undefined' ? data[usuario.id +'_nome_estrategia'] : ''%>" required="true">								
+														</td>
+														<td>
 															
 														</td>
 														<td>
-															<input class="form-control form-small text-center" type="text" name="setup_name_start" value="<%= data[usuario.id +'_parametros'].length > 0 ? data[usuario.id +'_parametros'][0].setup_name[1] : ''%>">
+															
 														</td>
 														<td>
-															<input class="form-control form-small text-center" type="text" name="setup_name_step" value="<%= data[usuario.id +'_parametros'].length > 0 ? data[usuario.id +'_parametros'][0].setup_name[2] : ''%>">
+															
 														</td>
 														<td>
-															<input class="form-control form-small text-center" type="text" name="setup_name_stop" value="<%= data[usuario.id +'_parametros'].length > 0 ? data[usuario.id +'_parametros'][0].setup_name[3] : ''%>">
-														</td>
-														<td>
-															<input class="form-control form-small text-center" type="text" name="setup_name_steps" value="<%= data[usuario.id +'_parametros'].length > 0 ? data[usuario.id +'_parametros'][0].setup_name[4] : ''%>">
+															
 														</td>
 													</tr>
 													
 													<tr>
 														<td>
-															<div class="form-check text-center">
-																<input class="form-check-input" type="checkbox" value="">
-															</div>
+															
 														</td>
 														<td>
 															Symbol Name (1)
 														</td>
 														<td>
-															<input class="form-control form-small" type="text" name="symbol_name_value">
+															<input <%= data[usuario.id +'_usuario_parametros'].length > 0 ? 'readonly tabindex="-1"' : ''%> class="form-control form-small text-center <%= data[usuario.id +'_usuario_parametros'].length > 0 ? 'disabled' : ''%>" name="symbol_name_value" value="<%= data[usuario.id +'_usuario_parametros'].length > 0 ? data[usuario.id +'_usuario_parametros'][0].symbol_name[0] : ''%>">
+															
 														</td>
 														<td>
-															<input class="form-control form-small" type="text" name="symbol_name_value">
+															
 														</td>
 														<td>
-															<input class="form-control form-small" type="text" name="symbol_name_value">
+															
 														</td>
 														<td>
-															<input class="form-control form-small" type="text" name="symbol_name_value">
+
 														</td>
 														<td>
-															<input class="form-control form-small" type="text" name="symbol_name_value">
+															
 														</td>
 													</tr>
 													
 													<tr>
 														<td>
-															<div class="form-check text-center">
-																<input class="form-check-input" type="checkbox" value="">
-															</div>
+
 														</td>
 														<td>
 															Symbol Hedge Name (2)
 														</td>
-														<td></td>
-														<td></td>
-														<td></td>
-														<td></td>
-														<td></td>
+														<td>
+															<input <%= data[usuario.id +'_usuario_parametros'].length > 0 ? 'readonly tabindex="-1"' : ''%> class="form-control form-small text-center <%= data[usuario.id +'_usuario_parametros'].length > 0 ? 'disabled' : ''%>" name="symbol_hedge_name_2_value" value="<%= data[usuario.id +'_usuario_parametros'].length > 0 ? data[usuario.id +'_usuario_parametros'][0].symbol_hedge_name_2[0] : ''%>">
+															
+														</td>
+														<td>
+															
+														</td>
+														<td>
+															
+														</td>
+														<td>
+															
+														</td>
+														<td>
+															
+														</td>
 													</tr>
 													
 													<tr>
 														<td>
-															<div class="form-check text-center">
-																<input class="form-check-input" type="checkbox" value="">
-															</div>
+
 														</td>
 														<td>
 															Magic Number
 														</td>
-														<td></td>
-														<td></td>
-														<td></td>
-														<td></td>
-														<td></td>
+														<td>
+															<input <%= data[usuario.id +'_usuario_parametros'].length > 0 ? 'readonly tabindex="-1"' : ''%> class="form-control form-small text-center <%= data[usuario.id +'_usuario_parametros'].length > 0 ? 'disabled' : ''%>" name="magic_number_value" value="<%= data[usuario.id +'_usuario_parametros'].length > 0 ? data[usuario.id +'_usuario_parametros'][0].magic_number[0] : ''%>">
+															
+														</td>
+														<td>
+															
+														</td>
+														<td>
+															
+														</td>
+														<td>
+															
+														</td>
+														<td>
+															
+														</td>
+													</tr>
+													
+													<tr>
+														<td>
+															
+														</td>
+														<td>
+															Security
+														</td>
+														<td>
+
+															
+														</td>
+														<td>
+
+														</td>
+														<td>
+
+														</td>
+														<td>
+															
+														</td>
+														<td>
+															
+														</td>
+													</tr>
+
+													<tr>
+														<td>
+															<div class="form-check text-center">
+																<input <%= data[usuario.id +'_usuario_parametros'].length > 0 ? 'disabled' : ''%> class="form-check-input" type="checkbox" name="max_op_lot_size_optimize" <%= data[usuario.id +'_usuario_parametros'].length == 0 ? '' : data[usuario.id +'_usuario_parametros'][0].max_op_lot_size_1[5] == 'on' ?	 'checked' : '' %>>
+
+																<% if(data[usuario.id +'_usuario_parametros'].length > 0){
+																	if(data[usuario.id +'_usuario_parametros'][0].max_op_lot_size_1[5] == 'on'){ %>
+																	<input name="max_op_lot_size_optimize" value="on" type="hidden">
+																	<% }
+																}%>
+
+															</div>
+														</td>
+														<td>
+															Max op lot size (1)
+														</td>
+														<td>
+															<input <%= data[usuario.id +'_usuario_parametros'].length > 0 ? 'readonly tabindex="-1"' : ''%> class="form-control form-small text-center <%= data[usuario.id +'_usuario_parametros'].length > 0 ? 'disabled' : ''%>" name="max_op_lot_size_1_value" value="<%= data[usuario.id +'_usuario_parametros'].length > 0 ? data[usuario.id +'_usuario_parametros'][0].max_op_lot_size_1_a : ''%>">
+															
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="max_op_lot_size_1_start" value="-">
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="max_op_lot_size_1_step" value="-">
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="max_op_lot_size_1_stop" value="-">
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="max_op_lot_size_1_steps" value="-">
+														</td>
+													</tr>
+													
+													
+													
+													<tr>
+														<td>
+															<div class="form-check text-center">
+																<input <%= data[usuario.id +'_usuario_parametros'].length > 0 ? 'disabled' : ''%> class="form-check-input" type="checkbox" name="max_op_lot_size_2_optimize" <%= data[usuario.id +'_usuario_parametros'].length == 0 ? '' : data[usuario.id +'_usuario_parametros'][0].max_op_lot_size_2[5] == 'on' ?	 'checked' : '' %>>
+
+																<% if(data[usuario.id +'_usuario_parametros'].length > 0){
+																	if(data[usuario.id +'_usuario_parametros'][0].max_op_lot_size_2[5] == 'on'){ %>
+																	<input name="max_op_lot_size_2_optimize" value="on" type="hidden">
+																	<% }
+																}%>
+															</div>
+														</td>
+														<td>
+															Max op lot size (2)
+														</td>
+														<td>
+															<input <%= data[usuario.id +'_usuario_parametros'].length > 0 ? 'readonly tabindex="-1"' : ''%> class="form-control form-small text-center <%= data[usuario.id +'_usuario_parametros'].length > 0 ? 'disabled' : ''%>" name="max_op_lot_size_2_value" value="<%= data[usuario.id +'_usuario_parametros'].length > 0 ? data[usuario.id +'_usuario_parametros'][0].max_op_lot_size_2_a : ''%>">
+															
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="max_op_lot_size_2_start" value="-">
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="max_op_lot_size_2_step" value="-">
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="max_op_lot_size_2_stop" value="-">
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="max_op_lot_size_2_steps" value="-">
+														</td>
+													</tr>
+													
+													<tr>
+														<td>
+															<div class="form-check text-center">
+																<input <%= data[usuario.id +'_usuario_parametros'].length > 0 ? 'disabled' : ''%> class="form-check-input" type="checkbox" name="number_1_id_optimize" <%= data[usuario.id +'_usuario_parametros'].length == 0 ? '' : data[usuario.id +'_usuario_parametros'][0].number_1_id[5] == 'on' ?	 'checked' : '' %>>
+
+																<% if(data[usuario.id +'_usuario_parametros'].length > 0){
+																	if(data[usuario.id +'_usuario_parametros'][0].number_1_id[5] == 'on'){ %>
+																	<input name="number_1_id_optimize" value="on" type="hidden">
+																	<% }
+																}%>
+															</div>
+														</td>
+														<td>
+															Number (1) ID
+														</td>
+														<td>
+															<input <%= data[usuario.id +'_usuario_parametros'].length > 0 ? 'readonly tabindex="-1"' : ''%> class="form-control form-small text-center <%= data[usuario.id +'_usuario_parametros'].length > 0 ? 'disabled' : ''%>" name="number_1_id_value" value="<%= data[usuario.id +'_usuario_parametros'].length > 0 ? data[usuario.id +'_usuario_parametros'][0].number_1_id[0] : ''%>">
+															
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="number_1_id_start" value="-">
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="number_1_id_step" value="-">
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="number_1_id_stop" value="-">
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="number_1_id_steps" value="-">
+														</td>
+													</tr>
+													
+													<tr>
+														<td>
+															<div class="form-check text-center">
+																<input <%= data[usuario.id +'_usuario_parametros'].length > 0 ? 'disabled' : ''%> class="form-check-input" type="checkbox" name="number_2_id_optimize" <%= data[usuario.id +'_usuario_parametros'].length == 0 ? '' : data[usuario.id +'_usuario_parametros'][0].number_2_id[5] == 'on' ?	 'checked' : '' %>>
+
+																<% if(data[usuario.id +'_usuario_parametros'].length > 0){
+																	if(data[usuario.id +'_usuario_parametros'][0].number_2_id[5] == 'on'){ %>
+																	<input name="number_2_id_optimize" value="on" type="hidden">
+																	<% }
+																}%>
+															</div>
+														</td>
+														<td>
+															Number (2) ID
+														</td>
+														<td>
+															<input <%= data[usuario.id +'_usuario_parametros'].length > 0 ? 'readonly tabindex="-1"' : ''%> class="form-control form-small text-center <%= data[usuario.id +'_usuario_parametros'].length > 0 ? 'disabled' : ''%>" name="number_2_id_value" value="<%= data[usuario.id +'_usuario_parametros'].length > 0 ? data[usuario.id +'_usuario_parametros'][0].number_2_id[0] : ''%>">
+															
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="number_2_id_start" value="-">
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="number_2_id_step" value="-">
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="number_2_id_stop" value="-">
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="number_2_id_steps" value="-">
+														</td>
 													</tr>
 													
 													<tr>
@@ -104,7 +278,7 @@
 
 														</td>
 														<td>
-															[A] Security
+															[A] E
 														</td>
 														<td></td>
 														<td></td>
@@ -116,1513 +290,1270 @@
 													<tr>
 														<td>
 															<div class="form-check text-center">
-																<input class="form-check-input" type="checkbox" value="">
-															</div>
-														</td>
-														<td>
-															[03]Max op lot size (1)
-														</td>
-														<td></td>
-														<td></td>
-														<td></td>
-														<td></td>
-														<td></td>
-													</tr>
-													
-													<tr>
-														<td>
-															<div class="form-check text-center">
-																<input class="form-check-input" type="checkbox" value="">
-															</div>
-														</td>
-														<td>
-															[03]Max op lot size (2)
-														</td>
-														<td></td>
-														<td></td>
-														<td></td>
-														<td></td>
-														<td></td>
-													</tr>
-													
-													<tr>
-														<td>
-															<div class="form-check text-center">
-																<input class="form-check-input" type="checkbox" value="">
-															</div>
-														</td>
-														<td>
-															[04]Number (1) ID
-														</td>
-														<td></td>
-														<td></td>
-														<td></td>
-														<td></td>
-														<td></td>
-													</tr>
-													
-													<tr>
-														<td>
-															<div class="form-check text-center">
-																<input class="form-check-input" type="checkbox" value="">
-															</div>
-														</td>
-														<td>
-															[04]Number (2) ID
-														</td>
-														<td></td>
-														<td></td>
-														<td></td>
-														<td></td>
-														<td></td>
-													</tr>
-													
-													<tr>
-														<td>
+																<input <%= data[usuario.id +'_usuario_parametros'].length > 0 ? 'disabled' : ''%> class="form-check-input" type="checkbox" name="a1_lot_size_1_optimize" <%= data[usuario.id +'_usuario_parametros'].length == 0 ? '' : data[usuario.id +'_usuario_parametros'][0].a1_lot_size_1[5] == 'on' ?	 'checked' : '' %>>
 
-														</td>
-														<td>
-															[B] E
-														</td>
-														<td></td>
-														<td></td>
-														<td></td>
-														<td></td>
-														<td></td>
-													</tr>
-													
-													<tr>
-														<td>
-															<div class="form-check text-center">
-																<input class="form-check-input" type="checkbox" value="">
+																<% if(data[usuario.id +'_usuario_parametros'].length > 0){
+																	if(data[usuario.id +'_usuario_parametros'][0].a1_lot_size_1[5] == 'on'){ %>
+																	<input name="a1_lot_size_1_optimize" value="on" type="hidden">
+																	<% }
+																}%>
 															</div>
 														</td>
 														<td>
 															[A1] Lot size (1)
 														</td>
-														<td></td>
-														<td></td>
-														<td></td>
-														<td></td>
-														<td></td>
+														<td>
+															<input <%= data[usuario.id +'_usuario_parametros'].length > 0 ? 'readonly tabindex="-1"' : ''%> class="form-control form-small text-center <%= data[usuario.id +'_usuario_parametros'].length > 0 ? 'disabled' : ''%>" name="a1_lot_size_1_value" value="<%= data[usuario.id +'_usuario_parametros'].length > 0 ? data[usuario.id +'_usuario_parametros'][0].a1_lot_size_1_a : ''%>">
+															
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="a1_lot_size_1_start" value="-">
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="a1_lot_size_1_step" value="-">
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="a1_lot_size_1_stop" value="-">
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="a1_lot_size_1_steps" value="-">
+														</td>
 													</tr>
 													
 													<tr>
 														<td>
 															<div class="form-check text-center">
-																<input class="form-check-input" type="checkbox" value="">
+																<input <%= data[usuario.id +'_usuario_parametros'].length > 0 ? 'disabled' : ''%> class="form-check-input" type="checkbox" name="a1_lot_size_2_optimize" <%= data[usuario.id +'_usuario_parametros'].length == 0 ? '' : data[usuario.id +'_usuario_parametros'][0].a1_lot_size_2[5] == 'on' ?	 'checked' : '' %>>
+
+																<% if(data[usuario.id +'_usuario_parametros'].length > 0){
+																	if(data[usuario.id +'_usuario_parametros'][0].a1_lot_size_2[5] == 'on'){ %>
+																	<input name="a1_lot_size_2_optimize" value="on" type="hidden">
+																	<% }
+																}%>
 															</div>
 														</td>
 														<td>
 															[A1] Lot size (2)
 														</td>
+														<td>
+															<input <%= data[usuario.id +'_usuario_parametros'].length > 0 ? 'readonly tabindex="-1"' : ''%> class="form-control form-small text-center <%= data[usuario.id +'_usuario_parametros'].length > 0 ? 'disabled' : ''%>" name="a1_lot_size_2_value" value="<%= data[usuario.id +'_usuario_parametros'].length > 0 ? data[usuario.id +'_usuario_parametros'][0].a1_lot_size_2_a : ''%>">
+															
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="a1_lot_size_2_start" value="-">
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="a1_lot_size_2_step" value="-">
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="a1_lot_size_2_stop" value="-">
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="a1_lot_size_2_steps" value="-">
+														</td>
+													</tr>
+													
+
+													<tr>
+														<td>
+															<div class="form-check text-center">
+																<input <%= data[usuario.id +'_usuario_parametros'].length > 0 ? 'disabled' : ''%> class="form-check-input" type="checkbox" name="a2_mode_1_optimize" <%= data[usuario.id +'_usuario_parametros'].length == 0 ? '' : data[usuario.id +'_usuario_parametros'][0].a2_mode_1[5] == 'on' ?	 'checked' : '' %>>
+
+																<% if(data[usuario.id +'_usuario_parametros'].length > 0){
+																	if(data[usuario.id +'_usuario_parametros'][0].a2_mode_1[5] == 'on'){ %>
+																	<input name="a2_mode_1_optimize" value="on" type="hidden">
+																	<% }
+																}%>
+															</div>
+														</td>
+														<td>
+															[A2] Mode (1)
+														</td>
+														<td>
+															<select class="form-control select-small <%= data[usuario.id +'_usuario_parametros'].length > 0 ? 'disabled' : ''%>" name="a2_mode_1_value" <%= data[usuario.id +'_usuario_parametros'].length > 0 ? 'disabled tabindex="-1"' : ''%>>
+																<%
+																if (typeof data[usuario.id +'_select_parametros'] != 'undefined' && data[usuario.id +'_select_parametros'].length > 0) { %>
+																<% for (var i = 0 ; i < data[usuario.id +'_select_parametros'][0].mode1.length; i++) { %>
+
+
+																<option <%= data[usuario.id +'_usuario_parametros'].length == 0 ? '' : data[usuario.id +'_usuario_parametros'][0].a2_mode_1[0] == data[usuario.id +'_select_parametros'][0].mode1[i] ? 'selected' : '' %>>
+
+																	<%=data[usuario.id +'_select_parametros'][0].mode1[i] %>
+
+																</option>
+																<%}%>
+																<%}%>
+															</select>
+
+															<input type="hidden" name="a2_mode_1_value" value="<%=data[usuario.id +'_usuario_parametros'].length > 0 ? data[usuario.id +'_usuario_parametros'][0].a2_mode_1[0] : ''%>">
+															
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="a2_mode_1_start" value="-">
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="a2_mode_1_step" value="-">
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="a2_mode_1_stop" value="-">
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="a2_mode_1_steps" value="-">
+														</td>
+													</tr>
+
+
+													<tr>
+														<td>
+															<div class="form-check text-center">
+																<input <%= data[usuario.id +'_usuario_parametros'].length > 0 ? 'disabled' : ''%> class="form-check-input" type="checkbox" name="a2_mode_2_optimize" <%= data[usuario.id +'_usuario_parametros'].length == 0 ? '' : data[usuario.id +'_usuario_parametros'][0].a2_mode_2[5] == 'on' ?	 'checked' : '' %>>
+
+																<% if(data[usuario.id +'_usuario_parametros'].length > 0){
+																	if(data[usuario.id +'_usuario_parametros'][0].a2_mode_2[5] == 'on'){ %>
+																	<input name="a2_mode_2_optimize" value="on" type="hidden">
+																	<% }
+																}%>
+															</div>
+														</td>
+														<td>
+															[A2] Mode (2)
+														</td>
+														<td>
+															<select class="form-control select-small <%= data[usuario.id +'_usuario_parametros'].length > 0 ? 'disabled' : ''%>" name="a2_mode_2_value" <%= data[usuario.id +'_usuario_parametros'].length > 0 ? 'disabled tabindex="-1"' : ''%>>
+																<%
+																if (typeof data[usuario.id +'_select_parametros'] != 'undefined' && data[usuario.id +'_select_parametros'].length > 0) { %>
+																<% for (var i = 0 ; i < data[usuario.id +'_select_parametros'][0].mode1.length; i++) { %>
+
+
+																<option <%= data[usuario.id +'_usuario_parametros'].length == 0 ? '' : data[usuario.id +'_usuario_parametros'][0].a2_mode_2[0] == data[usuario.id +'_select_parametros'][0].mode1[i] ? 'selected' : '' %>>
+
+																	<%=data[usuario.id +'_select_parametros'][0].mode1[i] %>
+
+																</option>
+																<%}%>
+																<%}%>
+															</select>
+
+															<input type="hidden" name="a2_mode_2_value" value="<%=data[usuario.id +'_usuario_parametros'].length > 0 ? data[usuario.id +'_usuario_parametros'][0].a2_mode_2[0] : ''%>">
+															
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="a2_mode_2_start" value="-">
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="a2_mode_2_step" value="-">
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="a2_mode_2_stop" value="-">
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="a2_mode_2_steps" value="-">
+														</td>
+													</tr>
+
+
+
+													<tr>
+														<td>
+
+														</td>
+														<td>
+															[B] SL
+														</td>
 														<td></td>
 														<td></td>
 														<td></td>
 														<td></td>
 														<td></td>
 													</tr>
-													
+
+
+
+
 													<tr>
 														<td>
 															<div class="form-check text-center">
-																<input class="form-check-input" type="checkbox" value="">
+																<input <%= data[usuario.id +'_usuario_parametros'].length > 0 ? 'disabled' : ''%> class="form-check-input" type="checkbox" name="b1_measure_1_optimize" <%= data[usuario.id +'_usuario_parametros'].length == 0 ? '' : data[usuario.id +'_usuario_parametros'][0].b1_measure_1[5] == 'on' ?	 'checked' : '' %>>
+
+																<% if(data[usuario.id +'_usuario_parametros'].length > 0){
+																	if(data[usuario.id +'_usuario_parametros'][0].b1_measure_1[5] == 'on'){ %>
+																	<input name="b1_measure_1_optimize" value="on" type="hidden">
+																	<% }
+																}%>
 															</div>
 														</td>
 														<td>
-															[A2] Mode (1)
+															[B1] Measure (1)
 														</td>
-														<td></td>
 														<td>
-															<select class="form-control select-small" id="exampleFormControlSelect1">
+															<select class="form-control select-small <%= data[usuario.id +'_usuario_parametros'].length > 0 ? 'disabled' : ''%>" name="b1_measure_1_value" <%= data[usuario.id +'_usuario_parametros'].length > 0 ? 'disabled tabindex="-1"' : ''%>>
 																<%
 																if (typeof data[usuario.id +'_select_parametros'] != 'undefined' && data[usuario.id +'_select_parametros'].length > 0) { %>
-																<% for (var i = 0 ; i < data[usuario.id +'_select_parametros'][0].mode1.length; i++) { %>
-																<option>
-																	<%=data[usuario.id +'_select_parametros'][0].mode1[i] %>									
+																<% for (var i = 0 ; i < data[usuario.id +'_select_parametros'][0].measure.length; i++) { %>
+
+
+																<option <%= data[usuario.id +'_usuario_parametros'].length == 0 ? '' : data[usuario.id +'_usuario_parametros'][0].b1_measure_1[0] == data[usuario.id +'_select_parametros'][0].measure[i] ? 'selected' : '' %>>
+
+																	<%=data[usuario.id +'_select_parametros'][0].measure[i] %>
+
 																</option>
 																<%}%>
 																<%}%>
 															</select>
+
+															<input type="hidden" name="b1_measure_1_value" value="<%=data[usuario.id +'_usuario_parametros'].length > 0 ? data[usuario.id +'_usuario_parametros'][0].b1_measure_1[0] : ''%>">
+															
 														</td>
-														<td></td>
 														<td>
-															<select class="form-control select-small" id="exampleFormControlSelect1">
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="b1_measure_1_start" value="-">
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="b1_measure_1_step" value="-">
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="b1_measure_1_stop" value="-">
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="b1_measure_1_steps" value="-">
+														</td>
+													</tr>
+
+
+													<tr>
+														<td>
+															<div class="form-check text-center">
+																<input <%= data[usuario.id +'_usuario_parametros'].length > 0 ? 'disabled' : ''%> class="form-check-input" type="checkbox" name="b1_measure_2_optimize" <%= data[usuario.id +'_usuario_parametros'].length == 0 ? '' : data[usuario.id +'_usuario_parametros'][0].b1_measure_2[5] == 'on' ?	 'checked' : '' %>>
+
+																<% if(data[usuario.id +'_usuario_parametros'].length > 0){
+																	if(data[usuario.id +'_usuario_parametros'][0].b1_measure_2[5] == 'on'){ %>
+																	<input name="b1_measure_2_optimize" value="on" type="hidden">
+																	<% }
+																}%>
+															</div>
+														</td>
+														<td>
+															[B1] Measure (2)
+														</td>
+														<td>
+															<select class="form-control select-small <%= data[usuario.id +'_usuario_parametros'].length > 0 ? 'disabled' : ''%>" name="b1_measure_2_value" <%= data[usuario.id +'_usuario_parametros'].length > 0 ? 'disabled tabindex="-1"' : ''%>>
 																<%
 																if (typeof data[usuario.id +'_select_parametros'] != 'undefined' && data[usuario.id +'_select_parametros'].length > 0) { %>
-																<% for (var i = 0 ; i < data[usuario.id +'_select_parametros'][0].mode1.length; i++) { %>
-																<option>
-																	<%=data[usuario.id +'_select_parametros'][0].mode1[i] %>									
+																<% for (var i = 0 ; i < data[usuario.id +'_select_parametros'][0].measure.length; i++) { %>
+
+
+																<option <%= data[usuario.id +'_usuario_parametros'].length == 0 ? '' : data[usuario.id +'_usuario_parametros'][0].b1_measure_2[0] == data[usuario.id +'_select_parametros'][0].measure[i] ? 'selected' : '' %>>
+
+																	<%=data[usuario.id +'_select_parametros'][0].measure[i] %>
+
 																</option>
 																<%}%>
 																<%}%>
 															</select>
-														</select>
-													</td>
-													<td></td>
-												</tr>
 
-												
-												<tr>
-													<td>
-														<div class="form-check text-center">
-															<input class="form-check-input" type="checkbox" value="">
-														</div>
-													</td>
-													<td>
-														[A2] Mode (2)
-													</td>
-													<td></td>
-													<td>
-														<select class="form-control select-small" id="exampleFormControlSelect1">
-															<%
-															if (typeof data[usuario.id +'_select_parametros'] != 'undefined' && data[usuario.id +'_select_parametros'].length > 0) { %>
-															<% for (var i = 0 ; i < data[usuario.id +'_select_parametros'][0].mode1.length; i++) { %>
-															<option>
-																<%=data[usuario.id +'_select_parametros'][0].mode1[i] %>									
-															</option>
-															<%}%>
-															<%}%>
-														</select>
-													</select>
-												</td>
-												<td></td>
-												<td>
-													<select class="form-control select-small" id="exampleFormControlSelect1">
-														<%
-														if (typeof data[usuario.id +'_select_parametros'] != 'undefined' && data[usuario.id +'_select_parametros'].length > 0) { %>
-														<% for (var i = 0 ; i < data[usuario.id +'_select_parametros'][0].mode1.length; i++) { %>
-														<option>
-															<%=data[usuario.id +'_select_parametros'][0].mode1[i] %>									
-														</option>
-														<%}%>
-														<%}%>
-													</select>
-												</td>
-												<td></td>
-											</tr>
+															<input type="hidden" name="b1_measure_2_value" value="<%=data[usuario.id +'_usuario_parametros'].length > 0 ? data[usuario.id +'_usuario_parametros'][0].b1_measure_2[0] : ''%>">
+															
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="b1_measure_2_start" value="-">
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="b1_measure_2_step" value="-">
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="b1_measure_2_stop" value="-">
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="b1_measure_2_steps" value="-">
+														</td>
+													</tr>
 
 
-											<tr>
-												<td>
+													<tr>
+														<td>
+															<div class="form-check text-center">
+																<input <%= data[usuario.id +'_usuario_parametros'].length > 0 ? 'disabled' : ''%> class="form-check-input" type="checkbox" name="b2_distance_1_optimize" <%= data[usuario.id +'_usuario_parametros'].length == 0 ? '' : data[usuario.id +'_usuario_parametros'][0].b2_distance_1[5] == 'on' ?	 'checked' : '' %>>
 
-												</td>
-												<td>
-													[C] SL
-												</td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-											</tr>
-											
-											<tr>
-												<td>
-													<div class="form-check text-center">
-														<input class="form-check-input" type="checkbox" value="">
-													</div>
-												</td>
-												<td>
-													[B1] Measure (1)
-												</td>
-												<td></td>
-												<td>
-													<select class="form-control select-small" id="exampleFormControlSelect1">
-														<option>Points</option>
-														<option>Pips</option>
-													</select>
-												</td>
-												<td></td>
-												<td>
-													<select class="form-control select-small" id="exampleFormControlSelect1">
-														<option>Points</option>
-														<option>Pips</option>
-													</select>
-												</td>
-												<td></td>
-											</tr>
-											
-											<tr>
-												<td>
-													<div class="form-check text-center">
-														<input class="form-check-input" type="checkbox" value="">
-													</div>
-												</td>
-												<td>
-													[B1] Measure (2)
-												</td>
-												<td></td>
-												<td>
-													<select class="form-control select-small" id="exampleFormControlSelect1">
-														<option>Points</option>
-														<option>Pips</option>
-													</select>
-												</td>
-												<td></td>
-												<td>
-													<select class="form-control select-small" id="exampleFormControlSelect1">
-														<option>Points</option>
-														<option>Pips</option>
-													</select>
-												</td>
-												<td></td>
-											</tr>
-											
-											<tr>
-												<td>
-													<div class="form-check text-center">
-														<input class="form-check-input" type="checkbox" value="">
-													</div>
-												</td>
-												<td>
-													[B2] Mode (1)
-												</td>
-												<td>
-													<select class="form-control select-small" id="exampleFormControlSelect1">
-														<%
-														if (typeof data[usuario.id +'_select_parametros'] != 'undefined' && data[usuario.id +'_select_parametros'].length > 0) { %>
-														<% for (var i = 0 ; i < data[usuario.id +'_select_parametros'][0].mode2.length; i++) { %>
+																<% if(data[usuario.id +'_usuario_parametros'].length > 0){
+																	if(data[usuario.id +'_usuario_parametros'][0].b2_distance_1[5] == 'on'){ %>
+																	<input name="b2_distance_1_optimize" value="on" type="hidden">
+																	<% }
+																}%>
+															</div>
+														</td>
+														<td>
+															[B2] Distance (1)
+														</td>
+														<td>
+															<input <%= data[usuario.id +'_usuario_parametros'].length > 0 ? 'readonly tabindex="-1"' : ''%> class="form-control form-small text-center <%= data[usuario.id +'_usuario_parametros'].length > 0 ? 'disabled' : ''%>" name="b2_distance_1_value" value="<%= data[usuario.id +'_usuario_parametros'].length > 0 ? data[usuario.id +'_usuario_parametros'][0].b2_distance_1[0] : ''%>">
+															
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="b2_distance_1_start" value="7200">
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="b2_distance_1_step" value="50">
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="b2_distance_1_stop" value="9300">
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="b2_distance_1_steps" value="43">
+														</td>
+													</tr>
 
-														
-														<option <%= data[usuario.id +'_parametros'].length == 0 ? '' : data[usuario.id +'_parametros'][0].b2_mode_1[0] == data[usuario.id +'_select_parametros'][0].mode2[i] ? 'selected' : '' %>>
+													<tr>
+														<td>
+															<div class="form-check text-center">
+																<input <%= data[usuario.id +'_usuario_parametros'].length > 0 ? 'disabled' : ''%> class="form-check-input" type="checkbox" name="b2_distance_2_optimize" <%= data[usuario.id +'_usuario_parametros'].length == 0 ? '' : data[usuario.id +'_usuario_parametros'][0].b2_distance_2[5] == 'on' ?	 'checked' : '' %>>
 
-															<%=data[usuario.id +'_select_parametros'][0].mode2[i] %>
+																<% if(data[usuario.id +'_usuario_parametros'].length > 0){
+																	if(data[usuario.id +'_usuario_parametros'][0].b2_distance_2[5] == 'on'){ %>
+																	<input name="b2_distance_2_optimize" value="on" type="hidden">
+																	<% }
+																}%>
+															</div>
+														</td>
+														<td>
+															[B2] Distance (2)
+														</td>
+														<td>
+															<input <%= data[usuario.id +'_usuario_parametros'].length > 0 ? 'readonly tabindex="-1"' : ''%> class="form-control form-small text-center <%= data[usuario.id +'_usuario_parametros'].length > 0 ? 'disabled' : ''%>" name="b2_distance_2_value" value="<%= data[usuario.id +'_usuario_parametros'].length > 0 ? data[usuario.id +'_usuario_parametros'][0].b2_distance_2[0] : ''%>">
+															
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="b2_distance_2_start" value="66">
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="b2_distance_2_step" value="1">
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="b2_distance_2_stop" value="80">
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="b2_distance_2_steps" value="15">
+														</td>
+													</tr>
 
-														</option>
-														<%}%>
-														<%}%>
-													</select>
-												</td>
-												<td>
-													<select class="form-control select-small" id="exampleFormControlSelect1">
-															<%
+
+													<tr>
+														<td>
+
+														</td>
+														<td>
+															[C] PE
+														</td>
+														<td></td>
+														<td></td>
+														<td></td>
+														<td></td>
+														<td></td>
+													</tr>
+
+
+
+													<tr>
+														<td>
+															<div class="form-check text-center">
+																<input <%= data[usuario.id +'_usuario_parametros'].length > 0 ? 'disabled' : ''%> class="form-check-input" type="checkbox" name="c1_direction_1_optimize" <%= data[usuario.id +'_usuario_parametros'].length == 0 ? '' : data[usuario.id +'_usuario_parametros'][0].c1_direction_1[5] == 'on' ?	 'checked' : '' %>>
+
+																<% if(data[usuario.id +'_usuario_parametros'].length > 0){
+																	if(data[usuario.id +'_usuario_parametros'][0].c1_direction_1[5] == 'on'){ %>
+																	<input name="c1_direction_1_optimize" value="on" type="hidden">
+																	<% }
+																}%>
+															</div>
+														</td>
+														<td>
+															[C1] Direction (1)
+														</td>
+														<td>
+															<select class="form-control select-small <%= data[usuario.id +'_usuario_parametros'].length > 0 ? 'disabled' : ''%>" name="c1_direction_1_value" <%= data[usuario.id +'_usuario_parametros'].length > 0 ? 'disabled tabindex="-1"' : ''%>>
+
+
+
+
+																<%
 																if (typeof data[usuario.id +'_select_parametros'] != 'undefined' && data[usuario.id +'_select_parametros'].length > 0) { %>
-																<% for (var i = 0 ; i < data[usuario.id +'_select_parametros'][0].mode2.length; i++) { %>
-																<option <%= data[usuario.id +'_parametros'].length == 0 ? '' : data[usuario.id +'_parametros'][0].b2_mode_1[1] == data[usuario.id +'_select_parametros'][0].mode2[i] ? 'selected' : '' %>>
+																<% for (var i = 0 ; i < data[usuario.id +'_select_parametros'][0].direction.length; i++) { %>
 
-															<%=data[usuario.id +'_select_parametros'][0].mode2[i] %>
-																			
-														</option>
+
+																<option <%= data[usuario.id +'_usuario_parametros'].length == 0 ? '' : data[usuario.id +'_usuario_parametros'][0].c1_direction_1[0] == data[usuario.id +'_select_parametros'][0].direction[i] ? 'selected' : '' %>>
+
+																	<%=data[usuario.id +'_select_parametros'][0].direction[i] %>
+
+																</option>
 																<%}%>
 																<%}%>
-													</select>
+															</select>
+
+															<input type="hidden" name="c1_direction_1_value" value="<%=data[usuario.id +'_usuario_parametros'].length > 0 ? data[usuario.id +'_usuario_parametros'][0].c1_direction_1[0] : ''%>">
+															
+														</td>
+														<td>
+															<select class="form-control select-small disabled" disabled="" tabindex="-1" name="c1_direction_1_start">					
+																<option>[1]On the way</option>
+															</select>
+
+															<input type="hidden" name="c1_direction_1_start" value="[1]On the way">
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="c1_direction_1_step" value="-">
+														</td>
+														<td>
+															<select class="form-control select-small disabled" disabled="" tabindex="-1" name="c1_direction_1_stop">					
+																<option>[2]Back out</option>
+															</select>
+
+															<input type="hidden" name="c1_direction_1_stop" value="[2]Back out">
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="c1_direction_1_steps" value="2">
+														</td>
+													</tr>
+
+
+													<tr>
+														<td>
+															<div class="form-check text-center">
+																<input <%= data[usuario.id +'_usuario_parametros'].length > 0 ? 'disabled' : ''%> class="form-check-input" type="checkbox" name="c1_direction_2_optimize" <%= data[usuario.id +'_usuario_parametros'].length == 0 ? '' : data[usuario.id +'_usuario_parametros'][0].c1_direction_2[5] == 'on' ?	 'checked' : '' %>>
+
+																<% if(data[usuario.id +'_usuario_parametros'].length > 0){
+																	if(data[usuario.id +'_usuario_parametros'][0].c1_direction_2[5] == 'on'){ %>
+																	<input name="c1_direction_2_optimize" value="on" type="hidden">
+																	<% }
+																}%>
+															</div>
+														</td>
+														<td>
+															[C1] Direction (2)
+														</td>
+														<td>
+															<select class="form-control select-small <%= data[usuario.id +'_usuario_parametros'].length > 0 ? 'disabled' : ''%>" name="c1_direction_2_value" <%= data[usuario.id +'_usuario_parametros'].length > 0 ? 'disabled tabindex="-1"' : ''%>>
+																<%
+																if (typeof data[usuario.id +'_select_parametros'] != 'undefined' && data[usuario.id +'_select_parametros'].length > 0) { %>
+																<% for (var i = 0 ; i < data[usuario.id +'_select_parametros'][0].direction.length; i++) { %>
+
+
+																<option <%= data[usuario.id +'_usuario_parametros'].length == 0 ? '' : data[usuario.id +'_usuario_parametros'][0].c1_direction_2[0] == data[usuario.id +'_select_parametros'][0].direction[i] ? 'selected' : '' %>>
+
+																	<%=data[usuario.id +'_select_parametros'][0].direction[i] %>
+
+																</option>
+																<%}%>
+																<%}%>
+															</select>
+
+															<input type="hidden" name="c1_direction_2_value" value="<%=data[usuario.id +'_usuario_parametros'].length > 0 ? data[usuario.id +'_usuario_parametros'][0].c1_direction_2[0] : ''%>">
+															
+														</td>
+														<td>
+															<select class="form-control select-small disabled" disabled="" tabindex="-1" name="c1_direction_2_start">					
+																<option>[1]On the way</option>
+															</select>
+
+															<input type="hidden" name="c1_direction_2_start" value="[1]On the way">
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="c1_direction_2_step" value="-">
+														</td>
+														<td>
+															<select class="form-control select-small disabled" disabled="" tabindex="-1" name="c1_direction_2_stop">					
+																<option>[2]Back out</option>
+															</select>
+
+															<input type="hidden" name="c1_direction_2_stop" value="[2]Back out">
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="c1_direction_2_steps" value="2">
+														</td>
+													</tr>
+
+
+													<tr>
+														<td>
+															<div class="form-check text-center">
+																<input <%= data[usuario.id +'_usuario_parametros'].length > 0 ? 'disabled' : ''%> class="form-check-input" type="checkbox" name="c2_measure_1_optimize" <%= data[usuario.id +'_usuario_parametros'].length == 0 ? '' : data[usuario.id +'_usuario_parametros'][0].c2_measure_1[5] == 'on' ?	 'checked' : '' %>>
+
+																<% if(data[usuario.id +'_usuario_parametros'].length > 0){
+																	if(data[usuario.id +'_usuario_parametros'][0].c2_measure_1[5] == 'on'){ %>
+																	<input name="c2_measure_1_optimize" value="on" type="hidden">
+																	<% }
+																}%>
+															</div>
+														</td>
+														<td>
+															[C2] Measure (1)
+														</td>
+														<td>
+															<select class="form-control select-small <%= data[usuario.id +'_usuario_parametros'].length > 0 ? 'disabled' : ''%>" name="c2_measure_1_value" <%= data[usuario.id +'_usuario_parametros'].length > 0 ? 'disabled tabindex="-1"' : ''%>>
+																<%
+																if (typeof data[usuario.id +'_select_parametros'] != 'undefined' && data[usuario.id +'_select_parametros'].length > 0) { %>
+																<% for (var i = 0 ; i < data[usuario.id +'_select_parametros'][0].measure.length; i++) { %>
+
+
+																<option <%= data[usuario.id +'_usuario_parametros'].length == 0 ? '' : data[usuario.id +'_usuario_parametros'][0].c2_measure_1[0] == data[usuario.id +'_select_parametros'][0].measure[i] ? 'selected' : '' %>>
+
+																	<%=data[usuario.id +'_select_parametros'][0].measure[i] %>
+
+																</option>
+																<%}%>
+																<%}%>
+															</select>
+
+															<input type="hidden" name="c2_measure_1_value" value="<%=data[usuario.id +'_usuario_parametros'].length > 0 ? data[usuario.id +'_usuario_parametros'][0].c2_measure_1[0] : ''%>">
+															
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="c2_measure_1_start" value="-">
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="c2_measure_1_step" value="-">
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="c2_measure_1_stop" value="-">
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="c2_measure_1_steps" value="-">
+														</td>
+													</tr>
+
+
+													<tr>
+														<td>
+															<div class="form-check text-center">
+																<input <%= data[usuario.id +'_usuario_parametros'].length > 0 ? 'disabled' : ''%> class="form-check-input" type="checkbox" name="c2_measure_2_optimize" <%= data[usuario.id +'_usuario_parametros'].length == 0 ? '' : data[usuario.id +'_usuario_parametros'][0].c2_measure_2[5] == 'on' ?	 'checked' : '' %>>
+
+																<% if(data[usuario.id +'_usuario_parametros'].length > 0){
+																	if(data[usuario.id +'_usuario_parametros'][0].c2_measure_2[5] == 'on'){ %>
+																	<input name="c2_measure_2_optimize" value="on" type="hidden">
+																	<% }
+																}%>
+															</div>
+														</td>
+														<td>
+															[C2] Measure (2)
+														</td>
+														<td>
+															<select class="form-control select-small <%= data[usuario.id +'_usuario_parametros'].length > 0 ? 'disabled' : ''%>" name="c2_measure_2_value" <%= data[usuario.id +'_usuario_parametros'].length > 0 ? 'disabled tabindex="-1"' : ''%>>
+																<%
+																if (typeof data[usuario.id +'_select_parametros'] != 'undefined' && data[usuario.id +'_select_parametros'].length > 0) { %>
+																<% for (var i = 0 ; i < data[usuario.id +'_select_parametros'][0].measure.length; i++) { %>
+
+
+																<option <%= data[usuario.id +'_usuario_parametros'].length == 0 ? '' : data[usuario.id +'_usuario_parametros'][0].c2_measure_2[0] == data[usuario.id +'_select_parametros'][0].measure[i] ? 'selected' : '' %>>
+
+																	<%=data[usuario.id +'_select_parametros'][0].measure[i] %>
+
+																</option>
+																<%}%>
+																<%}%>
+															</select>
+
+															<input type="hidden" name="c2_measure_2_value" value="<%=data[usuario.id +'_usuario_parametros'].length > 0 ? data[usuario.id +'_usuario_parametros'][0].c2_measure_2[0] : ''%>">
+															
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="c2_measure_2_start" value="-">
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="c2_measure_2_step" value="-">
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="c2_measure_2_stop" value="-">
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="c2_measure_2_steps" value="-">
+														</td>
+													</tr>
+
+
+													<tr>
+														<td>
+															<div class="form-check text-center">
+																<input <%= data[usuario.id +'_usuario_parametros'].length > 0 ? 'disabled' : ''%> class="form-check-input" type="checkbox" name="c3_distance_1_optimize" <%= data[usuario.id +'_usuario_parametros'].length == 0 ? '' : data[usuario.id +'_usuario_parametros'][0].c3_distance_1[5] == 'on' ?	 'checked' : '' %>>
+
+																<% if(data[usuario.id +'_usuario_parametros'].length > 0){
+																	if(data[usuario.id +'_usuario_parametros'][0].c3_distance_1[5] == 'on'){ %>
+																	<input name="c3_distance_1_optimize" value="on" type="hidden">
+																	<% }
+																}%>
+															</div>
+														</td>
+														<td>
+															[C3] Distance (1)
+														</td>
+														<td>									
+
+															<input <%= data[usuario.id +'_usuario_parametros'].length > 0 ? 'readonly tabindex="-1"' : ''%> class="form-control form-small text-center <%= data[usuario.id +'_usuario_parametros'].length > 0 ? 'disabled' : ''%>" name="c3_distance_1_value" value="<%= data[usuario.id +'_usuario_parametros'].length > 0 ? data[usuario.id +'_usuario_parametros'][0].c3_distance_1[0] : ''%>">
+															
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="c3_distance_1_start" value="0">
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="c3_distance_1_step" value="0">
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="c3_distance_1_stop" value="0">
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="c3_distance_1_steps" value="0">
+														</td>
+													</tr>
+
+													<tr>
+														<td>
+															<div class="form-check text-center">
+																<input <%= data[usuario.id +'_usuario_parametros'].length > 0 ? 'disabled' : ''%> class="form-check-input" type="checkbox" name="c3_distance_2_optimize" <%= data[usuario.id +'_usuario_parametros'].length == 0 ? '' : data[usuario.id +'_usuario_parametros'][0].c3_distance_2[5] == 'on' ?	 'checked' : '' %>>
+
+																<% if(data[usuario.id +'_usuario_parametros'].length > 0){
+																	if(data[usuario.id +'_usuario_parametros'][0].c3_distance_2[5] == 'on'){ %>
+																	<input name="c3_distance_2_optimize" value="on" type="hidden">
+																	<% }
+																}%>
+															</div>
+														</td>
+														<td>
+															[C3] Distance (2)
+														</td>
+														<td>									
+
+															<input <%= data[usuario.id +'_usuario_parametros'].length > 0 ? 'readonly tabindex="-1"' : ''%> class="form-control form-small text-center <%= data[usuario.id +'_usuario_parametros'].length > 0 ? 'disabled' : ''%>" name="c3_distance_2_value" value="<%= data[usuario.id +'_usuario_parametros'].length > 0 ? data[usuario.id +'_usuario_parametros'][0].c3_distance_2[0] : ''%>">
+															
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="c3_distance_2_start" value="27">
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="c3_distance_2_step" value="1">
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="c3_distance_2_stop" value="33">
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="c3_distance_2_steps" value="7">
+														</td>
+													</tr>
+
+													<tr>
+														<td>
+															<div class="form-check text-center">
+																<input <%= data[usuario.id +'_usuario_parametros'].length > 0 ? 'disabled' : ''%> class="form-check-input" type="checkbox" name="c4_size_1_optimize" <%= data[usuario.id +'_usuario_parametros'].length == 0 ? '' : data[usuario.id +'_usuario_parametros'][0].c4_size_1[5] == 'on' ?	 'checked' : '' %>>
+
+																<% if(data[usuario.id +'_usuario_parametros'].length > 0){
+																	if(data[usuario.id +'_usuario_parametros'][0].c4_size_1[5] == 'on'){ %>
+																	<input name="c4_size_1_optimize" value="on" type="hidden">
+																	<% }
+																}%>
+															</div>
+														</td>
+														<td>
+															[C4] Size (1)
+														</td>
+														<td>									
+
+															<input <%= data[usuario.id +'_usuario_parametros'].length > 0 ? 'readonly tabindex="-1"' : ''%> class="form-control form-small text-center <%= data[usuario.id +'_usuario_parametros'].length > 0 ? 'disabled' : ''%>" name="c4_size_1_value" value="<%= data[usuario.id +'_usuario_parametros'].length > 0 ? data[usuario.id +'_usuario_parametros'][0].c4_size_1[0] : ''%>">
+															
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="c4_size_1_start" value="0">
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="c4_size_1_step" value="0">
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="c4_size_1_stop" value="0">
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="c4_size_1_steps" value="0">
+														</td>
+													</tr>
+
+
 													
-												</td>
-												<td>
-
-												</td>
-												<td>
-													<select class="form-control select-small" id="exampleFormControlSelect1">
-														<%
-														if (typeof data[usuario.id +'_select_parametros'] != 'undefined' && data[usuario.id +'_select_parametros'].length > 0) { %>
-														<% for (var i = 0 ; i < data[usuario.id +'_select_parametros'][0].mode2.length; i++) { %>
-														<option <%= data[usuario.id +'_parametros'].length == 0 ? '' : data[usuario.id +'_parametros'][0].b2_mode_1[3] == data[usuario.id +'_select_parametros'][0].mode2[i] ? 'selected' : '' %>>
-
-															<%=data[usuario.id +'_select_parametros'][0].mode2[i] %>
-																			
-														</option>
-														<%}%>
-														<%}%>
-													</select>
-												</td>
-												<td></td>
-											</tr>
-											
-											<tr>
-												<td>
-													<div class="form-check text-center">
-														<input class="form-check-input" type="checkbox" value="">
-													</div>
-												</td>
-												<td>
-													[B2] Mode (2)
-												</td>
-												<td></td>
-												<td>
-													<select class="form-control select-small" id="exampleFormControlSelect1">
-														<%
-														if (typeof data[usuario.id +'_select_parametros'] != 'undefined' && data[usuario.id +'_select_parametros'].length > 0) { %>
-														<% for (var i = 0 ; i < data[usuario.id +'_select_parametros'][0].mode2.length; i++) { %>
-														<option>
-															<%=data[usuario.id +'_select_parametros'][0].mode2[i] %>									
-														</option>
-														<%}%>
-														<%}%>
-													</select>
-												</td>
-												<td></td>
-												<td>
-													<select class="form-control select-small" id="exampleFormControlSelect1">
-														<%
-														if (typeof data[usuario.id +'_select_parametros'] != 'undefined' && data[usuario.id +'_select_parametros'].length > 0) { %>
-														<% for (var i = 0 ; i < data[usuario.id +'_select_parametros'][0].mode2.length; i++) { %>
-														<option>
-															<%=data[usuario.id +'_select_parametros'][0].mode2[i] %>									
-														</option>
-														<%}%>
-														<%}%>
-													</select>
-												</td>
-												<td></td>
-											</tr>
-											
-											<tr>
-												<td>
-													<div class="form-check text-center">
-														<input class="form-check-input" type="checkbox" value="">
-													</div>
-												</td>
-												<td>
-													[B2] Distance (1)
-												</td>
-												<td></td>
-												<td>
-
-												</td>
-												<td></td>
-												<td>
-
-												</td>
-												<td></td>
-											</tr>
-											
-											<tr>
-												<td>
-													<div class="form-check text-center">
-														<input class="form-check-input" type="checkbox" value="">
-													</div>
-												</td>
-												<td>
-													[B2] Distance (2)
-												</td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-											</tr>
-											
-											<tr>
-												<td>
-
-												</td>
-												<td>
-													[D] PE
-												</td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-											</tr>
-											
-											<tr>
-												<td>
-													<div class="form-check text-center">
-														<input class="form-check-input" type="checkbox" value="">
-													</div>
-												</td>
-												<td>
-													[E1] Direction (1)
-												</td>
-												<td></td>
-												<td>
-													<select class="form-control select-small" id="exampleFormControlSelect1">
-														<option>On the way</option>
-														<option>Back out</option>
-													</select>
-												</td>
-												<td></td>
-												<td>
-													<select class="form-control select-small" id="exampleFormControlSelect1">
-														<option>On the way</option>
-														<option>Back out</option>
-													</select>
-												</td>
-												<td></td>
-											</tr>
-											
-											<tr>
-												<td>
-													<div class="form-check text-center">
-														<input class="form-check-input" type="checkbox" value="">
-													</div>
-												</td>
-												<td>
-													[E1] Direction (2)
-												</td>
-												<td></td>
-												<td>
-													<select class="form-control select-small" id="exampleFormControlSelect1">
-														<option>On the way</option>
-														<option>Back out</option>
-													</select>
-												</td>
-												<td></td>
-												<td>
-													<select class="form-control select-small" id="exampleFormControlSelect1">
-														<option>On the way</option>
-														<option>Back out</option>
-													</select>
-												</td>
-												<td></td>
-											</tr>
-
-
-											<tr>
-												<td>
-													<div class="form-check text-center">
-														<input class="form-check-input" type="checkbox" value="">
-													</div>
-												</td>
-												<td>
-													[E2] Measure (1)
-												</td>
-												<td></td>
-												<td>
-													<select class="form-control select-small" id="exampleFormControlSelect1">
-														<option>Points</option>
-														<option>Pips</option>
-													</select>
-												</td>
-												<td></td>
-												<td>
-													<select class="form-control select-small" id="exampleFormControlSelect1">
-														<option>Points</option>
-														<option>Pips</option>
-													</select>
-												</td>
-												<td></td>
-											</tr>
-
-
-											<tr>
-												<td>
-													<div class="form-check text-center">
-														<input class="form-check-input" type="checkbox" value="">
-													</div>
-												</td>
-												<td>
-													[E2] Measure (2)
-												</td>
-												<td></td>
-												<td>
-													<select class="form-control select-small" id="exampleFormControlSelect1">
-														<option>Points</option>
-														<option>Pips</option>
-													</select>
-												</td>
-												<td></td>
-												<td>
-													<select class="form-control select-small" id="exampleFormControlSelect1">
-														<option>Points</option>
-														<option>Pips</option>
-													</select>
-												</td>
-												<td></td>
-											</tr>
-											
-											<tr>
-												<td>
-													<div class="form-check text-center">
-														<input class="form-check-input" type="checkbox" value="">
-													</div>
-												</td>
-												<td>
-													[D1] Distance (1)
-												</td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-											</tr>
-											
-											<tr>
-												<td>
-													<div class="form-check text-center">
-														<input class="form-check-input" type="checkbox" value="">
-													</div>
-												</td>
-												<td>
-													[G1] Size (1)
-												</td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-											</tr>
-											
-											<tr>
-												<td>
-													<div class="form-check text-center">
-														<input class="form-check-input" type="checkbox" value="">
-													</div>
-												</td>
-												<td>
-													[D1] Distance (2)
-												</td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-											</tr>
-											
-											<tr>
-												<td>
-													<div class="form-check text-center">
-														<input class="form-check-input" type="checkbox" value="">
-													</div>
-												</td>
-												<td>
-													[G1] Size (2)
-												</td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-											</tr>
-											
-											<tr>
-												<td>
-
-												</td>
-												<td>
-													[E] TP
-												</td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-											</tr>
-											
-											<tr>
-												<td>
-													<div class="form-check text-center">
-														<input class="form-check-input" type="checkbox" value="">
-													</div>
-												</td>
-												<td>
-													[G1] Measure (1)
-												</td>
-												<td>
-													<select class="form-control select-small" id="exampleFormControlSelect1">
-														<option>Points</option>
-														<option>Pips</option>
-													</select>
-												</td>
-												<td>
-													<select class="form-control select-small" id="exampleFormControlSelect1">
-														<option>Points</option>
-														<option>Pips</option>
-													</select>
-												</td>
-												<td></td>
-												<td>
-													<select class="form-control select-small" id="exampleFormControlSelect1">
-														<option>Points</option>
-														<option>Pips</option>
-													</select>
-												</td>
-												<td></td>
-											</tr>
-											
-											<tr>
-												<td>
-													<div class="form-check text-center">
-														<input class="form-check-input" type="checkbox" value="">
-													</div>
-												</td>
-												<td>
-													[G2] Distance (1)
-												</td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-											</tr>
-											
-											<tr>
-												<td>
-													<div class="form-check text-center">
-														<input class="form-check-input" type="checkbox" value="">
-													</div>
-												</td>
-												<td>
-													[G1] Measure (2)
-												</td>
-												<td>
-													<select class="form-control select-small" id="exampleFormControlSelect1">
-														<option>Points</option>
-														<option>Pips</option>
-													</select>
-												</td>
-												<td>
-													<select class="form-control select-small" id="exampleFormControlSelect1">
-														<option>Points</option>
-														<option>Pips</option>
-													</select>
-												</td>
-												<td></td>
-												<td>
-													<select class="form-control select-small" id="exampleFormControlSelect1">
-														<option>Points</option>
-														<option>Pips</option>
-													</select>
-												</td>
-												<td></td>
-											</tr>
-											
-											<tr>
-												<td>
-													<div class="form-check text-center">
-														<input class="form-check-input" type="checkbox" value="">
-													</div>
-												</td>
-												<td>
-													[G2] Distance (2)
-												</td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-											</tr>
-											
-											<tr>
-												<td>
-
-												</td>
-												<td>
-													[F] ACT
-												</td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-											</tr>
-
-
-											<tr>
-												<td>
-													<div class="form-check text-center">
-														<input class="form-check-input" type="checkbox" value="">
-													</div>
-												</td>
-												<td>
-													[T1] Time (1)
-												</td>
-												<td>
-													<select class="form-control select-small" id="exampleFormControlSelect1">
-														<option>00:00</option>
-														<option>00:05</option>
-														<option>-  ...</option>
-														<option>23:55</option>
-														<option>24:00:00</option>
-													</select>
-												</td>
-												<td>
-													<select class="form-control select-small" id="exampleFormControlSelect1">
-														<option>00:00</option>
-														<option>00:05</option>
-														<option>-  ...</option>
-														<option>23:55</option>
-														<option>24:00:00</option>
-													</select>
-												</td>
-												<td>
-
-												</td>
-												<td>
-													<select class="form-control select-small" id="exampleFormControlSelect1">
-														<option>00:00</option>
-														<option>00:05</option>
-														<option>-  ...</option>
-														<option>23:55</option>
-														<option>24:00:00</option>
-													</select>
-												</td>
-												<td></td>
-											</tr>
-
-
-											<tr>
-												<td>
-													<div class="form-check text-center">
-														<input class="form-check-input" type="checkbox" value="">
-													</div>
-												</td>
-												<td>
-													[A1] Action (1)
-												</td>
-												<td>
-													<select class="form-control select-small" id="exampleFormControlSelect1">
-														<option>B</option>
-														<option>S</option>
-														<option>None</option>
-														<option>c</option>
-														<option>d</option>
-														<option>Turn over</option>
-
-													</select>
-												</td>
-												<td>
-													<select class="form-control select-small" id="exampleFormControlSelect1">
-														<option>B</option>
-														<option>S</option>
-														<option>None</option>
-														<option>c</option>
-														<option>d</option>
-														<option>Turn over</option>
-
-													</select>
-												</td>
-												<td></td>
-												<td>
-													<select class="form-control select-small" id="exampleFormControlSelect1">
-														<option>B</option>
-														<option>S</option>
-														<option>None</option>
-														<option>c</option>
-														<option>d</option>
-														<option>Turn over</option>
-
-													</select>
-												</td>
-												<td></td>
-											</tr>
-
-
-											<tr>
-												<td>
-													<div class="form-check text-center">
-														<input class="form-check-input" type="checkbox" value="">
-													</div>
-												</td>
-												<td>
-													[F1] Filter (1)
-												</td>
-												<td>
-													<select class="form-control select-small" id="exampleFormControlSelect1">
-														<option>If-a</option>
-														<option>If-b</option>
-														<option>Always</option>
-														<option>Np</option>
-														<option>None</option>
-
-													</select>
-												</td>
-												<td>
-													<select class="form-control select-small" id="exampleFormControlSelect1">
-														<option>If-a</option>
-														<option>If-b</option>
-														<option>Always</option>
-														<option>Np</option>
-														<option>None</option>
-
-													</select>
-												</td>
-												<td></td>
-												<td>
-													<select class="form-control select-small" id="exampleFormControlSelect1">
-														<option>If-a</option>
-														<option>If-b</option>
-														<option>Always</option>
-														<option>Np</option>
-														<option>None</option>
-
-													</select>
-												</td>
-												<td></td>
-											</tr>
-
-
-											<tr>
-												<td>
-													<div class="form-check text-center">
-														<input class="form-check-input" type="checkbox" value="">
-													</div>
-												</td>
-												<td>
-													[T2] Time (1)
-												</td>
-												<td>
-													<select class="form-control select-small" id="exampleFormControlSelect1">
-														<option>00:00</option>
-														<option>00:05</option>
-														<option>-  ...</option>
-														<option>23:55</option>
-														<option>24:00:00</option>
-
-													</select>
-												</td>
-												<td>
-													<select class="form-control select-small" id="exampleFormControlSelect1">
-														<option>00:00</option>
-														<option>00:05</option>
-														<option>-  ...</option>
-														<option>23:55</option>
-														<option>24:00:00</option>
-
-													</select>
-												</td>
-												<td></td>
-												<td>
-													<select class="form-control select-small" id="exampleFormControlSelect1">
-														<option>00:00</option>
-														<option>00:05</option>
-														<option>-  ...</option>
-														<option>23:55</option>
-														<option>24:00:00</option>
-
-													</select>
-												</td>
-												<td></td>
-											</tr>
-
-
-											<tr>
-												<td>
-													<div class="form-check text-center">
-														<input class="form-check-input" type="checkbox" value="">
-													</div>
-												</td>
-												<td>
-													[A2] Action (1)
-												</td>
-												<td>
-													<select class="form-control select-small" id="exampleFormControlSelect1">
-														<option>B</option>
-														<option>S</option>
-														<option>None</option>
-														<option>c</option>
-														<option>d</option>
-														<option>Turn over</option>
-
-													</select>
-												</td>
-												<td>
-													<select class="form-control select-small" id="exampleFormControlSelect1">
-														<option>B</option>
-														<option>S</option>
-														<option>None</option>
-														<option>c</option>
-														<option>d</option>
-														<option>Turn over</option>
-
-													</select>
-												</td>
-												<td></td>
-												<td>
-													<select class="form-control select-small" id="exampleFormControlSelect1">
-														<option>B</option>
-														<option>S</option>
-														<option>None</option>
-														<option>c</option>
-														<option>d</option>
-														<option>Turn over</option>
-
-													</select>
-												</td>
-												<td></td>
-											</tr>
-
-
-											<tr>
-												<td>
-													<div class="form-check text-center">
-														<input class="form-check-input" type="checkbox" value="">
-													</div>
-												</td>
-												<td>
-													[F2] Filter (1)
-												</td>
-												<td>
-													<select class="form-control select-small" id="exampleFormControlSelect1">
-														<option>If-a</option>
-														<option>If-b</option>
-														<option>Always</option>
-														<option>Np</option>
-														<option>None</option>
-
-													</select>
-												</td>
-												<td>
-													<select class="form-control select-small" id="exampleFormControlSelect1">
-														<option>If-a</option>
-														<option>If-b</option>
-														<option>Always</option>
-														<option>Np</option>
-														<option>None</option>
-
-													</select>
-												</td>
-												<td></td>
-												<td>
-													<select class="form-control select-small" id="exampleFormControlSelect1">
-														<option>If-a</option>
-														<option>If-b</option>
-														<option>Always</option>
-														<option>Np</option>
-														<option>None</option>
-
-													</select>
-												</td>
-												<td></td>
-											</tr>
-
-
-											<tr>
-												<td>
-													<div class="form-check text-center">
-														<input class="form-check-input" type="checkbox" value="">
-													</div>
-												</td>
-												<td>
-													[T3] Time (1)
-												</td>
-												<td>
-													<select class="form-control select-small" id="exampleFormControlSelect1">
-														<option>00:00</option>
-														<option>00:05</option>
-														<option>-  ...</option>
-														<option>23:55</option>
-														<option>24:00:00</option>
-
-													</select>
-												</td>
-												<td>
-													<select class="form-control select-small" id="exampleFormControlSelect1">
-														<option>00:00</option>
-														<option>00:05</option>
-														<option>-  ...</option>
-														<option>23:55</option>
-														<option>24:00:00</option>
-
-													</select>
-												</td>
-												<td></td>
-												<td>
-													<select class="form-control select-small" id="exampleFormControlSelect1">
-														<option>00:00</option>
-														<option>00:05</option>
-														<option>-  ...</option>
-														<option>23:55</option>
-														<option>24:00:00</option>
-
-													</select>
-												</td>
-												<td></td>
-											</tr>
-
-
-											<tr>
-												<td>
-													<div class="form-check text-center">
-														<input class="form-check-input" type="checkbox" value="">
-													</div>
-												</td>
-												<td>
-													[A3] Action (1)
-												</td>
-												<td>
-													<select class="form-control select-small" id="exampleFormControlSelect1">
-														<option>B</option>
-														<option>S</option>
-														<option>None</option>
-														<option>c</option>
-														<option>d</option>
-														<option>Turn over</option>
-
-													</select>
-												</td>
-												<td>
-													<select class="form-control select-small" id="exampleFormControlSelect1">
-														<option>B</option>
-														<option>S</option>
-														<option>None</option>
-														<option>c</option>
-														<option>d</option>
-														<option>Turn over</option>
-
-													</select>
-												</td>
-												<td></td>
-												<td>
-													<select class="form-control select-small" id="exampleFormControlSelect1">
-														<option>B</option>
-														<option>S</option>
-														<option>None</option>
-														<option>c</option>
-														<option>d</option>
-														<option>Turn over</option>
-
-													</select>
-												</td>
-												<td></td>
-											</tr>
-
-
-											<tr>
-												<td>
-													<div class="form-check text-center">
-														<input class="form-check-input" type="checkbox" value="">
-													</div>
-												</td>
-												<td>
-													[F3] Filter (1)
-												</td>
-												<td>
-													<select class="form-control select-small" id="exampleFormControlSelect1">
-														<option>If-a</option>
-														<option>If-b</option>
-														<option>Always</option>
-														<option>Np</option>
-														<option>None</option>
-
-													</select>
-												</td>
-												<td>
-													<select class="form-control select-small" id="exampleFormControlSelect1">
-														<option>If-a</option>
-														<option>If-b</option>
-														<option>Always</option>
-														<option>Np</option>
-														<option>None</option>
-
-													</select>
-												</td>
-												<td></td>
-												<td>
-													<select class="form-control select-small" id="exampleFormControlSelect1">
-														<option>If-a</option>
-														<option>If-b</option>
-														<option>Always</option>
-														<option>Np</option>
-														<option>None</option>
-
-													</select>
-												</td>
-												<td></td>
-											</tr>
-
-
-											<tr>
-												<td>
-													<div class="form-check text-center">
-														<input class="form-check-input" type="checkbox" value="">
-													</div>
-												</td>
-												<td>
-													[T4] Time (2)
-												</td>
-												<td>
-													<select class="form-control select-small" id="exampleFormControlSelect1">
-														<option>00:00</option>
-														<option>00:05</option>
-														<option>-  ...</option>
-														<option>23:55</option>
-														<option>24:00:00</option>
-
-													</select>
-												</td>
-												<td>
-													<select class="form-control select-small" id="exampleFormControlSelect1">
-														<option>00:00</option>
-														<option>00:05</option>
-														<option>-  ...</option>
-														<option>23:55</option>
-														<option>24:00:00</option>
-
-													</select>
-												</td>
-												<td></td>
-												<td>
-													<select class="form-control select-small" id="exampleFormControlSelect1">
-														<option>00:00</option>
-														<option>00:05</option>
-														<option>-  ...</option>
-														<option>23:55</option>
-														<option>24:00:00</option>
-
-													</select>
-												</td>
-												<td></td>
-											</tr>
-
-
-											<tr>
-												<td>
-													<div class="form-check text-center">
-														<input class="form-check-input" type="checkbox" value="">
-													</div>
-												</td>
-												<td>
-													[A4] Action (2)
-												</td>
-												<td>
-													<select class="form-control select-small" id="exampleFormControlSelect1">
-														<option>B</option>
-														<option>S</option>
-														<option>None</option>
-														<option>c</option>
-														<option>d</option>
-														<option>Turn over</option>
-
-													</select>
-												</td>
-												<td>
-													<select class="form-control select-small" id="exampleFormControlSelect1">
-														<option>B</option>
-														<option>S</option>
-														<option>None</option>
-														<option>c</option>
-														<option>d</option>
-														<option>Turn over</option>
-
-													</select>
-												</td>
-												<td></td>
-												<td>
-													<select class="form-control select-small" id="exampleFormControlSelect1">
-														<option>B</option>
-														<option>S</option>
-														<option>None</option>
-														<option>c</option>
-														<option>d</option>
-														<option>Turn over</option>
-
-													</select>
-												</td>
-												<td></td>
-											</tr>
-
-
-											<tr>
-												<td>
-													<div class="form-check text-center">
-														<input class="form-check-input" type="checkbox" value="">
-													</div>
-												</td>
-												<td>
-													[F4] Filter (2)
-												</td>
-												<td>
-													<select class="form-control select-small" id="exampleFormControlSelect1">
-														<option>If-a</option>
-														<option>If-b</option>
-														<option>Always</option>
-														<option>Np</option>
-														<option>None</option>
-
-													</select>
-												</td>
-												<td>
-													<select class="form-control select-small" id="exampleFormControlSelect1">
-														<option>If-a</option>
-														<option>If-b</option>
-														<option>Always</option>
-														<option>Np</option>
-														<option>None</option>
-
-													</select>
-												</td>
-												<td></td>
-												<td>
-													<select class="form-control select-small" id="exampleFormControlSelect1">
-														<option>If-a</option>
-														<option>If-b</option>
-														<option>Always</option>
-														<option>Np</option>
-														<option>None</option>
-
-													</select>
-												</td>
-												<td></td>
-											</tr>
-
-
-											<tr>
-												<td>
-													<div class="form-check text-center">
-														<input class="form-check-input" type="checkbox" value="">
-													</div>
-												</td>
-												<td>
-													[T5] Time (2)
-												</td>
-												<td>
-													<select class="form-control select-small" id="exampleFormControlSelect1">
-														<option>00:00</option>
-														<option>00:05</option>
-														<option>-  ...</option>
-														<option>23:55</option>
-														<option>24:00:00</option>
-
-													</select>
-												</td>
-												<td>
-													<select class="form-control select-small" id="exampleFormControlSelect1">
-														<option>00:00</option>
-														<option>00:05</option>
-														<option>-  ...</option>
-														<option>23:55</option>
-														<option>24:00:00</option>
-
-													</select>
-												</td>
-												<td></td>
-												<td>
-													<select class="form-control select-small" id="exampleFormControlSelect1">
-														<option>00:00</option>
-														<option>00:05</option>
-														<option>-  ...</option>
-														<option>23:55</option>
-														<option>24:00:00</option>
-
-													</select>
-												</td>
-												<td></td>
-											</tr>
-
-
-											<tr>
-												<td>
-													<div class="form-check text-center">
-														<input class="form-check-input" type="checkbox" value="">
-													</div>
-												</td>
-												<td>
-													[A5] Action (2)
-												</td>
-												<td>
-													<select class="form-control select-small" id="exampleFormControlSelect1">
-														<option>B</option>
-														<option>S</option>
-														<option>None</option>
-														<option>c</option>
-														<option>d</option>
-														<option>Turn over</option>
-
-													</select>
-												</td>
-												<td>
-													<select class="form-control select-small" id="exampleFormControlSelect1">
-														<option>B</option>
-														<option>S</option>
-														<option>None</option>
-														<option>c</option>
-														<option>d</option>
-														<option>Turn over</option>
-
-													</select>
-												</td>
-												<td></td>
-												<td>
-													<select class="form-control select-small" id="exampleFormControlSelect1">
-														<option>B</option>
-														<option>S</option>
-														<option>None</option>
-														<option>c</option>
-														<option>d</option>
-														<option>Turn over</option>
-
-													</select>
-												</td>
-												<td></td>
-											</tr>
-
-
-											<tr>
-												<td>
-													<div class="form-check text-center">
-														<input class="form-check-input" type="checkbox" value="">
-													</div>
-												</td>
-												<td>
-													[F5] Filter (2)
-												</td>
-												<td>
-													<select class="form-control select-small" id="exampleFormControlSelect1">
-														<option>If-a</option>
-														<option>If-b</option>
-														<option>Always</option>
-														<option>Np</option>
-														<option>None</option>
-
-													</select>
-												</td>
-												<td>
-													<select class="form-control select-small" id="exampleFormControlSelect1">
-														<option>If-a</option>
-														<option>If-b</option>
-														<option>Always</option>
-														<option>Np</option>
-														<option>None</option>
-
-													</select>
-												</td>
-												<td></td>
-												<td>
-													<select class="form-control select-small" id="exampleFormControlSelect1">
-														<option>If-a</option>
-														<option>If-b</option>
-														<option>Always</option>
-														<option>Np</option>
-														<option>None</option>
-
-													</select>
-												</td>
-												<td></td>
-											</tr>
-
-
-											<tr>
-												<td>
-													<div class="form-check text-center">
-														<input class="form-check-input" type="checkbox" value="">
-													</div>
-												</td>
-												<td>
-													[T6] Time (2)
-												</td>
-												<td>
-													<select class="form-control select-small" id="exampleFormControlSelect1">
-														<option>00:00</option>
-														<option>00:05</option>
-														<option>-  ...</option>
-														<option>23:55</option>
-														<option>24:00:00</option>
-
-													</select>
-												</td>
-												<td>
-													<select class="form-control select-small" id="exampleFormControlSelect1">
-														<option>00:00</option>
-														<option>00:05</option>
-														<option>-  ...</option>
-														<option>23:55</option>
-														<option>24:00:00</option>
-
-													</select>
-												</td>
-												<td></td>
-												<td>
-													<select class="form-control select-small" id="exampleFormControlSelect1">
-														<option>00:00</option>
-														<option>00:05</option>
-														<option>-  ...</option>
-														<option>23:55</option>
-														<option>24:00:00</option>
-
-													</select>
-												</td>
-												<td></td>
-											</tr>
-
-
-											<tr>
-												<td>
-													<div class="form-check text-center">
-														<input class="form-check-input" type="checkbox" value="">
-													</div>
-												</td>
-												<td>
-													[A6] Action (2)
-												</td>
-												<td>
-													<select class="form-control select-small" id="exampleFormControlSelect1">
-														<option>B</option>
-														<option>S</option>
-														<option>None</option>
-														<option>c</option>
-														<option>d</option>
-														<option>Turn over</option>
-
-													</select>
-												</td>
-												<td>
-													<select class="form-control select-small" id="exampleFormControlSelect1">
-														<option>B</option>
-														<option>S</option>
-														<option>None</option>
-														<option>c</option>
-														<option>d</option>
-														<option>Turn over</option>
-
-													</select>
-												</td>
-												<td></td>
-												<td>
-													<select class="form-control select-small" id="exampleFormControlSelect1">
-														<option>B</option>
-														<option>S</option>
-														<option>None</option>
-														<option>c</option>
-														<option>d</option>
-														<option>Turn over</option>
-
-													</select>
-												</td>
-												<td></td>
-											</tr>
-
-
-											<tr>
-												<td>
-													<div class="form-check text-center">
-														<input class="form-check-input" type="checkbox" value="">
-													</div>
-												</td>
-												<td>
-													[F6] Filter (2)
-												</td>
-												<td>
-													<select class="form-control select-small" id="exampleFormControlSelect1">
-														<option>If-a</option>
-														<option>If-b</option>
-														<option>Always</option>
-														<option>Np</option>
-														<option>None</option>
-
-													</select>
-												</td>
-												<td>
-													<select class="form-control select-small" id="exampleFormControlSelect1">
-														<option>If-a</option>
-														<option>If-b</option>
-														<option>Always</option>
-														<option>Np</option>
-														<option>None</option>
-
-													</select>
-												</td>
-												<td></td>
-												<td>
-													<select class="form-control select-small" id="exampleFormControlSelect1">
-														<option>If-a</option>
-														<option>If-b</option>
-														<option>Always</option>
-														<option>Np</option>
-														<option>None</option>
-
-													</select>
-												</td>
-												<td></td>
-											</tr>
-
-
-
-										</tbody>
-
-									</table>
-
-
-								</div>
+
+
+													<tr>
+														<td>
+															<div class="form-check text-center">
+																<input <%= data[usuario.id +'_usuario_parametros'].length > 0 ? 'disabled' : ''%> class="form-check-input" type="checkbox" name="c4_size_2_optimize" <%= data[usuario.id +'_usuario_parametros'].length == 0 ? '' : data[usuario.id +'_usuario_parametros'][0].c4_size_2[5] == 'on' ?	 'checked' : '' %>>
+
+																<% if(data[usuario.id +'_usuario_parametros'].length > 0){
+																	if(data[usuario.id +'_usuario_parametros'][0].c4_size_2[5] == 'on'){ %>
+																	<input name="c4_size_2_optimize" value="on" type="hidden">
+																	<% }
+																}%>
+															</div>
+														</td>
+														<td>
+															[C4] Size (2)
+														</td>
+														<td>									
+
+															<input <%= data[usuario.id +'_usuario_parametros'].length > 0 ? 'readonly tabindex="-1"' : ''%> class="form-control form-small text-center <%= data[usuario.id +'_usuario_parametros'].length > 0 ? 'disabled' : ''%>" name="c4_size_2_value" value="<%= data[usuario.id +'_usuario_parametros'].length > 0 ? data[usuario.id +'_usuario_parametros'][0].c4_size_2[0] : ''%>">
+															
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="c4_size_2_start" value="0">
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="c4_size_2_step" value="1">
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="c4_size_2_stop" value="2">
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="c4_size_2_steps" value="3">
+														</td>
+													</tr>
+
+
+													<tr>
+														<td>
+
+														</td>
+														<td>
+															[D] TP
+														</td>
+														<td></td>
+														<td></td>
+														<td></td>
+														<td></td>
+														<td></td>
+													</tr>
+
+
+													<tr>
+														<td>
+															<div class="form-check text-center">
+																<input <%= data[usuario.id +'_usuario_parametros'].length > 0 ? 'disabled' : ''%> class="form-check-input" type="checkbox" name="d1_measure_1_optimize" <%= data[usuario.id +'_usuario_parametros'].length == 0 ? '' : data[usuario.id +'_usuario_parametros'][0].d1_measure_1[5] == 'on' ?	 'checked' : '' %>>
+
+																<% if(data[usuario.id +'_usuario_parametros'].length > 0){
+																	if(data[usuario.id +'_usuario_parametros'][0].d1_measure_1[5] == 'on'){ %>
+																	<input name="d1_measure_1_optimize" value="on" type="hidden">
+																	<% }
+																}%>
+															</div>
+														</td>
+														<td>
+															[D1] Measure (1)
+														</td>
+														<td>
+															<select class="form-control select-small <%= data[usuario.id +'_usuario_parametros'].length > 0 ? 'disabled' : ''%>" name="d1_measure_1_value" <%= data[usuario.id +'_usuario_parametros'].length > 0 ? 'disabled tabindex="-1"' : ''%>>
+																<%
+																if (typeof data[usuario.id +'_select_parametros'] != 'undefined' && data[usuario.id +'_select_parametros'].length > 0) { %>
+																<% for (var i = 0 ; i < data[usuario.id +'_select_parametros'][0].measure.length; i++) { %>
+
+
+																<option <%= data[usuario.id +'_usuario_parametros'].length == 0 ? '' : data[usuario.id +'_usuario_parametros'][0].d1_measure_1[0] == data[usuario.id +'_select_parametros'][0].measure[i] ? 'selected' : '' %>>
+
+																	<%=data[usuario.id +'_select_parametros'][0].measure[i] %>
+
+																</option>
+																<%}%>
+																<%}%>
+															</select>
+
+															<input type="hidden" name="d1_measure_1_value" value="<%=data[usuario.id +'_usuario_parametros'].length > 0 ? data[usuario.id +'_usuario_parametros'][0].d1_measure_1[0] : ''%>">
+															
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="d1_measure_1_start" value="-">
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="d1_measure_1_step" value="-">
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="d1_measure_1_stop" value="-">
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="d1_measure_1_steps" value="-">
+														</td>
+													</tr>
+
+
+													<tr>
+														<td>
+															<div class="form-check text-center">
+																<input <%= data[usuario.id +'_usuario_parametros'].length > 0 ? 'disabled' : ''%> class="form-check-input" type="checkbox" name="d2_distance_1_optimize" <%= data[usuario.id +'_usuario_parametros'].length == 0 ? '' : data[usuario.id +'_usuario_parametros'][0].d2_distance_1[5] == 'on' ?	 'checked' : '' %>>
+
+																<% if(data[usuario.id +'_usuario_parametros'].length > 0){
+																	if(data[usuario.id +'_usuario_parametros'][0].d2_distance_1[5] == 'on'){ %>
+																	<input name="d2_distance_1_optimize" value="on" type="hidden">
+																	<% }
+																}%>
+															</div>
+														</td>
+														<td>
+															[D2] Distance (1)
+														</td>
+														<td>
+															<input <%= data[usuario.id +'_usuario_parametros'].length > 0 ? 'readonly tabindex="-1"' : ''%> class="form-control form-small text-center <%= data[usuario.id +'_usuario_parametros'].length > 0 ? 'disabled' : ''%>" name="d2_distance_1_value" value="<%= data[usuario.id +'_usuario_parametros'].length > 0 ? data[usuario.id +'_usuario_parametros'][0].d2_distance_1[0] : ''%>">
+															
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="d2_distance_1_start" value="-">
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="d2_distance_1_step" value="-">
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="d2_distance_1_stop" value="-">
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="d2_distance_1_steps" value="-">
+														</td>
+													</tr>
+
+
+
+													<tr>
+														<td>
+															<div class="form-check text-center">
+																<input <%= data[usuario.id +'_usuario_parametros'].length > 0 ? 'disabled' : ''%> class="form-check-input" type="checkbox" name="d1_measure_2_optimize" <%= data[usuario.id +'_usuario_parametros'].length == 0 ? '' : data[usuario.id +'_usuario_parametros'][0].d1_measure_2[5] == 'on' ?	 'checked' : '' %>>
+
+																<% if(data[usuario.id +'_usuario_parametros'].length > 0){
+																	if(data[usuario.id +'_usuario_parametros'][0].d1_measure_2[5] == 'on'){ %>
+																	<input name="d1_measure_2_optimize" value="on" type="hidden">
+																	<% }
+																}%>
+															</div>
+														</td>
+														<td>
+															[D1] Measure (2)
+														</td>
+														<td>
+															<select class="form-control select-small <%= data[usuario.id +'_usuario_parametros'].length > 0 ? 'disabled' : ''%>" name="d1_measure_2_value" <%= data[usuario.id +'_usuario_parametros'].length > 0 ? 'disabled tabindex="-1"' : ''%>>
+																<%
+																if (typeof data[usuario.id +'_select_parametros'] != 'undefined' && data[usuario.id +'_select_parametros'].length > 0) { %>
+																<% for (var i = 0 ; i < data[usuario.id +'_select_parametros'][0].measure.length; i++) { %>
+
+
+																<option <%= data[usuario.id +'_usuario_parametros'].length == 0 ? '' : data[usuario.id +'_usuario_parametros'][0].d1_measure_2[0] == data[usuario.id +'_select_parametros'][0].measure[i] ? 'selected' : '' %>>
+
+																	<%=data[usuario.id +'_select_parametros'][0].measure[i] %>
+
+																</option>
+																<%}%>
+																<%}%>
+															</select>
+
+															<input type="hidden" name="d1_measure_2_value" value="<%=data[usuario.id +'_usuario_parametros'].length > 0 ? data[usuario.id +'_usuario_parametros'][0].d1_measure_2[0] : ''%>">
+															
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="d1_measure_2_start" value="-">
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="d1_measure_2_step" value="-">
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="d1_measure_2_stop" value="-">
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="d1_measure_2_steps" value="-">
+														</td>
+													</tr>
+
+													
+
+													<tr>
+														<td>
+															<div class="form-check text-center">
+																<input <%= data[usuario.id +'_usuario_parametros'].length > 0 ? 'disabled' : ''%> class="form-check-input" type="checkbox" name="d2_distance_2_optimize" <%= data[usuario.id +'_usuario_parametros'].length == 0 ? '' : data[usuario.id +'_usuario_parametros'][0].d2_distance_2[5] == 'on' ?	 'checked' : '' %>>
+
+																<% if(data[usuario.id +'_usuario_parametros'].length > 0){
+																	if(data[usuario.id +'_usuario_parametros'][0].d2_distance_2[5] == 'on'){ %>
+																	<input name="d2_distance_2_optimize" value="on" type="hidden">
+																	<% }
+																}%>
+															</div>
+														</td>
+														<td>
+															[D2] Distance (2)
+														</td>
+														<td>
+															<input <%= data[usuario.id +'_usuario_parametros'].length > 0 ? 'readonly tabindex="-1"' : ''%> class="form-control form-small text-center <%= data[usuario.id +'_usuario_parametros'].length > 0 ? 'disabled' : ''%>" name="d2_distance_2_value" value="<%= data[usuario.id +'_usuario_parametros'].length > 0 ? data[usuario.id +'_usuario_parametros'][0].d2_distance_2[0] : ''%>">
+															
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="d2_distance_2_start" value="-">
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="d2_distance_2_step" value="-">
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="d2_distance_2_stop" value="-">
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="d2_distance_2_steps" value="-">
+														</td>
+													</tr>
+
+
+													<tr>
+														<td>
+
+														</td>
+														<td>
+															[E] ACT
+														</td>
+														<td></td>
+														<td></td>
+														<td></td>
+														<td></td>
+														<td></td>
+													</tr>
+
+
+
+													<tr>
+														<td>
+															<div class="form-check text-center">
+																<input <%= data[usuario.id +'_usuario_parametros'].length > 0 ? 'disabled' : ''%> class="form-check-input" type="checkbox" name="t1_time_1_optimize" <%= data[usuario.id +'_usuario_parametros'].length == 0 ? '' : data[usuario.id +'_usuario_parametros'][0].t1_time_1[5] == 'on' ?	 'checked' : '' %>>
+
+																<% if(data[usuario.id +'_usuario_parametros'].length > 0){
+																	if(data[usuario.id +'_usuario_parametros'][0].t1_time_1[5] == 'on'){ %>
+																	<input name="t1_time_1_optimize" value="on" type="hidden">
+																	<% }
+																}%>
+															</div>
+														</td>
+														<td>
+															[T1] Time (1)
+														</td>
+														<td>
+															<select class="form-control select-small <%= data[usuario.id +'_usuario_parametros'].length > 0 ? 'disabled' : ''%>" name="t1_time_1_value" <%= data[usuario.id +'_usuario_parametros'].length > 0 ? 'disabled tabindex="-1"' : ''%>>
+																<%
+																if (typeof data[usuario.id +'_select_parametros'] != 'undefined' && data[usuario.id +'_select_parametros'].length > 0) { %>
+																<% for (var i = 0 ; i < data[usuario.id +'_select_parametros'][0].time.length; i++) { %>
+
+
+																<option <%= data[usuario.id +'_usuario_parametros'].length == 0 ? '' : data[usuario.id +'_usuario_parametros'][0].t1_time_1[0] == data[usuario.id +'_select_parametros'][0].time[i] ? 'selected' : '' %>>
+
+																	<%=data[usuario.id +'_select_parametros'][0].time[i] %>
+
+																</option>
+																<%}%>
+																<%}%>
+															</select>
+
+															<input type="hidden" name="t1_time_1_value" value="<%=data[usuario.id +'_usuario_parametros'].length > 0 ? data[usuario.id +'_usuario_parametros'][0].t1_time_1[0] : ''%>">
+															
+														</td>
+														<td>
+															<select class="form-control select-small disabled" disabled="" tabindex="-1" name="t1_time_1_start">					
+																<option>9:00</option>
+															</select>
+
+															<input type="hidden" name="t1_time_1_start" value="9:00">
+														</td>
+														<td>
+															<select class="form-control select-small disabled" disabled="" tabindex="-1" name="t1_time_1_step">					
+																<option>0:05</option>
+															</select>
+
+															<input type="hidden" name="t1_time_1_step" value="0:05">
+														</td>
+														<td>
+															<select class="form-control select-small disabled" disabled="" tabindex="-1" name="t1_time_1_stop">					
+																<option>18:00:00.000</option>
+															</select>
+
+															<input type="hidden" name="t1_time_1_stop" value="18:00:00.000">
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="t1_time_1_steps" value="109">
+														</td>
+													</tr>
+
+
+													<tr>
+														<td>
+															<div class="form-check text-center">
+																<input <%= data[usuario.id +'_usuario_parametros'].length > 0 ? 'disabled' : ''%> class="form-check-input" type="checkbox" name="a1_action_1_optimize" <%= data[usuario.id +'_usuario_parametros'].length == 0 ? '' : data[usuario.id +'_usuario_parametros'][0].a1_action_1[5] == 'on' ?	 'checked' : '' %>>
+
+																<% if(data[usuario.id +'_usuario_parametros'].length > 0){
+																	if(data[usuario.id +'_usuario_parametros'][0].a1_action_1[5] == 'on'){ %>
+																	<input name="a1_action_1_optimize" value="on" type="hidden">
+																	<% }
+																}%>
+															</div>
+														</td>
+														<td>
+															[A1] Action (1)
+														</td>
+														<td>
+															<select class="form-control select-small <%= data[usuario.id +'_usuario_parametros'].length > 0 ? 'disabled' : ''%>" name="a1_action_1_value" <%= data[usuario.id +'_usuario_parametros'].length > 0 ? 'disabled tabindex="-1"' : ''%>>
+																<%
+																if (typeof data[usuario.id +'_select_parametros'] != 'undefined' && data[usuario.id +'_select_parametros'].length > 0) { %>
+																<% for (var i = 0 ; i < data[usuario.id +'_select_parametros'][0].action.length; i++) { %>
+
+
+																<option <%= data[usuario.id +'_usuario_parametros'].length == 0 ? '' : data[usuario.id +'_usuario_parametros'][0].a1_action_1[0] == data[usuario.id +'_select_parametros'][0].action[i] ? 'selected' : '' %>>
+
+																	<%=data[usuario.id +'_select_parametros'][0].action[i] %>
+
+																</option>
+																<%}%>
+																<%}%>
+															</select>
+
+															<input type="hidden" name="a1_action_1_value" value="<%=data[usuario.id +'_usuario_parametros'].length > 0 ? data[usuario.id +'_usuario_parametros'][0].a1_action_1[0] : ''%>">
+															
+														</td>
+														<td>
+															<select class="form-control select-small disabled" disabled="" tabindex="-1" name="a1_action_1_start">					
+																<option>[1]b</option>
+															</select>
+
+															<input type="hidden" name="a1_action_1_start" value="[1]b">
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="a1_action_1_step" value="-">
+														</td>
+														<td>
+															<select class="form-control select-small disabled" disabled="" tabindex="-1" name="a1_action_1_stop">					
+																<option>[2]s</option>
+															</select>
+
+															<input type="hidden" name="a1_action_1_stop" value="[2]s">
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="a1_action_1_steps" value="2">
+														</td>
+													</tr>
+
+
+
+													<tr>
+														<td>
+															<div class="form-check text-center">
+																<input <%= data[usuario.id +'_usuario_parametros'].length > 0 ? 'disabled' : ''%> class="form-check-input" type="checkbox" name="f1_filter_1_optimize" <%= data[usuario.id +'_usuario_parametros'].length == 0 ? '' : data[usuario.id +'_usuario_parametros'][0].f1_filter_1[5] == 'on' ?	 'checked' : '' %>>
+
+																<% if(data[usuario.id +'_usuario_parametros'].length > 0){
+																	if(data[usuario.id +'_usuario_parametros'][0].f1_filter_1[5] == 'on'){ %>
+																	<input name="f1_filter_1_optimize" value="on" type="hidden">
+																	<% }
+																}%>
+															</div>
+														</td>
+														<td>
+															[F1] Filter (1)
+														</td>
+														<td>
+															<select class="form-control select-small <%= data[usuario.id +'_usuario_parametros'].length > 0 ? 'disabled' : ''%>" name="f1_filter_1_value" <%= data[usuario.id +'_usuario_parametros'].length > 0 ? 'disabled tabindex="-1"' : ''%>>
+																<%
+																if (typeof data[usuario.id +'_select_parametros'] != 'undefined' && data[usuario.id +'_select_parametros'].length > 0) { %>
+																<% for (var i = 0 ; i < data[usuario.id +'_select_parametros'][0].filter.length; i++) { %>
+
+
+																<option <%= data[usuario.id +'_usuario_parametros'].length == 0 ? '' : data[usuario.id +'_usuario_parametros'][0].f1_filter_1[0] == data[usuario.id +'_select_parametros'][0].filter[i] ? 'selected' : '' %>>
+
+																	<%=data[usuario.id +'_select_parametros'][0].filter[i] %>
+
+																</option>
+																<%}%>
+																<%}%>
+															</select>
+
+															<input type="hidden" name="f1_filter_1_value" value="<%=data[usuario.id +'_usuario_parametros'].length > 0 ? data[usuario.id +'_usuario_parametros'][0].f1_filter_1[0] : ''%>">
+															
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="f1_filter_1_start" value="-">
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="f1_filter_1_step" value="-">
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="f1_filter_1_stop" value="-">
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="f1_filter_1_steps" value="-">
+														</td>
+													</tr>
+
+
+													<tr>
+														<td>
+															<div class="form-check text-center">
+																<input <%= data[usuario.id +'_usuario_parametros'].length > 0 ? 'disabled' : ''%> class="form-check-input" type="checkbox" name="t2_time_1_optimize" <%= data[usuario.id +'_usuario_parametros'].length == 0 ? '' : data[usuario.id +'_usuario_parametros'][0].t2_time_1[5] == 'on' ?	 'checked' : '' %>>
+
+																<% if(data[usuario.id +'_usuario_parametros'].length > 0){
+																	if(data[usuario.id +'_usuario_parametros'][0].t2_time_1[5] == 'on'){ %>
+																	<input name="t2_time_1_optimize" value="on" type="hidden">
+																	<% }
+																}%>
+															</div>
+														</td>
+														<td>
+															[T2] Time (1)
+														</td>
+														<td>
+															<select class="form-control select-small <%= data[usuario.id +'_usuario_parametros'].length > 0 ? 'disabled' : ''%>" name="t2_time_1_value" <%= data[usuario.id +'_usuario_parametros'].length > 0 ? 'disabled tabindex="-1"' : ''%>>
+																<%
+																if (typeof data[usuario.id +'_select_parametros'] != 'undefined' && data[usuario.id +'_select_parametros'].length > 0) { %>
+																<% for (var i = 0 ; i < data[usuario.id +'_select_parametros'][0].time.length; i++) { %>
+
+
+																<option <%= data[usuario.id +'_usuario_parametros'].length == 0 ? '' : data[usuario.id +'_usuario_parametros'][0].t2_time_1[0] == data[usuario.id +'_select_parametros'][0].time[i] ? 'selected' : '' %>>
+
+																	<%=data[usuario.id +'_select_parametros'][0].time[i] %>
+
+																</option>
+																<%}%>
+																<%}%>
+															</select>
+
+															<input type="hidden" name="t2_time_1_value" value="<%=data[usuario.id +'_usuario_parametros'].length > 0 ? data[usuario.id +'_usuario_parametros'][0].t2_time_1[0] : ''%>">
+															
+														</td>
+														<td>
+															<select class="form-control select-small disabled" disabled="" tabindex="-1" name="t2_time_1_start">					
+																<option>9:00</option>
+															</select>
+
+															<input type="hidden" name="t2_time_1_start" value="9:00">
+														</td>
+														<td>
+															<select class="form-control select-small disabled" disabled="" tabindex="-1" name="t2_time_1_step">					
+																<option>0:05</option>
+															</select>
+
+															<input type="hidden" name="t2_time_1_step" value="0:05">
+														</td>
+														<td>
+															<select class="form-control select-small disabled" disabled="" tabindex="-1" name="t2_time_1_stop">					
+																<option>18:00:00.000</option>
+															</select>
+
+															<input type="hidden" name="t2_time_1_stop" value="18:00:00.000">
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="t2_time_1_steps" value="109">
+														</td>
+													</tr>
+
+
+													<tr>
+														<td>
+															<div class="form-check text-center">
+																<input <%= data[usuario.id +'_usuario_parametros'].length > 0 ? 'disabled' : ''%> class="form-check-input" type="checkbox" name="a2_action_1_optimize" <%= data[usuario.id +'_usuario_parametros'].length == 0 ? '' : data[usuario.id +'_usuario_parametros'][0].a2_action_1[5] == 'on' ?	 'checked' : '' %>>
+
+																<% if(data[usuario.id +'_usuario_parametros'].length > 0){
+																	if(data[usuario.id +'_usuario_parametros'][0].a2_action_1[5] == 'on'){ %>
+																	<input name="a2_action_1_optimize" value="on" type="hidden">
+																	<% }
+																}%>
+															</div>
+														</td>
+														<td>
+															[A2] Action (2)
+														</td>
+														<td>
+															<select class="form-control select-small <%= data[usuario.id +'_usuario_parametros'].length > 0 ? 'disabled' : ''%>" name="a2_action_1_value" <%= data[usuario.id +'_usuario_parametros'].length > 0 ? 'disabled tabindex="-1"' : ''%>>
+																<%
+																if (typeof data[usuario.id +'_select_parametros'] != 'undefined' && data[usuario.id +'_select_parametros'].length > 0) { %>
+																<% for (var i = 0 ; i < data[usuario.id +'_select_parametros'][0].action.length; i++) { %>
+
+
+																<option <%= data[usuario.id +'_usuario_parametros'].length == 0 ? '' : data[usuario.id +'_usuario_parametros'][0].a2_action_1[0] == data[usuario.id +'_select_parametros'][0].action[i] ? 'selected' : '' %>>
+
+																	<%=data[usuario.id +'_select_parametros'][0].action[i] %>
+
+																</option>
+																<%}%>
+																<%}%>
+															</select>
+
+															<input type="hidden" name="a2_action_1_value" value="<%=data[usuario.id +'_usuario_parametros'].length > 0 ? data[usuario.id +'_usuario_parametros'][0].a2_action_1[0] : ''%>">
+															
+														</td>
+														<td>
+															<select class="form-control select-small disabled" disabled="" tabindex="-1" name="a2_action_1_start">					
+																<option>-</option>
+															</select>
+
+															<input type="hidden" name="a2_action_1_start" value="-">
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="a2_action_1_step" value="-">
+														</td>
+														<td>
+															<select class="form-control select-small disabled" disabled="" tabindex="-1" name="a2_action_1_stop">					
+																<option>-</option>
+															</select>
+
+															<input type="hidden" name="a2_action_1_stop" value="-">
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="a2_action_1_steps" value="-">
+														</td>
+													</tr>
+
+
+
+													<tr>
+														<td>
+															<div class="form-check text-center">
+																<input <%= data[usuario.id +'_usuario_parametros'].length > 0 ? 'disabled' : ''%> class="form-check-input" type="checkbox" name="f2_filter_1_optimize" <%= data[usuario.id +'_usuario_parametros'].length == 0 ? '' : data[usuario.id +'_usuario_parametros'][0].f2_filter_1[5] == 'on' ?	 'checked' : '' %>>
+
+																<% if(data[usuario.id +'_usuario_parametros'].length > 0){
+																	if(data[usuario.id +'_usuario_parametros'][0].f2_filter_1[5] == 'on'){ %>
+																	<input name="f2_filter_1_optimize" value="on" type="hidden">
+																	<% }
+																}%>
+															</div>
+														</td>
+														<td>
+															[F2] Filter (1)
+														</td>
+														<td>
+															<select class="form-control select-small <%= data[usuario.id +'_usuario_parametros'].length > 0 ? 'disabled' : ''%>" name="f2_filter_1_value" <%= data[usuario.id +'_usuario_parametros'].length > 0 ? 'disabled tabindex="-1"' : ''%>>
+																<%
+																if (typeof data[usuario.id +'_select_parametros'] != 'undefined' && data[usuario.id +'_select_parametros'].length > 0) { %>
+																<% for (var i = 0 ; i < data[usuario.id +'_select_parametros'][0].filter.length; i++) { %>
+
+
+																<option <%= data[usuario.id +'_usuario_parametros'].length == 0 ? '' : data[usuario.id +'_usuario_parametros'][0].f2_filter_1[0] == data[usuario.id +'_select_parametros'][0].filter[i] ? 'selected' : '' %>>
+
+																	<%=data[usuario.id +'_select_parametros'][0].filter[i] %>
+
+																</option>
+																<%}%>
+																<%}%>
+															</select>
+
+															<input type="hidden" name="f2_filter_1_value" value="<%=data[usuario.id +'_usuario_parametros'].length > 0 ? data[usuario.id +'_usuario_parametros'][0].f2_filter_1[0] : ''%>">
+															
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="f2_filter_1_start" value="-">
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="f2_filter_1_step" value="-">
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="f2_filter_1_stop" value="-">
+														</td>
+														<td>
+															<input readonly tabindex="-1"  class="form-control form-small text-center disabled" name="f2_filter_1_steps" value="-">
+														</td>
+													</tr>
+
+
+
+
+
+
+													
+
+
+
+												</tbody>
+
+											</table>
+
+
+										</div>

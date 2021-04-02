@@ -1,53 +1,60 @@
-<%- include('../includes/menu_header'); %>
+<%- include('../includes/navbar'); %>
 
-<div class="page-content">
-	<section class="margin-bottom-sm">
-		<div class="container-fluid">
+<div class="flex align-items-stretch">
 
-			<div class="card">
 
-				<div class="row d-flex align-items-stretch">
+	<%- include('../includes/sidebar'); %>
 
-					<div class="col-sm-12">                           
-						<div class="margin-t-10">
-							<h5 class="text-center"><strong>Alterar senha</strong></h5>
-							<div class="block-body">
-								<form class="form-inline">
-									<div class="form-group col-sm-12 col-wide-3 mb-3">
-										<label class="sr-only">Senha atual</label>
-										<input type="password" placeholder="Senha atual" class="form-control mx-auto" name="senha_atual" required>
+	<div class="page-content">
+		<section class="margin-bottom-sm">
+			<div class="container-fluid">
+
+				<div class="card">
+
+					<div class="row d-flex align-items-stretch">
+
+						<div class="col-sm-12">                           
+							<div class="margin-t-10">
+								<h5 class="text-center"><strong>Alterar senha</strong></h5>
+								<div class="block-body">
+									<form class="form-inline">
+										<div class="form-group col-sm-12 col-wide-3 mb-3">
+											<label class="sr-only">Senha atual</label>
+											<input type="password" placeholder="Senha atual" class="form-control mx-auto" name="senha_atual" required>
+										</div>
+										<div class="form-group col-sm-12 col-wide-3 mb-3">
+											<label class="sr-only">Nova senha</label>
+											<input type="password" placeholder="Nova senha" class="form-control mx-auto" name="nova_senha" required>
+										</div>
+										<div class="form-group col-sm-12 col-wide-3 mb-3">
+											<label class="sr-only">Confirmar senha</label>
+											<input type="password" placeholder="Confirmar senha" class="form-control mx-auto" name="repetir_nova_senha" required>
+										</div>
+										<div class="form-group col-sm-12">
+											<button data-href="/plataforma/sistema/minha_conta/alterar-senha/" title="Alterar Senha" type="submit" class="btn btn-primary ajax-submit-sucess-message mx-auto" data-action="/plataforma/sistema/minha_conta" data-sucesso-id="#alert-sucess-alterar-senha">Alterar Senha</button>
+										</div>
+									</form>
+								</div>
+								<div class="block-body">
+									<div class="margin-t-20" id="error_alterar_senha">
+
 									</div>
-									<div class="form-group col-sm-12 col-wide-3 mb-3">
-										<label class="sr-only">Nova senha</label>
-										<input type="password" placeholder="Nova senha" class="form-control mx-auto" name="nova_senha" required>
-									</div>
-									<div class="form-group col-sm-12 col-wide-3 mb-3">
-										<label class="sr-only">Confirmar senha</label>
-										<input type="password" placeholder="Confirmar senha" class="form-control mx-auto" name="repetir_nova_senha" required>
-									</div>
-									<div class="form-group col-sm-12">
-										<button data-href="/plataforma/sistema/minha_conta/alterar-senha/" title="Alterar Senha" type="submit" class="btn btn-primary ajax-submit-sucess-message mx-auto" data-action="/plataforma/sistema/minha_conta" data-sucesso-id="#alert-sucess-alterar-senha">Alterar Senha</button>
-									</div>
-								</form>
-							</div>
-							<div class="block-body">
-								<div class="margin-t-20" id="error_alterar_senha">
 
+									<div class="none alert sucess-block text-center" role="alert" id="alert-sucess-alterar-senha">
+										Senha alterada com sucesso!
+									</div>
 								</div>
 
-								<div class="none alert sucess-block text-center" role="alert" id="alert-sucess-alterar-senha">
-									Senha alterada com sucesso!
-								</div>
+
 							</div>
-
-
 						</div>
 					</div>
+					
 				</div>
-				
-			</div>
 
-		</div>
-	</section>
+			</div>
+		</section>
+
+	</div>
 
 </div>

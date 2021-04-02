@@ -1,0 +1,118 @@
+
+
+var html_alg = '';
+
+<%
+if (typeof data[usuario.id +'_algoritmo'] != 'undefined' && data[usuario.id +'_algoritmo'].length > 0) {
+	for (var i = 0 ; i < data[usuario.id +'_algoritmo'].length; i++) {
+		%>
+
+		if(capital >= <%= data[usuario.id +'_algoritmo'][i].valor_minimo %>){
+
+			
+
+		var rentabilidade_aa = ((media_ano * <%=data[usuario.id +'_algoritmo'][i].multiplicador%>) / capital) * 100;
+		var rentabilidade_aa_reais = (rentabilidade_aa * capital ) / 100;
+		rentabilidade_aa = parseFloat(rentabilidade_aa).toFixed(2).replace('.',',');
+		var rentablidade_aa_reais_F = formCurrency.format(rentabilidade_aa_reais);
+
+		var volatilidade_algoritmo = volatilidade * <%=data[usuario.id +'_algoritmo'][i].multiplicador%>;
+		var maximo_rebaixamento = volatilidade_algoritmo /  capital * 100;
+		maximo_rebaixamento = parseFloat(maximo_rebaixamento).toFixed(2).replace('.',',');
+		volatilidade_algoritmo = formCurrency.format(volatilidade_algoritmo);
+
+
+		var preco_robo = formCurrency.format(<%=data[usuario.id +'_algoritmo'][i].preco%>);
+
+		var largura = 30 - <%=i%> - 0.5;
+		console.log('largura: ' + largura);
+
+		if(capital > 99000){
+
+		html_alg = html_alg + '<div class="escolha_algoritmo_barras_box">' +
+			'<div class="escolha_algoritmo_barras_progress">' +
+				'<div class="barra_maximo_rebaixamento" style="width: ' + largura +'%;">' +
+					'<div class="inline">'+
+						'<i class="fas fa-sort-down down-color f40"></i>'+
+					'</div>'+
+					'<div class="inline">'+
+						maximo_rebaixamento + '% a.a ou <br>' +
+						volatilidade_algoritmo + 
+					'</div>'+
+				'</div>'+
+				'<div class="barra_media_rentabilidade" style="width:65%;">' +
+					'<div class="inline">'+
+						'<i class="fas fa-sort-up primary-text f40"></i>'+
+					'</div>'+
+					'<div class="inline">'+
+						'+' + rentabilidade_aa + '% ou <br>' +
+						'+' + rentablidade_aa_reais_F +
+					'</div>'+
+				'</div>'+
+				'<div class="escolha_algoritmo_relatorio">'+
+					'<i class="fas fa-book"></i>'+
+				'</div>'+
+			'</div>'+
+			'<div class="escolha_algoritmo_assinar_box">'+
+				'<div class="text-center">'+
+					'<button class="btn btn-assinar-algoritmo ajax-load" href="/plataforma/sistema/upgrade/escolha_algoritmo">'+
+						'Assinar <br>'+
+						preco_robo +
+					'</button>'+
+					'<div>'+
+						'Sistema <%= data[usuario.id +'_algoritmo'][i].nome %>' +
+					'</div>'+
+				'</div>'+
+			'</div>'+
+		'</div>';
+
+	}else{
+
+		html_alg = html_alg + '<div class="escolha_algoritmo_barras_box">' +
+			'<div class="escolha_algoritmo_barras_progress">' +
+				'<div class="barra_maximo_rebaixamento" style="width: ' + largura +'%;">' +
+					'<div class="inline">'+
+						'<i class="fas fa-sort-down down-color f40"></i>'+
+					'</div>'+
+					'<div class="inline">'+
+						maximo_rebaixamento + '% a.a ou <br>' +
+						volatilidade_algoritmo + 
+					'</div>'+
+				'</div>'+
+				'<div class="barra_media_rentabilidade" style="width:65%;">' +
+					'<div class="inline">'+
+						'<i class="fas fa-sort-up primary-text f40"></i>'+
+					'</div>'+
+					'<div class="inline">'+
+						'+' + rentabilidade_aa + '% ou <br>' +
+						'+' + rentablidade_aa_reais_F +
+					'</div>'+
+				'</div>'+
+				'<div class="escolha_algoritmo_relatorio">'+
+					'<i class="fas fa-book"></i>'+
+				'</div>'+
+			'</div>'+
+			'<div class="escolha_algoritmo_assinar_box">'+
+				'<div class="text-center">'+
+					'<button class="btn btn-disabled border-radius-20" disabled="true">'+
+						'ESGOTADO' +
+					'</button>'+
+					'<div>'+
+						'Sistema <%= data[usuario.id +'_algoritmo'][i].nome %>' +
+					'</div>'+
+				'</div>'+
+			'</div>'+
+		'</div>';
+
+	}
+
+
+	}
+
+
+
+	<%}
+
+}%>
+
+$('.escolha_algoritmo_barras_container').html(html_alg);

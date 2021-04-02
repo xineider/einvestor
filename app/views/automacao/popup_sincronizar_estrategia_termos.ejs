@@ -1,14 +1,37 @@
-
-
 <div class="padding-10">
-	<h5>Sincronizar estratégia otimizada da Metaquotes?</h5>
+	<h5>Sincronizar estratégia otimizada da Metaquotes</h5>
 
 	<div class="margin-b-10">
-		Você está de acordo com os <strong>termos de uso</strong> da  estratégia?
+
+		<p>O usuário deste sistema, denominado apenas "USUÁRIO", declara que aceita todos os termos e compreende todas as informações abaixo, ao clicar em ACEITAR:</p>
+
+		<div class="f12 pop_up_container_termos">
+
+			<p>Autorizo e tenho ciência do uso do sistema e tecnologias para realizar o envio de ordens pelo sistema contratado de acordo com algoritmo carregado por mim integrado a minha plataforma de negociação sincronizada com minha autorização para os ativos futuros de mini Índice Bovespa (WIN) e cambial Real-Dólar (WDO).</p>
+
+			<p>As licenças de uso de sistemas aqui disponíveis se limitam exclusivamente ao uso da estratégia white box totalmente parametrizável para otimização pelo usuário com auxílio de inteligência artificial via testador de estratégia MetaTrader 5 da MetaQuotes Ltd. e só pode ser utilizado desta maneira para fins pessoais e intransferíveis dentro desta plataforma. Os sistemas e ferramentas foram criados exclusivamente para que o usuário possa utilizar a tecnologia da Metaquotes Ltd. para geração de sua estratégia otimizada onde sua integração é feita de maneira autônoma entre comunicação de softwares sem suporte para geração e testes de algoritmos independentes.</p>
+
+			<p>Dúvidas sobre liberações de produtos, margens ou plataformas consulte seu assessor de Investimentos ou o setor de atendimento ao cliente de sua corretora.</p>
+
+		</div>
+
 
 		<div class="form-group form-check">
-			<input type="checkbox" class="form-check-input aceito-termos" id="li_aceito_termos_estrategia" data-disabled="sincronizar_estrategia_algoritmo_popup">
-			<label class="form-check-label" for="li_aceito_termos_estrategia">Li e aceito os termos</label>
+			<input type="checkbox" class="form-check-input aceito-termos-condicoes" id="li_aceito_termos_condicoes" data-disabled="sincronizar_estrategia_algoritmo_popup">
+			<label class="form-check-label" for="li_aceito_termos_condicoes"> 
+				<span>
+					Li e aceito os <a class="d-initial bold" href="/plataforma/sistema/termos_uso" target="_blank">Termos e condições de uso - Avisos legais e de responsabilidade.</a>
+				</span>
+			</label>
+		</div>
+
+		<div class="form-group form-check">
+			<input type="checkbox" class="form-check-input aceito-termos-politica" id="li_aceito_termos_politica" data-disabled="sincronizar_estrategia_algoritmo_popup">
+			<label class="form-check-label" for="li_aceito_termos_politica">
+				<span>
+					Li e aceito os <a class="d-initial bold" href="/plataforma/sistema/politica_privacidade" target="_blank">Termos de política de privacidade.</a>
+				</span>
+			</label>
 		</div>
 
 	</div>
@@ -20,7 +43,7 @@
 			
 			<button class="btn btn_modal btn_modal_close margin-r-10 pointer" data-dismiss="modal">Fechar</button>
 
-			<button disabled data-href="/plataforma/sistema/automacao/sincronizar_estrategia_algoritmo/" class="btn ajax-submit btn-disabled margin-t-10 margin-b-10 float-left sincronizar_estrategia_algoritmo_popup " data-dismiss="modal">
+			<button disabled data-href="/plataforma/sistema/automacao/sincronizar_estrategia_algoritmo/" class="btn ajax-submit-form-other btn-disabled margin-t-10 margin-b-10 float-left sincronizar_estrategia_algoritmo_popup" data-dismiss="modal" data-form="#sincronizar_estrategia_otimizada" data-action="/plataforma/sistema" data-sucesso-id=".parametros_sincronizando">
 			Sincronizar Estratégia											
 			</button>
 
@@ -29,4 +52,16 @@
 	</form>
 
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
 

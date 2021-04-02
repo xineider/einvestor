@@ -731,6 +731,7 @@ nav.navbar .dropdown .dropdown-menu.active {
 */
 nav#sidebar {
   width: 200px;
+  min-width: 200px;
   /* shrinked navbar */
 }
 
@@ -930,8 +931,7 @@ nav#sidebar.shrinked a[aria-expanded="true"]::after {
     width: calc(100% - 80px);
   }
   nav#sidebar {
-    width: 80px;
-    margin-left: -80px;
+    display: none;
   }
   nav#sidebar .sidebar-header {
     padding: 10px;
@@ -947,21 +947,6 @@ nav#sidebar.shrinked a[aria-expanded="true"]::after {
   }
   nav#sidebar ul {
     max-height: none;
-  }
-  nav#sidebar ul a {
-    padding: 12px 5px;
-    display: block;
-    font-weight: 400;
-    text-align: center;
-    font-size: 0.8rem;
-  }
-  nav#sidebar ul i {
-    font-size: 1.2rem;
-    text-align: center !important;
-    width: 100%;
-    display: block !important;
-    border: none !important;
-    padding: 0 !important;
   }
   nav#sidebar ul ul a {
     padding-left: 10px;
@@ -3505,6 +3490,8 @@ pre code {
 .error{
   background: #f11616;
   color: #fff;
+  padding: 3px;
+  margin-top: 3px;
 }
 
 .error-block .error {

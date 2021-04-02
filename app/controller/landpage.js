@@ -28,11 +28,14 @@ router.get('/', function(req, res, next) {
 	console.log('estou no landpage');
 	console.log('==================================');
 
+	data.numero_menu = 1;
+
 	regrasAlgoritmoModel.find({deletado:false},function(err,data_algoritmo){
 		data.regras_algoritmo = data_algoritmo;
 
 		roboModel.find({},function(err2,data_algoritmo){
 			data.algoritmo = data_algoritmo;
+
 
 
 			console.log('ggggggggggggggggggg get do landpage ggggggggggggggg');
@@ -130,7 +133,10 @@ router.get('/whitepaper', function(req, res, next) {
 	console.log('wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww');
 	console.log('estou no whitepaper');
 	console.log('wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww');
-	res.render(req.isAjaxRequest() == true ? 'api' : 'montadorLandpage', {html: 'landpage/white_paper'});
+
+	data.numero_menu = 2;
+
+	res.render(req.isAjaxRequest() == true ? 'api' : 'montadorLandpage', {html: 'landpage/white_paper',message: data});
 });
 
 
@@ -138,7 +144,8 @@ router.get('/quem_somos', function(req, res, next) {
 	console.log('qqqqqqqqqqqqqqqqqqqqqqqqqqqqq');
 	console.log('estou no quem somos');
 	console.log('qqqqqqqqqqqqqqqqqqqqqqqqqqqqq');
-	res.render(req.isAjaxRequest() == true ? 'api' : 'montadorLandpage', {html: 'landpage/quem_somos'});
+	data.numero_menu = 3;
+	res.render(req.isAjaxRequest() == true ? 'api' : 'montadorLandpage', {html: 'landpage/quem_somos',message: data});
 });
 
 

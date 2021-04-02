@@ -19,15 +19,20 @@ var api = require('./app/controller/api');
 var minha_conta = require('./app/controller/minha_conta');
 var administracao = require('./app/controller/administracao');
 var quem_somos = require('./app/controller/quem_somos');
+
 var automacao = require('./app/controller/automacao');
-var relatorios = require('./app/controller/relatorios');
+var relatorio = require('./app/controller/relatorio');
 var white_paper = require('./app/controller/white_paper');
 var treinamento = require('./app/controller/treinamento');
 var educacao = require('./app/controller/educacao');
 var politica_privacidade = require('./app/controller/politica_privacidade');
 var termos_uso = require('./app/controller/termos_uso');
 var faq = require('./app/controller/faq');
-var sistemas = require('./app/controller/sistemas');
+var upgrade = require('./app/controller/upgrade');
+
+var simulador = require('./app/controller/simulador');
+
+
 
 
 var app = express();
@@ -147,7 +152,7 @@ app.use('/plataforma/sistema/administracao', administracao);
 app.use('/plataforma/sistema/api', api);
 app.use('/plataforma/sistema/minha_conta', minha_conta);
 app.use('/plataforma/sistema/automacao', automacao);
-app.use('/plataforma/sistema/relatorios', relatorios);
+app.use('/plataforma/sistema/relatorio', relatorio);
 app.use('/plataforma/sistema/white_paper', white_paper);
 app.use('/plataforma/sistema/treinamento', treinamento);
 app.use('/plataforma/sistema/educacao', educacao);
@@ -155,7 +160,10 @@ app.use('/plataforma/sistema/quem_somos', quem_somos);
 app.use('/plataforma/sistema/politica_privacidade', politica_privacidade);
 app.use('/plataforma/sistema/termos_uso', termos_uso);
 app.use('/plataforma/sistema/faq', faq);
-app.use('/plataforma/sistema/sistemas', sistemas);
+app.use('/plataforma/sistema/upgrade', upgrade);
+app.use('/plataforma/sistema/simulador', simulador);
+
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

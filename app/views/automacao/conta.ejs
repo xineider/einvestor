@@ -1,70 +1,105 @@
-<%- include('../includes/menu_header'); %>
+<%- include('../includes/navbar'); %>
 
-<div class="page-content">
-	<section class="margin-bottom-sm">
-		<div class="container-fluid">
+<div class="flex align-items-stretch">
 
-			<div class="card">
+	<%- include('../includes/sidebar'); %>
 
-				<div class="tab_container">
-					<div class="tab_header active inline">Conta</div>
-					<a class="ajax-load" href="/plataforma/sistema/automacao/parametros">
-						<div class="tab_header inline">Parâmetros</div>
-					</a>
-				</div>
+	<div class="page-content">
 
-				<div class="row d-flex align-items-stretch">
+		<%- include('../inicio/primeira_vez'); %>
 
-					<div class="col-sm-12">                           
-						<div class="margin-t-10 padding-20">
 
-							<form method="POST" action="" enctype="multipart/form-data" class="">
 
-								<div class="row flex">
-									<div class="form-group col-sm-12 col-md-4 row align-items-center">
+		<section class="margin-bottom-sm">
+			<div class="container-fluid">
 
-										<label class="inline margin-r-10">Corretora</label>
-										<select class="form-control col-md-8" name="corretora">
-											<option selected disabled>Escolha uma Corretora</option>
-											<option>Modal Mais</option>
-											<option>Órama Investimentos</option>
-											<option>Rico Investimentos</option>
-											<option>Terra Investimentos</option>
-											<option>XP Investimentos</option>
-										</select>
+				<div class="card">
+
+					<div class="tab_container">
+						<div class="tab_header active inline">Conta</div>
+						<a class="ajax-load" href="/plataforma/sistema/automacao/parametros">
+							<div class="tab_header inline">Parâmetros</div>
+						</a>
+					</div>
+
+					<div class="row d-flex align-items-stretch">
+
+						<div class="col-sm-12">                           
+							<div class="margin-t-10 padding-20">
+
+								
+
+
+
+								<% if(typeof data[usuario.id +'_usuario_corretora'] != 'undefined'){ %>
+
+								<% if(data[usuario.id +'_usuario_corretora'].length > 0) { %>
+
+								<% if(data[usuario.id +'_usuario_corretora'][0].validado == false){ %>
+								<div class="alert alert-warning text-center">
+									Status: <strong>Sincronizando</strong> isso pode levar até 3 dias úteis.
+
+									<% if(data[usuario.id +'_usuario_parametros'].length == 0){ %>
+									Você precisa agora ir na aba Parâmetros para carregar sua estratégia:
+
+									<div class="text-center margin-t-10">
+										<a class="btn btn-primary ajax-load" href="/plataforma/sistema/automacao/parametros">Acesse aqui!</a>
 									</div>
 
-
-									<div class="form-group col-sm-12 col-md-3 row align-items-center">
-										<label class="inline margin-r-10">Conta MT5</label>
-										<input type="text" class="form-control  col-md-8" name="conta" placeholder="Conta MT5">
-									</div>
-
-									<div class="form-group col-sm-12 col-md-3 row align-items-center">
-										<label class="inline margin-r-10">Senha</label>
-										<input type="password" class="form-control col-md-8" name="senha" placeholder="Senha">
-									</div>
-
-									<div class="form-group col-sm-12 col-md-2 row align-items-center text-align-center">
-										
-										<button type="button" data-href="/plataforma/sistema/adicionar_usuario_corretora/" class="btn btn-success-light w100px ajax-submit mx-auto" title="Enviar" data-action="/plataforma/sistema">Enviar</button>
-									</div>
+									<% } %>
 
 
 								</div>
 
+								<% }else if(data[usuario.id +'_usuario_corretora'][0].sincronizado == true){ %>
+								<div class="alert alert-success text-center">
+									Sua conta foi <strong>verificada</strong> com sucesso!
 
-							</form>
+									<% if( typeof data[usuario.id +'_usuario_corretora'] != 'undefined'){ %>
+									<div class="margin-t-10">
+										Porém você ainda <strong>não</strong> enviou os parâmetros de sua estratégia, você pode fazer isso acessando o link abaixo:
+									</div>
+
+									<div class="text-center margin-t-10">
+										<a class="btn btn-primary ajax-load" href="/plataforma/sistema/automacao/parametros">Acesse aqui!</a>
+									</div>
+
+									<% }
+								}else{ %>
+								<div class="alert alert-danger text-center">
+									Houve algum problema com a sua conta, por-favor enviar novamente as credenciais!
+								</div>
+
+								<%-include('formulario_conta');%>
+
+								<% } %>
+
+
+							</div>
+
+
+							<% }else{ %>
+
+							<p>
+								Olá, aqui você precisa integrar sua conta para que o sistema contratado funcione, é muito simples, basta você preencher qual a sua corretora e inserir os acessos da plataforma MetaTrader5 que você recebe no seu e-mail após fazer a contratação no site de sua corretora.
+							</p>
+
+							<%-include('formulario_conta');%>
+
+							<%}
+						}%>
 
 
 
-						</div>
 					</div>
 				</div>
-				
 			</div>
 
 		</div>
-	</section>
+
+	</div>
+</section>
+
+</div>
 
 </div>
