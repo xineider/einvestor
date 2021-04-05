@@ -71,7 +71,7 @@
 							<div>
 								<canvas id="grafico_evolucao_patrimonial"></canvas>
 
-								<div class="text-center f24 primary-text">Valor Inicial Alocado: R$80.000,00</div>
+								<div class="text-center primary-text">Capital Inicial Alocado: R$80.000,00</div>
 
 							</div>
 
@@ -248,7 +248,7 @@
 
 						yAxes: [{
 							ticks: {
-								
+								min:80000,
 								beginAtZero: false,
 								callback: function(value, index, values) {
 									return 'R$' + value;
