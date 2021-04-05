@@ -195,9 +195,8 @@
 
 						yAxes: [{
 							ticks: {
-								max:30,
-								min:-5,
-								beginAtZero: false,
+								max:30,							
+								beginAtZero: true,
 								callback: function(value, index, values) {
 									return value + '%';
 								}
@@ -226,16 +225,17 @@
 					labels: ['<%=data[usuario.id +'_usuario_grafico'][2].mes %>', '<%=data[usuario.id +'_usuario_grafico'][1].mes %>', '<%=data[usuario.id +'_usuario_grafico'][0].mes %>'],
 					datasets: [{
 						label: 'Performance Mensal',
-						data: [<%=data[usuario.id +'_usuario_grafico'][2].porcentagem %>,<%=data[usuario.id +'_usuario_grafico'][1].porcentagem %>,<%=data[usuario.id +'_usuario_grafico'][0].porcentagem %>],
-						backgroundColor:['#d8e9ef','#d8efd8','#efd8d8'],
-						borderColor: ['#003475','#00756a','#750071'],						
-						fill:true,
+						data: [85720,92006,96179],
+						
+						backgroundColor:['#003475'],
+						borderColor: ['#003475'],						
+						
 						borderWidth: 1,
 						datalabels:{
 							align:'top',
 							anchor:'end',
 							formatter: function (value) {
-								return value + '%';
+								return 'R$' + value;
 							},
 						}
 					}],
@@ -245,8 +245,7 @@
 
 						yAxes: [{
 							ticks: {
-								max:30,
-								min:-5,
+								
 								beginAtZero: false,
 								callback: function(value, index, values) {
 									return value + '%';

@@ -1296,9 +1296,11 @@ nav#sidebar .sidebar-suporte{
 	}
 }
 
-@media (min-width: 1500px){
+@media (min-width: 1200px){
 	.status_header{
 		display: flex;
+		font-size: 12px;
+		text-align: center;
 	}
 }
 

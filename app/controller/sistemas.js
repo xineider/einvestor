@@ -52,7 +52,7 @@ function transformar_porcentagem(valor,robo,capital){
 router.get('/', function(req, res, next) {
 
 	data.link_sistema = '/sistema';
-	data[req.session.usuario.id+'_numero_menu'] = 9;
+	data[req.session.usuario.id+'_numero_menu'] = 13;
 
 	usuarioStatusModel.find({id_usuario:mongoose.Types.ObjectId(req.session.usuario.id)},function(err,data_usuario_status){
 

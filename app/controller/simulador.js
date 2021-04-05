@@ -51,7 +51,7 @@ moment.locale('pt-br');
 router.get('/', function(req, res, next) {
 
 	data.link_sistema = '/sistema';
-	data[req.session.usuario.id+'_numero_menu'] = 8;
+	data[req.session.usuario.id+'_numero_menu'] = 12;
 
 	usuarioStatusModel.find({id_usuario:mongoose.Types.ObjectId(req.session.usuario.id)},function(err,data_usuario_status){
 
