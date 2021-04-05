@@ -70,6 +70,9 @@
 
 							<div>
 								<canvas id="grafico_evolucao_patrimonial"></canvas>
+
+								<div class="text-center f24 primary-text">Valor Inicial Alocado: R$80.000,00</div>
+
 							</div>
 
 
@@ -132,7 +135,7 @@
 								Sem dados suficientes!
 							</div>
 
-							<span class="f12 grey-text text-center mensagem_utilizando_sistema_historico">"Utilizando o sistema a 90 dias, os dados tem por base o capital inicial e desconsideram se o usuário fez algum saque</span>
+							<span class="f12 grey-text text-center mensagem_utilizando_sistema_historico">*Utilizando o sistema por 90 dias. Os dados tem por base o capital inicial e desconsideram se o usuário fez algum saque.</span>
 
 
 							<!-- 	<img class="w100" src="/public/images/grafd2.png"> -->
@@ -248,12 +251,18 @@
 								
 								beginAtZero: false,
 								callback: function(value, index, values) {
-									return value + '%';
+									return 'R$' + value;
 								}
 							},
 							display: true
 
 						}]
+					},
+					layout:{
+						padding:{
+							right:30,
+							left:30
+						}
 					}
 				}
 
