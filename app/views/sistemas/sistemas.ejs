@@ -15,17 +15,6 @@
 
 					<div class="padding-20">
 
-						<div class="f20">
-							Seu Valor Aplicado: R$ <%= data[usuario.id +'_usuario_status'][0].valor_aplicado_f %>
-						</div>
-
-
-						<div class="f20">
-							Seu Algoritmo Atual é: <%= data[usuario.id +'_usuario_status'][0].nome_algoritmo_escolhido %>
-						</div>
-
-
-
 
 						<div class="margin-t-20">
 							<div class="row">
@@ -33,7 +22,7 @@
 								<div class="col-sm-12 col-md-8">
 
 
-									Capital: R$<span id="capital_inicial"><%= data[usuario.id +'_usuario_status'][0].valor_aplicado_f %></span>
+									Capital: R$<span id="capital_inicial"><%= data[usuario.id +'_input_range_inicio'] %></span>
 
 									<form>
 										<div class="form-group">
@@ -143,7 +132,7 @@
 		<%}%>
 
 
-		var capital = <%= data[usuario.id +'_usuario_status'][0].valor_aplicado %>;
+		var capital = <%= data[usuario.id +'_input_range_inicio'] %>;
 
 		console.log('----------------------');
 		console.log(capital);

@@ -19,6 +19,8 @@ var usuarioStatusModel = require('../model/usuarioStatusModel.js');
 var moment = require('moment');
 moment.locale('pt-br');
 
+var usuarioCorretoraModel = require('../model/usuarioCorretoraModel.js');
+var usuarioParametrosAlgoritmoModel = require('../model/usuarioParametrosAlgoritmoModel');
 
 
 router.get('/', function(req, res, next) {
@@ -33,8 +35,16 @@ router.get('/', function(req, res, next) {
 		data_usuario_status[0].data_atualizacao_f = data_atualizacao_uf;
 		data[req.session.usuario.id+'_usuario_status'] = data_usuario_status;
 
+		usuarioCorretoraModel.find({id_usuario:mongoose.Types.ObjectId(req.session.usuario.id)},function(err,data_usuario_corretora){
+			data[req.session.usuario.id+'_usuario_corretora']= data_usuario_corretora;
 
-		res.render(req.isAjaxRequest() == true ? 'api' : 'montador', {html: 'minha_conta/minha_conta', data: data, usuario: req.session.usuario});
+			usuarioParametrosAlgoritmoModel.find({},function(err,data_parametros_usuario){
+				data[req.session.usuario.id+'_usuario_parametros'] = data_parametros_usuario;
+
+				res.render(req.isAjaxRequest() == true ? 'api' : 'montador', {html: 'minha_conta/minha_conta', data: data, usuario: req.session.usuario});
+			}).sort({'_id':-1}).limit(1);
+		}).sort({'_id':-1}).limit(1);
+
 	}).sort({'_id':-1}).limit(1);
 });
 

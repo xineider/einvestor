@@ -154,6 +154,11 @@ nav#sidebar li a:hover i {
 	color: #fff;
 }
 
+.quartiary-block{
+	background:$quartiary-color;
+	color:$primary-color;
+}
+
 .warning2-block{
 	border: 1px solid #f7d350;
 	color: #8a8d93;
@@ -730,6 +735,7 @@ nav#sidebar .sidebar-suporte{
 	border-radius: 10px;
 	box-shadow: 1px 1px 10px #000;
 	margin-left: 20px;
+	position: relative;
 
 }
 
@@ -740,6 +746,7 @@ nav#sidebar .sidebar-suporte{
 	text-align: center;
 	border-radius:10px;
 	margin-bottom:0;
+	height: 32px;
 	
 }
 
@@ -747,7 +754,7 @@ nav#sidebar .sidebar-suporte{
 	display: inline-block;
 	padding: 0px 10px;
 
-	select{
+	select,input{
 		border: none;
 		width: 100%;
 		padding: 0px 15px;
@@ -759,6 +766,15 @@ nav#sidebar .sidebar-suporte{
 	}
 
 }
+
+.valor_alocado_botao_container {
+	display: inline-block;
+	button{
+		border-radius: 10px;
+		line-height: 1;
+	}
+}
+
 
 
 
@@ -826,6 +842,10 @@ nav#sidebar .sidebar-suporte{
 
 .border-top-gray{
 	border-top:1px solid #afafaf;
+}
+
+.border-bottom-gray{
+	border-bottom:1px solid #afafaf;
 }
 
 .accordion .card-header{
@@ -918,6 +938,7 @@ nav#sidebar .sidebar-suporte{
 .btn-success-light{
 	background:#7bc24d;
 	color: #fff;
+	box-shadow: 0px 0px 5px 1px #306310;
 
 	&:hover{
 		background:#64a53a;
@@ -927,6 +948,10 @@ nav#sidebar .sidebar-suporte{
 
 .grey-background{
 	background:#e6e7e8;
+}
+
+.grey-background-1{
+	background:#c3c3c3;
 }
 
 .parametros_button_container button{
@@ -1160,6 +1185,10 @@ nav#sidebar .sidebar-suporte{
 	}
 }
 
+.green-light-text{
+	color:#7bc24d;
+}
+
 
 .pulse{
 	overflow: visible;
@@ -1304,4 +1333,27 @@ nav#sidebar.menu_mobile{
 	max-height: 400px;
 	font-size: 12px;
 	margin-bottom: 20px;
+}
+
+
+.btn-quartiary{
+	background:#6FB6BE;
+	color:#fff;
+
+	&:hover,&:focus{
+		background:#579da5;
+		color: #fff;
+	}
+
+
+
+}
+
+
+.relatorio_icon_barras{
+	color:$primary-color;
+
+	&:hover{
+		color: #0069d9;
+	}
 }

@@ -53,207 +53,42 @@ router.get('/', function(req, res, next) {
 	data.link_sistema = '/sistema';
 	data[req.session.usuario.id+'_numero_menu'] = 8;
 
-
 	usuarioStatusModel.find({id_usuario:mongoose.Types.ObjectId(req.session.usuario.id)},function(err,data_usuario_status){
-
-		console.log('sssssssssssssssssssssssssss data_usuario_status ssssssssssssssssssssssssss');
-		console.log(data_usuario_status);
-		console.log('ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss');
-
 
 		var data_atualizacao_u = data_usuario_status[0].data_atualizacao;
 		var data_atualizacao_uf = moment(data_atualizacao_u).utc().format('DD/MM/YYYY');
 		data_usuario_status[0].data_atualizacao_f = data_atualizacao_uf;
 		data[req.session.usuario.id+'_usuario_status'] = data_usuario_status;
 
+		roboModel.find({},function(err,data_robo_t){
+			data[req.session.usuario.id+'_robo_t']= data_robo_t;
 
-		usuarioRoboModel.aggregate([
-		{
-			$match:{id_usuario:mongoose.Types.ObjectId(req.session.usuario.id)}
-		},
-		{
-			$lookup:{
-				from:'robo',
-				localField:'id_robo',
-				foreignField:'_id',
-				as:'algoritmo'
+			for(i=0;i < data_robo_t.length; i++){
+				var valor_minimo_a = parseFloat(data_robo_t[i].valor_minimo);
+				var valor_minimo_af = valor_minimo_a.toLocaleString('pt-br', {minimumFractionDigits: 2});
+
+				console.log('valor_minimo_af:');
+				console.log(valor_minimo_af);
+
+
+				var valor_minimo_robo = formCurrency.format(data_robo_t[i].valor_minimo);
+				// valor_minimo_robo = ((valor_minimo_robo.replace('.','#')).replace(',','.')).replace('#',',');
+				console.log('valor_minimo_robo');
+				console.log(valor_minimo_robo);
+				data_robo_t[i].valor_minimo_robo = valor_minimo_af;
 			}
 
-		}
-
-		]).exec(function(err,data_algoritmo){
-
-			var multiplicador = data_algoritmo[0].algoritmo[0].multiplicador;
-
-			console.log(multiplicador);
-			console.log('multiplicador');
-
-			relatorioModel.find({},function(err,data_relatorio){
-
-				console.log('rrrrrrrrrrrrrrrrrrrrrrrrrrr data_relatorio rrrrrrrrrrrrrrrrrrrrrrrrrrrr');
-				console.log(data_relatorio);
-				console.log('rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr');
-
-				console.log('estrategias');
-				console.log(data_relatorio[0].estrategias);
-				console.log('------------------------------------------------------------------');
-
-				console.log('data_usuario_status[0].valor_aplicado:');
-				console.log(data_usuario_status[0].valor_aplicado);
-				console.log('ggggggggggggggggggggggggggggggg');
-
-				var capital = data_usuario_status[0].valor_aplicado;
-				console.log('capital:' + capital);
-
-				for(i=0;i < data_relatorio[0].estrategias.length; i++){
-					var net_profit = ((formCurrency.format(data_relatorio[0].estrategias[i].net_profit * multiplicador).replace('.','#')).replace(',','.')).replace('#',',');
-					data_relatorio[0].estrategias[i].net_profit_exib_reais = net_profit;
-					data_relatorio[0].estrategias[i].net_profit_exib_perc = transformar_porcentagem(data_relatorio[0].estrategias[i].net_profit,multiplicador,capital);
-
-					var drawdown = ((formCurrency.format(data_relatorio[0].estrategias[i].drawdown * multiplicador).replace('.','#')).replace(',','.')).replace('#',',');
-					data_relatorio[0].estrategias[i].drawdown_exib_reais = drawdown;
-					data_relatorio[0].estrategias[i].drawdown_exib_perc = transformar_porcentagem(data_relatorio[0].estrategias[i].drawdown,multiplicador,capital);
-
-					var average_trade = ((formCurrency.format(data_relatorio[0].estrategias[i].average_trade * multiplicador).replace('.','#')).replace(',','.')).replace('#',',');
-					data_relatorio[0].estrategias[i].average_trade_exib_reais = average_trade;
-					data_relatorio[0].estrategias[i].average_trade_exib_perc = transformar_porcentagem(data_relatorio[0].estrategias[i].average_trade,multiplicador,capital);
-
-					var year_average = ((formCurrency.format(data_relatorio[0].estrategias[i].year_average * multiplicador).replace('.','#')).replace(',','.')).replace('#',',');
-					data_relatorio[0].estrategias[i].year_average_exib_reais = year_average;
-					data_relatorio[0].estrategias[i].year_average_exib_perc = transformar_porcentagem(data_relatorio[0].estrategias[i].year_average,multiplicador,capital);
-
-					var daily_profit = ((formCurrency.format(data_relatorio[0].estrategias[i].daily_profit * multiplicador).replace('.','#')).replace(',','.')).replace('#',',');
-					data_relatorio[0].estrategias[i].daily_profit_exib_reais = daily_profit;
-					data_relatorio[0].estrategias[i].daily_profit_exib_perc = transformar_porcentagem(data_relatorio[0].estrategias[i].daily_profit,multiplicador,capital);
-
-
-					var month_profit = ((formCurrency.format(data_relatorio[0].estrategias[i].month_profit * multiplicador).replace('.','#')).replace(',','.')).replace('#',',');
-					data_relatorio[0].estrategias[i].month_profit_exib_reais = month_profit;
-					data_relatorio[0].estrategias[i].month_profit_exib_perc = transformar_porcentagem(data_relatorio[0].estrategias[i].month_profit,multiplicador,capital);
-
-
-					var average_trade = ((formCurrency.format(data_relatorio[0].estrategias[i].average_trade * multiplicador).replace('.','#')).replace(',','.')).replace('#',',');
-					data_relatorio[0].estrategias[i].average_trade_exib = average_trade;
-					data_relatorio[0].estrategias[i].average_trade_perc = transformar_porcentagem(data_relatorio[0].estrategias[i].average_trade,multiplicador,capital);
-				}
-
-				for(i=0;i < data_relatorio[0].resume_performance.length; i++){
-					var net_profit = ((formCurrency.format(data_relatorio[0].resume_performance[i].net_profit * multiplicador).replace('.','#')).replace(',','.')).replace('#',',');
-					data_relatorio[0].resume_performance[i].net_profit_exib_reais = net_profit;
-					data_relatorio[0].resume_performance[i].net_profit_exib_perc = transformar_porcentagem(data_relatorio[0].resume_performance[i].net_profit,multiplicador,capital);
-
-				}
-
-				for(i=0;i < data_relatorio[0].monthly_performance.length; i++){
-
-					var jan = ((formCurrency.format(data_relatorio[0].monthly_performance[i].jan * multiplicador).replace('.','#')).replace(',','.')).replace('#',',');
-					data_relatorio[0].monthly_performance[i].jan_exib_reais = jan;
-					data_relatorio[0].monthly_performance[i].jan_exib_perc = transformar_porcentagem(data_relatorio[0].monthly_performance[i].jan,multiplicador,capital);
-
-					var fev = ((formCurrency.format(data_relatorio[0].monthly_performance[i].fev * multiplicador).replace('.','#')).replace(',','.')).replace('#',',');
-					data_relatorio[0].monthly_performance[i].fev_exib_reais = fev;
-					data_relatorio[0].monthly_performance[i].fev_exib_perc = transformar_porcentagem(data_relatorio[0].monthly_performance[i].fev,multiplicador,capital);
-
-					var mar = ((formCurrency.format(data_relatorio[0].monthly_performance[i].mar * multiplicador).replace('.','#')).replace(',','.')).replace('#',',');
-					data_relatorio[0].monthly_performance[i].mar_exib_reais = mar;
-					data_relatorio[0].monthly_performance[i].mar_exib_perc = transformar_porcentagem(data_relatorio[0].monthly_performance[i].mar,multiplicador,capital);
-
-					var apr = ((formCurrency.format(data_relatorio[0].monthly_performance[i].apr * multiplicador).replace('.','#')).replace(',','.')).replace('#',',');
-					data_relatorio[0].monthly_performance[i].apr_exib_reais = apr;
-					data_relatorio[0].monthly_performance[i].apr_exib_perc = transformar_porcentagem(data_relatorio[0].monthly_performance[i].apr,multiplicador,capital);
-
-					var may = ((formCurrency.format(data_relatorio[0].monthly_performance[i].may * multiplicador).replace('.','#')).replace(',','.')).replace('#',',');
-					data_relatorio[0].monthly_performance[i].may_exib_reais = may;
-					data_relatorio[0].monthly_performance[i].may_exib_perc = transformar_porcentagem(data_relatorio[0].monthly_performance[i].may,multiplicador,capital);
-
-
-					var jun = ((formCurrency.format(data_relatorio[0].monthly_performance[i].jun * multiplicador).replace('.','#')).replace(',','.')).replace('#',',');
-					data_relatorio[0].monthly_performance[i].jun_exib_reais = jun;
-					data_relatorio[0].monthly_performance[i].jun_exib_perc = transformar_porcentagem(data_relatorio[0].monthly_performance[i].jun,multiplicador,capital);
-
-
-					var jul = ((formCurrency.format(data_relatorio[0].monthly_performance[i].jul * multiplicador).replace('.','#')).replace(',','.')).replace('#',',');
-					data_relatorio[0].monthly_performance[i].jul_exib_reais = jul;
-					data_relatorio[0].monthly_performance[i].jul_exib_perc = transformar_porcentagem(data_relatorio[0].monthly_performance[i].jul,multiplicador,capital);
-
-
-					var aug = ((formCurrency.format(data_relatorio[0].monthly_performance[i].aug * multiplicador).replace('.','#')).replace(',','.')).replace('#',',');
-					data_relatorio[0].monthly_performance[i].aug_exib_reais = aug;
-					data_relatorio[0].monthly_performance[i].aug_exib_perc = transformar_porcentagem(data_relatorio[0].monthly_performance[i].aug,multiplicador,capital);
-
-
-					var sep = ((formCurrency.format(data_relatorio[0].monthly_performance[i].sep * multiplicador).replace('.','#')).replace(',','.')).replace('#',',');
-					data_relatorio[0].monthly_performance[i].sep_exib_reais = sep;
-					data_relatorio[0].monthly_performance[i].sep_exib_perc = transformar_porcentagem(data_relatorio[0].monthly_performance[i].sep,multiplicador,capital);
-
-
-					var oct = ((formCurrency.format(data_relatorio[0].monthly_performance[i].oct * multiplicador).replace('.','#')).replace(',','.')).replace('#',',');
-					data_relatorio[0].monthly_performance[i].oct_exib_reais = oct;
-					data_relatorio[0].monthly_performance[i].oct_exib_perc = transformar_porcentagem(data_relatorio[0].monthly_performance[i].oct,multiplicador,capital);
-
-
-					var nov = ((formCurrency.format(data_relatorio[0].monthly_performance[i].nov * multiplicador).replace('.','#')).replace(',','.')).replace('#',',');
-					data_relatorio[0].monthly_performance[i].nov_exib_reais = nov;
-					data_relatorio[0].monthly_performance[i].nov_exib_perc = transformar_porcentagem(data_relatorio[0].monthly_performance[i].nov,multiplicador,capital);
-
-
-					var dec = ((formCurrency.format(data_relatorio[0].monthly_performance[i].dec * multiplicador).replace('.','#')).replace(',','.')).replace('#',',');
-					data_relatorio[0].monthly_performance[i].dec_exib_reais = dec;
-					data_relatorio[0].monthly_performance[i].dec_exib_perc = transformar_porcentagem(data_relatorio[0].monthly_performance[i].dec,multiplicador,capital);
-
-
-					var ytd = ((formCurrency.format(data_relatorio[0].monthly_performance[i].ytd * multiplicador).replace('.','#')).replace(',','.')).replace('#',',');
-					data_relatorio[0].monthly_performance[i].ytd_exib_reais = ytd;
-					data_relatorio[0].monthly_performance[i].ytd_exib_perc = transformar_porcentagem(data_relatorio[0].monthly_performance[i].ytd,multiplicador,capital);
-
-				}
-
-				for(i=0;i < data_relatorio[0].stats.length; i++){
-					var deviation = ((formCurrency.format(data_relatorio[0].stats[i].deviation * multiplicador).replace('.','#')).replace(',','.')).replace('#',',');
-					data_relatorio[0].stats[i].deviation_exib_reais = deviation;
-					data_relatorio[0].stats[i].deviation_exib_perc = transformar_porcentagem(data_relatorio[0].stats[i].deviation,multiplicador,capital);
-
-				}
-
-				for(i=0;i < data_relatorio[0].trades.length; i++){
-					var gross_profit = ((formCurrency.format(data_relatorio[0].trades[i].gross_profit * multiplicador).replace('.','#')).replace(',','.')).replace('#',',');
-					data_relatorio[0].trades[i].gross_profit_exib_reais = gross_profit;
-					data_relatorio[0].trades[i].gross_profit_exib_perc = transformar_porcentagem(data_relatorio[0].trades[i].gross_profit,multiplicador,capital);
-
-					var gross_loss = ((formCurrency.format(data_relatorio[0].trades[i].gross_loss * multiplicador).replace('.','#')).replace(',','.')).replace('#',',');
-					data_relatorio[0].trades[i].gross_loss_exib_reais = gross_loss;
-					data_relatorio[0].trades[i].gross_loss_exib_perc = transformar_porcentagem(data_relatorio[0].trades[i].gross_loss,multiplicador,capital);
-
-					var average_win = ((formCurrency.format(data_relatorio[0].trades[i].average_win * multiplicador).replace('.','#')).replace(',','.')).replace('#',',');
-					data_relatorio[0].trades[i].average_win_exib_reais = average_win;
-					data_relatorio[0].trades[i].average_win_exib_perc = transformar_porcentagem(data_relatorio[0].trades[i].average_win,multiplicador,capital);
-
-					var average_loss = ((formCurrency.format(data_relatorio[0].trades[i].average_loss * multiplicador).replace('.','#')).replace(',','.')).replace('#',',');
-					data_relatorio[0].trades[i].average_loss_exib_reais = average_loss;
-					data_relatorio[0].trades[i].average_loss_exib_perc = transformar_porcentagem(data_relatorio[0].trades[i].average_loss,multiplicador,capital);
-
-					var largest_win = ((formCurrency.format(data_relatorio[0].trades[i].largest_win * multiplicador).replace('.','#')).replace(',','.')).replace('#',',');
-					data_relatorio[0].trades[i].largest_win_exib_reais = largest_win;
-					data_relatorio[0].trades[i].largest_win_exib_perc = transformar_porcentagem(data_relatorio[0].trades[i].largest_win,multiplicador,capital);
-
-					var largest_loss = ((formCurrency.format(data_relatorio[0].trades[i].largest_loss * multiplicador).replace('.','#')).replace(',','.')).replace('#',',');
-					data_relatorio[0].trades[i].largest_loss_exib_reais = largest_loss;
-					data_relatorio[0].trades[i].largest_loss_exib_perc = transformar_porcentagem(data_relatorio[0].trades[i].largest_loss,multiplicador,capital);
+			console.log('wwwwwwwwwwwwwwwwwwwww');
+			console.log(data);
+			console.log('wwwwwwwwwwwwwwwwwwwww');
 
 
 
-				}
+			res.render(req.isAjaxRequest() == true ? 'api' : 'montador', {html: 'simulador/simulador', data: data, usuario: req.session.usuario});
+		});
 
+	}).sort({'_id':-1}).limit(1);
 
-				data[req.session.usuario.id+'_relatorio']= data_relatorio;
-
-
-				res.render(req.isAjaxRequest() == true ? 'api' : 'montador', {html: 'relatorio/relatorio', data: data, usuario: req.session.usuario});
-
-
-			}).sort({'_id':-1}).limit(1);
-});
-}).sort({'_id':-1}).limit(1);
 
 });
 
@@ -269,54 +104,27 @@ router.get('/', function(req, res, next) {
 
 
 
-	// data[req.session.usuario.id+'_numero_menu'] = 4;
-
-
-	// usuarioStatusModel.find({id_usuario:mongoose.Types.ObjectId(req.session.usuario.id)},function(err,data_usuario_status){
-
-	// 	var data_atualizacao_u = data_usuario_status[0].data_atualizacao;
-	// 	var data_atualizacao_uf = moment(data_atualizacao_u).utc().format('DD/MM/YYYY');
-	// 	data_usuario_status[0].data_atualizacao_f = data_atualizacao_uf;
-	// 	data[req.session.usuario.id+'_usuario_status'] = data_usuario_status;
-
-	// 	roboModel.find({},function(err,data_robo_t){
-	// 		data[req.session.usuario.id+'_robo_t']= data_robo_t;
-
-	// 		for(i=0;i < data_robo_t.length; i++){
-	// 			var valor_minimo_a = parseFloat(data_robo_t[i].valor_minimo);
-	// 			var valor_minimo_af = valor_minimo_a.toLocaleString('pt-br', {minimumFractionDigits: 2});
-
-	// 			console.log('valor_minimo_af:');
-	// 			console.log(valor_minimo_af);
-
-
-	// 			var valor_minimo_robo = formCurrency.format(data_robo_t[i].valor_minimo);
-	// 			// valor_minimo_robo = ((valor_minimo_robo.replace('.','#')).replace(',','.')).replace('#',',');
-	// 			console.log('valor_minimo_robo');
-	// 			console.log(valor_minimo_robo);
-	// 			data_robo_t[i].valor_minimo_robo = valor_minimo_af;
-	// 		}
-
-	// 		console.log('wwwwwwwwwwwwwwwwwwwww');
-	// 		console.log(data);
-	// 		console.log('wwwwwwwwwwwwwwwwwwwww');
 
 
 
-	// 		res.render(req.isAjaxRequest() == true ? 'api' : 'montador', {html: 'relatorio/relatorio', data: data, usuario: req.session.usuario});
-	// 	});
-
-	// }).sort({'_id':-1}).limit(1);
-// });
-
-
-router.post('/select_nome_robo', function(req, res, next) {
+router.post('/select_nome_algoritmo', function(req, res, next) {
 	POST = req.body;
 	console.log('estou alterando o table price selector ');
 	console.log(POST);
 	console.log('ttttttttttttttttttttttttttttttttttttttttt');
 
-	var valor_minimo = parseInt(POST.valor_minimo);
+	var valor_minimo = 0;
+
+	if(POST.valor != ''){
+		var valor_minimo_p = POST.valor;
+		console.log('valor_minimo_p:' + valor_minimo_p);
+		var valor_minimo_f = valor_minimo_p.replace(/\./g,'');
+		console.log('valor_minimo_f: ' + valor_minimo_f);
+		valor_minimo = parseInt(valor_minimo_f);
+	}else{
+		valor_minimo = parseInt(POST.valor_minimo);
+	}
+
 
 	console.log('valor_minimo: ' + valor_minimo);
 
@@ -328,187 +136,265 @@ router.post('/select_nome_robo', function(req, res, next) {
 		console.log(data);
 		console.log('nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn');
 
-		res.render(req.isAjaxRequest() == true ? 'api' : 'montador', {html: 'relatorio/nomes_robo', data: data, usuario: req.session.usuario});
+		res.render(req.isAjaxRequest() == true ? 'api' : 'montador', {html: 'simulador/nomes_algoritmo', data: data, usuario: req.session.usuario});
 
 	});
 
 });
 
 
-router.post('/gerar_relatorio_robo', function(req, res, next) {
+router.post('/gerar_relatorio_algoritmo', function(req, res, next) {
 	POST = req.body;
 	console.log('estou alterando o gerar relatorio robo ');
 	console.log(POST);
 	console.log('ttttttttttttttttttttttttttttttttttttttttt');
 
-	
 
-	roboModel.find({'_id':POST.id_robo},function(err,data_robo){
+	var x_multiplicador_x = POST.x_multiplicador;
+	var x_multiplicador = 1;
 
-		console.log('------------- data_robo----------------');
-		console.log(data_robo);
-		console.log('---------------------------------------');
+	if(x_multiplicador_x <= 0 || x_multiplicador_x == ''){
+		x_multiplicador = 1;
+	}else{
+		x_multiplicador = parseInt(x_multiplicador_x);
+	}
 
-		relatorioModel.find({},function(err,data_relatorio){
+	var porc_reais = 'porc';
 
-			console.log('rrrrrrrrrrrrrrrrrrrrrrrrrrr data_relatorio rrrrrrrrrrrrrrrrrrrrrrrrrrrr');
-			console.log(data_relatorio);
-			console.log('rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr');
+	if(POST.reais != null){
+		porc_reais = 'reais'
+	}
 
-			console.log('estrategias');
-			console.log(data_relatorio[0].estrategias);
+	console.log('porc_reais: ' + porc_reais);
 
-			var capital = POST.valor_minimo;
-			console.log('capital:' + capital);
+	console.log('x_multiplicador: ' + x_multiplicador);
 
-			for(i=0;i < data_relatorio[0].estrategias.length; i++){
-				var net_profit = ((formCurrency.format(data_relatorio[0].estrategias[i].net_profit * data_robo[0].multiplicador).replace('.','#')).replace(',','.')).replace('#',',');
-				data_relatorio[0].estrategias[i].net_profit_exib_reais = net_profit;
-				data_relatorio[0].estrategias[i].net_profit_exib_perc = transformar_porcentagem(data_relatorio[0].estrategias[i].net_profit,data_robo[0].multiplicador,capital);
+	console.log('typeof POST.id_robo != undefined');
+	console.log(typeof POST.id_robo != 'undefined');
+	console.log(POST.id_robo == null);
+	console.log(POST.id_robo == undefined);
 
-				var drawdown = ((formCurrency.format(data_relatorio[0].estrategias[i].drawdown * data_robo[0].multiplicador).replace('.','#')).replace(',','.')).replace('#',',');
-				data_relatorio[0].estrategias[i].drawdown_exib_reais = drawdown;
-				data_relatorio[0].estrategias[i].drawdown_exib_perc = transformar_porcentagem(data_relatorio[0].estrategias[i].drawdown,data_robo[0].multiplicador,capital);
-
-				var average_trade = ((formCurrency.format(data_relatorio[0].estrategias[i].average_trade * data_robo[0].multiplicador).replace('.','#')).replace(',','.')).replace('#',',');
-				data_relatorio[0].estrategias[i].average_trade_exib_reais = average_trade;
-				data_relatorio[0].estrategias[i].average_trade_exib_perc = transformar_porcentagem(data_relatorio[0].estrategias[i].average_trade,data_robo[0].multiplicador,capital);
-
-				var year_average = ((formCurrency.format(data_relatorio[0].estrategias[i].year_average * data_robo[0].multiplicador).replace('.','#')).replace(',','.')).replace('#',',');
-				data_relatorio[0].estrategias[i].year_average_exib_reais = year_average;
-				data_relatorio[0].estrategias[i].year_average_exib_perc = transformar_porcentagem(data_relatorio[0].estrategias[i].year_average,data_robo[0].multiplicador,capital);
-
-				var daily_profit = ((formCurrency.format(data_relatorio[0].estrategias[i].daily_profit * data_robo[0].multiplicador).replace('.','#')).replace(',','.')).replace('#',',');
-				data_relatorio[0].estrategias[i].daily_profit_exib_reais = daily_profit;
-				data_relatorio[0].estrategias[i].daily_profit_exib_perc = transformar_porcentagem(data_relatorio[0].estrategias[i].daily_profit,data_robo[0].multiplicador,capital);
-
-
-				var month_profit = ((formCurrency.format(data_relatorio[0].estrategias[i].month_profit * data_robo[0].multiplicador).replace('.','#')).replace(',','.')).replace('#',',');
-				data_relatorio[0].estrategias[i].month_profit_exib_reais = month_profit;
-				data_relatorio[0].estrategias[i].month_profit_exib_perc = transformar_porcentagem(data_relatorio[0].estrategias[i].month_profit,data_robo[0].multiplicador,capital);
-
-
-				var average_trade = ((formCurrency.format(data_relatorio[0].estrategias[i].average_trade * data_robo[0].multiplicador).replace('.','#')).replace(',','.')).replace('#',',');
-				data_relatorio[0].estrategias[i].average_trade_exib = average_trade;
-				data_relatorio[0].estrategias[i].average_trade_perc = transformar_porcentagem(data_relatorio[0].estrategias[i].average_trade,data_robo[0].multiplicador,capital);
-			}
-
-			for(i=0;i < data_relatorio[0].resume_performance.length; i++){
-				var net_profit = ((formCurrency.format(data_relatorio[0].resume_performance[i].net_profit * data_robo[0].multiplicador).replace('.','#')).replace(',','.')).replace('#',',');
-				data_relatorio[0].resume_performance[i].net_profit_exib_reais = net_profit;
-				data_relatorio[0].resume_performance[i].net_profit_exib_perc = transformar_porcentagem(data_relatorio[0].resume_performance[i].net_profit,data_robo[0].multiplicador,capital);
-
-			}
-
-			for(i=0;i < data_relatorio[0].monthly_performance.length; i++){
-
-				var jan = ((formCurrency.format(data_relatorio[0].monthly_performance[i].jan * data_robo[0].multiplicador).replace('.','#')).replace(',','.')).replace('#',',');
-				data_relatorio[0].monthly_performance[i].jan_exib_reais = jan;
-				data_relatorio[0].monthly_performance[i].jan_exib_perc = transformar_porcentagem(data_relatorio[0].monthly_performance[i].jan,data_robo[0].multiplicador,capital);
-
-				var fev = ((formCurrency.format(data_relatorio[0].monthly_performance[i].fev * data_robo[0].multiplicador).replace('.','#')).replace(',','.')).replace('#',',');
-				data_relatorio[0].monthly_performance[i].fev_exib_reais = fev;
-				data_relatorio[0].monthly_performance[i].fev_exib_perc = transformar_porcentagem(data_relatorio[0].monthly_performance[i].fev,data_robo[0].multiplicador,capital);
-
-				var mar = ((formCurrency.format(data_relatorio[0].monthly_performance[i].mar * data_robo[0].multiplicador).replace('.','#')).replace(',','.')).replace('#',',');
-				data_relatorio[0].monthly_performance[i].mar_exib_reais = mar;
-				data_relatorio[0].monthly_performance[i].mar_exib_perc = transformar_porcentagem(data_relatorio[0].monthly_performance[i].mar,data_robo[0].multiplicador,capital);
-
-				var apr = ((formCurrency.format(data_relatorio[0].monthly_performance[i].apr * data_robo[0].multiplicador).replace('.','#')).replace(',','.')).replace('#',',');
-				data_relatorio[0].monthly_performance[i].apr_exib_reais = apr;
-				data_relatorio[0].monthly_performance[i].apr_exib_perc = transformar_porcentagem(data_relatorio[0].monthly_performance[i].apr,data_robo[0].multiplicador,capital);
-
-				var may = ((formCurrency.format(data_relatorio[0].monthly_performance[i].may * data_robo[0].multiplicador).replace('.','#')).replace(',','.')).replace('#',',');
-				data_relatorio[0].monthly_performance[i].may_exib_reais = may;
-				data_relatorio[0].monthly_performance[i].may_exib_perc = transformar_porcentagem(data_relatorio[0].monthly_performance[i].may,data_robo[0].multiplicador,capital);
-
-
-				var jun = ((formCurrency.format(data_relatorio[0].monthly_performance[i].jun * data_robo[0].multiplicador).replace('.','#')).replace(',','.')).replace('#',',');
-				data_relatorio[0].monthly_performance[i].jun_exib_reais = jun;
-				data_relatorio[0].monthly_performance[i].jun_exib_perc = transformar_porcentagem(data_relatorio[0].monthly_performance[i].jun,data_robo[0].multiplicador,capital);
-
-
-				var jul = ((formCurrency.format(data_relatorio[0].monthly_performance[i].jul * data_robo[0].multiplicador).replace('.','#')).replace(',','.')).replace('#',',');
-				data_relatorio[0].monthly_performance[i].jul_exib_reais = jul;
-				data_relatorio[0].monthly_performance[i].jul_exib_perc = transformar_porcentagem(data_relatorio[0].monthly_performance[i].jul,data_robo[0].multiplicador,capital);
-
-
-				var aug = ((formCurrency.format(data_relatorio[0].monthly_performance[i].aug * data_robo[0].multiplicador).replace('.','#')).replace(',','.')).replace('#',',');
-				data_relatorio[0].monthly_performance[i].aug_exib_reais = aug;
-				data_relatorio[0].monthly_performance[i].aug_exib_perc = transformar_porcentagem(data_relatorio[0].monthly_performance[i].aug,data_robo[0].multiplicador,capital);
-
-
-				var sep = ((formCurrency.format(data_relatorio[0].monthly_performance[i].sep * data_robo[0].multiplicador).replace('.','#')).replace(',','.')).replace('#',',');
-				data_relatorio[0].monthly_performance[i].sep_exib_reais = sep;
-				data_relatorio[0].monthly_performance[i].sep_exib_perc = transformar_porcentagem(data_relatorio[0].monthly_performance[i].sep,data_robo[0].multiplicador,capital);
-
-
-				var oct = ((formCurrency.format(data_relatorio[0].monthly_performance[i].oct * data_robo[0].multiplicador).replace('.','#')).replace(',','.')).replace('#',',');
-				data_relatorio[0].monthly_performance[i].oct_exib_reais = oct;
-				data_relatorio[0].monthly_performance[i].oct_exib_perc = transformar_porcentagem(data_relatorio[0].monthly_performance[i].oct,data_robo[0].multiplicador,capital);
-
-
-				var nov = ((formCurrency.format(data_relatorio[0].monthly_performance[i].nov * data_robo[0].multiplicador).replace('.','#')).replace(',','.')).replace('#',',');
-				data_relatorio[0].monthly_performance[i].nov_exib_reais = nov;
-				data_relatorio[0].monthly_performance[i].nov_exib_perc = transformar_porcentagem(data_relatorio[0].monthly_performance[i].nov,data_robo[0].multiplicador,capital);
-
-
-				var dec = ((formCurrency.format(data_relatorio[0].monthly_performance[i].dec * data_robo[0].multiplicador).replace('.','#')).replace(',','.')).replace('#',',');
-				data_relatorio[0].monthly_performance[i].dec_exib_reais = dec;
-				data_relatorio[0].monthly_performance[i].dec_exib_perc = transformar_porcentagem(data_relatorio[0].monthly_performance[i].dec,data_robo[0].multiplicador,capital);
-
-
-				var ytd = ((formCurrency.format(data_relatorio[0].monthly_performance[i].ytd * data_robo[0].multiplicador).replace('.','#')).replace(',','.')).replace('#',',');
-				data_relatorio[0].monthly_performance[i].ytd_exib_reais = ytd;
-				data_relatorio[0].monthly_performance[i].ytd_exib_perc = transformar_porcentagem(data_relatorio[0].monthly_performance[i].ytd,data_robo[0].multiplicador,capital);
-
-			}
-
-			for(i=0;i < data_relatorio[0].stats.length; i++){
-				var deviation = ((formCurrency.format(data_relatorio[0].stats[i].deviation * data_robo[0].multiplicador).replace('.','#')).replace(',','.')).replace('#',',');
-				data_relatorio[0].stats[i].deviation_exib_reais = deviation;
-				data_relatorio[0].stats[i].deviation_exib_perc = transformar_porcentagem(data_relatorio[0].stats[i].deviation,data_robo[0].multiplicador,capital);
-
-			}
-
-			for(i=0;i < data_relatorio[0].trades.length; i++){
-				var gross_profit = ((formCurrency.format(data_relatorio[0].trades[i].gross_profit * data_robo[0].multiplicador).replace('.','#')).replace(',','.')).replace('#',',');
-				data_relatorio[0].trades[i].gross_profit_exib_reais = gross_profit;
-				data_relatorio[0].trades[i].gross_profit_exib_perc = transformar_porcentagem(data_relatorio[0].trades[i].gross_profit,data_robo[0].multiplicador,capital);
-
-				var gross_loss = ((formCurrency.format(data_relatorio[0].trades[i].gross_loss * data_robo[0].multiplicador).replace('.','#')).replace(',','.')).replace('#',',');
-				data_relatorio[0].trades[i].gross_loss_exib_reais = gross_loss;
-				data_relatorio[0].trades[i].gross_loss_exib_perc = transformar_porcentagem(data_relatorio[0].trades[i].gross_loss,data_robo[0].multiplicador,capital);
-
-				var average_win = ((formCurrency.format(data_relatorio[0].trades[i].average_win * data_robo[0].multiplicador).replace('.','#')).replace(',','.')).replace('#',',');
-				data_relatorio[0].trades[i].average_win_exib_reais = average_win;
-				data_relatorio[0].trades[i].average_win_exib_perc = transformar_porcentagem(data_relatorio[0].trades[i].average_win,data_robo[0].multiplicador,capital);
-
-				var average_loss = ((formCurrency.format(data_relatorio[0].trades[i].average_loss * data_robo[0].multiplicador).replace('.','#')).replace(',','.')).replace('#',',');
-				data_relatorio[0].trades[i].average_loss_exib_reais = average_loss;
-				data_relatorio[0].trades[i].average_loss_exib_perc = transformar_porcentagem(data_relatorio[0].trades[i].average_loss,data_robo[0].multiplicador,capital);
-
-				var largest_win = ((formCurrency.format(data_relatorio[0].trades[i].largest_win * data_robo[0].multiplicador).replace('.','#')).replace(',','.')).replace('#',',');
-				data_relatorio[0].trades[i].largest_win_exib_reais = largest_win;
-				data_relatorio[0].trades[i].largest_win_exib_perc = transformar_porcentagem(data_relatorio[0].trades[i].largest_win,data_robo[0].multiplicador,capital);
-
-				var largest_loss = ((formCurrency.format(data_relatorio[0].trades[i].largest_loss * data_robo[0].multiplicador).replace('.','#')).replace(',','.')).replace('#',',');
-				data_relatorio[0].trades[i].largest_loss_exib_reais = largest_loss;
-				data_relatorio[0].trades[i].largest_loss_exib_perc = transformar_porcentagem(data_relatorio[0].trades[i].largest_loss,data_robo[0].multiplicador,capital);
+	if(POST.id_robo != null){
 
 
 
-			}
 
 
-			data[req.session.usuario.id+'_relatorio']= data_relatorio;
 
 
-			res.render(req.isAjaxRequest() == true ? 'api' : 'montador', {html: 'relatorio/gerador_relatorio', data: data, usuario: req.session.usuario});
-			
 
-		}).sort({'_id':-1}).limit(1);
+		roboModel.find({'_id':POST.id_robo},function(err,data_robo){
+
+			console.log('------------- data_robo----------------');
+			console.log(data_robo);
+			console.log('---------------------------------------');
+
+			relatorioModel.find({},function(err,data_relatorio){
+
+				console.log('rrrrrrrrrrrrrrrrrrrrrrrrrrr data_relatorio rrrrrrrrrrrrrrrrrrrrrrrrrrrr');
+				console.log(data_relatorio);
+				console.log('rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr');
+
+				console.log('estrategias');
+				console.log(data_relatorio[0].estrategias);
+
+				var capital = 0;
+
+				if(POST.valor != ''){
+					var valor_minimo_p = POST.valor;
+					var valor_minimo_f = valor_minimo_p.replace(/\./g,'');
+					capital = parseInt(valor_minimo_f);
+
+				}else{
+					capital = POST.valor_minimo;
+				}
+				console.log('capital:' + capital);
+
+				for(i=0;i < data_relatorio[0].estrategias.length; i++){
+					var net_profit = ((formCurrency.format(data_relatorio[0].estrategias[i].net_profit * data_robo[0].multiplicador * x_multiplicador).replace('.','#')).replace(',','.')).replace('#',',');
+					data_relatorio[0].estrategias[i].net_profit_exib_reais = net_profit;
+					var net_profit_mult = data_relatorio[0].estrategias[i].net_profit * x_multiplicador;
+					data_relatorio[0].estrategias[i].net_profit_exib_perc = transformar_porcentagem(net_profit_mult,data_robo[0].multiplicador,capital);
+
+					var drawdown = ((formCurrency.format(data_relatorio[0].estrategias[i].drawdown * data_robo[0].multiplicador * x_multiplicador).replace('.','#')).replace(',','.')).replace('#',',');
+					data_relatorio[0].estrategias[i].drawdown_exib_reais = drawdown;
+					var drawdon_mult = data_relatorio[0].estrategias[i].drawdown * x_multiplicador;
+					data_relatorio[0].estrategias[i].drawdown_exib_perc = transformar_porcentagem(drawdon_mult,data_robo[0].multiplicador,capital);
+
+					var average_trade = ((formCurrency.format(data_relatorio[0].estrategias[i].average_trade * data_robo[0].multiplicador * x_multiplicador).replace('.','#')).replace(',','.')).replace('#',',');
+					data_relatorio[0].estrategias[i].average_trade_exib_reais = average_trade;
+					var average_trade_mult = data_relatorio[0].estrategias[i].average_trade * x_multiplicador;
+					data_relatorio[0].estrategias[i].average_trade_exib_perc = transformar_porcentagem(average_trade_mult,data_robo[0].multiplicador,capital);
+
+					var year_average = ((formCurrency.format(data_relatorio[0].estrategias[i].year_average * data_robo[0].multiplicador * x_multiplicador).replace('.','#')).replace(',','.')).replace('#',',');
+					data_relatorio[0].estrategias[i].year_average_exib_reais = year_average;
+					var year_trade_mult = data_relatorio[0].estrategias[i].year_average * x_multiplicador;
+					data_relatorio[0].estrategias[i].year_average_exib_perc = transformar_porcentagem(year_trade_mult,data_robo[0].multiplicador,capital);
+
+					var daily_profit = ((formCurrency.format(data_relatorio[0].estrategias[i].daily_profit * data_robo[0].multiplicador * x_multiplicador).replace('.','#')).replace(',','.')).replace('#',',');
+					data_relatorio[0].estrategias[i].daily_profit_exib_reais = daily_profit;
+					var daily_profit_mult = data_relatorio[0].estrategias[i].daily_profit * x_multiplicador;
+					data_relatorio[0].estrategias[i].daily_profit_exib_perc = transformar_porcentagem(daily_profit_mult,data_robo[0].multiplicador,capital);
+
+
+					var month_profit = ((formCurrency.format(data_relatorio[0].estrategias[i].month_profit * data_robo[0].multiplicador * x_multiplicador).replace('.','#')).replace(',','.')).replace('#',',');
+					data_relatorio[0].estrategias[i].month_profit_exib_reais = month_profit;
+					var month_profit_mult = data_relatorio[0].estrategias[i].month_profit * x_multiplicador;
+					data_relatorio[0].estrategias[i].month_profit_exib_perc = transformar_porcentagem(month_profit_mult,data_robo[0].multiplicador,capital);
+
+
+					var average_trade = ((formCurrency.format(data_relatorio[0].estrategias[i].average_trade * data_robo[0].multiplicador * x_multiplicador).replace('.','#')).replace(',','.')).replace('#',',');
+					data_relatorio[0].estrategias[i].average_trade_exib = average_trade;
+					var average_trade_mult = data_relatorio[0].estrategias[i].average_trade * x_multiplicador;
+					data_relatorio[0].estrategias[i].average_trade_perc = transformar_porcentagem(average_trade_mult,data_robo[0].multiplicador,capital);
+				}
+
+				for(i=0;i < data_relatorio[0].resume_performance.length; i++){
+					var net_profit = ((formCurrency.format(data_relatorio[0].resume_performance[i].net_profit * data_robo[0].multiplicador * x_multiplicador).replace('.','#')).replace(',','.')).replace('#',',');
+					data_relatorio[0].resume_performance[i].net_profit_exib_reais = net_profit;
+					var net_profit_mult = data_relatorio[0].resume_performance[i].net_profit * x_multiplicador;
+					data_relatorio[0].resume_performance[i].net_profit_exib_perc = transformar_porcentagem(net_profit_mult,data_robo[0].multiplicador,capital);
+
+				}
+
+				for(i=0;i < data_relatorio[0].monthly_performance.length; i++){
+
+					var jan = ((formCurrency.format(data_relatorio[0].monthly_performance[i].jan * data_robo[0].multiplicador * x_multiplicador).replace('.','#')).replace(',','.')).replace('#',',');
+					data_relatorio[0].monthly_performance[i].jan_exib_reais = jan;
+					var jan_mult = data_relatorio[0].monthly_performance[i].jan * x_multiplicador;
+					data_relatorio[0].monthly_performance[i].jan_exib_perc = transformar_porcentagem(jan_mult,data_robo[0].multiplicador,capital);
+
+					var fev = ((formCurrency.format(data_relatorio[0].monthly_performance[i].fev * data_robo[0].multiplicador * x_multiplicador).replace('.','#')).replace(',','.')).replace('#',',');
+					data_relatorio[0].monthly_performance[i].fev_exib_reais = fev;
+					var fev_mult = data_relatorio[0].monthly_performance[i].fev * x_multiplicador;
+					data_relatorio[0].monthly_performance[i].fev_exib_perc = transformar_porcentagem(fev_mult,data_robo[0].multiplicador,capital);
+
+					var mar = ((formCurrency.format(data_relatorio[0].monthly_performance[i].mar * data_robo[0].multiplicador * x_multiplicador).replace('.','#')).replace(',','.')).replace('#',',');
+					data_relatorio[0].monthly_performance[i].mar_exib_reais = mar;
+					var mar_mult = data_relatorio[0].monthly_performance[i].mar * x_multiplicador;
+					data_relatorio[0].monthly_performance[i].mar_exib_perc = transformar_porcentagem(mar_mult,data_robo[0].multiplicador,capital);
+
+					var apr = ((formCurrency.format(data_relatorio[0].monthly_performance[i].apr * data_robo[0].multiplicador * x_multiplicador).replace('.','#')).replace(',','.')).replace('#',',');
+					data_relatorio[0].monthly_performance[i].apr_exib_reais = apr;
+					var apr_mult = data_relatorio[0].monthly_performance[i].apr * x_multiplicador;
+					data_relatorio[0].monthly_performance[i].apr_exib_perc = transformar_porcentagem(apr_mult,data_robo[0].multiplicador,capital);
+
+					var may = ((formCurrency.format(data_relatorio[0].monthly_performance[i].may * data_robo[0].multiplicador * x_multiplicador).replace('.','#')).replace(',','.')).replace('#',',');
+					data_relatorio[0].monthly_performance[i].may_exib_reais = may;
+					var may_mult = data_relatorio[0].monthly_performance[i].may * x_multiplicador;
+					data_relatorio[0].monthly_performance[i].may_exib_perc = transformar_porcentagem(may_mult,data_robo[0].multiplicador,capital);
+
+
+					var jun = ((formCurrency.format(data_relatorio[0].monthly_performance[i].jun * data_robo[0].multiplicador * x_multiplicador).replace('.','#')).replace(',','.')).replace('#',',');
+					data_relatorio[0].monthly_performance[i].jun_exib_reais = jun;
+					var jun_mult = data_relatorio[0].monthly_performance[i].jun * x_multiplicador;
+					data_relatorio[0].monthly_performance[i].jun_exib_perc = transformar_porcentagem(jun_mult,data_robo[0].multiplicador,capital);
+
+
+					var jul = ((formCurrency.format(data_relatorio[0].monthly_performance[i].jul * data_robo[0].multiplicador * x_multiplicador).replace('.','#')).replace(',','.')).replace('#',',');
+					data_relatorio[0].monthly_performance[i].jul_exib_reais = jul;
+					var jul_mult = data_relatorio[0].monthly_performance[i].jul * x_multiplicador;
+					data_relatorio[0].monthly_performance[i].jul_exib_perc = transformar_porcentagem(jul_mult,data_robo[0].multiplicador,capital);
+
+
+					var aug = ((formCurrency.format(data_relatorio[0].monthly_performance[i].aug * data_robo[0].multiplicador * x_multiplicador).replace('.','#')).replace(',','.')).replace('#',',');
+					data_relatorio[0].monthly_performance[i].aug_exib_reais = aug;
+					var aug_mult = data_relatorio[0].monthly_performance[i].aug * x_multiplicador;
+					data_relatorio[0].monthly_performance[i].aug_exib_perc = transformar_porcentagem(aug_mult,data_robo[0].multiplicador,capital);
+
+
+					var sep = ((formCurrency.format(data_relatorio[0].monthly_performance[i].sep * data_robo[0].multiplicador * x_multiplicador).replace('.','#')).replace(',','.')).replace('#',',');
+					data_relatorio[0].monthly_performance[i].sep_exib_reais = sep;
+					var sep_mult = data_relatorio[0].monthly_performance[i].sep * x_multiplicador;
+					data_relatorio[0].monthly_performance[i].sep_exib_perc = transformar_porcentagem(sep_mult,data_robo[0].multiplicador,capital);
+
+
+					var oct = ((formCurrency.format(data_relatorio[0].monthly_performance[i].oct * data_robo[0].multiplicador * x_multiplicador).replace('.','#')).replace(',','.')).replace('#',',');
+					data_relatorio[0].monthly_performance[i].oct_exib_reais = oct;
+					var oct_mult = data_relatorio[0].monthly_performance[i].oct * x_multiplicador;
+					data_relatorio[0].monthly_performance[i].oct_exib_perc = transformar_porcentagem(oct_mult,data_robo[0].multiplicador,capital);
+
+
+					var nov = ((formCurrency.format(data_relatorio[0].monthly_performance[i].nov * data_robo[0].multiplicador * x_multiplicador).replace('.','#')).replace(',','.')).replace('#',',');
+					data_relatorio[0].monthly_performance[i].nov_exib_reais = nov;
+					var nov_mult = data_relatorio[0].monthly_performance[i].nov * x_multiplicador;
+					data_relatorio[0].monthly_performance[i].nov_exib_perc = transformar_porcentagem(nov_mult,data_robo[0].multiplicador,capital);
+
+
+					var dec = ((formCurrency.format(data_relatorio[0].monthly_performance[i].dec * data_robo[0].multiplicador * x_multiplicador).replace('.','#')).replace(',','.')).replace('#',',');
+					data_relatorio[0].monthly_performance[i].dec_exib_reais = dec;
+					var dec_mult = data_relatorio[0].monthly_performance[i].dec * x_multiplicador;
+					data_relatorio[0].monthly_performance[i].dec_exib_perc = transformar_porcentagem(dec_mult,data_robo[0].multiplicador,capital);
+
+
+					var ytd = ((formCurrency.format(data_relatorio[0].monthly_performance[i].ytd * data_robo[0].multiplicador * x_multiplicador).replace('.','#')).replace(',','.')).replace('#',',');
+					data_relatorio[0].monthly_performance[i].ytd_exib_reais = ytd;
+					var ytd_mult = data_relatorio[0].monthly_performance[i].ytd * x_multiplicador;
+					data_relatorio[0].monthly_performance[i].ytd_exib_perc = transformar_porcentagem(ytd_mult,data_robo[0].multiplicador,capital);
+
+				}
+
+				for(i=0;i < data_relatorio[0].stats.length; i++){
+					var deviation = ((formCurrency.format(data_relatorio[0].stats[i].deviation * data_robo[0].multiplicador * x_multiplicador).replace('.','#')).replace(',','.')).replace('#',',');
+					data_relatorio[0].stats[i].deviation_exib_reais = deviation;
+					var deviation_mult = data_relatorio[0].stats[i].deviation * x_multiplicador;
+					data_relatorio[0].stats[i].deviation_exib_perc = transformar_porcentagem(deviation_mult,data_robo[0].multiplicador,capital);
+
+				}
+
+				for(i=0;i < data_relatorio[0].trades.length; i++){
+					var gross_profit = ((formCurrency.format(data_relatorio[0].trades[i].gross_profit * data_robo[0].multiplicador * x_multiplicador).replace('.','#')).replace(',','.')).replace('#',',');
+					data_relatorio[0].trades[i].gross_profit_exib_reais = gross_profit;
+					var gross_profit_mult = data_relatorio[0].trades[i].gross_profit * x_multiplicador;
+					data_relatorio[0].trades[i].gross_profit_exib_perc = transformar_porcentagem(gross_profit_mult,data_robo[0].multiplicador,capital);
+
+					var gross_loss = ((formCurrency.format(data_relatorio[0].trades[i].gross_loss * data_robo[0].multiplicador * x_multiplicador).replace('.','#')).replace(',','.')).replace('#',',');
+					data_relatorio[0].trades[i].gross_loss_exib_reais = gross_loss;
+					var gross_loss_mult = data_relatorio[0].trades[i].gross_loss * x_multiplicador;
+					data_relatorio[0].trades[i].gross_loss_exib_perc = transformar_porcentagem(gross_loss_mult,data_robo[0].multiplicador,capital);
+
+					var average_win = ((formCurrency.format(data_relatorio[0].trades[i].average_win * data_robo[0].multiplicador * x_multiplicador).replace('.','#')).replace(',','.')).replace('#',',');
+					data_relatorio[0].trades[i].average_win_exib_reais = average_win;
+					var average_win_mult = data_relatorio[0].trades[i].average_win * x_multiplicador;
+					data_relatorio[0].trades[i].average_win_exib_perc = transformar_porcentagem(average_win_mult,data_robo[0].multiplicador,capital);
+
+					var average_loss = ((formCurrency.format(data_relatorio[0].trades[i].average_loss * data_robo[0].multiplicador * x_multiplicador).replace('.','#')).replace(',','.')).replace('#',',');
+					data_relatorio[0].trades[i].average_loss_exib_reais = average_loss;
+					var average_loss_mult = data_relatorio[0].trades[i].average_loss * x_multiplicador;
+					data_relatorio[0].trades[i].average_loss_exib_perc = transformar_porcentagem(average_loss_mult,data_robo[0].multiplicador,capital);
+
+					var largest_win = ((formCurrency.format(data_relatorio[0].trades[i].largest_win * data_robo[0].multiplicador * x_multiplicador).replace('.','#')).replace(',','.')).replace('#',',');
+					data_relatorio[0].trades[i].largest_win_exib_reais = largest_win;
+					var largest_win_mult = data_relatorio[0].trades[i].largest_win * x_multiplicador;
+					data_relatorio[0].trades[i].largest_win_exib_perc = transformar_porcentagem(largest_win_mult,data_robo[0].multiplicador,capital);
+
+					var largest_loss = ((formCurrency.format(data_relatorio[0].trades[i].largest_loss * data_robo[0].multiplicador * x_multiplicador).replace('.','#')).replace(',','.')).replace('#',',');
+					data_relatorio[0].trades[i].largest_loss_exib_reais = largest_loss;
+					var largest_loss_mult = data_relatorio[0].trades[i].largest_loss * x_multiplicador;
+					data_relatorio[0].trades[i].largest_loss_exib_perc = transformar_porcentagem(largest_loss_mult,data_robo[0].multiplicador,capital);
+
+
+
+				}
+
+
+				data[req.session.usuario.id+'_relatorio']= data_relatorio;
+
+				data[req.session.usuario.id+'_porc_reais'] = porc_reais;
+
+				res.render(req.isAjaxRequest() == true ? 'api' : 'montador', {html: 'relatorio/gerador_relatorio', data: data, usuario: req.session.usuario});
+
+
+			}).sort({'_id':-1}).limit(1);
+
 });
+
+}else{
+	console.log('cai aqui no erro');
+	res.render(req.isAjaxRequest() == true ? 'api' : 'montador', {html: 'simulador/erro_simulador', data: data, usuario: req.session.usuario});
+}
+
+
 
 
 

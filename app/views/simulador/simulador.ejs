@@ -1,0 +1,143 @@
+
+<%- include('../includes/navbar'); %>
+
+<div class="flex align-items-stretch">
+
+
+	<%- include('../includes/sidebar'); %>
+	<%if(usuario.nivel == 4 || usuario.nivel == 1){ %>
+
+	<div class="page-content">
+
+		<section class="margin-bottom-sm">
+			<div class="container-fluid">
+				<div class="card">
+
+					<form method="POST" action="" enctype="multipart/form-data">
+						<div class="row margin-t-10">
+							<div class="col-sm-12">
+								<div class="valor_alocado_container margin-t-10">
+
+
+									<label class="valor_alocado_price_table">
+										Valor Alocado:								
+									</label>
+									<div class="valor_alocado_value_container">
+
+										<select class="form-select table-price-selector clean-container-message" data-href="/plataforma/sistema/simulador/select_nome_algoritmo" data-clean="relatorio-container" data-clean-mensagem="Por favor escolha um valor e um sistema para gerar o relatório!" data-to="select-nome-robo" aria-label="Selecione um valor" name="valor_minimo">
+											<option selected disabled>Selecione um valor</option>
+											<%
+											if (typeof data[usuario.id +'_robo_t'] != 'undefined' && data[usuario.id +'_robo_t'].length > 0) {
+												for (var i = 0 ; i < data[usuario.id +'_robo_t'].length; i++) {
+													%>
+													<option class="batata" value="<%= data[usuario.id +'_robo_t'][i].valor_minimo %>"><%=data[usuario.id +'_robo_t'][i].valor_minimo_robo %></option>
+
+													<%}
+												} %>
+
+											</select>
+
+
+
+										</div>
+									</div>
+
+
+									<div class="inline margin-l-20 margin-t-10">OU</div>
+
+									<div class="valor_alocado_container margin-t-10">
+										<label class="valor_alocado_price_table">Digite Valor:</label>
+										<div class="valor_alocado_value_container">
+											<input style="width: 130px;padding:0;" type="text" class="money2" name="valor" placeholder="Valor" id="valor_simulador_pitch">
+										</div>
+										<div class="valor_alocado_botao_container">
+											<button class="btn btn-quartiary ajax-submit-load-to clean-container-input-message" data-href="/plataforma/sistema/simulador/select_nome_algoritmo" data-clean="relatorio-container" data-clean-mensagem="Por favor escolha um valor e um sistema para gerar o relatório!" data-to="select-nome-robo" >Enviar</button>
+										</div>
+									</div>
+
+
+
+									<div class="valor_alocado_container margin-t-10">
+
+
+										<label class="valor_alocado_price_table">
+											Selecione um Sistema:								
+										</label>
+										<div class="valor_alocado_value_container">
+
+											<select class="form-select table-price-selector-no-limpar select-nome-robo" data-href="/plataforma/sistema/simulador/gerar_relatorio_algoritmo" data-to="relatorio-container" aria-label="Selecione um valor" name="id_robo">
+												<option selected disabled>Selecione o valor!</option>
+
+
+											</select>
+
+
+
+										</div>
+									</div>
+
+									<div class="valor_alocado_container margin-t-10">
+										<label class="valor_alocado_price_table">X:</label>
+										<div class="valor_alocado_value_container">
+											<input style="width: 50px;padding:0;" type="number" class="money2" name="x_multiplicador" placeholder="Valor" value="1" id="multiplicador_x_simulador_pitch">
+										</div>
+										<div class="valor_alocado_botao_container">
+											<button class="btn btn-quartiary ajax-submit-load-to" data-href="/plataforma/sistema/simulador/gerar_relatorio_algoritmo" data-to="relatorio-container">Enviar</button>
+										</div>
+									</div>
+
+									<div class="inline margin-t-10 margin-l-20">
+										<label class="inline primary-text f16">Porcentagem</label>
+
+										<div class="custom-control custom-switch inline">
+											<input type="checkbox" class="custom-control-input" id="relatorio_porcentagem_reais" name="reais">
+											<label class="custom-control-label f16 primary-text" for="relatorio_porcentagem_reais">Reais</label>
+										</div>
+									</div>
+
+								</div>
+							</div>
+						</form>
+
+
+
+						<div class="row">
+							<div class="col-sm-12">
+
+
+								<div class="relatorio-container margin-t-20">
+
+
+									<div class="text-center">Por favor escolha um valor e um sistema para gerar o relatório!</div>
+
+
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</section>
+
+		</div>
+
+
+
+
+
+		<%}else{%>
+		
+		<div class="page-content">
+			<div class="container-fluid">
+				<div class="alert error-block margin-t-10">
+					Você não pode acessar essa página!
+				</div>
+			</div>
+		</div>
+
+
+
+		<%}%>
+
+	</div>
+

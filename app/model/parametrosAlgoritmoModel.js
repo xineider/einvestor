@@ -38,15 +38,18 @@ const parametrosAlgoritmoSchema = new mongoose.Schema({
 	t3_time_1:[],
 	a3_action_1:[],
 	f3_filter_1:[],
-	t4_time_1:[],
-	a4_action_1:[],
-	f4_filter_1:[],
-	t5_time_1:[],
-	a5_action_1:[],
-	f5_filter_1:[],
-	t5_time_1:[],
-	a5_action_1:[],
-	f5_filter_1:[]
+	t4_time_2:[],
+	a4_action_2:[],
+	f4_filter_2:[],
+	t5_time_2:[],
+	a5_action_2:[],
+	f5_filter_2:[],
+	t5_time_2:[],
+	a5_action_2:[],
+	f5_filter_2:[],
+	t6_time_2:[],
+	a6_action_2:[],
+	f6_filter_2:[]
 
 });
 

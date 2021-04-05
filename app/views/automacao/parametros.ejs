@@ -25,95 +25,109 @@
 							<div class="padding-20">
 
 								<div class="container">
-									<form method="POST" action="" enctype="multipart/form-data">
 
-										<div class="header_formulario_parametros">
+
+									<% if (data[usuario.id +'_usuario_status'].length> 0){ %>
+
+
+									<%if(data[usuario.id +'_usuario_status'][0].algoritmo == 'Não Sincronizado'){%>
+									
+
+									<div class="header_formulario_parametros">
+
+										<p>
+											Olá, aqui você vai criar sua estratégia com auxílio da Inteligência Artificial do testador de estratégias da MetaQuotes, basta você escolher o nome de sua estratégia, e clicar no botão verde para carregar o algoritmo otimizado, ou seja o código que obteve o melhor resultado no teste de parâmetros. Você poderá checar o desempenho passado da estratégia no menu Relatório.
+										</p>
+
+										<form class="formulario_nome_estrategia">
+
+											<div class="row">
+												<div class="form-group col-sm-12 align-items-center">
+													<label class="inline margin-r-10">Nome da Estratégia:</label>
+													<input class="form-control input_nome_estrategia" name="nome_estrategia" placeholder="Nome da Estratégia" required="true">
+												</div>
+											</div>
+
+											<button data-href="/plataforma/sistema/automacao/carregar_parametros_algoritmo/" class="btn btn-success-light margin-t-10 margin-b-10 w100 carregar_parametros_algoritmo border-radius-20" data-to='container_formulario'>Clique aqui para carregar o algoritmo otimizado por I.A											
+											</button>
+
 											
-											<p>
-												Olá, aqui você vai criar sua estratégia com auxílio da Inteligência Artificial do testador de estratégias da MetaQuotes, basta você escolher o nome de sua estratégia, e clicar no botão verde para carregar o algoritmo otimizado, ou seja o código que obteve o melhor resultado no teste de parâmetros. Você poderá checar o desempenho passado da estratégia no menu Relatório.
-											</p>
-
-											<form class="formulario_nome_estrategia">
-
-												<div class="row">
-													<div class="form-group col-sm-12 align-items-center">
-														<label class="inline margin-r-10">Nome da Estratégia:</label>
-														<input class="form-control input_nome_estrategia" name="nome_estrategia" placeholder="Nome da Estratégia" required="true">
-													</div>
-												</div>
-
-												<button data-href="/plataforma/sistema/automacao/carregar_parametros_algoritmo/" class="btn btn-success-light margin-t-10 margin-b-10 w100 carregar_parametros_algoritmo" data-to='container_formulario'>Clique aqui para carregar o algoritmo otimizado por I.A											
-												</button>
-
-											</form>
-
-										</div>
-
-
-
-										<% if (data[usuario.id +'_usuario_status'].length> 0){ %>
-
-										<%if(data[usuario.id +'_usuario_status'][0].algoritmo == 'Sincronizada'){%>
-
-										<div class="alert alert-success text-center margin-t-10 margin-b-10">
-											Sua estrátegia foi <strong>sincronizada</strong> com sucesso!
-										</div>
-
-										<%}else if(data[usuario.id +'_usuario_status'][0].algoritmo == 'Sincronizando'){%>
-
-										<div class="alert alert-warning text-center margin-t-10 margin-b-10">
-											Sua estrátegia está <strong>sincronizando</strong>, esperar de 1 a 3 dias úteis para que ela esteja funcionando!
-										</div>
-
-										<%}else if(data[usuario.id +'_usuario_status'][0].algoritmo == 'Dessincronizado'){%>
-										<div class="alert alert-danger text-center margin-t-10 margin-b-10">
-											Sua estrátegia está <strong>dessincronizada</strong>, algo de errado aconteceu, por-favor enviar novamente a sincronização
-										</div>
-
-										<%}%>
-
-										<%}%>
-
-										<form method="POST" action="" enctype="multipart/form-data">
-
-											<div class="inline w100">
-
-
-												<% if(data[usuario.id +'_usuario_parametros'].length == 0 || data[usuario.id +'_usuario_status'][0].algoritmo == 'Dessincronizado'){ %>
-
-
-
-
-												<div class="alert alert-warning mensagem_algoritmo_carregado margin-t-10 margin-b-0 text-center none">
-
-													Agora você precisa clicar no botão abaixo para sincronizar a sua estratégia "<strong class="nome_estrategia"></strong>" otimizada
-
-
-												</div>
-
-
-												<button id="sincronizar_estrategia_otimizada" type="button" data-modal='#modalinfo' class="btn modal-mount btn-success-light float-right margin-t-10 margin-b-10 sincronizar_estrategia_otimizada none w100 pulse" title="Sincronizar" data-link="/plataforma/sistema/automacao/popup-sincronizar-estrategia-termos">Sincronizar Estratégia <span class="nome_estrategia"></span></button>
-
-												<%} %>
-
-											</div>
-
-											<div class="text-center primary-background white-text padding-5 border-radius-10">Parâmetros do algoritmo <%=data[usuario.id +'_usuario_algoritmo'][0].algoritmo[0].nome %></div>
-
-
-
-
-											<div class="margin-t-20 container_formulario">
-
-												<%-include('parametros_formulario')%>
-
-											</div>
 
 										</form>
 
+									</div>
 
 
-										<% if(data[usuario.id +'_usuario_parametros'].length == 0 || data[usuario.id +'_usuario_status'][0].algoritmo == 'Dessincronizado'){ %>
+
+									<% }else if(data[usuario.id +'_usuario_status'][0].algoritmo == 'Sincronizada'){%>
+
+									<div class="alert alert-success text-center margin-t-10 margin-b-10">
+										Sua estrátegia foi <strong>sincronizada</strong> com sucesso!
+									</div>
+
+									<%}else if(data[usuario.id +'_usuario_status'][0].algoritmo == 'Sincronizando'){%>
+
+									<div class="alert alert-warning text-center margin-t-10 margin-b-10">
+										Sua estrátegia está <strong>sincronizando</strong>, esperar de 1 a 3 dias úteis para que ela esteja funcionando!
+									</div>
+
+									<%}else if(data[usuario.id +'_usuario_status'][0].algoritmo == 'Dessincronizado'){%>
+									<div class="alert alert-danger text-center margin-t-10 margin-b-10">
+										Sua estrátegia está <strong>dessincronizada</strong>, algo de errado aconteceu, por-favor enviar novamente a sincronização
+									</div>
+
+									<%}%>
+
+									<%}%>
+
+
+									<div class="progress none">
+										<div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 0%;background-color:#7bc24d;"></div>
+									</div>
+									<div class="bold mensagem_progress none text-center green-light-text">Carregando Parâmetros...</div>
+
+
+
+									<form method="POST" action="" enctype="multipart/form-data">
+
+										<div class="inline w100">
+
+
+											<% if(data[usuario.id +'_usuario_parametros'].length == 0 || data[usuario.id +'_usuario_status'][0].algoritmo == 'Dessincronizado'){ %>
+
+
+
+
+											<div class="alert alert-warning mensagem_algoritmo_carregado margin-t-10 margin-b-0 text-center none">
+
+												Agora você precisa clicar no botão abaixo para sincronizar a sua estratégia "<strong class="nome_estrategia"></strong>" otimizada
+
+
+											</div>
+
+
+											<button id="sincronizar_estrategia_otimizada" type="button" data-modal='#modalinfo' class="btn modal-mount btn-success-light float-right margin-t-10 margin-b-10 sincronizar_estrategia_otimizada none w100 pulse" title="Sincronizar" data-link="/plataforma/sistema/automacao/popup-sincronizar-estrategia-termos">Sincronizar Estratégia <span class="nome_estrategia"></span></button>
+
+											<%} %>
+
+										</div>
+
+
+
+										<div class="text-center white-text padding-5 grey-background-1">Parâmetros do algoritmo <%=data[usuario.id +'_usuario_algoritmo'][0].algoritmo[0].nome %></div>
+
+
+										<div class="container_formulario">
+
+											<%-include('parametros_formulario')%>
+
+										</div>
+
+									</form>
+
+
+
+									<% if(data[usuario.id +'_usuario_parametros'].length == 0 || data[usuario.id +'_usuario_status'][0].algoritmo == 'Dessincronizado'){ %>
 
 <!-- 										<div class="margin-t-20">
 											<button type="button" data-modal='#modalinfo' class="btn btn-primary modal-mount float-right margin-t-10 margin-b-10 sincronizar_estrategia_propria" title="Sincronizar Estratégia própria" data-link="/plataforma/sistema/automacao/popup-sincronizar-estrategia-propria">Sincronizar Estratégia Própria</button>
@@ -122,17 +136,15 @@
 
 										<%} %>
 
-									</form>
+									</div>
+
 
 								</div>
-
-
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</section>
-	</div>
+			</section>
+		</div>
 
-</div>
+	</div>

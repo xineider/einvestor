@@ -88,6 +88,8 @@ router.get('/', function(req, res, next) {
 			console.log(multiplicador);
 			console.log('multiplicador');
 
+			var porc_reais = 'porc';
+
 			relatorioModel.find({},function(err,data_relatorio){
 
 				console.log('rrrrrrrrrrrrrrrrrrrrrrrrrrr data_relatorio rrrrrrrrrrrrrrrrrrrrrrrrrrrr');
@@ -155,6 +157,9 @@ router.get('/', function(req, res, next) {
 					data_relatorio[0].monthly_performance[i].fev_exib_perc = transformar_porcentagem(data_relatorio[0].monthly_performance[i].fev,multiplicador,capital);
 
 					var mar = ((formCurrency.format(data_relatorio[0].monthly_performance[i].mar * multiplicador).replace('.','#')).replace(',','.')).replace('#',',');
+					var mar_e = data_relatorio[0].monthly_performance[i].mar * multiplicador;
+
+					data_relatorio[0].monthly_performance[i].mar_exib_perc2 = mar_e;
 					data_relatorio[0].monthly_performance[i].mar_exib_reais = mar;
 					data_relatorio[0].monthly_performance[i].mar_exib_perc = transformar_porcentagem(data_relatorio[0].monthly_performance[i].mar,multiplicador,capital);
 
@@ -246,6 +251,8 @@ router.get('/', function(req, res, next) {
 
 
 				data[req.session.usuario.id+'_relatorio']= data_relatorio;
+
+				data[req.session.usuario.id+'_porc_reais'] = porc_reais;
 
 
 				res.render(req.isAjaxRequest() == true ? 'api' : 'montador', {html: 'relatorio/relatorio', data: data, usuario: req.session.usuario});
@@ -340,6 +347,12 @@ router.post('/gerar_relatorio_robo', function(req, res, next) {
 	console.log('estou alterando o gerar relatorio robo ');
 	console.log(POST);
 	console.log('ttttttttttttttttttttttttttttttttttttttttt');
+
+	var porc_reais = 'porc';
+
+	if(POST.reais != null){
+		porc_reais = 'reais'
+	}
 
 	
 
@@ -502,6 +515,8 @@ router.post('/gerar_relatorio_robo', function(req, res, next) {
 
 
 			data[req.session.usuario.id+'_relatorio']= data_relatorio;
+
+			data[req.session.usuario.id+'_porc_reais'] = porc_reais;
 
 
 			res.render(req.isAjaxRequest() == true ? 'api' : 'montador', {html: 'relatorio/gerador_relatorio', data: data, usuario: req.session.usuario});

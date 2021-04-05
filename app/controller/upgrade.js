@@ -25,6 +25,9 @@ const formCurrency = new Intl.NumberFormat('pt-BR', {
 	minimumFractionDigits: 2
 });
 
+var usuarioCorretoraModel = require('../model/usuarioCorretoraModel.js');
+var usuarioParametrosAlgoritmoModel = require('../model/usuarioParametrosAlgoritmoModel');
+
 var usuarioStatusModel = require('../model/usuarioStatusModel.js');
 var moment = require('moment');
 moment.locale('pt-br');
@@ -46,29 +49,37 @@ router.get('/', function(req, res, next) {
 		data[req.session.usuario.id+'_usuario_status'] = data_usuario_status;
 
 
+		usuarioCorretoraModel.find({id_usuario:mongoose.Types.ObjectId(req.session.usuario.id)},function(err,data_usuario_corretora){
+			data[req.session.usuario.id+'_usuario_corretora']= data_usuario_corretora;
 
-		roboModel.find({},function(err,data_algoritmo){
-			data[req.session.usuario.id+'_algoritmo']= data_algoritmo;
-
-			for(i=0;i < data_algoritmo.length; i++){
-				var valor_minimo_robo = formCurrency.format(data_algoritmo[i].valor_minimo);
-				valor_minimo_robo = ((valor_minimo_robo.replace('.','#')).replace(',','.')).replace('#',',');
-				console.log('valor_minimo_robo');
-				console.log(valor_minimo_robo);
-				data_algoritmo[i].valor_minimo_robo = valor_minimo_robo;
-			}
-
-			regrasAlgoritmoModel.find({deletado:false},function(err,data_regras_algoritmo){
-				data[req.session.usuario.id+'_regras_algoritmo'] = data_regras_algoritmo;
+			usuarioParametrosAlgoritmoModel.find({},function(err,data_parametros_usuario){
+				data[req.session.usuario.id+'_usuario_parametros'] = data_parametros_usuario;
 
 
-				console.log('wwwwwwwwwwwwwwwwwwwww');
-				console.log(data);
-				console.log('wwwwwwwwwwwwwwwwwwwww');
+				roboModel.find({},function(err,data_algoritmo){
+					data[req.session.usuario.id+'_algoritmo']= data_algoritmo;
 
-				res.render(req.isAjaxRequest() == true ? 'api' : 'montador', {html: 'upgrade/upgrade', data: data, usuario: req.session.usuario});
+					for(i=0;i < data_algoritmo.length; i++){
+						var valor_minimo_robo = formCurrency.format(data_algoritmo[i].valor_minimo);
+						valor_minimo_robo = ((valor_minimo_robo.replace('.','#')).replace(',','.')).replace('#',',');
+						console.log('valor_minimo_robo');
+						console.log(valor_minimo_robo);
+						data_algoritmo[i].valor_minimo_robo = valor_minimo_robo;
+					}
+
+					regrasAlgoritmoModel.find({deletado:false},function(err,data_regras_algoritmo){
+						data[req.session.usuario.id+'_regras_algoritmo'] = data_regras_algoritmo;
+
+
+						console.log('wwwwwwwwwwwwwwwwwwwww');
+						console.log(data);
+						console.log('wwwwwwwwwwwwwwwwwwwww');
+
+						res.render(req.isAjaxRequest() == true ? 'api' : 'montador', {html: 'upgrade/upgrade', data: data, usuario: req.session.usuario});
+					}).sort({'_id':-1}).limit(1);
+				}).sort({'_id':-1});
 			}).sort({'_id':-1}).limit(1);
-		});
+		}).sort({'_id':-1}).limit(1);
 	}).sort({'_id':-1}).limit(1);
 });
 

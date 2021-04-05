@@ -67,69 +67,70 @@ router.get('/', function(req, res, next) {
 
 
 						usuarioAlgoritmoHistoricoModel.find({id_usuario:mongoose.Types.ObjectId(req.session.usuario.id)},function(err,data_usuario_algoritmo_historico){
-								// console.log('0000000000 data_usuario_algoritmo 0000000000000000000000000');
-								// console.log(data_usuario_algoritmo_historico);
-								// console.log('00000000000000000000000000000000000');
-
-								var data_header_grafico = {}
-
-								// console.log('data_usuario_algoritmo_historico.length: ' + data_usuario_algoritmo_historico.length);
 
 
-								if(data_usuario_algoritmo_historico.length > 0 ){
-
-									var melhor,pior;
-									var meses_positivos = 0;
-									var meses_negativos = 0;
-									var numero_operacoes_t = 0;
-
-									for(i=0;i < data_usuario_algoritmo_historico.length; i++){
-
-										if(melhor == undefined){
-											melhor = data_usuario_algoritmo_historico[i].porcentagem;
-										}
-
-										if(pior == undefined){
-											pior = data_usuario_algoritmo_historico[i].porcentagem;
-										}
-
-										if(data_usuario_algoritmo_historico[i].porcentagem > melhor){
-											melhor = data_usuario_algoritmo_historico[i].porcentagem;
-										}
-
-										if(data_usuario_algoritmo_historico[i].porcentagem < pior){
-											pior = data_usuario_algoritmo_historico[i].porcentagem;
-										}
-
-										if(data_usuario_algoritmo_historico[i].porcentagem>0){
-											meses_positivos++;
-										}
-
-										if(data_usuario_algoritmo_historico[i].porcentagem < 0){
-											meses_negativos++;
-										}
-
-										numero_operacoes_t = numero_operacoes_t + data_usuario_algoritmo_historico[i].numero_operacoes;
+							var data_header_grafico = {}
 
 
+
+							if(data_usuario_algoritmo_historico.length > 0 ){
+
+								var melhor,pior;
+								var meses_positivos = 0;
+								var meses_negativos = 0;
+								var numero_operacoes_t = 0;
+
+								for(i=0;i < data_usuario_algoritmo_historico.length; i++){
+
+									if(melhor == undefined){
+										melhor = data_usuario_algoritmo_historico[i].porcentagem;
 									}
 
-									var melhor_exib = melhor.toString().replace('.',',');
-									var pior_exib = pior.toString().replace('.',',');
+									if(pior == undefined){
+										pior = data_usuario_algoritmo_historico[i].porcentagem;
+									}
 
-									data_header_grafico = {melhor:melhor,melhor_exib:melhor_exib,pior:pior,pior_exib:pior_exib,meses_positivos:meses_positivos,meses_negativos:meses_negativos,numero_operacoes:numero_operacoes_t};
+									if(data_usuario_algoritmo_historico[i].porcentagem > melhor){
+										melhor = data_usuario_algoritmo_historico[i].porcentagem;
+									}
+
+									if(data_usuario_algoritmo_historico[i].porcentagem < pior){
+										pior = data_usuario_algoritmo_historico[i].porcentagem;
+									}
+
+									if(data_usuario_algoritmo_historico[i].porcentagem>0){
+										meses_positivos++;
+									}
+
+									if(data_usuario_algoritmo_historico[i].porcentagem < 0){
+										meses_negativos++;
+									}
+
+									numero_operacoes_t = numero_operacoes_t + data_usuario_algoritmo_historico[i].numero_operacoes;
 
 
-									// console.log('data_header_grafico');
-									// console.log(data_header_grafico);
-
-
-								}else{
-									data_header_grafico = {melhor:0,melhor_exib:0,pior:0,pior_exib:0,meses_positivos:0,meses_negativos:0,numero_operacoes:0};
 								}
 
-								data[req.session.usuario.id+'_usuario_grafico']= data_usuario_algoritmo_historico;
-								data[req.session.usuario.id+'_usuario_grafico_header'] = data_header_grafico;
+								var melhor_exib = melhor.toString().replace('.',',');
+								var pior_exib = pior.toString().replace('.',',');
+
+								data_header_grafico = {melhor:melhor,melhor_exib:melhor_exib,pior:pior,pior_exib:pior_exib,meses_positivos:meses_positivos,meses_negativos:meses_negativos,numero_operacoes:numero_operacoes_t};
+
+
+
+
+
+							}else{
+								data_header_grafico = {melhor:0,melhor_exib:0,pior:0,pior_exib:0,meses_positivos:0,meses_negativos:0,numero_operacoes:0};
+							}
+
+							data[req.session.usuario.id+'_usuario_grafico_header'] = data_header_grafico;
+							usuarioAlgoritmoHistoricoModel.find({id_usuario:mongoose.Types.ObjectId(req.session.usuario.id)},function(err,data_usuario_algoritmo_historico_3meses){
+
+								console.log('data_usuario_algoritmo_historico_3meses');
+								console.log(data_usuario_algoritmo_historico_3meses);
+
+								data[req.session.usuario.id+'_usuario_grafico']= data_usuario_algoritmo_historico_3meses;
 
 								//get do robo para identificar o nome para o usuário, regra de 1x1
 								usuarioRoboModel.aggregate([
@@ -175,9 +176,10 @@ router.get('/', function(req, res, next) {
 									data[req.session.usuario.id+'_usuario_algoritmo'] = data_algoritmo;
 									res.render(req.isAjaxRequest() == true ? 'api' : 'montador', {html: 'inicio/index',  data: data, usuario: req.session.usuario});
 								});
-							});
+							}).sort({'_id':-1}).limit(3);
+						});
 					}).sort({'_id':-1}).limit(1);
-});
+				});
 }).sort({'_id':-1}).limit(1);
 }).sort({'_id':-1}).limit(1);
 
@@ -263,7 +265,7 @@ router.post('/aceitar_termos_popup', function(req, res, next) {
 	console.log('estou no aceitar termos popup');
 
 	usuarioStatusModel.findOneAndUpdate({id_usuario:mongoose.Types.ObjectId(req.session.usuario.id)},{'$set':{'aceite_termos_inicio':true}},function(err){
-				res.json(data);
+		res.json(data);
 	});
 
 

@@ -30,10 +30,21 @@
 									<%= data[usuario.id +'_relatorio'][0].estrategias[i].nome %>
 								</td>
 								<td>
-									<%= data[usuario.id +'_relatorio'][0].estrategias[i].net_profit_exib_perc %>%
+										
+									<span class="relatorio_dado_perc <%= data[usuario.id +'_porc_reais'] == 'porc' ? '' : 'none' %>">										
+										<%= data[usuario.id +'_relatorio'][0].estrategias[i].net_profit_exib_perc %>%
+									</span>
+									<span class="relatorio_dado_real <%= data[usuario.id +'_porc_reais'] == 'reais' ? '' : 'none' %>">
+										<%= data[usuario.id +'_relatorio'][0].estrategias[i].net_profit_exib_reais%>
+									</span>
 								</td>
 								<td>
-									<%= data[usuario.id +'_relatorio'][0].estrategias[i].drawdown_exib_perc %>%
+									<span class="relatorio_dado_perc <%= data[usuario.id +'_porc_reais'] == 'porc' ? '' : 'none' %>">
+										<%= data[usuario.id +'_relatorio'][0].estrategias[i].drawdown_exib_perc %>%
+									</span>
+									<span class="relatorio_dado_real <%= data[usuario.id +'_porc_reais'] == 'reais' ? '' : 'none' %>">
+										<%= data[usuario.id +'_relatorio'][0].estrategias[i].drawdown_exib_reais %>
+									</span>
 								</td>
 								<td>
 									<%= data[usuario.id +'_relatorio'][0].estrategias[i].trades %>
@@ -48,7 +59,12 @@
 									<%= data[usuario.id +'_relatorio'][0].estrategias[i].return %>
 								</td>
 								<td>
-									<%= data[usuario.id +'_relatorio'][0].estrategias[i].average_trade_exib_perc %>%
+									<span class="relatorio_dado_perc <%= data[usuario.id +'_porc_reais'] == 'porc' ? '' : 'none' %>">
+										<%= data[usuario.id +'_relatorio'][0].estrategias[i].average_trade_exib_perc %>%
+									</span>
+									<span class="relatorio_dado_real <%= data[usuario.id +'_porc_reais'] == 'reais' ? '' : 'none' %>">
+										<%= data[usuario.id +'_relatorio'][0].estrategias[i].average_trade_exib_reais %>
+									</span>
 								</td>
 							</tr>
 
@@ -65,12 +81,17 @@
 					
 					<div class="col-sm-12 col-md-2 col-lg-3">
 						<div class="border-bottom-pontilhado">
-							<span class="f24 bold black-text margin-r-10">Total Profit</span> 
-							<span class="f30 primary-text bold"><%=data[usuario.id +'_relatorio'][0].estrategias[2].net_profit_exib_perc %>%</span>
+							<span class="f24 bold black-text margin-r-10">Total Profit</span>
+
+							<span class="f30 primary-text bold relatorio_dado_perc <%= data[usuario.id +'_porc_reais'] == 'porc' ? '' : 'none' %>"><%=data[usuario.id +'_relatorio'][0].estrategias[2].net_profit_exib_perc %>%</span>
+
+							<span class="f30 primary-text bold relatorio_dado_real <%= data[usuario.id +'_porc_reais'] == 'reais' ? '' : 'none' %>"><%=data[usuario.id +'_relatorio'][0].estrategias[2].net_profit_exib_reais %></span>
 						</div>
 						<div class="">
 							<span class="uppercase margin-r-10">YEARLY AVG RETURN</span>
-							<span class="f20 primary-text"><%=data[usuario.id +'_relatorio'][0].estrategias[2].year_average_exib_perc %>%</span>
+							<span class="f20 primary-text relatorio_dado_perc <%= data[usuario.id +'_porc_reais'] == 'porc' ? '' : 'none' %>"><%=data[usuario.id +'_relatorio'][0].estrategias[2].year_average_exib_perc %>%</span>
+
+							<span class="f20 primary-text relatorio_dado_real <%= data[usuario.id +'_porc_reais'] == 'reais' ? '' : 'none' %>"><%=data[usuario.id +'_relatorio'][0].estrategias[2].year_average_exib_reais %></span>
 						</div>
 					</div>
 
@@ -129,7 +150,9 @@
 								<div class="fake_input_group">
 									<label class="uppercase black-text margin-b-0 f12">Drawdown</label>
 									<div class="fake_input">
-										<%= data[usuario.id +'_relatorio'][0].estrategias[2].drawdown_exib_perc %>%
+										<span class="relatorio_dado_perc <%= data[usuario.id +'_porc_reais'] == 'porc' ? '' : 'none' %>"><%= data[usuario.id +'_relatorio'][0].estrategias[2].drawdown_exib_perc %>%</span>
+
+										<span class="relatorio_dado_real <%= data[usuario.id +'_porc_reais'] == 'reais' ? '' : 'none' %>"><%= data[usuario.id +'_relatorio'][0].estrategias[2].drawdown_exib_reais %></span>
 									</div>
 								</div>
 
@@ -140,7 +163,9 @@
 								<div class="fake_input_group">
 									<label class="uppercase black-text margin-b-0 f12">Daily Avg Profit</label>
 									<div class="fake_input">
-										<%= data[usuario.id +'_relatorio'][0].estrategias[2].daily_profit_exib_perc %>%
+										<span class="relatorio_dado_perc <%= data[usuario.id +'_porc_reais'] == 'porc' ? '' : 'none' %>"><%= data[usuario.id +'_relatorio'][0].estrategias[2].daily_profit_exib_perc %>%</span>
+
+										<span class="relatorio_dado_real <%= data[usuario.id +'_porc_reais'] == 'reais' ? '' : 'none' %>"><%= data[usuario.id +'_relatorio'][0].estrategias[2].daily_profit_exib_reais %></span>
 									</div>
 								</div>
 
@@ -151,7 +176,9 @@
 								<div class="fake_input_group">
 									<label class="uppercase black-text margin-b-0 f12">Monthly Avg Profit</label>
 									<div class="fake_input bold primary-text">
-										<%= data[usuario.id +'_relatorio'][0].estrategias[2].month_profit_exib_perc %>%
+										<span class="relatorio_dado_perc <%= data[usuario.id +'_porc_reais'] == 'porc' ? '' : 'none' %>"><%= data[usuario.id +'_relatorio'][0].estrategias[2].month_profit_exib_perc %>%</span>
+
+										<span class="relatorio_dado_real <%= data[usuario.id +'_porc_reais'] == 'reais' ? '' : 'none' %>"><%= data[usuario.id +'_relatorio'][0].estrategias[2].month_profit_exib_reais %></span>
 									</div>
 								</div>
 
@@ -162,7 +189,9 @@
 								<div class="fake_input_group">
 									<label class="uppercase black-text margin-b-0 f12">Average Trade</label>
 									<div class="fake_input">
-										<%= data[usuario.id +'_relatorio'][0].estrategias[2].average_trade_exib_perc %>%
+										<span class="relatorio_dado_perc <%= data[usuario.id +'_porc_reais'] == 'porc' ? '' : 'none' %>"><%= data[usuario.id +'_relatorio'][0].estrategias[2].average_trade_exib_perc %>%</span>
+
+										<span class="relatorio_dado_real <%= data[usuario.id +'_porc_reais'] == 'reais' ? '' : 'none' %>"><%= data[usuario.id +'_relatorio'][0].estrategias[2].average_trade_exib_reais %></span>
 									</div>
 								</div>
 
@@ -210,8 +239,14 @@
 										<%= data[usuario.id +'_relatorio'][0].resume_performance[i].period %>
 									</td>
 									<td>
-										<%= data[usuario.id +'_relatorio'][0].resume_performance[i].net_profit_exib_perc %>%
+										<span class="relatorio_dado_perc <%= data[usuario.id +'_porc_reais'] == 'porc' ? '' : 'none' %>">
+											<%= data[usuario.id +'_relatorio'][0].resume_performance[i].net_profit_exib_perc %>%
+										</span>
+										<span class="relatorio_dado_real <%= data[usuario.id +'_porc_reais'] == 'reais' ? '' : 'none' %>">
+											<%= data[usuario.id +'_relatorio'][0].resume_performance[i].net_profit_exib_reais %>
+										</span>
 									</td>
+
 									<td>
 										<%= data[usuario.id +'_relatorio'][0].resume_performance[i].profit_factor %>
 									</td>
@@ -279,13 +314,13 @@
 								</td>
 								<td></td>
 								<td class="secondary-color-background">
-									-0.08
+									-0.07
 								</td>
 							</tr>
 
 							<tr>
 								<td><%= data[usuario.id +'_relatorio'][0].estrategias[1].nome %></td>
-								<td class="secondary-color-background">-0.08</td>
+								<td class="secondary-color-background">-0.07</td>
 								<td></td>
 							</tr>
 
@@ -343,43 +378,108 @@
 										<%= data[usuario.id +'_relatorio'][0].monthly_performance[i].year %>
 									</td>
 									<td>
-										<%= data[usuario.id +'_relatorio'][0].monthly_performance[i].jan_exib_perc %>%
+										<span class="relatorio_dado_perc <%= data[usuario.id +'_porc_reais'] == 'porc' ? '' : 'none' %>">
+											<%= data[usuario.id +'_relatorio'][0].monthly_performance[i].jan_exib_perc %>%
+										</span>
+										<span class="relatorio_dado_real <%= data[usuario.id +'_porc_reais'] == 'reais' ? '' : 'none' %>">
+											<%= data[usuario.id +'_relatorio'][0].monthly_performance[i].jan_exib_reais %>
+										</span>
 									</td>
 									<td>
-										<%= data[usuario.id +'_relatorio'][0].monthly_performance[i].fev_exib_perc %>%
+										<span class="relatorio_dado_perc <%= data[usuario.id +'_porc_reais'] == 'porc' ? '' : 'none' %>">
+											<%= data[usuario.id +'_relatorio'][0].monthly_performance[i].fev_exib_perc %>%
+										</span>
+										<span class="relatorio_dado_real <%= data[usuario.id +'_porc_reais'] == 'reais' ? '' : 'none' %>">
+											<%= data[usuario.id +'_relatorio'][0].monthly_performance[i].fev_exib_reais %>
+										</span>
 									</td>
 									<td>
-										<%= data[usuario.id +'_relatorio'][0].monthly_performance[i].mar_exib_perc %>%
+										<span class="relatorio_dado_perc <%= data[usuario.id +'_porc_reais'] == 'porc' ? '' : 'none' %>">
+											<%= data[usuario.id +'_relatorio'][0].monthly_performance[i].mar_exib_perc %>%
+										</span>
+										<span class="relatorio_dado_real <%= data[usuario.id +'_porc_reais'] == 'reais' ? '' : 'none' %>">					
+											<%= data[usuario.id +'_relatorio'][0].monthly_performance[i].mar_exib_reais %>
+										</span>
 									</td>
 									<td>
-										<%= data[usuario.id +'_relatorio'][0].monthly_performance[i].apr_exib_perc %>%
+										<span class="relatorio_dado_perc <%= data[usuario.id +'_porc_reais'] == 'porc' ? '' : 'none' %>">
+											<%= data[usuario.id +'_relatorio'][0].monthly_performance[i].apr_exib_perc %>%
+										</span>
+										<span class="relatorio_dado_real <%= data[usuario.id +'_porc_reais'] == 'reais' ? '' : 'none' %>">
+											<%= data[usuario.id +'_relatorio'][0].monthly_performance[i].apr_exib_reais %>
+										</span>
 									</td>
 									<td>
-										<%= data[usuario.id +'_relatorio'][0].monthly_performance[i].may_exib_perc %>%
+										<span class="relatorio_dado_perc <%= data[usuario.id +'_porc_reais'] == 'porc' ? '' : 'none'  %>">
+											<%= data[usuario.id +'_relatorio'][0].monthly_performance[i].may_exib_perc %>%
+										</span>
+										<span class="relatorio_dado_real <%= data[usuario.id +'_porc_reais'] == 'reais' ? '' : 'none' %>">
+											<%= data[usuario.id +'_relatorio'][0].monthly_performance[i].may_exib_reais %>
+										</span>
 									</td>
 									<td>
-										<%= data[usuario.id +'_relatorio'][0].monthly_performance[i].jun_exib_perc %>%
+										<span class="relatorio_dado_perc <%= data[usuario.id +'_porc_reais'] == 'porc' ? '' : 'none' %>">
+											<%= data[usuario.id +'_relatorio'][0].monthly_performance[i].jun_exib_perc %>%
+										</span>
+										<span class="relatorio_dado_real <%= data[usuario.id +'_porc_reais'] == 'reais' ? '' : 'none' %>">
+											<%= data[usuario.id +'_relatorio'][0].monthly_performance[i].jun_exib_reais %>
+										</span>
 									</td>
 									<td>
-										<%= data[usuario.id +'_relatorio'][0].monthly_performance[i].jul_exib_perc %>%
+										<span class="relatorio_dado_perc <%= data[usuario.id +'_porc_reais'] == 'porc' ? '' : 'none' %>">
+											<%= data[usuario.id +'_relatorio'][0].monthly_performance[i].jul_exib_perc %>%
+										</span>
+										<span class="relatorio_dado_real <%= data[usuario.id +'_porc_reais'] == 'reais' ? '' : 'none' %>">
+											<%= data[usuario.id +'_relatorio'][0].monthly_performance[i].jul_exib_reais %>
+										</span>
 									</td>
 									<td>
-										<%= data[usuario.id +'_relatorio'][0].monthly_performance[i].aug_exib_perc %>%
+										<span class="relatorio_dado_perc <%= data[usuario.id +'_porc_reais'] == 'porc' ? '' : 'none' %>">
+											<%= data[usuario.id +'_relatorio'][0].monthly_performance[i].aug_exib_perc %>%
+										</span>
+										<span class="relatorio_dado_real <%= data[usuario.id +'_porc_reais'] == 'reais' ? '' : 'none' %>">
+											<%= data[usuario.id +'_relatorio'][0].monthly_performance[i].aug_exib_reais %>
+										</span>
 									</td>
 									<td>
-										<%= data[usuario.id +'_relatorio'][0].monthly_performance[i].sep_exib_perc %>%
+										<span class="relatorio_dado_perc <%= data[usuario.id +'_porc_reais'] == 'porc' ? '' : 'none' %>">
+											<%= data[usuario.id +'_relatorio'][0].monthly_performance[i].sep_exib_perc %>%
+										</span>
+										<span class="relatorio_dado_real <%= data[usuario.id +'_porc_reais'] == 'reais' ? '' : 'none' %>">
+											<%= data[usuario.id +'_relatorio'][0].monthly_performance[i].sep_exib_reais %>
+										</span>
 									</td>
 									<td>
-										<%= data[usuario.id +'_relatorio'][0].monthly_performance[i].oct_exib_perc %>%
+										<span class="relatorio_dado_perc <%= data[usuario.id +'_porc_reais'] == 'porc' ? '' : 'none' %>">
+											<%= data[usuario.id +'_relatorio'][0].monthly_performance[i].oct_exib_perc %>%
+										</span>
+										<span class="relatorio_dado_real <%= data[usuario.id +'_porc_reais'] == 'reais' ? '' : 'none' %>">
+											<%= data[usuario.id +'_relatorio'][0].monthly_performance[i].oct_exib_reais %>
+										</span>
 									</td>
 									<td>
-										<%= data[usuario.id +'_relatorio'][0].monthly_performance[i].nov_exib_perc %>%
+										<span class="relatorio_dado_perc <%= data[usuario.id +'_porc_reais'] == 'porc' ? '' : 'none' %>">
+											<%= data[usuario.id +'_relatorio'][0].monthly_performance[i].nov_exib_perc %>%
+										</span>
+										<span class="relatorio_dado_real <%= data[usuario.id +'_porc_reais'] == 'reais' ? '' : 'none' %>">
+											<%= data[usuario.id +'_relatorio'][0].monthly_performance[i].nov_exib_reais %>
+										</span>
 									</td>
 									<td>
-										<%= data[usuario.id +'_relatorio'][0].monthly_performance[i].dec_exib_perc %>%
+										<span class="relatorio_dado_perc <%= data[usuario.id +'_porc_reais'] == 'porc' ? '' : 'none' %>">
+											<%= data[usuario.id +'_relatorio'][0].monthly_performance[i].dec_exib_perc %>%
+										</span>
+										<span class="relatorio_dado_real <%= data[usuario.id +'_porc_reais'] == 'reais' ? '' : 'none' %>" style="min-width: 110px;">
+											<%= data[usuario.id +'_relatorio'][0].monthly_performance[i].dec_exib_reais %>
+										</span>
 									</td>
 									<td>
-										<%= data[usuario.id +'_relatorio'][0].monthly_performance[i].ytd_exib_perc %>%
+										<span class="relatorio_dado_perc <%= data[usuario.id +'_porc_reais'] == 'porc' ? '' : 'none' %>">
+											<%= data[usuario.id +'_relatorio'][0].monthly_performance[i].ytd_exib_perc %>%
+										</span>
+										<span class="relatorio_dado_real <%= data[usuario.id +'_porc_reais'] == 'reais' ? '' : 'none' %>">
+											<%= data[usuario.id +'_relatorio'][0].monthly_performance[i].ytd_exib_reais %>
+										</span>
 									</td>
 								</tr>
 
@@ -558,7 +658,13 @@
 								</div>
 								<div class="col-sm-6">								
 									<div class="fake_input w100 text-right">
-										<%= data[usuario.id +'_relatorio'][0].stats[0].deviation_exib_perc %>%
+										<span class="relatorio_dado_perc <%= data[usuario.id +'_porc_reais'] == 'porc' ? '' : 'none' %>">
+											<%= data[usuario.id +'_relatorio'][0].stats[0].deviation_exib_perc %>%
+										</span>
+										<span class="relatorio_dado_real <%= data[usuario.id +'_porc_reais'] == 'reais' ? '' : 'none' %>">
+											<%= data[usuario.id +'_relatorio'][0].stats[0].deviation_exib_reais %>
+										</span>
+
 									</div>
 								</div>
 
@@ -736,7 +842,12 @@
 								</div>
 								<div class="col-sm-6">								
 									<div class="fake_input w100 text-right">
-										<%= data[usuario.id +'_relatorio'][0].trades[0].gross_profit_exib_perc %>%
+										<span class="relatorio_dado_perc <%= data[usuario.id +'_porc_reais'] == 'porc' ? '' : 'none' %>">
+											<%= data[usuario.id +'_relatorio'][0].trades[0].gross_profit_exib_perc %>%
+										</span>
+										<span class="relatorio_dado_real <%= data[usuario.id +'_porc_reais'] == 'reais' ? '' : 'none' %>">
+											<%= data[usuario.id +'_relatorio'][0].trades[0].gross_profit_exib_reais %>
+										</span>
 									</div>
 								</div>
 
@@ -756,7 +867,12 @@
 								</div>
 								<div class="col-sm-6">								
 									<div class="fake_input w100 text-right">
-										<%= data[usuario.id +'_relatorio'][0].trades[0].gross_loss_exib_perc %>%
+										<span class="relatorio_dado_perc <%= data[usuario.id +'_porc_reais'] == 'porc' ? '' : 'none' %>">
+											<%= data[usuario.id +'_relatorio'][0].trades[0].gross_loss_exib_perc %>%
+										</span>
+										<span class="relatorio_dado_real <%= data[usuario.id +'_porc_reais'] == 'reais' ? '' : 'none' %>">
+											<%= data[usuario.id +'_relatorio'][0].trades[0].gross_loss_exib_reais %>
+										</span>
 									</div>
 								</div>
 
@@ -776,7 +892,12 @@
 								</div>
 								<div class="col-sm-6">								
 									<div class="fake_input w100 text-right">
-										<%= data[usuario.id +'_relatorio'][0].trades[0].average_win_exib_perc %>%
+										<span class="relatorio_dado_perc <%= data[usuario.id +'_porc_reais'] == 'porc' ? '' : 'none' %>">
+											<%= data[usuario.id +'_relatorio'][0].trades[0].average_win_exib_perc %>%
+										</span>
+										<span class="relatorio_dado_real <%= data[usuario.id +'_porc_reais'] == 'reais' ? '' : 'none' %>">
+											<%= data[usuario.id +'_relatorio'][0].trades[0].average_win_exib_reais %>
+										</span>
 									</div>
 								</div>
 
@@ -796,7 +917,12 @@
 								</div>
 								<div class="col-sm-6">								
 									<div class="fake_input w100 text-right">
-										<%= data[usuario.id +'_relatorio'][0].trades[0].average_loss_exib_perc %>%
+										<span class="relatorio_dado_perc <%= data[usuario.id +'_porc_reais'] == 'porc' ? '' : 'none' %>">
+											<%= data[usuario.id +'_relatorio'][0].trades[0].average_loss_exib_perc %>%
+										</span>
+										<span class="relatorio_dado_real <%= data[usuario.id +'_porc_reais'] == 'reais' ? '' : 'none' %>">
+											<%= data[usuario.id +'_relatorio'][0].trades[0].average_loss_exib_reais %>
+										</span>
 									</div>
 								</div>
 
@@ -816,7 +942,12 @@
 								</div>
 								<div class="col-sm-6">								
 									<div class="fake_input w100 text-right">
-										<%= data[usuario.id +'_relatorio'][0].trades[0].largest_win_exib_perc %>%
+										<span class="relatorio_dado_perc <%= data[usuario.id +'_porc_reais'] == 'porc' ? '' : 'none' %>">
+											<%= data[usuario.id +'_relatorio'][0].trades[0].largest_win_exib_perc %>%
+										</span>
+										<span class="relatorio_dado_real <%= data[usuario.id +'_porc_reais'] == 'reais' ? '' : 'none' %>">
+											<%= data[usuario.id +'_relatorio'][0].trades[0].largest_win_exib_reais %>
+										</span>
 									</div>
 								</div>
 
@@ -836,7 +967,12 @@
 								</div>
 								<div class="col-sm-6">								
 									<div class="fake_input w100 text-right">
-										<%= data[usuario.id +'_relatorio'][0].trades[0].largest_loss_exib_perc %>%
+										<span class="relatorio_dado_perc <%= data[usuario.id +'_porc_reais'] == 'porc' ? '' : 'none' %>">
+											<%= data[usuario.id +'_relatorio'][0].trades[0].largest_loss_exib_perc %>%
+										</span>
+										<span class="relatorio_dado_real <%= data[usuario.id +'_porc_reais'] == 'reais' ? '' : 'none' %>">
+											<%= data[usuario.id +'_relatorio'][0].trades[0].largest_loss_exib_reais %>
+										</span>
 									</div>
 								</div>
 

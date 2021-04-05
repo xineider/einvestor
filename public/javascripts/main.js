@@ -295,21 +295,75 @@ $(document).ready(function () {
 		$(document).on('change','.table-price-selector',function(e){
 			e.preventDefault();
 			console.log('estou alterando o table price selector');
+			$('#valor_simulador_pitch').val('');
+			$('#multiplicador_x_simulador_pitch').val(1);
 			var form = $(this).parents('form');
 			var post = form.serializeArray();
 			var to = $(this).data('to');
 			var link = $(this).data('href');
+
+
+
 			if (VerificarForm(form) == true) {
 				SubmitAjaxLoadTo(post, link, to);
 			}
 
 		});
 
+		$(document).on('change','.table-price-selector-no-limpar',function(e){
+			e.preventDefault();
+			console.log('estou alterando o table price selector');
+			var form = $(this).parents('form');
+			var post = form.serializeArray();
+			var to = $(this).data('to');
+			var link = $(this).data('href');
+
+
+
+			if (VerificarForm(form) == true) {
+				SubmitAjaxLoadTo(post, link, to);
+			}
+
+		});
+
+
+		$(document).on('change','#relatorio_porcentagem_reais',function(e){
+			e.preventDefault();
+			console.log('estou alterando o switch do relatorio');
+			console.log($(this).val());
+
+			console.log($(this).is(':checked'));
+
+			//reais
+			if($(this).is(':checked')){
+				$('.relatorio_dado_perc').addClass('none');
+				$('.relatorio_dado_real').removeClass('none');
+			}else{
+				$('.relatorio_dado_perc').removeClass('none');
+				$('.relatorio_dado_real').addClass('none');
+			}
+
+
+
+		});
+
+
+
+
+
 		$(document).on('change','.clean-container-message',function(e){
 			e.preventDefault();
-
-
 			console.log('estou alterando o clean container message');
+			var clean = $(this).data('clean');
+			var mensagem = $(this).data('clean-mensagem');
+			$('.'+clean).empty();
+			$('.'+clean).html('<div class="text-center">'+mensagem+'</div>');
+		});
+
+
+		$(document).on('click','.clean-container-input-message',function(e){
+			e.preventDefault();
+			console.log('estou alterando o clean container message do input');
 			var clean = $(this).data('clean');
 			var mensagem = $(this).data('clean-mensagem');
 			$('.'+clean).empty();
@@ -446,7 +500,7 @@ $(document).ready(function () {
 			var to = $(this).data('to');
 			var link = $(this).data('href');
 			if (VerificarForm(form) == true) {
-				SubmitAjaxLoadTo(post, link, to);
+				SubmitAjaxLoadToProgressBar(post, link, to);
 				$('.carregar_parametros_algoritmo').addClass('none');
 				$('.header_formulario_parametros').addClass('none');
 
@@ -902,7 +956,7 @@ function FormatInputs(focus) {
 
 
 
-	$('.money2').mask('000.000.000.000.000,00', {reverse: true});
+	$('.money2').mask('000.000.000.000.000', {reverse: true});
 
 	$('.money').mask('000000000000000,00', {reverse: true});
 	$('.milhao').mask("#.###.###,00");
@@ -1264,6 +1318,70 @@ function SubmitAjaxLoadTo(post, link, to) {
 		}
 	});
 }
+
+
+function SubmitAjaxLoadToProgressBar(post, link, to) {
+	$.ajax({
+		method: 'POST',
+		async: true,
+		data: post,
+		url: link,
+		beforeSend: function(request) {
+			request.setRequestHeader("Authority-Moon-hash", $('input[name="hash_usuario_sessao"]').val());
+			request.setRequestHeader("Authority-Moon-id", $('input[name="id_usuario_sessao"]').val());
+			request.setRequestHeader("Authority-Moon-nivel", $('input[name="nivel_usuario_sessao"]').val());
+			$('.progress').removeClass('none');
+			$('.mensagem_progress').removeClass('none');
+
+			// adicionarLoader();
+		},
+		success: function(data) {
+			console.log('----------- DATA Progress Bar ---------');
+			console.log(data);
+			console.log('-------------------------------------');
+
+			/*update tambem retorna objeto, então tenho que validar ele pelo error*/	
+			if (typeof data == 'object' && data['error'] != null){
+				console.log('cai no erro');
+				console.log(data['element']);
+				console.log(data['texto']);
+				AddErrorTexto($(data['element']),data['texto']);	
+			}else if(data != undefined){
+				$('.'+to).empty();
+				
+
+				for(var i=0;i<=99;i++){
+					$('.progress-bar').css('width',i + '%');
+				};
+
+
+				setTimeout(function(){
+					$('.progress-bar').css('width',100 + '%');
+					$('.'+to).append(data);
+
+				}, 2000);
+				
+			}
+			LogSistema('POST',link);
+		},
+		error: function(xhr) { // if error occured
+		},
+		complete: function() {
+			console.log('ja entrei no complete');
+
+			setTimeout(function(){
+				$('.progress-bar').css('width','0%');
+				$('.progress').addClass('none');
+				$('.mensagem_progress').addClass('none');
+			}, 3000);
+			
+			// removerLoader();
+		}
+	});
+}
+
+
+
 
 function SubmitAjaxClean(post, link, back) {
 	$.ajax({

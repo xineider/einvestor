@@ -29,6 +29,7 @@ var politica_privacidade = require('./app/controller/politica_privacidade');
 var termos_uso = require('./app/controller/termos_uso');
 var faq = require('./app/controller/faq');
 var upgrade = require('./app/controller/upgrade');
+var sistemas = require('./app/controller/sistemas');
 
 var simulador = require('./app/controller/simulador');
 
@@ -162,7 +163,7 @@ app.use('/plataforma/sistema/termos_uso', termos_uso);
 app.use('/plataforma/sistema/faq', faq);
 app.use('/plataforma/sistema/upgrade', upgrade);
 app.use('/plataforma/sistema/simulador', simulador);
-
+app.use('/plataforma/sistema/sistemas', sistemas);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

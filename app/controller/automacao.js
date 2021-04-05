@@ -316,15 +316,37 @@ router.post('/sincronizar_estrategia_algoritmo', function(req, res, next) {
 		b1_measure_1:[POST.b1_measure_1_value,POST.b1_measure_1_start,POST.b1_measure_1_step,POST.b1_measure_1_stop,POST.b1_measure_1_steps,'-'],
 		b1_measure_2:[POST.b1_measure_2_value,POST.b1_measure_2_start,POST.b1_measure_2_step,POST.b1_measure_2_stop,POST.b1_measure_2_steps,'-'],
 		b2_distance_1:[POST.b2_distance_1_value,POST.b2_distance_1_start,POST.b2_distance_1_step,POST.b2_distance_1_stop,POST.b2_distance_1_steps,POST.b2_distance_1_optimize],
-		b2_distance_2:[POST.b2_distance_2_value,POST.b2_distance_2_start,POST.b2_distance_2_step,POST.b2_distance_2_stop,POST.b2_distance_2_steps,b2_distance_2_optimize],
-		c1_direction_1:[POST.c1_direction_1_value,POST.c1_direction_1_start,POST.c1_direction_1_step,POST.c1_direction_1_stop,POST.c1_direction_1_steps,c1_direction_1_optimize],
-		c1_direction_2:[POST.c1_direction_2_value,POST.c1_direction_2_start,POST.c1_direction_2_step,POST.c1_direction_2_stop,POST.c1_direction_2_steps,c1_direction_2_optimize],
+		b2_distance_2:[POST.b2_distance_2_value,POST.b2_distance_2_start,POST.b2_distance_2_step,POST.b2_distance_2_stop,POST.b2_distance_2_steps,POST.b2_distance_2_optimize],
+		c1_direction_1:[POST.c1_direction_1_value,POST.c1_direction_1_start,POST.c1_direction_1_step,POST.c1_direction_1_stop,POST.c1_direction_1_steps,POST.c1_direction_1_optimize],
+		c1_direction_2:[POST.c1_direction_2_value,POST.c1_direction_2_start,POST.c1_direction_2_step,POST.c1_direction_2_stop,POST.c1_direction_2_steps,POST.c1_direction_2_optimize],
 		c2_measure_1:[POST.c2_measure_1_value,POST.c2_measure_1_start,POST.c2_measure_1_step,POST.c2_measure_1_stop,POST.c2_measure_1_steps,'-'],
 		c2_measure_2:[POST.c2_measure_2_value,POST.c2_measure_2_start,POST.c2_measure_2_step,POST.c2_measure_2_stop,POST.c2_measure_2_steps,'-'],
 		c3_distance_1:[POST.c3_distance_1_value,POST.c3_distance_1_start,POST.c3_distance_1_step,POST.c3_distance_1_stop,POST.c3_distance_1_steps,'-'],
-		c3_distance_2:[POST.c3_distance_2_value,POST.c3_distance_2_start,POST.c3_distance_2_step,POST.c3_distance_2_stop,POST.c3_distance_2_steps,c3_distance_2_optimize],
+		c3_distance_2:[POST.c3_distance_2_value,POST.c3_distance_2_start,POST.c3_distance_2_step,POST.c3_distance_2_stop,POST.c3_distance_2_steps,POST.c3_distance_2_optimize],
 		c4_size_1:[POST.c4_size_1_value,POST.c4_size_1_start,POST.c4_size_1_step,POST.c4_size_1_stop,POST.c4_size_1_steps,'-'],
 		c4_size_2:[POST.c4_size_2_value,POST.c4_size_2_start,POST.c4_size_2_step,POST.c4_size_2_stop,POST.c4_size_2_steps,'-'],
+		d1_measure_1:[POST.d1_measure_1_value,POST.d1_measure_1_start,POST.d1_measure_1_step,POST.d1_measure_1_stop,POST.d1_measure_1_steps,'-'],
+		d1_measure_2:[POST.d1_measure_2_value,POST.d1_measure_2_start,POST.d1_measure_2_step,POST.d1_measure_2_stop,POST.d1_measure_2_steps,'-'],
+		d2_distance_1:[POST.d2_distance_1_value,POST.d2_distance_1_start,POST.d2_distance_1_step,POST.d2_distance_1_stop,POST.d2_distance_1_steps,'-'],
+		d2_distance_2:[POST.d2_distance_2_value,POST.d2_distance_2_start,POST.d2_distance_2_step,POST.d2_distance_2_stop,POST.d2_distance_2_steps,'-'],
+		t1_time_1:[POST.t1_time_1_value,POST.t1_time_1_start,POST.t1_time_1_step,POST.t1_time_1_stop,POST.t1_time_1_steps,POST.t1_time_1_optimize],
+		a1_action_1:[POST.a1_action_1_value,POST.a1_action_1_start,POST.a1_action_1_step,POST.a1_action_1_stop,POST.a1_action_1_steps,POST.a1_action_1_optimize],
+		f1_filter_1:[POST.f1_filter_1_value,POST.f1_filter_1_start,POST.f1_filter_1_step,POST.f1_filter_1_stop,POST.f1_filter_1_steps,'-'],
+		t2_time_1:[POST.t2_time_1_value,POST.t2_time_1_start,POST.t2_time_1_step,POST.t2_time_1_stop,POST.t2_time_1_steps,POST.t2_time_1_optimize],
+		a2_action_1:[POST.a2_action_1_value,POST.a2_action_1_start,POST.a2_action_1_step,POST.a2_action_1_stop,POST.a2_action_1_steps,'-'],
+		f2_filter_1:[POST.f2_filter_1_value,POST.f2_filter_1_start,POST.f2_filter_1_step,POST.f2_filter_1_stop,POST.f2_filter_1_steps,'-'],
+		t3_time_1:[POST.t3_time_1_value,POST.t3_time_1_start,POST.t3_time_1_step,POST.t3_time_1_stop,POST.t3_time_1_steps,POST.t3_time_1_optimize],
+		a3_action_1:[POST.a3_action_1_value,POST.a3_action_1_start,POST.a3_action_1_step,POST.a3_action_1_stop,POST.a3_action_1_steps,'-'],
+		f3_filter_1:[POST.f3_filter_1_value,POST.f3_filter_1_start,POST.f3_filter_1_step,POST.f3_filter_1_stop,POST.f3_filter_1_steps,'-'],
+		t4_time_2:[POST.t4_time_2_value,POST.t4_time_2_start,POST.t4_time_2_step,POST.t4_time_2_stop,POST.t4_time_2_steps,POST.t4_time_2_optimize],
+		a4_action_2:[POST.a4_action_2_value,POST.a4_action_2_start,POST.a4_action_2_step,POST.a4_action_2_stop,POST.a4_action_2_steps,POST.a4_action_2_optimize],
+		f4_filter_2:[POST.f4_filter_2_value,POST.f4_filter_2_start,POST.f4_filter_2_step,POST.f4_filter_2_stop,POST.f4_filter_2_steps,'-'],
+		t5_time_2:[POST.t5_time_2_value,POST.t5_time_2_start,POST.t5_time_2_step,POST.t5_time_2_stop,POST.t5_time_2_steps,POST.t5_time_2_optimize],
+		a5_action_2:[POST.a5_action_2_value,POST.a5_action_2_start,POST.a5_action_2_step,POST.a5_action_2_stop,POST.a5_action_2_steps,'-'],
+		f5_filter_2:[POST.f5_filter_2_value,POST.f5_filter_2_start,POST.f5_filter_2_step,POST.f5_filter_2_stop,POST.f5_filter_2_steps,'-'],
+		t6_time_2:[POST.t6_time_2_value,POST.t6_time_2_start,POST.t6_time_2_step,POST.t6_time_2_stop,POST.t6_time_2_steps,'-'],
+		a6_action_2:[POST.a6_action_2_value,POST.a6_action_2_start,POST.a6_action_2_step,POST.a6_action_2_stop,POST.a6_action_2_steps,'-'],
+		f6_filter_2:[POST.f6_filter_2_value,POST.f6_filter_2_start,POST.f6_filter_2_step,POST.f6_filter_2_stop,POST.f6_filter_2_steps,'-'],
 		deletado:false,
 		data_cadastro:nova_data
 	});
@@ -333,22 +355,22 @@ router.post('/sincronizar_estrategia_algoritmo', function(req, res, next) {
 	console.log(parametrosUsuario);
 	console.log('uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu');
 
-	// parametrosUsuario.save(function (err) {
-	// 	if (err) {
-	// 		return handleError(err);
-	// 	}else{
+	parametrosUsuario.save(function (err) {
+		if (err) {
+			return handleError(err);
+		}else{
 
-	// 		var nova_data = new Date();
+			var nova_data = new Date();
 
-	// 		usuarioStatusModel.findOneAndUpdate({id_usuario:mongoose.Types.ObjectId(req.session.usuario.id)},{'$set':{'algoritmo':'Sincronizando','data_atualizacao':nova_data}},function(err){
-	// 			res.json(data);
+			usuarioStatusModel.findOneAndUpdate({id_usuario:mongoose.Types.ObjectId(req.session.usuario.id)},{'$set':{'algoritmo':'Sincronizando','data_atualizacao':nova_data}},function(err){
+				res.json(data);
 
-	// 		});
+			});
 
 
 
-	// 	}
-	// });
+		}
+	});
 
 
 
