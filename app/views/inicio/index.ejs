@@ -177,8 +177,8 @@
 					datasets: [{
 						label: 'Performance Mensal',
 						data: [<%=data[usuario.id +'_usuario_grafico'][2].porcentagem %>,<%=data[usuario.id +'_usuario_grafico'][1].porcentagem %>,<%=data[usuario.id +'_usuario_grafico'][0].porcentagem %>],
-						backgroundColor:['#d8e9ef','#d8efd8','#efd8d8'],
-						borderColor: ['#003475','#00756a','#750071'],						
+						backgroundColor:'#d8e9ef',
+						borderColor: '#003475',						
 						fill:true,
 						borderWidth: 1,
 						datalabels:{
@@ -224,7 +224,7 @@
 				data:{
 					labels: ['<%=data[usuario.id +'_usuario_grafico'][2].mes %>', '<%=data[usuario.id +'_usuario_grafico'][1].mes %>', '<%=data[usuario.id +'_usuario_grafico'][0].mes %>'],
 					datasets: [{
-						label: 'Performance Mensal',
+						label: 'Evolução Patrimonial',
 						data: [85720,92006,96179],
 						
 						backgroundColor:['#003475'],

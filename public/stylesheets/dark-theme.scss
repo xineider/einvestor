@@ -1304,6 +1304,14 @@ nav#sidebar .sidebar-suporte{
 	}
 }
 
+
+@media (min-width: 1600px){
+	.col-xxl-3{
+		flex: 0 0 25%;
+		max-width: 25%;
+	}
+}
+
 nav#sidebar.menu_mobile{
 	position: absolute;
 	left: 0;
