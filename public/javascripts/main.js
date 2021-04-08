@@ -80,259 +80,273 @@ $(document).ready(function () {
 			MountModal(modal, link);
 		}
 
+	});
 
 
 
 
 
+
+
+	$(document).on('click', '.ajax-load', function(e) {
+		e.preventDefault();
+		var link = $(this).attr('href');
+		console.log(link);
+		GoTo(link, true);
+	});
+
+
+	$(document).on('click','.close-alerts-button',function(e){
+		e.preventDefault();
+		$('.alert').alert('close');
+	});
+
+	$(document).on('keyup',function(e){
+		var keyCode = e.keyCode ? e.keyCode : e.which;
+		console.log('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx');
+		console.log('o botão é: ' + keyCode);
+		console.log('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx');
+
+
+		if (keyCode == 44) {
+			stopPrntScr();
+		}
+	});
+
+
+
+	$(document).on('click', '.ajax-load-to', function(e) {
+		e.preventDefault();
+		var link = $(this).attr('href');
+		var to = $(this).data('to');
+		console.log('ajax-load-to to:' +to);
+		console.log('ajax-load-to link: ' + link);
+		LoadTo(link, to);
+		$('.ajax-load-to').removeClass('active');
+		$('#grafico_botao_tudo').removeClass('active');
+		$(this).addClass('active');
+	});
+
+	$(document).on('click', '.ajax-load-to-btn', function(e) {
+		e.preventDefault();
+		var link = $(this).data('href');
+		var to = $(this).data('to');
+		console.log('ajax-load-to to:' +to);
+		console.log('ajax-load-to link: ' + link);
+		LoadTo(link, to);
+		$('.ajax-load-to').removeClass('active');
+		$('#grafico_botao_tudo').removeClass('active');
+		$(this).addClass('active');
+	});
+
+	$(document).on('click', '.ajax-add-to', function(e) {
+		e.preventDefault();
+		var link = $(this).data('href');
+		var to = $(this).data('to');
+		AddTo(link, to);
+	});
+
+	$(document).on('click', '.remove', function (e) {
+		e.preventDefault();
+		$(this).closest('.pai').remove();
+	});
+
+	$(document).on('click', '.ajax-submit', function(e) {
+		e.preventDefault();
+		var form = $(this).parents('form');
+		var post = form.serializeArray();
+		var link = $(this).data('href');
+		var back = $(this).data('action');
+
+		console.log('form');
+		console.log(form);
+		console.log('post');
+		console.log(post);
+		if (VerificarForm(form) == true) {
+			SubmitAjax(post, link, back);
+		}
+	});
+
+
+	$(document).on('click', '.ajax-submit-form-other', function(e) {
+		e.preventDefault();
+		var form = $(this).data('form');
+		var formulario = $(form).parents('form');
+		var post = formulario.serializeArray();
+		var link = $(this).data('href');
+		var back = $(this).data('action');
+		var sucesso = $(this).data('sucesso-id');
+
+
+		console.log('formulario');
+		console.log(formulario);
+		console.log('post');
+		console.log(post);
+		if (VerificarForm(formulario) == true) {
+			SubmitAjaxSucessMessage(post, link, back,sucesso);
+		}
+	});
+
+
+	$(document).on('click', '.ajax-submit-form-other-load-to', function(e) {
+		e.preventDefault();
+		var form = $(this).data('form');
+		var formulario = $(form).parents('form');
+		var post = formulario.serializeArray();
+
+		var link = $(this).data('href');
+		var back = $(this).data('action');
+		var to = $(this).data('to');
+
+
+
+		console.log('formulario');
+		console.log(formulario);
+		console.log('post');
+		console.log(post);
+		if (VerificarForm(formulario) == true) {
+			SubmitAjaxLoadTo(post, link, to);
+		}
+	});
+
+
+
+
+	$(document).on('click', '.ajax-submit-no-back', function(e) {
+		e.preventDefault();
+		var form = $(this).parents('form');
+		var post = form.serializeArray();
+		var link = $(this).data('href');
+		if (VerificarForm(form) == true) {
+			SubmitAjaxNoBack(post, link);
+		}
+	});
+
+	$(document).on('click', '.btn-continuar-conhecer', function(e) {
+		e.preventDefault();
+		var form = $(this).parents('form');
+		var post = form.serializeArray();
+		var link = $(this).data('href');
+		var element = $('.escolha_algoritmo');
+		if (VerificarForm(form) == true) {
+			SubmitLandpageConhecer(post, link,element);
+		}
+	});
+
+
+	$(document).on('click','.btn-criar-usuario-landpage',function (e) {
+		e.preventDefault();
+		var form = $(this).parents('form');
+		var post = form.serializeArray();
+		var link = $(this).data('href');
+		if (VerificarForm(form) == true) {
+			SubmitAjaxLandPage(post, link);
+		}
 
 
 
 	});
 
 
-
-
-		// 	e.preventDefault();
-		// var form = $(this).data('form');
-		// var formulario = $(form).parents('form');
-		// var post = formulario.serializeArray();
-		// var link = $(this).data('href');
-		// var back = $(this).data('action');
-		// var sucesso = $(this).data('sucesso-id');
-
-
-		// console.log('formulario');
-		// console.log(formulario);
-		// console.log('post');
-		// console.log(post);
-		// if (VerificarForm(formulario) == true) {
-		// 	SubmitAjaxSucessMessage(post, link, back,sucesso);
-		// }
-
-
-
-		$(document).on('click', '.ajax-load', function(e) {
-			e.preventDefault();
-			var link = $(this).attr('href');
-			console.log(link);
-			GoTo(link, true);
-		});
-
-
-		$(document).on('click','.close-alerts-button',function(e){
-			e.preventDefault();
-			$('.alert').alert('close');
-		});
-
-		$(document).on('keyup',function(e){
-			var keyCode = e.keyCode ? e.keyCode : e.which;
-			console.log('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx');
-			console.log('o botão é: ' + keyCode);
-			console.log('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx');
-
-
-			if (keyCode == 44) {
-				stopPrntScr();
-			}
-		});
-
-
-
-		$(document).on('click', '.ajax-load-to', function(e) {
-			e.preventDefault();
-			var link = $(this).attr('href');
-			var to = $(this).data('to');
-			console.log('ajax-load-to to:' +to);
-			console.log('ajax-load-to link: ' + link);
-			LoadTo(link, to);
-			$('.ajax-load-to').removeClass('active');
-			$('#grafico_botao_tudo').removeClass('active');
-			$(this).addClass('active');
-		});
-
-		$(document).on('click', '.ajax-load-to-btn', function(e) {
-			e.preventDefault();
-			var link = $(this).data('href');
-			var to = $(this).data('to');
-			console.log('ajax-load-to to:' +to);
-			console.log('ajax-load-to link: ' + link);
-			LoadTo(link, to);
-			$('.ajax-load-to').removeClass('active');
-			$('#grafico_botao_tudo').removeClass('active');
-			$(this).addClass('active');
-		});
-
-		$(document).on('click', '.ajax-add-to', function(e) {
-			e.preventDefault();
-			var link = $(this).data('href');
-			var to = $(this).data('to');
-			AddTo(link, to);
-		});
-
-		$(document).on('click', '.remove', function (e) {
-			e.preventDefault();
-			$(this).closest('.pai').remove();
-		});
-
-		$(document).on('click', '.ajax-submit', function(e) {
-			e.preventDefault();
-			var form = $(this).parents('form');
-			var post = form.serializeArray();
-			var link = $(this).data('href');
-			var back = $(this).data('action');
-
-			console.log('form');
-			console.log(form);
-			console.log('post');
-			console.log(post);
-			if (VerificarForm(form) == true) {
-				SubmitAjax(post, link, back);
-			}
-		});
-
-
-		$(document).on('click', '.ajax-submit-form-other', function(e) {
-			e.preventDefault();
-			var form = $(this).data('form');
-			var formulario = $(form).parents('form');
-			var post = formulario.serializeArray();
-			var link = $(this).data('href');
-			var back = $(this).data('action');
-			var sucesso = $(this).data('sucesso-id');
-
-
-			console.log('formulario');
-			console.log(formulario);
-			console.log('post');
-			console.log(post);
-			if (VerificarForm(formulario) == true) {
-				SubmitAjaxSucessMessage(post, link, back,sucesso);
-			}
-		});
-
-
-		$(document).on('click', '.ajax-submit-no-back', function(e) {
-			e.preventDefault();
-			var form = $(this).parents('form');
-			var post = form.serializeArray();
-			var link = $(this).data('href');
-			if (VerificarForm(form) == true) {
-				SubmitAjaxNoBack(post, link);
-			}
-		});
-
-		$(document).on('click', '.btn-continuar-conhecer', function(e) {
-			e.preventDefault();
-			var form = $(this).parents('form');
-			var post = form.serializeArray();
-			var link = $(this).data('href');
-			var element = $('.escolha_algoritmo');
-			if (VerificarForm(form) == true) {
-				SubmitLandpageConhecer(post, link,element);
-			}
-		});
-
-
-		$(document).on('click', '.ajax-submit-change-element', function(e) {
-			e.preventDefault();
-			var form = $(this).parents('form');
-			var post = form.serializeArray();
-			var link = $(this).data('href');
-			var element = $(this).data('element');
-			console.log('clickei no submit change element');
-			if (VerificarForm(form) == true) {
-				SubmitAjaxChangeElement(post, link, element);
-			}
-		});
+	$(document).on('click', '.ajax-submit-change-element', function(e) {
+		e.preventDefault();
+		var form = $(this).parents('form');
+		var post = form.serializeArray();
+		var link = $(this).data('href');
+		var element = $(this).data('element');
+		console.log('clickei no submit change element');
+		if (VerificarForm(form) == true) {
+			SubmitAjaxChangeElement(post, link, element);
+		}
+	});
 
 
 
 
-		$(document).on('click', '.ajax-submit-scroll-top', function(e) {
-			e.preventDefault();
-			var form = $(this).parents('form');
-			var post = form.serializeArray();
-			var link = $(this).data('href');
-			var back = $(this).data('action');
-			if (VerificarForm(form) == true) {
-				SubmitAjaxScrollTop(post, link, back);
-			}
-		});
+	$(document).on('click', '.ajax-submit-scroll-top', function(e) {
+		e.preventDefault();
+		var form = $(this).parents('form');
+		var post = form.serializeArray();
+		var link = $(this).data('href');
+		var back = $(this).data('action');
+		if (VerificarForm(form) == true) {
+			SubmitAjaxScrollTop(post, link, back);
+		}
+	});
 
 
 
 
 
 
-		$(document).on('click', '.ajax-submit-timer', function(e) {
-			e.preventDefault();
-			var form = $(this).parents('form');
-			var post = form.serializeArray();
-			var link = $(this).data('href');
-			var back = $(this).data('action');
-			var conect_teste = $(this).data('conect_teste');
-			if (VerificarForm(form) == true) {
-				console.log('o que está indo de fato para o submit ajax de cor')
-				SubmitAjaxTimer(post, link, back,conect_teste,15000);
-			}
-		});
+	$(document).on('click', '.ajax-submit-timer', function(e) {
+		e.preventDefault();
+		var form = $(this).parents('form');
+		var post = form.serializeArray();
+		var link = $(this).data('href');
+		var back = $(this).data('action');
+		var conect_teste = $(this).data('conect_teste');
+		if (VerificarForm(form) == true) {
+			console.log('o que está indo de fato para o submit ajax de cor')
+			SubmitAjaxTimer(post, link, back,conect_teste,15000);
+		}
+	});
 
-		$(document).on('click', '.ajax-submit-load-to', function(e) {
-			e.preventDefault();
-			var form = $(this).parents('form');
-			var post = form.serializeArray();
-			var to = $(this).data('to');
-			var link = $(this).data('href');
-			if (VerificarForm(form) == true) {
-				SubmitAjaxLoadTo(post, link, to);
-			}
-			$('.ajax-load-to').removeClass('active');
-			$('#grafico_botao_tudo').removeClass('active');
-			$(this).addClass('active');
-		});
+	$(document).on('click', '.ajax-submit-load-to', function(e) {
+		e.preventDefault();
+		var form = $(this).parents('form');
+		var post = form.serializeArray();
+		var to = $(this).data('to');
+		var link = $(this).data('href');
+		if (VerificarForm(form) == true) {
+			SubmitAjaxLoadTo(post, link, to);
+		}
+		$('.ajax-load-to').removeClass('active');
+		$('#grafico_botao_tudo').removeClass('active');
+		$(this).addClass('active');
+	});
 
-		$(document).on('change','.table-price-selector',function(e){
-			e.preventDefault();
-			console.log('estou alterando o table price selector');
-			$('#valor_simulador_pitch').val('');
-			$('#multiplicador_x_simulador_pitch').val(1);
-			var form = $(this).parents('form');
-			var post = form.serializeArray();
-			var to = $(this).data('to');
-			var link = $(this).data('href');
-
-
-
-			if (VerificarForm(form) == true) {
-				SubmitAjaxLoadTo(post, link, to);
-			}
-
-		});
-
-		$(document).on('change','.table-price-selector-no-limpar',function(e){
-			e.preventDefault();
-			console.log('estou alterando o table price selector');
-			var form = $(this).parents('form');
-			var post = form.serializeArray();
-			var to = $(this).data('to');
-			var link = $(this).data('href');
+	$(document).on('change','.table-price-selector',function(e){
+		e.preventDefault();
+		console.log('estou alterando o table price selector');
+		$('#valor_simulador_pitch').val('');
+		$('#multiplicador_x_simulador_pitch').val(1);
+		var form = $(this).parents('form');
+		var post = form.serializeArray();
+		var to = $(this).data('to');
+		var link = $(this).data('href');
 
 
 
-			if (VerificarForm(form) == true) {
-				SubmitAjaxLoadTo(post, link, to);
-			}
+		if (VerificarForm(form) == true) {
+			SubmitAjaxLoadTo(post, link, to);
+		}
 
-		});
+	});
+
+	$(document).on('change','.table-price-selector-no-limpar',function(e){
+		e.preventDefault();
+		console.log('estou alterando o table price selector');
+		var form = $(this).parents('form');
+		var post = form.serializeArray();
+		var to = $(this).data('to');
+		var link = $(this).data('href');
 
 
-		$(document).on('change','#relatorio_porcentagem_reais',function(e){
-			e.preventDefault();
-			console.log('estou alterando o switch do relatorio');
-			console.log($(this).val());
 
-			console.log($(this).is(':checked'));
+		if (VerificarForm(form) == true) {
+			SubmitAjaxLoadTo(post, link, to);
+		}
+
+	});
+
+
+	$(document).on('change','#relatorio_porcentagem_reais',function(e){
+		e.preventDefault();
+		console.log('estou alterando o switch do relatorio');
+		console.log($(this).val());
+
+		console.log($(this).is(':checked'));
 
 			//reais
 			if($(this).is(':checked')){
@@ -351,37 +365,37 @@ $(document).ready(function () {
 
 
 
-		$(document).on('change','.clean-container-message',function(e){
-			e.preventDefault();
-			console.log('estou alterando o clean container message');
-			var clean = $(this).data('clean');
-			var mensagem = $(this).data('clean-mensagem');
-			$('.'+clean).empty();
-			$('.'+clean).html('<div class="text-center">'+mensagem+'</div>');
-		});
+	$(document).on('change','.clean-container-message',function(e){
+		e.preventDefault();
+		console.log('estou alterando o clean container message');
+		var clean = $(this).data('clean');
+		var mensagem = $(this).data('clean-mensagem');
+		$('.'+clean).empty();
+		$('.'+clean).html('<div class="text-center">'+mensagem+'</div>');
+	});
 
 
-		$(document).on('click','.clean-container-input-message',function(e){
-			e.preventDefault();
-			console.log('estou alterando o clean container message do input');
-			var clean = $(this).data('clean');
-			var mensagem = $(this).data('clean-mensagem');
-			$('.'+clean).empty();
-			$('.'+clean).html('<div class="text-center">'+mensagem+'</div>');
-		});
+	$(document).on('click','.clean-container-input-message',function(e){
+		e.preventDefault();
+		console.log('estou alterando o clean container message do input');
+		var clean = $(this).data('clean');
+		var mensagem = $(this).data('clean-mensagem');
+		$('.'+clean).empty();
+		$('.'+clean).html('<div class="text-center">'+mensagem+'</div>');
+	});
 
 
 
 
-		var menu_fechado = false;
+	var menu_fechado = false;
 
 
-		$(document).on('click','.sidebar-toggle', function (e) {
-			$(this).toggleClass('active');
-			console.log('clickei no sidebar-toggle');
+	$(document).on('click','.sidebar-toggle', function (e) {
+		$(this).toggleClass('active');
+		console.log('clickei no sidebar-toggle');
 
-			$('#sidebar').toggleClass('menu_mobile');
-			$('.overlay_menu').toggleClass('none');
+		$('#sidebar').toggleClass('menu_mobile');
+		$('.overlay_menu').toggleClass('none');
 
 		// $('#sidebar').toggleClass('shrinked');
 		// $('.page-content').toggleClass('active');
@@ -398,190 +412,190 @@ $(document).ready(function () {
 		// }
 	});
 
-		$(document).on('click','.overlay_menu', function (e) {
-			$(this).addClass('none');
-			$('#sidebar').removeClass('menu_mobile');
+	$(document).on('click','.overlay_menu', function (e) {
+		$(this).addClass('none');
+		$('#sidebar').removeClass('menu_mobile');
 
-		});
-
-
-		$(document).on('click', '.ajax-submit-timer-5', function(e) {
-			e.preventDefault();
-			var form = $(this).parents('form');
-			var post = form.serializeArray();
-			var link = $(this).data('href');
-			var back = $(this).data('action');
-			var conect_teste = $(this).data('conect_teste');
-			if (VerificarForm(form) == true) {
-				console.log('o que está indo de fato para o submit ajax de cor')
-				SubmitAjaxTimer(post, link, back,conect_teste,5000);
-			}
-		});
-
-		$(document).on('click', '.ajax-submit-sucess-message', function(e) {
-			e.preventDefault();
-			var form = $(this).parents('form');
-			var post = form.serializeArray();
-			var link = $(this).data('href');
-			var back = $(this).data('action');
-			var sucesso = $(this).data('sucesso-id');
-			if (VerificarForm(form) == true) {
-				SubmitAjaxSucessMessage(post, link, back,sucesso);
-			}
-		});
+	});
 
 
+	$(document).on('click', '.ajax-submit-timer-5', function(e) {
+		e.preventDefault();
+		var form = $(this).parents('form');
+		var post = form.serializeArray();
+		var link = $(this).data('href');
+		var back = $(this).data('action');
+		var conect_teste = $(this).data('conect_teste');
+		if (VerificarForm(form) == true) {
+			console.log('o que está indo de fato para o submit ajax de cor')
+			SubmitAjaxTimer(post, link, back,conect_teste,5000);
+		}
+	});
 
-
-		$(document).on('click','.alterar-conta-teste-conexao',function(e){
-			$('#testar_conexao').prop('disabled',false);
-			$('#testar_conexao').removeClass('disabled').addClass('btn-primary');
-			$('#botao_iniciar_sistema').prop('disabled',true);
-			$('#botao_iniciar_sistema').addClass('disabled').removeClass('btn-success');
-			$('#caixa_alert_conectado').addClass('hide').removeClass('show');
-
-			$('#form_operacional_entrada').prop('disabled',true);
-			$('#form_operacional_limite_perda').prop('disabled',true);
-			$('.form_operacional_tipo_conta').prop('disabled',true);
-			$('#alterar_operacional_porcentagem').prop('disabled',true);
-
-			$('#form_trader_qtd_usuarios').prop('disabled',true);
-			$('#form_trader_liquidez').prop('disabled',true);
-
-			$('.js-input-change-color').addClass('color-disabled');
+	$(document).on('click', '.ajax-submit-sucess-message', function(e) {
+		e.preventDefault();
+		var form = $(this).parents('form');
+		var post = form.serializeArray();
+		var link = $(this).data('href');
+		var back = $(this).data('action');
+		var sucesso = $(this).data('sucesso-id');
+		if (VerificarForm(form) == true) {
+			SubmitAjaxSucessMessage(post, link, back,sucesso);
+		}
+	});
 
 
 
 
-		});
+	$(document).on('click','.alterar-conta-teste-conexao',function(e){
+		$('#testar_conexao').prop('disabled',false);
+		$('#testar_conexao').removeClass('disabled').addClass('btn-primary');
+		$('#botao_iniciar_sistema').prop('disabled',true);
+		$('#botao_iniciar_sistema').addClass('disabled').removeClass('btn-success');
+		$('#caixa_alert_conectado').addClass('hide').removeClass('show');
 
+		$('#form_operacional_entrada').prop('disabled',true);
+		$('#form_operacional_limite_perda').prop('disabled',true);
+		$('.form_operacional_tipo_conta').prop('disabled',true);
+		$('#alterar_operacional_porcentagem').prop('disabled',true);
 
+		$('#form_trader_qtd_usuarios').prop('disabled',true);
+		$('#form_trader_liquidez').prop('disabled',true);
 
-		$(document).on('change paste keyup','.input-text-email-senha',function(e){
-			$('#testar_conexao').prop('disabled',false);
-			$('#testar_conexao').removeClass('disabled').addClass('btn-primary');
-			$('#botao_iniciar_sistema').prop('disabled',true);
-			$('#botao_iniciar_sistema').addClass('disabled').removeClass('btn-success');
-			$('#caixa_alert_conectado').addClass('hide').removeClass('show');
-
-			$('#form_operacional_entrada').prop('disabled',true);
-			$('#form_operacional_limite_perda').prop('disabled',true);
-			$('.form_operacional_tipo_conta').prop('disabled',true);
-			$('#alterar_operacional_porcentagem').prop('disabled',true);
-
-			$('#form_trader_qtd_usuarios').prop('disabled',true);
-			$('#form_trader_liquidez').prop('disabled',true);
-
-			$('.js-input-change-color').addClass('color-disabled');
-
-
-
-		});
-
-
-		$(document).on('click', '.ajax-submit-close', function(e) {
-			e.preventDefault();
-			var data = {_id:''};
-			console.log('data do ajax-submit-close');
-			console.log(data);
-			console.log('jjjjjjjjjjjjjjjjjjjjjjjjj');
-			var link = $(this).data('href');
-			var back = $(this).data('action');
-			SubmitAjaxClean(data, link, back);
-		});
-
-		$(document).on('click', '.carregar_parametros_algoritmo', function(e) {
-			e.preventDefault();
-			console.log('carregar_parametros_algoritmo');
-
-
-			var form = $(this).parents('form');
-			var post = form.serializeArray();
-			var to = $(this).data('to');
-			var link = $(this).data('href');
-			if (VerificarForm(form) == true) {
-				SubmitAjaxLoadToProgressBar(post, link, to);
-				$('.carregar_parametros_algoritmo').addClass('none');
-				$('.header_formulario_parametros').addClass('none');
-
-				$('.sincronizar_estrategia_otimizada').removeClass('none');
-				$('.mensagem_algoritmo_carregado').removeClass('none');
-
-				$('.nome_estrategia').html(post[0].value);
-			}
-
-		});
+		$('.js-input-change-color').addClass('color-disabled');
 
 
 
 
-		$(document).on('change','.aceito-termos',function(e){
-			e.preventDefault();
-			var data_disabled = $(this).data('disabled');
-			console.log('data_disabled: ' + data_disabled);
-			console.log('estou alterando aceitar os termos');
-			console.log('yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy');
-
-			if($(this).is(':checked')){
-				console.log('entrei aqui no checked');
-				$('.' + data_disabled).removeClass('btn-disabled').prop('disabled',false).addClass('btn-success-light');;
-			}else{
-				console.log('entrei aqui no não checked');
-				$('.' + data_disabled).addClass('btn-disabled').prop('disabled',true).removeClass('btn-success-light');
-			}
-
-		});
-
-
-		$(document).on('change','.aceito-termos-politica',function(e){
-			var data_disabled = $(this).data('disabled');
-			console.log('data_disabled: ' + data_disabled);
-			console.log('estou alterando aceitar politica');
-			console.log('yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy');
-
-
-			if($(this).is(':checked') && $('.aceito-termos-condicoes').is(':checked')){
-				console.log('entrei aqui no checked');
-				$('.' + data_disabled).removeClass('btn-disabled').prop('disabled',false).addClass('btn-success-light');;
-			}else{
-				console.log('entrei aqui no não checked');
-				$('.' + data_disabled).addClass('btn-disabled').prop('disabled',true).removeClass('btn-success-light');
-			}
-
-		});
-
-		$(document).on('change','.aceito-termos-condicoes',function(e){
-			var data_disabled = $(this).data('disabled');
-			console.log('data_disabled: ' + data_disabled);
-			console.log('estou alterando aceitar politica');
-			console.log('yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy');
-
-
-			if($(this).is(':checked') && $('.aceito-termos-politica').is(':checked')){
-				console.log('entrei aqui no checked');
-				$('.' + data_disabled).removeClass('btn-disabled').prop('disabled',false).addClass('btn-success-light');;
-			}else{
-				console.log('entrei aqui no não checked');
-				$('.' + data_disabled).addClass('btn-disabled').prop('disabled',true).removeClass('btn-success-light');
-			}
-
-		});
+	});
 
 
 
+	$(document).on('change paste keyup','.input-text-email-senha',function(e){
+		$('#testar_conexao').prop('disabled',false);
+		$('#testar_conexao').removeClass('disabled').addClass('btn-primary');
+		$('#botao_iniciar_sistema').prop('disabled',true);
+		$('#botao_iniciar_sistema').addClass('disabled').removeClass('btn-success');
+		$('#caixa_alert_conectado').addClass('hide').removeClass('show');
 
-		$(document).on('click', '.ajax-submit-open-modal', function(e) {
-			e.preventDefault();
-			var form = $(this).parents('form');
-			var post = form.serializeArray();
-			var link = $(this).data('href');
-			var modal = $(this).data('modal');
+		$('#form_operacional_entrada').prop('disabled',true);
+		$('#form_operacional_limite_perda').prop('disabled',true);
+		$('.form_operacional_tipo_conta').prop('disabled',true);
+		$('#alterar_operacional_porcentagem').prop('disabled',true);
 
-			if (VerificarForm(form) == true) {
-				console.log('ajax-submit-open-modal');
-				SubmitAjaxOpenModal(post, link, modal);
-			}
-		});
+		$('#form_trader_qtd_usuarios').prop('disabled',true);
+		$('#form_trader_liquidez').prop('disabled',true);
+
+		$('.js-input-change-color').addClass('color-disabled');
+
+
+
+	});
+
+
+	$(document).on('click', '.ajax-submit-close', function(e) {
+		e.preventDefault();
+		var data = {_id:''};
+		console.log('data do ajax-submit-close');
+		console.log(data);
+		console.log('jjjjjjjjjjjjjjjjjjjjjjjjj');
+		var link = $(this).data('href');
+		var back = $(this).data('action');
+		SubmitAjaxClean(data, link, back);
+	});
+
+	$(document).on('click', '.carregar_parametros_algoritmo', function(e) {
+		e.preventDefault();
+		console.log('carregar_parametros_algoritmo');
+
+
+		var form = $(this).parents('form');
+		var post = form.serializeArray();
+		var to = $(this).data('to');
+		var link = $(this).data('href');
+		if (VerificarForm(form) == true) {
+			SubmitAjaxLoadToProgressBar(post, link, to);
+			$('.carregar_parametros_algoritmo').addClass('none');
+			$('.header_formulario_parametros').addClass('none');
+
+			$('.sincronizar_estrategia_otimizada').removeClass('none');
+			$('.mensagem_algoritmo_carregado').removeClass('none');
+
+			$('.nome_estrategia').html(post[0].value);
+		}
+
+	});
+
+
+
+
+	$(document).on('change','.aceito-termos',function(e){
+		e.preventDefault();
+		var data_disabled = $(this).data('disabled');
+		console.log('data_disabled: ' + data_disabled);
+		console.log('estou alterando aceitar os termos');
+		console.log('yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy');
+
+		if($(this).is(':checked')){
+			console.log('entrei aqui no checked');
+			$('.' + data_disabled).removeClass('btn-disabled').prop('disabled',false).addClass('btn-success-light');;
+		}else{
+			console.log('entrei aqui no não checked');
+			$('.' + data_disabled).addClass('btn-disabled').prop('disabled',true).removeClass('btn-success-light');
+		}
+
+	});
+
+
+	$(document).on('change','.aceito-termos-politica',function(e){
+		var data_disabled = $(this).data('disabled');
+		console.log('data_disabled: ' + data_disabled);
+		console.log('estou alterando aceitar politica');
+		console.log('yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy');
+
+
+		if($(this).is(':checked') && $('.aceito-termos-condicoes').is(':checked')){
+			console.log('entrei aqui no checked');
+			$('.' + data_disabled).removeClass('btn-disabled').prop('disabled',false).addClass('btn-success-light');;
+		}else{
+			console.log('entrei aqui no não checked');
+			$('.' + data_disabled).addClass('btn-disabled').prop('disabled',true).removeClass('btn-success-light');
+		}
+
+	});
+
+	$(document).on('change','.aceito-termos-condicoes',function(e){
+		var data_disabled = $(this).data('disabled');
+		console.log('data_disabled: ' + data_disabled);
+		console.log('estou alterando aceitar politica');
+		console.log('yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy');
+
+
+		if($(this).is(':checked') && $('.aceito-termos-politica').is(':checked')){
+			console.log('entrei aqui no checked');
+			$('.' + data_disabled).removeClass('btn-disabled').prop('disabled',false).addClass('btn-success-light');;
+		}else{
+			console.log('entrei aqui no não checked');
+			$('.' + data_disabled).addClass('btn-disabled').prop('disabled',true).removeClass('btn-success-light');
+		}
+
+	});
+
+
+
+
+	$(document).on('click', '.ajax-submit-open-modal', function(e) {
+		e.preventDefault();
+		var form = $(this).parents('form');
+		var post = form.serializeArray();
+		var link = $(this).data('href');
+		var modal = $(this).data('modal');
+
+		if (VerificarForm(form) == true) {
+			console.log('ajax-submit-open-modal');
+			SubmitAjaxOpenModal(post, link, modal);
+		}
+	});
 
 	//se o valor do usuário for um parceiro ele deve retirar a "depedência" de um parceiro e criar um vazio
 
@@ -1113,6 +1127,37 @@ function SubmitAjaxNoBack(post, link) {
 		error: function(xhr) {
 		},
 		complete: function() {			
+		}
+	});
+}
+
+
+
+function SubmitAjaxLandPage(post, link) {
+	$.ajax({
+		method: 'POST',
+		async: true,
+		data: post,
+		url: link,
+		beforeSend: function(request) {
+			adicionarLoader();
+		},
+		success: function(data) {
+			console.log('-------------------');
+			console.log(data);
+			console.log('retorno do valor do cadastro do usuario');
+
+			if(data.usuario_criado == true){
+				window.location.href = "/plataforma/sistema/automacao";
+			}
+
+
+		},
+		error: function(xhr) {
+			removerLoader();
+		},
+		complete: function() {	
+			removerLoader();		
 		}
 	});
 }

@@ -55,7 +55,7 @@ if (typeof message.algoritmo != 'undefined' && message.algoritmo.length > 0) {
 			'</div>'+
 			'<div class="escolha_algoritmo_assinar_box">'+
 				'<div class="text-center">'+
-					'<button class="btn btn-assinar-algoritmo ajax-load-to" data-to="main_page_landpage" href="/assinar_30dias_gratuitos/<%= message.algoritmo[i].valor %>/'+capital+'">'+
+					'<button class="btn btn-assinar-algoritmo ajax-submit-form-other-load-to" data-form=".btn-continuar-conhecer" data-to="main_page_landpage" data-href="/assinar_30dias_gratuitos/<%= message.algoritmo[i].valor %>/'+capital+'">'+
 						'Assinar <br>'+
 						preco_robo +
 					'</button>'+

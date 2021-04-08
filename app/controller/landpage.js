@@ -21,6 +21,11 @@ var usuarioStatusModel = require('../model/usuarioStatusModel.js');
 
 var usuarioRoboModel = require('../model/usuarioRoboModel.js');
 
+var ultimosDadosContatoFormularioModel = require('../model/ultimosDadosContatoFormularioModel.js');
+
+
+var licecaModel = require('../model/licencaModel.js');
+
 
 var roboModel = require('../model/roboModel.js');
 
@@ -143,11 +148,56 @@ router.post('/enviar-formulario-conhecer', function(req, res, next) {
 });
 
 
-router.get('/assinar_30dias_gratuitos2', function(req, res, next) {
+router.get('/assinar_30dias', function(req, res, next) {
 
-	res.render(req.isAjaxRequest() == true ? 'api' : 'montadorLandpage', {html: 'landpage/parabens_escolha_sistema',  message: data});
+
+
+	ultimosDadosContatoFormularioModel.findOne({},function(err,data_ultimo_contato){
+
+		console.log('data_ultimo_contato');
+		console.log(data_ultimo_contato);
+		console.log('uuuuuuuuuuuuuuuuuuuuuuuuuuuu');
+
+
+		data.ultimo_contato = data_ultimo_contato;
+
+		roboModel.findOne({valor:data_ultimo_contato.algoritmo},function(err,data_algoritmo){
+
+			console.log('-----------------------');
+			console.log(data_algoritmo);
+			console.log('-----------------------');
+			data.algoritmo = data_algoritmo;
+
+
+			res.render(req.isAjaxRequest() == true ? 'api' : 'montadorLandpage', {html: 'landpage/parabens_escolha_sistema',  message: data});
+
+		});
+	}).sort({'_id':-1}).limit(1);
+
 
 });
+
+
+
+
+
+router.post('/', function(req, res, next) {
+
+	POST = req.body;
+
+	console.log('//////////////////////////////////// estou caindo na barra ///////////////////////');
+	console.log(POST);
+	console.log('//////////////////////////////////////////////////////////////////////////////////');
+
+
+	
+});
+
+
+
+
+
+
 
 
 
@@ -165,7 +215,7 @@ router.post('/criar-usuario-redirecionar', function(req, res, next) {
 
 
 
-	roboModel.findOne({valor:8},function(err,data_algoritmo){
+	roboModel.findOne({valor:POST.algoritmo},function(err,data_algoritmo){
 
 		console.log('------------------ data_algoritmo -----------------');
 		console.log(data_algoritmo);
@@ -214,8 +264,8 @@ router.post('/criar-usuario-redirecionar', function(req, res, next) {
 					id_usuario:mongoose.Types.ObjectId(usuario_retorno_save._id),
 					numero_operacoes:0,
 					sistema_online:false,
-					nome_algoritmo_escolhido:'E-008',
-					valor_aplicado:100000,
+					nome_algoritmo_escolhido:data_algoritmo.nome,
+					valor_aplicado:POST.capital,
 					pagamento:false,
 					conta:'Não Sincronizado',
 					algoritmo:'Não Sincronizado',
@@ -252,20 +302,54 @@ router.post('/criar-usuario-redirecionar', function(req, res, next) {
 
 						novo_usuario_algoritmo.save(function(err){
 
-							req.session.usuario = {};
-							req.session.usuario.id = usuario_retorno_save._id;
-							req.session.usuario.nivel =usuario_retorno_save.nivel;
-							req.session.usuario.nome = usuario_retorno_save.nome;
-							req.session.usuario.email = usuario_retorno_save.email;
 
+							if(err){
+								return handleError(err);	
+							}else{
 
-							console.log('rrrrrrrrrrrrrr req.session.usuario rrrrrrrrrrrrrrr');
-							console.log(req.session.usuario);
-							console.log('rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr');
+								var data_fim_licenca = new Date();
+								data_fim_licenca.setDate(data_fim_licenca.getDate() + 30);
 
 
 
-							res.redirect('/plataforma/sistema/automacao');
+								const novo_usuario_licenca = new licecaModel({
+									id_usuario:mongoose.Types.ObjectId(usuario_retorno_save._id),
+									data_fim:data_fim_licenca,
+									deletado:false,
+									data_cadastro: new Date()
+								});
+
+
+								novo_usuario_licenca.save(function(err){
+
+									console.log('lllllllllllllll licenca llllllllllll');
+									console.log(novo_usuario_licenca);
+									console.log('llllllllllllllllllllllllllllllllllll');
+
+
+
+
+
+									req.session.usuario = {};
+									req.session.usuario.id = usuario_retorno_save._id;
+									req.session.usuario.nivel =usuario_retorno_save.nivel;
+									req.session.usuario.nome = usuario_retorno_save.nome;
+									req.session.usuario.email = usuario_retorno_save.email;
+									req.session.usuario.foto = '';
+
+
+									console.log('rrrrrrrrrrrrrr req.session.usuario rrrrrrrrrrrrrrr');
+									console.log(req.session.usuario);
+									console.log('rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr');
+
+
+									var usuario_criado = true;
+
+									res.json({usuario_criado:usuario_criado});
+
+								});
+
+							}
 
 						});
 
@@ -294,7 +378,72 @@ router.post('/criar-usuario-redirecionar', function(req, res, next) {
 });
 
 
-router.get('/assinar_30dias_gratuitos/:algoritmo/:capital', function(req, res, next) {
+router.post('/assinar_30dias_gratuitos/:algoritmo/:capital', function(req, res, next) {
+
+	POST = req.body;
+
+	console.log('--------------- assinar_30_dias_gratuitos -----------------');
+	console.log(POST);
+	console.log('-----------------------------------------------------------');
+
+	POST.email = POST.email.toLowerCase();
+	POST.email = POST.email.trim();
+
+	console.log('estou no assinar_30_dias_gratuitos');
+
+	var algoritmo = req.params.algoritmo;
+	var capital = req.params.capital;
+
+	console.log('algoritmo:' + algoritmo);
+	console.log('capital:' + capital);
+
+
+	console.log('');
+	console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
+
+	const ultimo_contato = new ultimosDadosContatoFormularioModel({
+		nome:POST.nome,
+		email:POST.email,
+		telefone:POST.telefone,
+		como_chegou:POST.como_chegou,
+		acess_key:POST.acess_key,
+		capital:capital,
+		algoritmo:algoritmo,
+		deletado:false,
+		data_cadastro: new Date()
+	});
+
+	ultimo_contato.save(function(err,data_ultimo_contato){
+		if (err) {
+			return handleError(err);
+		}else{
+
+			data.ultimo_contato = data_ultimo_contato;
+
+			console.log('data_ultimo_contato');
+			console.log(data_ultimo_contato);
+			console.log('uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu');
+
+
+			roboModel.findOne({valor:data_ultimo_contato.algoritmo},function(err,data_algoritmo){
+
+				console.log('-----------------------');
+				console.log(data_algoritmo);
+				console.log('-----------------------');
+				data.algoritmo = data_algoritmo;
+
+
+
+
+				res.render(req.isAjaxRequest() == true ? 'api' : 'montadorLandpage', {html: 'landpage/parabens_escolha_sistema',  message: data});
+			});
+		}
+	});
+
+});
+
+
+router.get('/assinar_30dias/:algoritmo/:capital', function(req, res, next) {
 
 	var algoritmo = req.params.algoritmo;
 	var capital = req.params.capital;
@@ -310,13 +459,9 @@ router.get('/assinar_30dias_gratuitos/:algoritmo/:capital', function(req, res, n
 
 
 
-	res.render(req.isAjaxRequest() == true ? 'api' : 'montadorLandpage', {html: 'landpage/parabens_escolha_sistema',  message: data});
-
-
-
+	res.json({});
 
 });
-
 
 
 
