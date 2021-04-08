@@ -1,0 +1,118 @@
+$primary-color:#003475;
+$principal-land-color:#08337D;
+$inverted-land-color:#FAFBFD;
+
+
+
+@font-face {
+	font-family: myriadpro;
+	src: url("/public/fonts/myriad_pro/MYRIADPRO-COND.OTF");
+}
+
+
+.principal-text-color{
+	color:$principal-land-color;
+}
+
+.principal-background-color{
+	background:$principal-land-color;
+}
+
+.inverted-text-color{
+	color:$inverted-land-color;
+}
+
+
+.landpage_container{
+	font-family: myriadpro;
+}
+
+.f1_5rem{
+	font-size:1.5rem;
+}
+
+.f1_8rem{
+	font-size:1.8rem;
+}
+
+.f2rem{
+	font-size:2rem;
+}
+
+.border-land-left-primary{
+	border-left:7px solid $primary-color;
+}
+
+.border-land-right-primary{
+	border-right:7px solid $primary-color;
+}
+
+
+
+.titulo_explicacao_einvestor{
+	padding:10px 10px 40px 10px;
+}
+
+.imagem_container_land{
+	position: absolute;
+}
+
+
+.margin-t-40{
+	margin-top: 40px;
+}
+
+
+.titulo_solucoes_tecnologicas{
+	padding: 4rem 0;
+}
+
+
+.landpage_container form label{
+	font-size:1.5rem;
+}
+
+.landpage_container .form-control{
+	font-size:24px;
+}
+
+
+.font2{
+	font-family: "Muli", sans-serif;
+}
+
+
+.voce_possui_30_dias_gratuitos{
+	margin-left: 36%;
+	font-size:22px;
+}
+
+
+
+
+.parabens_container{
+	background: transparent linear-gradient(180deg, #213B54 0%, #070C11 100%) 0% 0% no-repeat padding-box;
+	border: 1px solid #707070;
+}
+
+
+.card.transparent{
+	background:none;
+}
+
+
+.parabens_card_cadastro{
+	background: transparent linear-gradient(180deg, #FFFFFF 0%, #BBBBBB 100%) 0% 0% no-repeat padding-box;
+}
+
+
+.parabens_star_rating{
+	color: #FFAE18;
+	font-size: 20px;
+	margin-top: 10px;
+}
+
+
+.white-text-2{
+	color:#E7E7E7;
+}

@@ -36,7 +36,7 @@ if (typeof message.algoritmo != 'undefined' && message.algoritmo.length > 0) {
 						'<i class="fas fa-sort-down down-color f40"></i>'+
 					'</div>'+
 					'<div class="inline">'+
-						maximo_rebaixamento + '% a.a ou <br>' +
+						maximo_rebaixamento + '% ou <br>' +
 						volatilidade_algoritmo + 
 					'</div>'+
 				'</div>'+
@@ -45,8 +45,8 @@ if (typeof message.algoritmo != 'undefined' && message.algoritmo.length > 0) {
 						'<i class="fas fa-sort-up primary-text f40"></i>'+
 					'</div>'+
 					'<div class="inline">'+
-						'+' + rentabilidade_aa + '% ou <br>' +
-						'+' + rentablidade_aa_reais_F +
+						'+' + rentabilidade_aa + '% a.a ou <br>' +
+						'+' + rentablidade_aa_reais_F + ' a.a' +
 					'</div>'+
 				'</div>'+
 				'<div class="escolha_algoritmo_relatorio">'+
@@ -55,7 +55,7 @@ if (typeof message.algoritmo != 'undefined' && message.algoritmo.length > 0) {
 			'</div>'+
 			'<div class="escolha_algoritmo_assinar_box">'+
 				'<div class="text-center">'+
-					'<button class="btn btn-assinar-algoritmo">'+
+					'<button class="btn btn-assinar-algoritmo ajax-load-to" data-to="main_page_landpage" href="/assinar_30dias_gratuitos/<%= message.algoritmo[i].valor %>/'+capital+'">'+
 						'Assinar <br>'+
 						preco_robo +
 					'</button>'+
