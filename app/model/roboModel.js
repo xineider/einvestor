@@ -6,7 +6,8 @@ const roboSchema = new mongoose.Schema({
 	nome:String,
 	preco:Number,
 	multiplicador:Number,
-	valor_minimo:Number
+	valor_minimo:Number,
+	link_pagamento:String
 });
 
 module.exports = mongoose.model('robo', roboSchema,'robo'); 

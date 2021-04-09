@@ -8,6 +8,7 @@ const ultimos_dadosSchema = new mongoose.Schema({
 	acess_key:String,
 	capital:Number,
 	algoritmo:Number,
+	rentabilidade_aa:Number,
 	deletado:Boolean,
 	data_cadastro:Date
 });

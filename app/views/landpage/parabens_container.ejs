@@ -1,0 +1,176 @@
+			<div class="card parabens_container">
+				
+
+				<div class="row">
+					
+
+					<div class="col-sm-12 col-md-5">
+
+						<div class="card h-100 parabens_card_informacoes_algoritmo text-center justify-content-center">
+
+							<div class="w100px mx-auto">
+								<img class="w100" style="margin-left: 17px;" src="/public/images/eib.png">
+							</div>
+
+							<div class="white-text italic f25">
+								Você Adquiriu
+							</div>
+
+							<div class="margin-t-20 white-text-2 f25">
+								E-Investor Variable White Box
+							</div>
+
+							<div class="margin-t-10 white-text-2 f25">
+								<%=message.algoritmo.nome%>
+							</div>
+
+							<div class="f25">
+
+								<% if(message.ultimo_contato.acess_key == ''){%>
+								<span class="grey-text">Cobrança recorrente</span>
+
+								<% } else if(message.ultimo_contato.acess_key == 'einvestor30g'){ %>
+								<span class="grey-text">30 dias gratuitos</span>
+								<%}%>
+								<div class="white-text f40 <%= message.ultimo_contato.acess_key == 'einvestor30g' ? 'text-decoration-line-meio' : ''  %>">
+
+									R$<span class="price_algoritmo <%= message.ultimo_contato.acess_key == 'einvestor30g' ? 'text-decoration-line-meio' : ''  %>"></span>
+								</div>
+
+							</div>
+
+						</div>
+
+
+					</div>
+
+					<div class="col-sm-12 col-md-7">
+
+						<div class="card h-100 parabens_card_cadastro">
+
+							<div class="w80 mx-auto">
+								<div class="row">
+									<div class="col-sm-12 col-md-3 d-flex align-items-center justify-content-center">
+										<div>
+											<img class="w100" src="/public/images/robot-icones/ei<%=message.algoritmo.valor < 10 ? '00' + message.algoritmo.valor : message.algoritmo.valor < 100 ? '0' + message.algoritmo.valor : message.algoritmo.valor  %>g.png">
+											<div class="text-center">
+												<i class="fas fa-star parabens_star_rating"></i>
+												<i class="fas fa-star parabens_star_rating"></i>
+												<i class="fas fa-star parabens_star_rating"></i>
+												<i class="fas fa-star parabens_star_rating"></i>
+												<i class="fas fa-star parabens_star_rating"></i>
+											</div>
+										</div>
+									</div>
+
+									<div class="col-sm-12 col-md-8">
+
+
+
+
+										<span class="f1_8rem">Agora você precisa criar sua conta na plataforma E-Investor:</span>
+
+
+										<form method="POST" action="/">
+
+											<div class="form-group margin-t-20">
+												<label for="nome">Nome Completo</label>
+												<input class="form-control" name="nome" type="text" placeholder="Nome Completo" required="true" value="<%=message.ultimo_contato.nome%>">
+											</div>
+
+
+											<div class="form-group margin-t-20">
+												<label for="telefone">Telefone</label>
+												<input class="form-control tel" name="telefone" placeholder="Telefone" required="true" value="<%=message.ultimo_contato.telefone%>">
+											</div>
+
+
+											<div class="form-group margin-t-20">
+												<label for="email">E-mail</label>
+												<input class="form-control" name="email" type="email" placeholder="Email" required="true" value="<%=message.ultimo_contato.email%>">
+											</div>
+
+											<div class="form-group margin-t-20">
+												<label for="cpf">CPF</label>
+												<input class="form-control cpf" name="cpf" type="text" placeholder="CPF" required="true" value="">
+											</div>
+
+											<div class="form-group">
+												<label for="senha">Senha</label>
+												<input id="nova_senha" class="form-control" name="senha" type="password" placeholder="Senha" required="true">
+											</div>
+
+											<div class="form-group">
+												<label for="senha">Repetir Senha</label>
+												<input id="confirmar_nova_senha" class="form-control" name="repetir_senha" type="password" placeholder="Senha" required="true">
+											</div>
+
+											<input type="hidden" name="capital" value="<%=message.ultimo_contato.capital%>">
+
+											<input type="hidden" name="algoritmo" value="<%=message.ultimo_contato.algoritmo%>">
+
+											<input type="hidden" name="rentabilidade_aa" value="<%=message.ultimo_contato.rentabilidade_aa%>">
+											
+
+											
+
+
+											<!-- <button class="btn btn-primary w100">Criar</button> -->
+
+											<button class="btn btn-primary w100 btn-criar-usuario-landpage" data-href="/criar-usuario-redirecionar">Criar</button>
+
+
+
+
+
+										</form>
+
+
+									</div>
+
+								</div>
+
+							</div>
+
+
+						</div>
+
+					</div>
+
+
+
+
+				</div>
+
+
+
+
+			</div>
+
+
+
+
+
+			<script type="text/javascript">
+
+				var capital = <%=message.algoritmo.preco%>;
+				var capital_form = capital.toLocaleString('pt-br', {minimumFractionDigits: 2});
+				console.log('----------------');
+				console.log(capital_form);
+				console.log('ttttttttttt');
+
+
+				$('.price_algoritmo').text(capital_form);
+
+				$('.tel').mask('(00) Z0000-0000', {
+					translation: {
+						'Z': {
+							pattern: /[0-9]/, optional: true
+						}
+					}
+				});
+
+				$('.cpf').mask('000.000.000-00', {reverse: true});
+
+
+			</script>

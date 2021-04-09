@@ -203,6 +203,7 @@
 							<div class="form-group">
 								<label for="email">E-mail</label>
 								<input type="email" class="form-control" name="email" aria-describedby="email" required="true">
+								<div>Coloque um e-mail válido, pois ele será necessário para confirmação de seu pagamento.</div>
 							</div>
 
 							<div class="form-group">
@@ -277,7 +278,7 @@
 									</div>
 
 									<div class="form-group">
-										<p style="font-size: 1.5rem;" class="primary-text margin-t-20">Você possui um Acess Key? Insira o Abaixo, se você não tiver prossiga normalmente.</p>
+										<p style="font-size: 1.5rem;" class="margin-t-20">Você possui um Acess Key? Insira o Abaixo, se você não tiver prossiga normalmente.</p>
 
 										<label for="acess_key">Acess Key</label>
 										<input type="text" name="acess_key" class="form-control">
@@ -408,6 +409,7 @@
 
 	</section>
 
+	<input type="hidden" class="possui_30_dias_g">
 
 
 </div>
@@ -421,119 +423,134 @@
 <script type="text/javascript">
 
 	<% if( typeof message.regras_algoritmo != 'undefined'){ %>
-	var media_ano = <%=message.regras_algoritmo[0].media_ano%>;
-	var volatilidade = <%= message.regras_algoritmo[0].volatilidade %>;
+		var media_ano = <%=message.regras_algoritmo[0].media_ano%>;
+		var volatilidade = <%= message.regras_algoritmo[0].volatilidade %>;
 
-	const formCurrency = new Intl.NumberFormat('pt-BR', {
-		style: 'currency',
-		currency: 'BRL',
-		minimumFractionDigits: 2
-	});
+		const formCurrency = new Intl.NumberFormat('pt-BR', {
+			style: 'currency',
+			currency: 'BRL',
+			minimumFractionDigits: 2
+		});
 
-	console.log('media_ano: ' + media_ano);
-	console.log('volatilidade: ' + volatilidade);
+		console.log('media_ano: ' + media_ano);
+		console.log('volatilidade: ' + volatilidade);
 
-	$(document).on('input', '.form-control-range', function(e) {
-		e.preventDefault();
+		$(document).on('input', '.form-control-range', function(e) {
+			e.preventDefault();
 
-		console.log('estou alterando o range');
-		console.log($(this).val());
+			console.log('estou alterando o range');
+			console.log($(this).val());
 
-		var capital = parseFloat($(this).val());
-		var capital_form = capital.toLocaleString('pt-br', {minimumFractionDigits: 2});
-		console.log('capital_form: '+ capital_form);
+			var capital = parseFloat($(this).val());
+			var capital_form = capital.toLocaleString('pt-br', {minimumFractionDigits: 2});
+			console.log('capital_form: '+ capital_form);
 
-		$('#capital_inicial').text(capital_form);
+			$('#capital_inicial').text(capital_form);
 
-		<%-include('function_barra')%>;
+			console.log('possui 30 dias g');
+			console.log($('.possui_30_dias_g').val());
 
-
-		<%}%>
-
-	});
-
-
-
-
-
-
-	function SubmitLandpageConhecer(post, link,element) {
-		var capital_aportado;
-
-		$.ajax({
-			method: 'POST',
-			async: true,
-			data: post,
-			url: link,
-			beforeSend: function(request) {
-			},
-			success: function(data) {
-
-				console.log('retorno da data');
-				console.log(data);
-				console.log('xxxxxxxxxxxxxxxxxxxxxxxxxxx');
-				console.log('yay2');
-				console.log('data.pretencao_investimento');
-				console.log(data.pretencao_investimento);
-
-
-				var capital = data.pretencao_investimento;
-
-
-				if(data.possui_30dias == true){
-					$('.voce_possui_30_dias_gratuitos').removeClass('none');
-				}else if(data.possui_30dias == false){
-					$('.voce_possui_30_dias_gratuitos').addClass('none');
-				}
+			if($('.possui_30_dias_g').val() == '1'){
+				<%-include('function_barra_gratis')%>;
+			}else{
+				<%-include('function_barra_pago')%>;
+			}
 
 
 
-				if(capital>0){
-					$(element).removeClass('none');
-					var capital_form = capital.toLocaleString('pt-br', {minimumFractionDigits: 2});
-					$('.form-control-range').val(capital);
-
-
-					console.log('capital_form: '+ capital_form);
-
-					$('#capital_inicial').text(capital_form);
+		});
 
 
 
 
-					<%-include('function_barra')%>;
 
-					if(data.possui_30dias == true){
-						$('.btn-assinar-algoritmo').addClass('ajax-submit-load-to');
+
+
+
+
+		function SubmitLandpageConhecer(post, link,element) {
+			var capital_aportado;
+
+			$.ajax({
+				method: 'POST',
+				async: true,
+				data: post,
+				url: link,
+				beforeSend: function(request) {
+				},
+				success: function(data) {
+
+					console.log('retorno da data');
+					console.log(data);
+					console.log('xxxxxxxxxxxxxxxxxxxxxxxxxxx');
+					console.log('yay2');
+					console.log('data.pretencao_investimento');
+					console.log(data.pretencao_investimento);
+
+
+					var capital = data.pretencao_investimento;
+
+
+					if(capital>0){
+						$(element).removeClass('none');
+						var capital_form = capital.toLocaleString('pt-br', {minimumFractionDigits: 2});
+						$('.form-control-range').val(capital);
+
+
+						console.log('capital_form: '+ capital_form);
+
+						$('#capital_inicial').text(capital_form);
+
+
+
+
+
+						if(data.possui_30dias == true){
+							console.log('cai no gratis');
+
+							$('.possui_30_dias_g').val('1');
+
+
+							$('.voce_possui_30_dias_gratuitos').removeClass('none');
+							<%-include('function_barra_gratis')%>;
+						}else{
+							console.log('cai no pago');
+							$('.possui_30_dias_g').val('2');
+							$('.voce_possui_30_dias_gratuitos').addClass('none');
+							<%-include('function_barra_pago')%>;
+						}
+
+
+
+
+						$('.mensagem_agredecimento_formulario').addClass('none');
+
+
+					}else{
+						$(element).addClass('none');
+						$('.mensagem_agredecimento_formulario').removeClass('none');
 					}
 
 
 
 
-					$('.mensagem_agredecimento_formulario').addClass('none');
 
 
-				}else{
-					$(element).addClass('none');
-					$('.mensagem_agredecimento_formulario').removeClass('none');
+
+				},
+				error: function(xhr) {
+				},
+				complete: function() {
+
+
+
 				}
+			});
+		}
 
 
 
-
-
-
-
-			},
-			error: function(xhr) {
-			},
-			complete: function() {
-
-
-
-			}
-		});
-	}
+		<%}%>
 
 
 
@@ -542,4 +559,4 @@
 
 
 
-</script>
+	</script>

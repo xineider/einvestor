@@ -13,7 +13,10 @@ if (typeof message.algoritmo != 'undefined' && message.algoritmo.length > 0) {
 
 		var rentabilidade_aa = ((media_ano * <%=message.algoritmo[i].multiplicador%>) / capital) * 100;
 		var rentabilidade_aa_reais = (rentabilidade_aa * capital ) / 100;
-		rentabilidade_aa = parseFloat(rentabilidade_aa).toFixed(2).replace('.',',');
+		var rentabilidade_aa_f1 = parseFloat(rentabilidade_aa).toFixed(2);
+
+		var rentabilidade_aa_f = rentabilidade_aa_f1.replace('.',',');
+		
 		var rentablidade_aa_reais_F = formCurrency.format(rentabilidade_aa_reais);
 
 		var volatilidade_algoritmo = volatilidade * <%=message.algoritmo[i].multiplicador%>;
@@ -45,17 +48,17 @@ if (typeof message.algoritmo != 'undefined' && message.algoritmo.length > 0) {
 						'<i class="fas fa-sort-up primary-text f40"></i>'+
 					'</div>'+
 					'<div class="inline">'+
-						'+' + rentabilidade_aa + '% a.a ou <br>' +
+						'+' + rentabilidade_aa_f + '% a.a ou <br>' +
 						'+' + rentablidade_aa_reais_F + ' a.a' +
 					'</div>'+
 				'</div>'+
 				'<div class="escolha_algoritmo_relatorio">'+
-					'<i class="fas fa-book"></i>'+
+					'<a class="relatorio_icon_barras" target="_blank" href="/relatorio/<%= message.algoritmo[i].valor %>/'+capital+'"><i class="fas fa-book pointer"></i></a>'+					
 				'</div>'+
 			'</div>'+
 			'<div class="escolha_algoritmo_assinar_box">'+
 				'<div class="text-center">'+
-					'<button class="btn btn-assinar-algoritmo ajax-submit-form-other-load-to" data-form=".btn-continuar-conhecer" data-to="main_page_landpage" data-href="/assinar_30dias_gratuitos/<%= message.algoritmo[i].valor %>/'+capital+'">'+
+					'<button class="btn btn-assinar-algoritmo ajax-submit-form-other-load-to" data-form=".btn-continuar-conhecer" data-to="main_page_landpage" data-href="/assinar_30dias_gratuitos/<%= message.algoritmo[i].valor %>/'+capital+'/'+rentabilidade_aa_f1+'">'+
 						'Assinar <br>'+
 						preco_robo +
 					'</button>'+
@@ -84,7 +87,7 @@ if (typeof message.algoritmo != 'undefined' && message.algoritmo.length > 0) {
 						'<i class="fas fa-sort-up primary-text f40"></i>'+
 					'</div>'+
 					'<div class="inline">'+
-						'+' + rentabilidade_aa + '% ou <br>' +
+						'+' + rentabilidade_aa_f + '% ou <br>' +
 						'+' + rentablidade_aa_reais_F +
 					'</div>'+
 				'</div>'+

@@ -210,6 +210,36 @@ $(document).ready(function () {
 	});
 
 
+	$(document).on('click', '.ajax-submit-form-other-link', function(e) {
+		e.preventDefault();
+		var form = $(this).data('form');
+		var formulario = $(form).parents('form');
+		var post = formulario.serializeArray();
+
+
+		var link_pagamento = $(this).data('link');
+
+		var link = $(this).data('href');
+		var back = $(this).data('action');
+
+
+		console.log('link');
+		console.log(link);
+
+		console.log('link_pagamento');
+		console.log(link_pagamento);
+
+		console.log('formulario');
+		console.log(formulario);
+		console.log('post');
+		console.log(post);
+		if (VerificarForm(formulario) == true) {
+			SubmitAjaxOpenLink(post, link, link_pagamento);
+		}
+	});
+
+
+
 
 
 	$(document).on('click', '.ajax-submit-no-back', function(e) {
@@ -1064,6 +1094,34 @@ function SubmitAjax(post, link, back) {
 
 
 
+function SubmitAjaxOpenLink(post, link, url) {
+	$.ajax({
+		method: 'POST',
+		async: true,
+		data: post,
+		url: link,
+		beforeSend: function(request) {
+			adicionarLoader();
+		},
+		success: function(data) {
+			window.open(url, '_blank').focus();
+
+			/*update tambem retorna objeto, então tenho que validar ele pelo error*/	
+
+			
+		},
+		error: function(xhr) { // if error occured
+			console.log('erro ajax-submit');
+			console.log(xhr);
+		},
+		complete: function() {
+			removerLoader();
+		}
+	});
+}
+
+
+
 
 function SubmitAjaxChangeElement(post, link, element) {
 	$.ajax({
@@ -1088,6 +1146,7 @@ function SubmitAjaxChangeElement(post, link, element) {
 			console.log(element);
 
 			$('#' + element).text(data.resultado);
+
 
 
 
@@ -1146,6 +1205,13 @@ function SubmitAjaxLandPage(post, link) {
 			console.log('-------------------');
 			console.log(data);
 			console.log('retorno do valor do cadastro do usuario');
+
+			if (typeof data == 'object' && data['error'] != null){
+				console.log('cai no erro');
+				console.log(data['element']);
+				console.log(data['texto']);
+				AddErrorTexto($(data['element']),data['texto']);	
+			}
 
 			if(data.usuario_criado == true){
 				window.location.href = "/plataforma/sistema/automacao";
@@ -1596,6 +1662,8 @@ function MountModalPost(modal, link,post) {
 function VerificarForm(form) {
 	$('.error').remove();
 	var qtdErros = 0;
+
+	var mediumRegex = new RegExp("^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})");
 	
 	form.find('input:enabled:not([type="hidden"])[required="true"]').each(function(){
 		console.log('tem + de um input');
@@ -1611,6 +1679,24 @@ function VerificarForm(form) {
 		console.log('qtdErros:'+qtdErros);
 		AddErrorTexto($('#confirmar_alterar_senha'),'Senhas são diferentes');
 		qtdErros++;
+	}
+
+	if($('#nova_senha').val() != $('#confirmar_nova_senha').val())
+	{
+		console.log('cai no segundo erro');
+		console.log('qtdErros:'+qtdErros);
+		AddErrorTexto($('#confirmar_nova_senha'),'Senhas são diferentes');
+		qtdErros++;
+	}
+
+
+	if($('#nova_senha').val() != undefined){
+		console.log('estou caindo na nova senha');
+		if(!(mediumRegex.test($('#nova_senha').val()))) {
+			AddErrorTexto($('#nova_senha'),'Por-favor colocar uma senha de pelo menos 6 dígitos com letras e números');
+			qtdErros++;
+		}
+
 	}
 
 	form.find('input:enabled:not([type="hidden"])[required="true"][type="email"]').each(function(){

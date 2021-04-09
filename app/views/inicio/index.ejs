@@ -70,9 +70,13 @@
 
 							<div>
 								<canvas id="grafico_evolucao_patrimonial"></canvas>
+
+								<div class="w100 none historico_mensagem_sem_operacao quartiary-block">
+									Sem dados suficientes!
+								</div>
 								
-								<div class="text-center primary-text">Capital Inicial Alocado: R$80.000,00</div>
-								<div class="text-center primary-text">Lucro Acumulado: R$16.179,00</div>
+								<div class="text-center primary-text mensagem_utilizando_sistema_historico">Capital Inicial Alocado: R$80.000,00</div>
+								<div class="text-center primary-text mensagem_utilizando_sistema_historico">Lucro Acumulado: R$16.179,00</div>
 
 							</div>
 
@@ -229,7 +233,7 @@
 					labels: ['<%=data[usuario.id +'_usuario_grafico'][2].mes %>', '<%=data[usuario.id +'_usuario_grafico'][1].mes %>', '<%=data[usuario.id +'_usuario_grafico'][0].mes %>'],
 					datasets: [{
 						label: 'Evolução Patrimonial',
-						data: [85720,92006,96179],
+						data: [<%=data[usuario.id +'_usuario_grafico'][2].valor %>,<%=data[usuario.id +'_usuario_grafico'][1].valor %>,<%=data[usuario.id +'_usuario_grafico'][0].valor %>],
 						
 						backgroundColor:['#003475'],
 						borderColor: ['#003475'],						
