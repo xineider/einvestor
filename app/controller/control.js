@@ -94,8 +94,8 @@ class Control {
 						secureConnection: false,
 						port: 587,						
 						auth: {
-							user: 'naoresponda_deuwin@outlook.com',
-							pass: 'senha_D3uWinNo_Reply'
+							user: 'nao_responda_einvestor@outlook.com',
+							pass: 'nop@@@!90909EooMM741l09'
 						},
 						tls: {
 							ciphers:'SSLv3'
@@ -104,7 +104,7 @@ class Control {
 
 					// setup email data with unicode symbols
 					let mailOptions = {
-							from: '"Deu Win - Não Responda" <naoresponda_deuwin@outlook.com>', // sender address
+							from: 'nao_responda_einvestor@outlook.com', // sender address
 							to: para, // list of receivers
 							subject: assunto, // Subject line
 							text: text, 
@@ -116,7 +116,9 @@ class Control {
 					transporter.sendMail(mailOptions, (error, info) => {
 						if (error) {
 							return console.log(error);
-						}
+						}	
+						console.log('informacoes envio do e-mail');
+						console.log(info);
 						console.log('Message sent: %s', info.messageId);
 							// Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@blurdybloop.com>
 							// Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
@@ -129,12 +131,12 @@ class Control {
 
 					// create reusable transporter object using the default SMTP transport
 					let transporter = nodemailer.createTransport({
-						host: 'smtp-mail.outlook.com',
+						host: 'smtp.ethereal.email',
 						secureConnection: false,
 						port: 587,						
 						auth: {
-							user: 'naoresponda_deuwin@outlook.com',
-							pass: 'senha_D3uWinNo_Reply'
+							user: 'robbie.ebert20@ethereal.email',
+							pass: 'xRYDVZCJ54QKCQxqyM'
 						},
 						tls: {
 							ciphers:'SSLv3'
@@ -143,7 +145,7 @@ class Control {
 
 					// setup email data with unicode symbols
 					let mailOptions = {
-							from: '"Deu Win - Não Responda" <naoresponda_deuwin@outlook.com>', // sender address
+							from: '"E-Investor" <suporte@einvestor.com.br>', // sender address
 							to: para, // list of receivers
 							subject: assunto, // Subject line
 							text: text, 
