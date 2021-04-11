@@ -989,15 +989,39 @@ nav#sidebar .sidebar-suporte{
 
 
 .queremos_conhecer_voce_container{
-	border:1px solid #6FB6BE;
 	border-radius:10px;
-	margin-top: -40px;
 	padding-bottom: 80px;
+	margin-top: 40px;
 	margin-bottom: -60px;
+	color: #000000;
+	background: #f7f9fb;
+	box-shadow: 1px 1px 10px #e4e4e4;
 
 
 	.form-control{
-		border-color:#003475
+		border-color:transparent;
+		box-shadow: 1px 1px 10px #c1c1c1;
+		color: #000;
+
+		&::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+			color: #ccc;
+			opacity: 1; /* Firefox */
+		}
+
+		&:-ms-input-placeholder { /* Internet Explorer 10-11 */
+			color: #ccc;
+		}
+
+		&::-ms-input-placeholder { /* Microsoft Edge */
+			color: #ccc;
+		}
+
+
+
+	}
+
+	label{
+		color:#000;
 	}
 
 
@@ -1009,13 +1033,13 @@ nav#sidebar .sidebar-suporte{
 
 
 .queremos_conhecer_voce_titulo{
-	border-bottom:1px solid #6FB6BE;
+	border-bottom:1px solid #f7f9fb;
 	margin-left: 30px;
 	padding-right:30px;
 	font-size:28px;
 	padding-bottom:10px;
 	padding-top:10px;
-	color: #003475;
+	color: #000000;
 }
 
 
@@ -1366,4 +1390,9 @@ nav#sidebar.menu_mobile{
 	&:hover{
 		color: #0069d9;
 	}
+}
+
+
+a.d-block:hover,a.d-block{
+	text-decoration:none;
 }

@@ -9,6 +9,9 @@
 
 		<%- include('../inicio/primeira_vez'); %>
 		<%- include('../inicio/popup_termos_uso');%>
+
+
+		<h5 class="text-center">Minha Conta</h5>
 		
 		<section class="margin-bottom-sm">
 			<div class="container-fluid">
@@ -19,35 +22,113 @@
 
 						<div class="col-sm-12">                           
 							<div class="margin-t-10">
-								<h5 class="text-center"><strong>Alterar senha</strong></h5>
+								
 								<div class="block-body">
-									<form class="form-inline">
-										<div class="form-group col-sm-12 col-wide-3 mb-3">
-											<label class="sr-only">Senha atual</label>
-											<input type="password" placeholder="Senha atual" class="form-control mx-auto" name="senha_atual" required>
-										</div>
-										<div class="form-group col-sm-12 col-wide-3 mb-3">
-											<label class="sr-only">Nova senha</label>
-											<input type="password" placeholder="Nova senha" class="form-control mx-auto" name="nova_senha" required>
-										</div>
-										<div class="form-group col-sm-12 col-wide-3 mb-3">
-											<label class="sr-only">Confirmar senha</label>
-											<input type="password" placeholder="Confirmar senha" class="form-control mx-auto" name="repetir_nova_senha" required>
-										</div>
-										<div class="form-group col-sm-12">
-											<button data-href="/plataforma/sistema/minha_conta/alterar-senha/" title="Alterar Senha" type="submit" class="btn btn-primary ajax-submit-sucess-message mx-auto" data-action="/plataforma/sistema/minha_conta" data-sucesso-id="#alert-sucess-alterar-senha">Alterar Senha</button>
-										</div>
-									</form>
+
 								</div>
+
+
+
+							</div>
+						</div>
+					</div>
+					
+				</div>
+
+			</div>
+		</section>
+
+		<section class="margin-bottom-sm">
+			<div class="container-fluid">
+
+				<div class="card">
+
+					<div class="row d-flex align-items-stretch">
+
+						<div class="col-sm-12">                           
+							<div class="margin-t-10">
+								<h5 class="text-center bold">Status do Algoritmo</h5>
 								<div class="block-body">
-									<div class="margin-t-20" id="error_alterar_senha">
+									<div class="mx-auto">
+
+										<% if (data[usuario.id +'_usuario_status'].length> 0){ %>
+
+										<div class="text-center margin-t-10">
+											<%if(data[usuario.id +'_usuario_status'][0].sistema_online == true){%>
+											<i class="fas fa-check-circle green-text f24"></i>
+											<%}else{%>
+											<i class="fas fa-times-circle orange-text f24"></i>
+											<%}%>
+
+											<span class="margin-l-5">Status sistema:</span>
+											<span class="<%=data[usuario.id +'_usuario_status'][0].sistema_online == true ? 'green-text' : 'orange-text' %>">
+												<%= data[usuario.id +'_usuario_status'][0].nome_algoritmo_escolhido %> <%= data[usuario.id +'_usuario_status'][0].sistema_online == true ? '- ONLINE' : ' - OFFLINE'%>
+											</span>
+										</div>
+
+										<div class="text-center margin-t-10">
+											<%if(data[usuario.id +'_usuario_status'][0].pagamento == true){%>
+											<i class="fas fa-check-circle green-text f24"></i>
+											<%}else{%>
+											<i class="fas fa-times-circle orange-text f24"></i>
+											<%}%>
+
+											<span class="margin-l-5">Pagamento:</span>
+											<span class="<%=data[usuario.id +'_usuario_status'][0].pagamento == true ? 'green-text' : 'orange-text' %>">
+												<%=data[usuario.id +'_usuario_status'][0].pagamento == true ? 'OK' : 'Erro'%>
+											</span>
+										</div>
+
+										<a class="ajax-load d-block" href="/plataforma/sistema/automacao">
+											<div class="text-center margin-t-10">
+												<%if(data[usuario.id +'_usuario_status'][0].conta == 'Sincronizada'){%>
+												<i class="fas fa-info-circle green-text f24"></i>
+												<%}else if(data[usuario.id +'_usuario_status'][0].conta == 'Sincronizando'){%>
+												<i class="fas fa-info-circle orange-text f24"></i>
+												<%}else{%>
+												<i class="fas fa-info-circle red-text f24"></i>
+												<%}%>
+
+												<span class="margin-l-5">Conta:</span>
+												<span class="<%=data[usuario.id +'_usuario_status'][0].conta == 'Sincronizada' ? 'green-text' : data[usuario.id +'_usuario_status'][0].conta == 'Sincronizando' ? 'orange-text' : 'red-text' %>">
+													<%=data[usuario.id +'_usuario_status'][0].conta%>
+												</span>
+											</div>
+										</a>
+
+										<a class="ajax-load d-block" href="/plataforma/sistema/automacao/parametros">
+											<div class="text-center margin-t-10">
+												<%if(data[usuario.id +'_usuario_status'][0].algoritmo == 'Sincronizada'){%>
+												<i class="fas fa-check-circle green-text f24"></i>
+												<%}else if(data[usuario.id +'_usuario_status'][0].algoritmo == 'Sincronizando'){%>
+												<i class="fas fa-exclamation-circle orange-text f24"></i>
+												<%}else{%>
+												<i class="fas fa-times-circle red-text f24"></i>
+												<%}%>
+
+												<span class="margin-l-5">Algoritmo:</span>
+												<span class="<%=data[usuario.id +'_usuario_status'][0].algoritmo == 'Sincronizada' ? 'green-text' : data[usuario.id +'_usuario_status'][0].algoritmo == 'Sincronizando' ? 'orange-text' : 'red-text' %>">
+													<%=data[usuario.id +'_usuario_status'][0].algoritmo%>
+												</span>
+											</div>
+										</a>
+
+										<div class="text-center margin-t-10">
+											<i class="fas fa-check-circle green-text f24"></i>
+											<span class="margin-l-5">Data da atualização:</span>
+											<%=data[usuario.id +'_usuario_status'][0].data_atualizacao_f%>
+										</div>
+
+
+										<%}%>
+
 
 									</div>
 
-									<div class="none alert sucess-block text-center" role="alert" id="alert-sucess-alterar-senha">
-										Senha alterada com sucesso!
-									</div>
+
+
 								</div>
+
 
 
 							</div>
