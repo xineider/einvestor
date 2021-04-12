@@ -70,7 +70,7 @@ if (typeof message.algoritmo != 'undefined' && message.algoritmo.length > 0) {
 					'<div class="text-center">'+
 						'<button data-link="<%= message.algoritmo[i].link_pagamento %>" class="btn btn-assinar-algoritmo ajax-submit-form-other-link" target="_blank" data-form=".btn-continuar-conhecer" data-href="/cadastrar_ultimo_contato/<%= message.algoritmo[i].valor %>/'+capital+'/'+rentabilidade_aa_f1+'">'+
 							'Assinar <br>'+
-							preco_robo +
+							preco_robo + '/mês' +
 						'</button>'+
 						'<div>'+
 							'Sistema <%= message.algoritmo[i].nome %>' +

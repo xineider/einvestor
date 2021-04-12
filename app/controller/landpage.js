@@ -663,6 +663,14 @@ router.get('/quem_somos', function(req, res, next) {
 
 
 
+router.get('/faq', function(req, res, next) {
+	console.log('qqqqqqqqqqqqqqqqqqqqqqqqqqqqq');
+	console.log('estou no faq');
+	console.log('qqqqqqqqqqqqqqqqqqqqqqqqqqqqq');
+	data.numero_menu = 4;
+	res.render(req.isAjaxRequest() == true ? 'api' : 'montadorLandpage', {html: 'landpage/faq',message: data});
+});
+
 
 
 router.get('/relatorio/:algoritmo/:capital', function(req, res, next) {
