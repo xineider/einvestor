@@ -1129,6 +1129,7 @@ nav#sidebar .sidebar-suporte{
 	padding: 10px;
 	font-size: 14px;
 	min-width: 170px;
+	float: left;
 
 }
 
@@ -1145,6 +1146,7 @@ nav#sidebar .sidebar-suporte{
 	font-size: 14px;
 	min-width: 150px;
 	text-align: right;
+	float: left;
 
 }
 
@@ -1310,6 +1312,12 @@ nav#sidebar .sidebar-suporte{
 	}
 }
 
+@media (min-width: 768px){
+	.landpage_seguranca_image{
+		margin-top:-60px;
+	}
+}
+
 @media (min-width: 1200px){
 	.sidebar-toggle{
 		display: none;
@@ -1396,3 +1404,50 @@ nav#sidebar.menu_mobile{
 a.d-block:hover,a.d-block{
 	text-decoration:none;
 }
+
+
+.btn-red{
+	background: #dc1717;
+    color: #fff;
+
+    &:hover:not([disabled]),&:focus:not([disabled]){
+    	background:#c10505;
+    	color:#fff;
+    }
+
+
+
+}
+
+
+.rodape_landpage{
+	color: #f7f9fb;
+
+	a{
+		color: #fff;
+		text-decoration: underline;
+
+		&:hover{
+			text-decoration: none;
+		}
+
+	}
+
+}
+
+
+.landpage_seguranca_image{
+	width: 200px;
+	float:left;
+	
+	margin-bottom:20px;
+	margin-right: 40px;
+    margin-left: 20px;
+}
+
+
+.margin-b-40{
+	margin-bottom:40px;
+}
+
+

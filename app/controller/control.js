@@ -90,21 +90,17 @@ class Control {
 
 					// create reusable transporter object using the default SMTP transport
 					let transporter = nodemailer.createTransport({
-						host: 'smtp-mail.outlook.com',
-						secureConnection: false,
+						host: 'smtp.umbler.com',
 						port: 587,						
 						auth: {
-							user: 'nao_responda_einvestor@outlook.com',
-							pass: 'nop@@@!90909EooMM741l09'
-						},
-						tls: {
-							ciphers:'SSLv3'
-						},
+							user: 'suporte@einvestor.com.br',
+							pass: 'e_s81j9!n0t+R'
+						}
 					});
 
 					// setup email data with unicode symbols
 					let mailOptions = {
-							from: 'nao_responda_einvestor@outlook.com', // sender address
+							from: '"E-Investor" <suporte@einvestor.com.br>', // sender address
 							to: para, // list of receivers
 							subject: assunto, // Subject line
 							text: text, 

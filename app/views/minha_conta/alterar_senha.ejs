@@ -28,14 +28,14 @@
 										</div>
 										<div class="form-group col-sm-12 col-wide-3 mb-3">
 											<label class="sr-only">Nova senha</label>
-											<input type="password" placeholder="Nova senha" class="form-control mx-auto" name="nova_senha" required>
+											<input type="password" id="nova_senha" placeholder="Nova senha" class="form-control mx-auto" name="nova_senha" required>
 										</div>
 										<div class="form-group col-sm-12 col-wide-3 mb-3">
 											<label class="sr-only">Confirmar senha</label>
-											<input type="password" placeholder="Confirmar senha" class="form-control mx-auto" name="repetir_nova_senha" required>
+											<input id="confirmar_nova_senha" type="password" placeholder="Confirmar senha" class="form-control mx-auto" name="repetir_nova_senha" required>
 										</div>
 										<div class="form-group col-sm-12">
-											<button data-href="/plataforma/sistema/minha_conta/alterar-senha/" title="Alterar Senha" type="submit" class="btn btn-primary ajax-submit-sucess-message mx-auto" data-action="/plataforma/sistema/minha_conta" data-sucesso-id="#alert-sucess-alterar-senha">Alterar Senha</button>
+											<button data-href="/plataforma/sistema/minha_conta/alterar-senha/" title="Alterar Senha" type="submit" class="btn btn-primary ajax-submit-sucess-message mx-auto" data-action="/plataforma/sistema/minha_conta/alterar-senha" data-sucesso-id="#alert-sucess-alterar-senha">Alterar Senha</button>
 										</div>
 									</form>
 								</div>
@@ -44,7 +44,7 @@
 
 									</div>
 
-									<div class="none alert sucess-block text-center" role="alert" id="alert-sucess-alterar-senha">
+									<div class="none alert sucess-block text-center primary-text" role="alert" id="alert-sucess-alterar-senha">
 										Senha alterada com sucesso!
 									</div>
 								</div>

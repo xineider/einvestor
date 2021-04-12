@@ -49,7 +49,7 @@ router.get('/', function(req, res, next) {
 			data[req.session.usuario.id+'_usuario_corretora']= data_usuario_corretora;
 			console.log(data_usuario_corretora);
 
-			usuarioParametrosAlgoritmoModel.find({},function(err,data_parametros_usuario){
+			usuarioParametrosAlgoritmoModel.find({id_usuario:mongoose.Types.ObjectId(req.session.usuario.id)},function(err,data_parametros_usuario){
 				data[req.session.usuario.id+'_usuario_parametros'] = data_parametros_usuario;
 
 				regrasAlgoritmoModel.find({},function(err,data_regras_algoritmo){

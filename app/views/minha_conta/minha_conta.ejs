@@ -11,7 +11,7 @@
 		<%- include('../inicio/popup_termos_uso');%>
 
 
-		<h5 class="text-center">Minha Conta</h5>
+		
 		
 		<section class="margin-bottom-sm">
 			<div class="container-fluid">
@@ -22,8 +22,32 @@
 
 						<div class="col-sm-12">                           
 							<div class="margin-t-10">
-								
+								<h5 class="text-center">Minha Conta</h5>
 								<div class="block-body">
+									<div class="text-center margin-t-10">
+										<span class="margin-l-5">Nome:</span>
+										<%=data[usuario.id +'_usuario_t'][0].nome%>
+									</div>
+
+									<div class="text-center margin-t-10">
+										<span class="margin-l-5">E-mail:</span>
+										<%=data[usuario.id +'_usuario_t'][0].email%>
+									</div>
+
+									<div class="text-center margin-t-10">
+										<span class="margin-l-5">Telefone:</span>
+										<%=data[usuario.id +'_usuario_t'][0].telefone%>
+									</div>
+
+									<div class="text-center margin-t-10">
+										<span class="margin-l-5">CPF:</span>
+										<%=data[usuario.id +'_usuario_t'][0].cpf%>
+									</div>
+
+									<div class="text-center margin-t-10 margin-b-10">
+										<button class="btn btn-primary ajax-load" href="/plataforma/sistema/minha_conta/alterar-senha">Alterar Senha</button>
+									</div>
+
 
 								</div>
 
@@ -37,6 +61,53 @@
 
 			</div>
 		</section>
+
+
+		<% if (data[usuario.id +'_usuario_licenca'].length> 0){ %>
+		<section class="margin-bottom-sm">
+			<div class="container-fluid">
+
+				<div class="card">
+
+					<div class="row d-flex align-items-stretch">
+
+						<div class="col-sm-12">                           
+							<div class="margin-t-10">
+								<h5 class="text-center bold">Assinatura</h5>
+								<div class="block-body">
+									<div class="mx-auto">
+
+										<div class="text-center margin-t-10">
+											<span class="margin-l-5">Data Fim Licença:</span>
+											<%=data[usuario.id +'_usuario_licenca'][0].data_fim_uf%>
+										</div>
+
+										<div class="text-center margin-t-10">
+											<span class="margin-l-5">Seu Algoritmo Atual é:</span>
+											<%= data[usuario.id +'_usuario_status'][0].nome_algoritmo_escolhido %>			
+										</div>
+
+										<div class="text-center margin-t-10">
+											<span class="margin-l-5">Seu Valor Aplicado é:</span>
+											R$<%= data[usuario.id +'_usuario_status'][0].valor_aplicado_f %>			
+										</div>
+
+
+
+
+									</div>
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</section>
+
+		<% } %>
+
 
 		<section class="margin-bottom-sm">
 			<div class="container-fluid">
@@ -134,11 +205,30 @@
 							</div>
 						</div>
 					</div>
-					
+
 				</div>
 
 			</div>
 		</section>
+
+
+
+		<section class="margin-bottom-sm">
+			<div class="container-fluid">
+
+				<div class="mx-auto text-center">
+
+
+					<button class="btn btn-red modal-mount <%=data[usuario.id +'_usuario_desativar_conta'].length > 0 ? 'disabled' : ''  %>" <%=data[usuario.id +'_usuario_desativar_conta'].length > 0 ? 'disabled' : ''  %> data-modal='#modalinfo' data-link="/plataforma/sistema/minha_conta/pop-up-desativar-conta">Desativar Conta</button>
+
+				</div>
+
+			</div>
+		</section>
+
+
+
+
 
 	</div>
 
