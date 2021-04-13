@@ -16,21 +16,44 @@
 
 					<div class="padding-20">
 
-						<div class="f20">
-							Seu Valor Aplicado: R$ <%= data[usuario.id +'_usuario_status'][0].valor_aplicado_f %>
+						<div class="row">
+							<div class="col-sm-12 col-md-4 text-center">
+								Seu Valor Aplicado: R$ <%= data[usuario.id +'_usuario_status'][0].valor_aplicado_f %>
+							</div>
+
+							<div class="col-sm-12 col-md-4 text-center">
+								Seu Sistema Atual é: <%= data[usuario.id +'_usuario_status'][0].nome_algoritmo_escolhido %>
+							</div>
+
+
+							<div class="col-sm-12 col-md-4 text-center">
+								
+
+								<% if (data[usuario.id +'_usuario_licenca'].length> 0){ %>
+
+								Data Vencimento:<%= data[usuario.id +'_usuario_licenca'][0].data_fim_uf %>
+
+								<%}%>
+
+							</div>
+
+						</div>
+						
+
+						<div class="alert alert-warning margin-t-10">A cobrança do novo sistema é feita no momento da assinatura independente do vencimento do sistema atual, você pode fazer o upgrade a qualquer momento ou próximo ao vencimento do sistema vigente. 
+
+							<br><br>O sistema atual é cancelado no momento do upgrade, entrando nesta data a cobrança do valor do novo plano.
+
+							<br><br>Dependendo do dia do upgrade e vencimento do seu cartão, poderão estar na sua próxima fatura os dois sistemas.
 						</div>
 
-
-						<div class="f20">
-							Seu Algoritmo Atual é: <%= data[usuario.id +'_usuario_status'][0].nome_algoritmo_escolhido %>
-						</div>
-
+						<div class="bold text-center">Poderá levar até 1 dia útil para nós confirmarmos o seu pagamento.</div>
 
 
 
 						<div class="margin-t-20">
 							<div class="row">
-								
+
 								<div class="col-sm-12 col-md-8">
 
 
@@ -71,7 +94,7 @@
 						</div>
 
 
-						
+
 
 
 						<div class="col-sm-12">

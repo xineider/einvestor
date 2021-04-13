@@ -79,7 +79,7 @@
 									Sem dados suficientes!
 								</div>
 
-								<div class="w100 text-center">
+								<div class="w100 text-center none dados_serao_carregados_termino_mes">
 									Os dados serão carregados ao término de cada mês.
 								</div>
 
@@ -150,7 +150,7 @@
 								Sem dados suficientes!
 							</div>
 
-							<div class="w100 text-center">
+							<div class="w100 text-center none dados_serao_carregados_termino_mes">
 									Os dados serão carregados ao término de cada mês.
 								</div>
 
@@ -349,6 +349,7 @@
 			<% }else{ %>
 
 				$('.historico_mensagem_sem_operacao').removeClass('none');
+				$('.dados_serao_carregados_termino_mes').removeClass('none');
 				$('.mensagem_utilizando_sistema_historico').addClass('none');
 
 				<%}%>

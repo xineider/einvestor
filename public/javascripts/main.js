@@ -239,6 +239,32 @@ $(document).ready(function () {
 	});
 
 
+	$(document).on('click', '.ajax-submit-other-link', function(e) {
+		e.preventDefault();
+
+		var form = $(this).parents('form');
+		var post = form.serializeArray();
+
+		var link_pagamento = $(this).data('link');
+
+		var link = $(this).data('href');
+		var back = $(this).data('action');
+
+
+		console.log('link');
+		console.log(link);
+
+		console.log('link_pagamento');
+		console.log(link_pagamento);
+
+		console.log('post');
+		console.log(post);
+		if (VerificarForm(form) == true) {
+			SubmitAjaxOpenLink(post, link, link_pagamento);
+		}
+	});
+
+
 
 
 

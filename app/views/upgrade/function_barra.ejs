@@ -13,8 +13,12 @@ if (typeof data[usuario.id +'_algoritmo'] != 'undefined' && data[usuario.id +'_a
 
 		var rentabilidade_aa = ((media_ano * <%=data[usuario.id +'_algoritmo'][i].multiplicador%>) / capital) * 100;
 		var rentabilidade_aa_reais = (rentabilidade_aa * capital ) / 100;
-		rentabilidade_aa = parseFloat(rentabilidade_aa).toFixed(2).replace('.',',');
+		var rentabilidade_aa_f1 = parseFloat(rentabilidade_aa).toFixed(2);
+
+		var rentabilidade_aa_f = rentabilidade_aa_f1.replace('.',',');
+
 		var rentablidade_aa_reais_F = formCurrency.format(rentabilidade_aa_reais);
+
 
 		var volatilidade_algoritmo = volatilidade * <%=data[usuario.id +'_algoritmo'][i].multiplicador%>;
 		var maximo_rebaixamento = volatilidade_algoritmo /  capital * 100;
@@ -34,12 +38,12 @@ if (typeof data[usuario.id +'_algoritmo'] != 'undefined' && data[usuario.id +'_a
 			if(capital == <%=data[usuario.id +'_usuario_status'][0].valor_aplicado%>){
 				var botao_assinar = '<div class="primary-background border-radius-10 inline padding-10 white-text">Assinado</div>';
 			}else{
-			var botao_assinar = '<button class="btn btn-assinar-algoritmo ajax-load" href="/plataforma/sistema/upgrade/escolha_algoritmo">'+'Assinar <br>'+	preco_robo +'</button>';
+			var botao_assinar = '<form><button class="btn btn-assinar-algoritmo ajax-submit-other-link" data-link="<%= data[usuario.id +'_algoritmo'][i].link_pagamento %>" data-href="/plataforma/sistema/upgrade/usuario_deseja_upgrade/<%= data[usuario.id +'_algoritmo'][i].valor %>/'+capital+'/'+rentabilidade_aa_f1+'">'+'Assinar <br>'+preco_robo + '/mês' +'</button></form>';
 			}
 
 
 		<%}else{%>
-			var botao_assinar = '<button class="btn btn-assinar-algoritmo ajax-load" href="/plataforma/sistema/upgrade/escolha_algoritmo">'+'Assinar <br>'+	preco_robo +'</button>';
+			var botao_assinar = '<form><button class="btn btn-assinar-algoritmo ajax-submit-other-link" data-link="<%= data[usuario.id +'_algoritmo'][i].link_pagamento %>" data-href="/plataforma/sistema/upgrade/usuario_deseja_upgrade/<%= data[usuario.id +'_algoritmo'][i].valor %>/'+capital+'/'+rentabilidade_aa_f1+'">'+'Assinar <br>'+preco_robo + '/mês' +'</button></form>';
 
 		<%}%> 
 		
@@ -52,25 +56,35 @@ if (typeof data[usuario.id +'_algoritmo'] != 'undefined' && data[usuario.id +'_a
 		html_alg = html_alg + '<div class="escolha_algoritmo_barras_box">' +
 			'<div class="escolha_algoritmo_barras_progress">' +
 				'<div class="barra_maximo_rebaixamento" style="width: ' + largura +'%;">' +
-					'<div class="inline">'+
-						'<i class="fas fa-sort-down down-color f40"></i>'+
-					'</div>'+
-					'<div class="inline">'+
-						maximo_rebaixamento + '% ou <br>' +
-						volatilidade_algoritmo + 
+					'<div class="float-left h-100">' +
+						'<i class="fas fa-sort-down down-color f30"></i>'+
+					'</div>' +
+					'<div class="float-left h-100 margin-l-10">' +
+						'<div class="text-center">'+
+							volatilidade_algoritmo +
+						'</div>' +
+						'<div class="text-center">' + 
+							'('+ maximo_rebaixamento + '%)' +
+						'</div>'+
 					'</div>'+
 				'</div>'+
 				'<div class="barra_media_rentabilidade" style="width:65%;">' +
-					'<div class="inline">'+
-						'<i class="fas fa-sort-up primary-text f40"></i>'+
-					'</div>'+
-					'<div class="inline">'+
-						'+' + rentabilidade_aa + '% a.a ou <br>' +
-						'+' + rentablidade_aa_reais_F + ' a.a' +
+					'<div class="float-right h-100">' +
+						'<div class="float-left h-100">'+
+							'<i class="fas fa-sort-up primary-text f30"></i>'+
+						'</div>'+
+						'<div class="float-left h-100 margin-l-10">'+
+							'<div class="text-center">' +
+								'+' + rentablidade_aa_reais_F + ' a.a' +
+							'</div>'+
+							'<div class="text-center">'+
+								'(+'+ rentabilidade_aa_f + '%)' +
+							'</div>'+
+						'</div>'+
 					'</div>'+
 				'</div>'+
 				'<div class="escolha_algoritmo_relatorio">'+
-					'<i class="fas fa-book"></i>'+
+					'<a class="relatorio_icon_barras" target="_blank" href="/plataforma/sistema/upgrade/relatorio/<%= data[usuario.id +'_algoritmo'][i].valor %>/'+capital+'"><i class="fas fa-book pointer"></i></a>'+					
 				'</div>'+
 			'</div>'+
 			'<div class="escolha_algoritmo_assinar_box">'+

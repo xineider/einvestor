@@ -171,7 +171,7 @@ router.post('/enviar-formulario-conhecer', function(req, res, next) {
 	console.log('ccccccccccccccccccccccccccccccc');
 
 
-	var titulo = 'E-Investor - Bem-vindo ' + POST.nome;
+	var titulo = 'E-Investor - Obrigado ' + POST.nome;
 
 
 
@@ -405,6 +405,7 @@ router.post('/criar-usuario-redirecionar', function(req, res, next) {
 
 											control.SendMail(POST.email, titulo ,text,html);
 
+											
 
 
 

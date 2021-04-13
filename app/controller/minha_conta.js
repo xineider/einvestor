@@ -54,7 +54,7 @@ router.get('/', function(req, res, next) {
 					console.log(data_licenca.length > 0);
 					if(data_licenca.length > 0){
 						var data_fim_u = data_licenca[0].data_fim;
-						var data_fim_uf = moment(data_fim_u).utc().format('DD/MM/YYYY');
+						var data_fim_uf = moment(data_fim_u).utc().format('DD');
 						data_licenca[0].data_fim_uf = data_fim_uf;
 					}
 
