@@ -179,13 +179,23 @@ router.get('/', function(req, res, next) {
 									// console.log(data);
 									// console.log('qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq');
 
+
+									
+
+
 									data[req.session.usuario.id+'_usuario_algoritmo'] = data_algoritmo;
-									res.render(req.isAjaxRequest() == true ? 'api' : 'montador', {html: 'inicio/index',  data: data, usuario: req.session.usuario});
+
+									req.session.destroy(function(err) {
+										console.log(err);
+									});
+
+									res.redirect('/');
+									//res.render(req.isAjaxRequest() == true ? 'api' : 'montador', {html: 'inicio/index',  data: data, usuario: req.session.usuario});
 								});
 							}).sort({'_id':-1}).limit(3);
 						});
 					}).sort({'_id':-1}).limit(1);
-				});
+});
 }).sort({'_id':-1}).limit(1);
 }).sort({'_id':-1}).limit(1);
 
