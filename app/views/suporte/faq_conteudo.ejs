@@ -5,6 +5,9 @@
 				<div class="primary-text">F.A.Q</div>
 
 				<ul>
+
+					<li><a href="#pre_requisitos_utilizacao_sistema">Quais são os Pré-Requisitos para a utilização do sistema</a></li>
+
 					<li><a href="#preciso_fazer_download">Preciso fazer download de algo?</a></li>
 
 					<li><a href="#necessario_programar">É necessário saber programar?</a></li>
@@ -29,7 +32,9 @@
 
 					<li><a href="#tenho_acesso_codigo_fonte">Tenho acesso ao código fonte do sistema?</a></li>
 
-					<li><a href="#quais_ativos_trabalha">Em quais ativos ele trabalha?</a></li>
+					<li><a href="#quais_ativos_trabalha">Quais ativos ele opera?</a></li>
+
+					<li><a href="#preciso_rolagem_ativos_vencimento">Preciso fazer a rolagem dos ativos no vencimento?</a></li>
 
 					<li><a href="#quais_os_riscos">Quais os riscos?</a></li>
 
@@ -37,7 +42,7 @@
 
 					<li><a href="#oque_e_hitech_bancaria">O que é Hi-tech bancária?</a></li>
 
-					<li><a href="#relatorios_ganho_rebaixamento">Os relatórios e dados financeiros de ganho e rebaixamento, são o quê?</a></li>
+					<li><a href="#relatorios_ganho_rebaixamento">O que são os relatórios de Backtest?</a></li>
 
 					<li><a href="#quem_utiliza_tecnologia">Quem utiliza esta tecnologia?</a></li>
 
@@ -46,6 +51,8 @@
 					<li><a href="#oque_strategyquant">O que é StrategyQuant?</a></li>
 
 					<li><a href="#oque_algoritimo">O que é Algoritmo?</a></li>
+
+					<li><a href="#como_age_algoritmo_operacoes">Como age o algoritmo nas operações?</a></li>
 
 					<li><a href="#oque_otimizacao_algoritmo_sistema">O que é otimização de algoritmo/parâmetros do sistema?</a></li>
 
@@ -68,6 +75,37 @@
 </div>
 
 
+<div class="accordion" id="pre_requisitos_utilizacao_sistema">
+	<div class="card">
+		<div class="card-header" id="headingOne">
+			<h2 class="mb-0">
+				<button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
+					<span class="primary-text bold">Quais são os Pré-Requisitos para a utilização do sistema?</span>
+				</button>
+			</h2>
+		</div>
+
+		<div id="collapse1" class="collapse show" aria-labelledby="headingOne" data-parent="#pre_requisitos_utilizacao_sistema">
+			<div class="card-body">
+
+				<p>Para utilizar o sistema Variable White Box Hedge, você deve estar enquadrado via Suitability (API - Análise de Perfil do Investidor) de sua corretora, para que seja disponibilizada operações em renda variável e autorizada contratação da plataforma externa em sua conta, cumprindo a Instrução 539 da CVM.</p>
+
+				<p>É necessário ter a conta em uma das corretoras compatíveis e contratar gratuitamente a plataforma de negociação da MetaQuotes Ltd. MetaTrader 5 conta real/produção, Netting, e de respeitar o capital inicial mínimo necessário em conta (Limite MT5).</p>
+
+				<p>Você deve sempre checar com a corretora se o capital necessário já está alocado como limite na conta MetaTrader 5 e se a mesma já está habilitada a realizar operações nos ativos futuros mini Índice e mini Dólar. Recomendamos a ativação da RLP na corretora para maior liquidez e custo zero de corretagem.</p>
+
+				<p>Você deve compreender todos os riscos envolvidos em operações em renda variável, pois você é o único responsável pelas decisões, configurações de ferramentas e resultados de investimentos.</p>
+
+				<p>Por favor leia nosso setor de <a class="ajax-load" href="/plataforma/sistema/termos_uso">Termos e condições de uso - Avisos legais e de responsabilidade.</a></p>
+				
+			</div>
+		</div>
+	</div>
+
+
+</div>
+
+
 <div class="accordion" id="preciso_fazer_download">
 	<div class="card">
 		<div class="card-header" id="headingOne">
@@ -81,7 +119,7 @@
 		<div id="collapse1" class="collapse show" aria-labelledby="headingOne" data-parent="#preciso_fazer_download">
 			<div class="card-body">
 
-				<p>Não, o sistema funciona 100% on-line em nossa Smart Cloud dedicada de primeira linha. Basta você estar elegível, ler e aceitar os termos, configurar, escolher o plano e integrar sua conta.</p>
+				<p>Não, o sistema funciona 100% on-line em nossa Smart Cloud dedicada de primeira linha. Basta você estar elegível, escolher o plano, integrar sua conta e configurar sua estratégia.</p>
 			</div>
 		</div>
 	</div>
@@ -102,7 +140,7 @@
 		<div id="collapse2" class="collapse show" aria-labelledby="headingOne" data-parent="#necessario_programar">
 			<div class="card-body">
 
-				<p>Não, o sistema é rápido, fácil, intuitivo e 100% on-line, a parametrização do algoritmo pode ser feita de maneira automática por você com um clique, com auxílio de I.A. (Inteligência Artificial) da MetaQuotes Ltd.</p>
+				<p>Não precisa saber programar, o sistema é fácil e intuitivo, e a parametrização do algoritmo deve ser feita por você com auxílio de I.A. (Inteligência Artificial) da MetaQuotes Ltd. com poucos cliques e leva apenas alguns minutos.</p>
 
 
 			</div>
@@ -149,7 +187,7 @@
 		<div id="collapse4" class="collapse show" aria-labelledby="headingOne" data-parent="#qual_desempenho_sistema">
 			<div class="card-body">
 
-				<p>O Variable White Box Hedge é uma ferramenta de automação sem estratégias pré-definidas, os seus resultados variam de acordo com as estratégias que cada usuário selecionar manualmente ou via otimização.</p>
+				<p>O Variable White Box Hedge é uma ferramenta de automação sem estratégias pré-definidas e seus resultados podem variar de acordo com a estratégia de cada usuário. Após a criação da estratégia, no menu relatórios o usuário poderá visualizar o histórico (backtest) de 36 meses da estratégia otimizada atualizada para conhecer melhor o seu histórico de resultados.</p>
 
 
 			</div>
@@ -172,7 +210,7 @@
 		<div id="collapse5" class="collapse show" aria-labelledby="headingOne" data-parent="#qual_valor_minimo">
 			<div class="card-body">
 
-				<p>R$72.000,00 (Setenta e dois mil reais). Como chegamos ao valor mínimo de cada robô? O capital mínimo é baseado em margem necessária pela corretora e B3 - Bolsa de valores Brasileira para o número de lotes específicos nos ativos, e para segurança e um bom gerenciamento de risco mais 60% para flutuante e possíveis rebaixamentos de capital.</p>
+				<p>O valor mínimo parte de R$80.000,00 e leva em consideração a margem operacional necessária exigida pela corretora e pela B3 - Bolsa de valores Brasileira, para o número de lotes específicos nos ativos, e para segurança e um bom gerenciamento de risco mais aproximadamente 60% para flutuante e possíveis rebaixamentos de capital.</p>
 
 
 			</div>
@@ -195,7 +233,7 @@
 		<div id="collapse6" class="collapse show" aria-labelledby="headingOne" data-parent="#quais_corretoras_sao_compativeis">
 			<div class="card-body">
 
-				<p>Você pode usar Variable White Box Hedge em qualquer corretora brasileira que tenha suporte ao MetaTrader 5, operações automatizadas e posição em futuros. As corretoras compatíveis que fornecem a plataforma para integração necessária atualmente são: XP, Rico, Modal e Terra.</p>
+				<p>Você pode usar Variable White Box Hedge em qualquer corretora brasileira que tenha suporte ao MetaTrader 5, operações automatizadas e posição (Swing Trade) em futuros. As corretoras compatíveis que fornecem a plataforma para integração necessária atualmente são: Modal Mais, Órama, Rico, Terra e XP Investimentos.</p>
 
 
 
@@ -218,7 +256,7 @@
 
 		<div id="collapse7" class="collapse show" aria-labelledby="headingOne" data-parent="#sistema_metatrader_pago">
 			<div class="card-body">
-				<p>Não, as corretoras brasileiras oferecem a plataforma metatrader 5 produção (Conta real) de forma gratuita.</p>
+				<p>Não, as corretoras brasileiras oferecem a plataforma metatrader 5 real/produção de forma gratuita.</p>
 			</div>
 		</div>
 	</div>
@@ -238,7 +276,7 @@
 
 		<div id="collapse8" class="collapse show" aria-labelledby="headingOne" data-parent="#como_feito_pagamento">
 			<div class="card-body">
-				<p>O pagamento da licença de uso é feito recorrente e mensalmente, ou de acordo com o plano selecionado, via nossa Gateway de pagamentos, 100% segura integrada ao nosso sistema web.</p>
+				<p>O pagamento da licença de uso é feito recorrente e mensalmente, ou de acordo com o plano selecionado, via nosso Gateway de pagamentos 100% seguro integrado ao nosso sistema web..</p>
 			</div>
 		</div>
 	</div>
@@ -258,7 +296,11 @@
 
 		<div id="collapse9" class="collapse show" aria-labelledby="headingOne" data-parent="#posso_alterar_plano">
 			<div class="card-body">
-				<p>Sim, pode alterar o plano a qualquer momento e ele entrará em vigor assim que vencer o plano ativo e só será validado caso você esteja elegível ao plano de acordo com os pré-requisitos de margens e gerenciamento.</p>
+				<p>Sim, você pode fazer o upgrade a qualquer momento ou próximo ao vencimento do sistema vigente.</p>
+				<p>A cobrança do novo sistema é feita no momento da assinatura independente do vencimento do sistema atual.</p>
+				<p>O sistema atual é cancelado no momento do upgrade, entrando nesta data a cobrança do valor do novo plano.</p>
+				<p>Dependendo do dia do upgrade e vencimento do seu cartão, poderão estar na sua próxima fatura os dois sistemas.</p>
+				<p>O upgrade só será integrado na sua conta caso você esteja elegível ao plano de acordo com os pré-requisitos de margem e capital, e ao finalizar as operações atuais.</p>
 			</div>
 		</div>
 	</div>
@@ -278,7 +320,7 @@
 
 		<div id="collapse10" class="collapse show" aria-labelledby="headingOne" data-parent="#posso_cancelar">
 			<div class="card-body">
-				<p>Sim, a qualquer momento você pode cancelar o plano e no próximo mês já não haverá cobrança alguma, ao vencer o mês atual seu sistema será desativado e todos os dados deletados.</p>
+				<p>Sim, a qualquer momento você pode cancelar o plano e no próximo vencimento já não haverá cobrança alguma, ao vencer o seu sistema será desativado e todos os dados deletados.</p>
 			</div>
 		</div>
 	</div>
@@ -298,8 +340,7 @@
 
 		<div id="collapse11" class="collapse show" aria-labelledby="headingOne" data-parent="#oque_sistema_investimento_automatizado">
 			<div class="card-body">
-				<p>É um software capaz de operar ativos financeiros de acordo com o algoritmo vigente, ou seja, com o código de estratégia (regras lógicas) inseridos em seus parâmetros, que podem variar de acordo com a intenção e estratégia do usuário. Conforme item 31 dos nossos <a class="ajax-load" href="/plataforma/sistema/termos_uso">Termos e condições de uso - Avisos legais e de responsabilidade.</a></p>
-
+				<p>É um software capaz de operar ativos financeiros de acordo com o algoritmo vigente, ou seja, com o código de estratégia (regras lógicas) inseridos em seus parâmetros, que podem variar de acordo com a intenção e estratégia do usuário.</p>
 			</div>
 		</div>
 	</div>
@@ -319,11 +360,7 @@
 
 		<div id="collapse12" class="collapse show" aria-labelledby="headingOne" data-parent="#tenho_acesso_codigo_fonte">
 			<div class="card-body">
-				<p>Não, o sistema é propriedade intelectual e tem seus direitos restritos, protegidos e reservados a E-Investor, disponibilizamos o uso dele apenas de maneira digital em nossa SmartCloud de maneira simples e automatizada.</p>
-
-
-
-
+				<p>Não, o sistema é propriedade intelectual e tem seus direitos restritos, protegidos e reservados a E-Investor, disponibilizamos o uso dele apenas de maneira digital em nossa SmartCloud.</p>
 			</div>
 		</div>
 	</div>
@@ -336,24 +373,43 @@
 		<div class="card-header" id="headingOne">
 			<h2 class="mb-0">
 				<button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapse13" aria-expanded="true" aria-controls="collapse13">
-					<span class="primary-text bold">Em quais ativos ele trabalha?</span>
+					<span class="primary-text bold">Quais ativos ele opera?</span>
 				</button>
 			</h2>
 		</div>
 
 		<div id="collapse13" class="collapse show" aria-labelledby="headingOne" data-parent="#quais_ativos_trabalha">
 			<div class="card-body">
-				<p>Ele trabalha nos mini contratos futuros do Índice Bovespa (WIN) e cambial Real-Dólar (WDO).</p>
-
-
-
-
+				<p>Ele opera em portfólio com mini contratos futuros do Índice Bovespa (WIN) e cambial Real-Dólar (WDO).</p>
 			</div>
 		</div>
 	</div>
 
 
 </div>
+
+
+<div class="accordion" id="preciso_rolagem_ativos_vencimento">
+	<div class="card">
+		<div class="card-header" id="headingOne">
+			<h2 class="mb-0">
+				<button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapse13" aria-expanded="true" aria-controls="collapse13">
+					<span class="primary-text bold">Preciso fazer a rolagem dos ativos no vencimento?</span>
+				</button>
+			</h2>
+		</div>
+
+		<div id="collapse13" class="collapse show" aria-labelledby="headingOne" data-parent="#preciso_rolagem_ativos_vencimento">
+			<div class="card-body">
+				<p>Não, caso o sistema esteja posicionado em um ativo na data de vencimento, ele fecha as posições e reabre no ativo vigente de novo vencimento de maneira automática.</p>
+			</div>
+		</div>
+	</div>
+
+
+</div>
+
+
 
 <div class="accordion" id="quais_os_riscos">
 	<div class="card">
@@ -391,10 +447,7 @@
 
 		<div id="collapse15" class="collapse show" aria-labelledby="headingOne" data-parent="#existe_garantia_retorno">
 			<div class="card-body">
-				<p>Absolutamente não, você estará utilizando uma ferramenta tecnológica para operar ativos financeiros de renda variável, o que requer um perfil adequado de exposição a rebaixamento de capital, não existem garantias de retorno ou de risco, sendo 100% responsabilidade do usuário investidor o seu uso, parametrização dos robôs e resultados. Por favor leia nosso setor de <a href="/plataforma/sistema/termos_uso" class="ajax-load">Termos e condições de uso - Avisos legais e de responsabilidade.</a></p>
-
-
-
+				<p>Absolutamente não, você estará utilizando uma ferramenta tecnológica para operar ativos financeiros de renda variável, o que requer um perfil adequado de exposição a rebaixamento de capital, não existem garantias de retorno ou de risco, sendo 100% responsabilidade do usuário investidor o seu uso, parametrização dos sistemas e resultados. Por favor leia nosso setor de <a href="/plataforma/sistema/termos_uso" class="ajax-load">Termos e condições de uso - Avisos legais e de responsabilidade.</a></p>
 
 			</div>
 		</div>
@@ -415,7 +468,7 @@
 
 		<div id="collapse16" class="collapse show" aria-labelledby="headingOne" data-parent="#oque_e_hitech_bancaria">
 			<div class="card-body">
-				<p>Hi-Tech bancária é a mais alta tecnologia utilizada por bancos e instituições financeiras de todo o mundo, desde Data analysis, posicionamento em servidores de primeira linha de alta disponibilidade e baixa latência, até softwares e algoritmos programados e operados com o auxílio de I.A. (Inteligência Artificial) para otimizar resultados operacionais e financeiros a seu favor e de seus clientes privados.</p>
+				<p>Hi-Tech bancária é a mais alta tecnologia utilizada por bancos e instituições financeiras de todo o mundo, desde Data analysis, posicionamento em servidores de primeira linha de alta disponibilidade, até softwares e algoritmos programados e operados com o auxílio de I.A. (Inteligência Artificial) para otimizar resultados operacionais e financeiros.</p>
 
 
 
@@ -432,14 +485,14 @@
 		<div class="card-header" id="headingOne">
 			<h2 class="mb-0">
 				<button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapse17" aria-expanded="true" aria-controls="collapse17">
-					<span class="primary-text bold">Os relatórios e dados financeiros de ganho e rebaixamento, são o quê?</span>
+					<span class="primary-text bold">O que são os relatórios de Backtest?</span>
 				</button>
 			</h2>
 		</div>
 
 		<div id="collapse17" class="collapse show" aria-labelledby="headingOne" data-parent="#relatorios_ganho_rebaixamento">
 			<div class="card-body">
-				<p>Os resultados e rebaixamentos mostrados no sistema são de caráter informativo e foram baseados nos últimos testes (Backtest) efetuados com os últimos parâmetros/algoritmos gerados por otimização por sistema da MetaQuotes Ltd. via I.A. - Inteligência artificial. Os desempenhos anteriores não são, necessariamente, indicativos de resultados futuros e nenhuma declaração ou garantia, de forma expressa ou implícita, é feita em relação a desempenhos futuros. Todo o material exposto não constitui recomendação ou serviço de análise de valores mobiliários. Por favor leia nosso setor de <a href="/plataforma/sistema/termos_uso" class="ajax-load">Termos e condições de uso - Avisos legais e de responsabilidade.</a></p>
+				<p>São resultados de caráter informativo e baseados nos testes efetuados com os últimos parâmetros/algoritmos gerados por otimização pelo sistema de Inteligência Artificial da MetaQuotes Ltd. e compilados em portfólio pela StrategyQuant. Os desempenhos anteriores não são, necessariamente, indicativos de resultados futuros e nenhuma declaração ou garantia, de forma expressa ou implícita, é feita em relação a desempenhos futuros. Todo o material exposto não constitui recomendação ou serviço de análise de valores mobiliários. Por favor leia nosso setor de  <a href="/plataforma/sistema/termos_uso" class="ajax-load">Termos e condições de uso - Avisos legais e de responsabilidade.</a></p>
 
 
 
@@ -463,7 +516,7 @@
 
 		<div id="collapse18" class="collapse show" aria-labelledby="headingOne" data-parent="#quem_utiliza_tecnologia">
 			<div class="card-body">
-				<p>Está tecnologia e conhecimento por muito tempo foi restrita somente a grandes bancos e instituições financeiras e investidores de alto nível, com um alto custo de equipe e desenvolvimento, equipamento e servidores, sempre foi muito difícil disponibilizar esta tecnologia ao investidor de varejo pelo seu alto custo e complexidade de configuração, o que tornava inviável financeira e tecnicamente a pequenos investidores. A tecnologia evoluiu e nos últimos anos este jogo mudou, e hoje podemos ter tecnologia de ponta para disponibilizar estes sistemas com alta estabilidade de maneira fácil e 100% digital a todo tipo de investidor qualificado e elegível, com uma equipe de T.I. altamente técnica e especializada ao mesmo nível institucional.</p>
+				<p>Esta tecnologia e conhecimento por muito tempo foi restrita somente a grandes bancos e instituições financeiras e investidores de alto nível, com um alto custo de equipe e desenvolvimento, equipamento e servidores, sempre foi muito difícil disponibilizar esta tecnologia ao investidor de varejo pelo seu alto custo e complexidade de configuração, o que tornava inviável financeira e tecnicamente a pequenos investidores. A tecnologia evoluiu e nos últimos anos este jogo mudou, e hoje podemos ter tecnologia de ponta para disponibilizar estes sistemas com alta estabilidade de maneira fácil e 100% digital a todo tipo de investidor qualificado e elegível, com uma equipe de T.I. altamente técnica e especializada ao mesmo nível institucional.</p>
 			</div>
 		</div>
 	</div>
@@ -483,7 +536,10 @@
 
 		<div id="collapse19" class="collapse show" aria-labelledby="headingOne" data-parent="#oque_metaquotes">
 			<div class="card-body">
-				<p>MetaQuotes Ltd. é a empresa proprietária da plataforma Meta Trader que disponibiliza sistemas de alta tecnologia para instituições e investidores.</p>
+				<p>MetaQuotes Ltd. é a empresa proprietária da plataforma Meta Trader que disponibiliza sistemas de alta tecnologia para otimização de algoritmo via Inteligência Artificial para  instituições e investidores.</p>
+
+				<a href="https://www.metaquotes.net/en/metatrader5/algorithmic-trading/tester" target="_blank">https://www.metaquotes.net/en/metatrader5/algorithmic-trading/tester
+				</a>
 			</div>
 		</div>
 	</div>
@@ -503,7 +559,11 @@
 
 		<div id="collapse20" class="collapse show" aria-labelledby="headingOne" data-parent="#oque_strategyquant">
 			<div class="card-body">
-				<p>StrategyQuant é a plataforma mais poderosa para gerar, desenvolver e pesquisar estratégias de negociação automatizada.</p>
+				<p>StrategyQuant é a plataforma mais poderosa para gerar, desenvolver e pesquisar estratégias de negociação automatizada, ela compila os relatórios passados (backtest) individuais do ativos operados em um único relatório entre outras análises da estratégia em portfólio. </p>
+
+				<a href="https://strategyquant.com/quantanalyzer" target="_blank">https://strategyquant.com/quantanalyzer</a>
+				<br>
+				<a href="https://strategyquant.com" target="_blank">https://strategyquant.com</a>
 			</div>
 		</div>
 	</div>
@@ -524,7 +584,28 @@
 		<div id="collapse21" class="collapse show" aria-labelledby="headingOne" data-parent="#oque_algoritimo">
 			<div class="card-body">
 				<p>
-				Sequência finita de regras, raciocínios ou operações que, aplicada a um número finito de dados, permite solucionar classes semelhantes de problemas. Essas regras são os parâmetros a serem inseridos no sistema White Box que definem detalhes da estratégia e gerenciamento das operações.</p>
+				Sequência finita de regras, raciocínios ou operações que, aplicada a um número finito de dados, permite solucionar classes semelhantes de problemas. Essas regras são os parâmetros a serem inseridos no sistema White Box com auxílio da Inteligência Artificial do testador de estratégias da MetaQuotes Ltd. e definem detalhes da estratégia e gerenciamento das operações.</p>
+			</div>
+		</div>
+	</div>
+
+
+</div>
+
+<div class="accordion" id="como_age_algoritmo_operacoes">
+	<div class="card">
+		<div class="card-header" id="headingOne">
+			<h2 class="mb-0">
+				<button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapse21" aria-expanded="true" aria-controls="collapse21">
+					<span class="primary-text bold">Como age o algoritmo nas operações?</span>
+				</button>
+			</h2>
+		</div>
+
+		<div id="collapse21" class="collapse show" aria-labelledby="headingOne" data-parent="#como_age_algoritmo_operacoes">
+			<div class="card-body">
+				<p>
+				As operações de entrada e saída feitas executando as regras do algoritmo vigente são resultado de uma complexa análise de dados, onde fica incompreensível aos olhos humanos analisar o contexto de suas decisões e tentar entender o porquê de cada operação, se foi boa ou ruim, certa ou errada, comprou na alta ou na baixa, etc, estes são fatores de análise humana e portanto irrelevantes a execução de uma estratégia com base em dados e estatísticas que executam e operam padrões que resultaram na melhor performance de longo prazo no passado nos ativos.</p>
 			</div>
 		</div>
 	</div>
@@ -545,7 +626,7 @@
 		<div id="collapse22" class="collapse show" aria-labelledby="headingOne" data-parent="#oque_otimizacao_algoritmo_sistema">
 			<div class="card-body">
 				<p>
-				É a pesquisa e desenvolvimento de estratégia que usa técnicas de aprendizado de máquina e programação genética para gerar automaticamente novos sistemas automatizados (algoritmos e parâmetros para robôs de negociação) com auxílio do I.A. (Inteligência artificial). Ele seleciona apenas as melhores estratégias com base nos resultados de backtests avançados, robustez e ferramentas de otimização e aponta a melhor de acordo com risco vs retorno. É capaz de combinar e verificar milhões de diferentes condições de entrada e saída, tipos de pedidos e níveis de preços, para encontrar as melhores estratégias de desempenho.</p>
+				É a pesquisa e desenvolvimento de estratégia que usa técnicas de aprendizado de máquina e programação genética para gerar automaticamente novos sistemas automatizados (algoritmos e parâmetros para sistemas de negociação automatizada) com auxílio de Inteligência artificial. Ele seleciona apenas as melhores estratégias com base nos resultados de backtests avançados, robustez e ferramentas de otimização e aponta a melhor de acordo com risco vs retorno. É capaz de combinar e verificar milhões de diferentes condições de entrada e saída, tipos de pedidos e níveis de preços, para encontrar as melhores estratégias de desempenho.</p>
 			</div>
 		</div>
 	</div>
@@ -570,7 +651,7 @@
 					Parceria exclusiva com vários Provedores de Internet Global Tier-1.<br> 
 					Os clusters são construídos exclusivamente em Data Center Tier-4. <br>
 					Proteção de ataques DDoS 24 horas por dia, 7 dias por semana, até 1500 Gbps.<br> 
-					Soluções seguras ao mais alto nível de classificação por meio da arquitetura de segurança do Cyber ​​Tunnel e do uso de algoritmos e chaves de criptografia. Conta com as melhores certificações de segurança e conformidade de protocolo, consequentemente, garantimos segurança física de primeira classe, instalações de energia e refrigeração, com um recorde comprovado de disponibilidade de 99,9999%.
+					Soluções seguras ao mais alto nível de classificação por meio da arquitetura de segurança do Cyber Tunnel e do uso de algoritmos e chaves de criptografia. Conta com as melhores certificações de segurança e conformidade de protocolo, consequentemente, garantimos segurança física de primeira classe, instalações de energia e refrigeração, com um recorde comprovado de disponibilidade de 99,9999%.
 				</p>
 			</div>
 		</div>
