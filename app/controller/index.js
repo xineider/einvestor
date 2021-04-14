@@ -44,6 +44,10 @@ router.get('/', function(req, res, next) {
 	console.log('estou no login');
 	console.log(req.session.usuario);
 
+	req.session.destroy(function(err) {
+		console.log(err);
+	});
+
 	if(req.session.usuario.nivel >= 3){
 		usuarioCorretoraModel.find({id_usuario:mongoose.Types.ObjectId(req.session.usuario.id)},function(err,data_usuario_corretora){
 			data[req.session.usuario.id+'_usuario_corretora']= data_usuario_corretora;
@@ -185,7 +189,7 @@ router.get('/', function(req, res, next) {
 							}).sort({'_id':-1}).limit(3);
 						});
 					}).sort({'_id':-1}).limit(1);
-				});
+});
 }).sort({'_id':-1}).limit(1);
 }).sort({'_id':-1}).limit(1);
 

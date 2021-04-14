@@ -45,11 +45,11 @@ $inverted-land-color:#FAFBFD;
 
 	.media{
 		border-radius: 20px;
-
 		padding: 20px;
 		margin-top:20px;
 		background: #f7f9fb;
 		box-shadow: 1px 1px 10px #e4e4e4;
+		display: block;
 	}
 
 	.media-body{
@@ -190,4 +190,11 @@ $inverted-land-color:#FAFBFD;
 
 .white-text-2{
 	color:#E7E7E7;
+}
+
+
+@media(min-width: 399px){
+	.vantagens_container_landpage .media{
+		display: flex;
+	}
 }

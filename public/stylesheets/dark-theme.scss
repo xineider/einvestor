@@ -1047,13 +1047,13 @@ nav#sidebar .sidebar-suporte{
 	background:$primary-color;
 
 	.escolha_algoritmo_lookout_image{
-		position: absolute;
-		z-index: 2;
-		margin-top: -150px;
+		margin-top:30px;
 		
 
 		img{
 			width: 300px;
+			border-radius: 50%;
+			background: #fff;
 		}
 
 	}
@@ -1105,48 +1105,40 @@ nav#sidebar .sidebar-suporte{
 
 .escolha_algoritmo_barras_box{
 	margin-bottom:40px;
-	height: 70px;
-	display: flex;
 }
 
 .escolha_algoritmo_barras_progress{
 	background:#eaeaea;
 	border-radius:20px;
-	width: 80%;
-	height:100%;
+	width: 100%;
 	padding:5px;
-
-
 }
 
 .barra_maximo_rebaixamento{
 	background:#daf4f1;
-	border-radius:20px 0 0 20px;
+	border-radius:20px;	
 	display: inline-block;
 	border:1px solid #08337D;
-	border-right-color:transparent;
 	height: 60px;
 	padding: 10px;
 	font-size: 14px;
 	min-width: 170px;
-	float: left;
+	
 
 }
 
 .barra_media_rentabilidade{
 	background:#6fb6be;
-	border-radius:0 20px 20px 0px;
+	border-radius:20px;
 	display: inline-block;
 	border:1px solid #08337D;
-	border-left-color:transparent;
 	color:#fff;
 	height: 60px;
-	margin-left:5px;
 	padding: 10px;
 	font-size: 14px;
 	min-width: 150px;
 	text-align: right;
-	float: left;
+	width: 100%;
 
 }
 
@@ -1165,8 +1157,8 @@ nav#sidebar .sidebar-suporte{
 }
 
 .escolha_algoritmo_assinar_box{
-	width: 20%;
-	height: 100%;
+	width: 100%;
+	margin-top:10px;
 }
 
 .btn-assinar-algoritmo{
@@ -1316,7 +1308,52 @@ nav#sidebar .sidebar-suporte{
 	.landpage_seguranca_image{
 		margin-top:-60px;
 	}
+
+
+
+
 }
+
+@media (min-width: 949px){
+	.escolha_algoritmo_barras_box{
+		height: 70px;
+		display: flex;
+	}
+
+	.escolha_algoritmo_barras_progress{
+		height:100%;
+		width: 80%;
+	}
+
+
+	.barra_maximo_rebaixamento{
+		border-radius:20px 0 0 20px;
+		border-right-color:transparent;
+		float: left;
+	}
+
+
+	.barra_media_rentabilidade{
+		border-radius:0 20px 20px 0px;
+		border-left-color:transparent;
+		float: left;
+		width: 65%;
+		margin-left: 5px;
+	}
+
+	.escolha_algoritmo_assinar_box{
+		width: 20%;
+		height: 100%;
+		margin-top:0px;
+	}
+
+	.escolha_algoritmo .escolha_algoritmo_lookout_image{
+		position: absolute;
+		z-index: 2;
+		margin-top: -150px;
+	}
+}
+
 
 @media (min-width: 1200px){
 	.sidebar-toggle{
@@ -1408,12 +1445,12 @@ a.d-block:hover,a.d-block{
 
 .btn-red{
 	background: #dc1717;
-    color: #fff;
+	color: #fff;
 
-    &:hover:not([disabled]),&:focus:not([disabled]){
-    	background:#c10505;
-    	color:#fff;
-    }
+	&:hover:not([disabled]),&:focus:not([disabled]){
+		background:#c10505;
+		color:#fff;
+	}
 
 
 
@@ -1442,7 +1479,7 @@ a.d-block:hover,a.d-block{
 	
 	margin-bottom:20px;
 	margin-right: 40px;
-    margin-left: 20px;
+	margin-left: 20px;
 }
 
 

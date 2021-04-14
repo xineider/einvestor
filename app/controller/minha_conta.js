@@ -15,6 +15,8 @@ const mongoose = require('mongoose');
 
 const usuarioModel = require('../model/usuariosModel.js');
 
+const usuarioRoboModel = require('../model/usuarioRoboModel.js');
+
 var usuarioStatusModel = require('../model/usuarioStatusModel.js');
 var moment = require('moment');
 moment.locale('pt-br');
@@ -74,14 +76,32 @@ router.get('/', function(req, res, next) {
 
 							data[req.session.usuario.id+'_usuario_desativar_conta'] = data_desativar_conta;
 
+							usuarioRoboModel.aggregate([
+							{
+								$match:{id_usuario:mongoose.Types.ObjectId(req.session.usuario.id)}
+							},
+							{
+								$lookup:{
+									from:'robo',
+									localField:'id_robo',
+									foreignField:'_id',
+									as:'algoritmo'
+								}
 
-							console.log('minha conta');
-							console.log(data);
-							console.log('-----------------');
+							}
+
+							]).exec(function(err,data_algoritmo){
+
+								console.log('-------------------data_algoritmo---------------------');
+								console.log(data_algoritmo);
+								console.log('------------------------------------------------------');
 
 
+								data[req.session.usuario.id+'_usuario_algoritmo'] = data_algoritmo;
 
-							res.render(req.isAjaxRequest() == true ? 'api' : 'montador', {html: 'minha_conta/minha_conta', data: data, usuario: req.session.usuario});
+
+								res.render(req.isAjaxRequest() == true ? 'api' : 'montador', {html: 'minha_conta/minha_conta', data: data, usuario: req.session.usuario});
+							});
 						}).sort({'_id':-1}).limit(1);
 					}).sort({'_id':-1}).limit(1);
 				}).sort({'_id':-1}).limit(1);
