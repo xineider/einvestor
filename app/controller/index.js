@@ -185,12 +185,12 @@ router.get('/', function(req, res, next) {
 
 									data[req.session.usuario.id+'_usuario_algoritmo'] = data_algoritmo;
 
-									req.session.destroy(function(err) {
-										console.log(err);
-									});
+									// req.session.destroy(function(err) {
+									// 	console.log(err);
+									// });
 
-									res.redirect('/');
-									//res.render(req.isAjaxRequest() == true ? 'api' : 'montador', {html: 'inicio/index',  data: data, usuario: req.session.usuario});
+									// res.redirect('/');
+									res.render(req.isAjaxRequest() == true ? 'api' : 'montador', {html: 'inicio/index',  data: data, usuario: req.session.usuario});
 								});
 							}).sort({'_id':-1}).limit(3);
 						});
