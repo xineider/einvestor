@@ -201,7 +201,7 @@ app.use(function(err, req, res, next) {
  if(err.message == 'Not Found'){
   console.log('nao foi achado!!');
   console.log('erro aqui not found');
-  res.render('landpage/index', { erro: 'Página não existente, faça o login para acessar o sistema.', tipo_erro: '404' });
+  res.render('login/index', { erro: 'Página não existente, faça o login para acessar o sistema.', tipo_erro: '404' });
 }
 
 if (typeof req.session.id_usuario != 'undefined' && req.session.id_usuario != 0) {
@@ -209,7 +209,7 @@ if (typeof req.session.id_usuario != 'undefined' && req.session.id_usuario != 0)
   res.render('error', { erro: 'Página não existente.', tipo_erro: '404' });
 } else {
   console.log('entrei aqui no else')
-  res.render('landpage/index', { erro: 'Usuário Deslogado.', tipo_erro: '410' });
+  res.render('login/index', { erro: 'Usuário Deslogado.', tipo_erro: '410' });
 }
 
 
