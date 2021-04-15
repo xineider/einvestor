@@ -468,6 +468,19 @@ $(document).ready(function () {
 		// }
 	});
 
+
+	$(document).on('click','.sidebar-landpage-toggle', function (e) {
+		e.preventDefault();
+		console.log('clickei no sidebar-landpage-toggle');
+
+		$('#sidebar').toggleClass('menu_mobile');
+		$('.overlay_menu').toggleClass('none');
+
+
+	});
+
+
+
 	$(document).on('click','.overlay_menu', function (e) {
 		$(this).addClass('none');
 		$('#sidebar').removeClass('menu_mobile');

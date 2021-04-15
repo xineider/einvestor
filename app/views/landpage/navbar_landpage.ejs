@@ -1,34 +1,39 @@
 <nav class="header landpage_header">
-		<div class="navbar-header-landpage">
-			<!-- Navbar Header-->
-			<a href="/" class="navbar-brand">
-				<div class="logo">
-					E-Investor
-				</div>
-			</a>
+	<div class="navbar-header-landpage">
 
-
-
-			<a href="/whitepaper" class="<%= message.numero_menu == 2 ? 'active' : ''%>"> 
-				<i class="fas fa-chalkboard"></i>
-				Whitepaper
-			</a>
-
-			<a class="margin-l-10 <%= message.numero_menu == 3 ? 'active' : ''%>" href="quem_somos">Quem somos</a>
-
-			<a class="margin-l-10 <%= message.numero_menu == 4 ? 'active' : ''%>" href="faq">F.A.Q</a>
-
-
-			<div class="float-right minha_conta_landpage">
-
-				<a href="/plataforma" >
-					<i class="fas fa-user"></i>
-					Minha Conta 
-
-				</a>
-
+		<a href="/" class="navbar-brand">
+			<div class="logo">
+				E-Investor
 			</div>
+		</a>
+
+
+
+		<a href="/whitepaper" class="<%= message.numero_menu == 2 ? 'active' : ''%> landpage_navbar_item"> 
+			<i class="fas fa-chalkboard"></i>
+			Whitepaper
+		</a>
+
+		<a class="margin-l-10 <%= message.numero_menu == 3 ? 'active' : ''%> landpage_navbar_item" href="quem_somos">Quem somos</a>
+
+		<a class="margin-l-10 <%= message.numero_menu == 4 ? 'active' : ''%> landpage_navbar_item" href="faq">F.A.Q</a>
+
+
+		<div class="float-right minha_conta_landpage landpage_navbar_item_f">
+
+			<a href="/plataforma">
+				<i class="fas fa-user"></i>
+				Minha Conta 
+
+			</a>
 
 		</div>
 
-	</nav>
+		<button class="sidebar-landpage-toggle float-right"><i class="fas fa-bars"></i></button>
+
+	</div>
+
+</nav>
+
+
+<%-include('sidebar_mobile')%>

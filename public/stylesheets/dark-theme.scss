@@ -1292,7 +1292,7 @@ nav#sidebar .sidebar-suporte{
 }
 
 
-.sidebar-toggle{
+.sidebar-toggle,.sidebar-landpage-toggle{
 	margin-left: 10px;
 	background: #f7f9fb;
 	border-radius: 20px;
@@ -1302,6 +1302,16 @@ nav#sidebar .sidebar-suporte{
 	&:focus,&:active{
 		outline: none;
 	}
+}
+
+.sidebar-landpage-toggle {
+	color: #000;
+	margin-top: 18px;
+    margin-right: 5px;
+}
+
+.landpage_navbar_item,.landpage_navbar_item_f{
+	display: none;
 }
 
 @media (min-width: 768px){
@@ -1352,6 +1362,21 @@ nav#sidebar .sidebar-suporte{
 		z-index: 2;
 		margin-top: -150px;
 	}
+}
+
+@media(min-width: 699px){
+	.sidebar-landpage-toggle{
+		display: none;
+	}
+
+	.landpage_navbar_item{
+		display: inline-block;
+	}
+
+	.landpage_navbar_item_f{
+		display: flex;
+	}
+
 }
 
 
