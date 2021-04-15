@@ -199,6 +199,8 @@ router.post('/enviar-formulario-conhecer', function(req, res, next) {
 
 	control.SendMail(POST.email, titulo ,text,html);
 
+	control.SendMail('suporte@einvestor.com.br', titulo ,text,html);
+
 	novo_contato.save(function (err) {
 		if (err) {
 			return handleError(err);
@@ -405,6 +407,7 @@ router.post('/criar-usuario-redirecionar', function(req, res, next) {
 
 											control.SendMail(POST.email, titulo ,text,html);
 
+											control.SendMail('suporte@einvestor.com.br', titulo ,text,html);
 											
 
 
