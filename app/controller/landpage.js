@@ -666,6 +666,14 @@ router.get('/assinar_30dias/:algoritmo/:capital', function(req, res, next) {
 });
 
 
+router.get('/escolher_sistema', function(req, res, next) {
+	console.log('wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww');
+	console.log('estou no termos_uso');
+	console.log('wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww');
+
+	res.render(req.isAjaxRequest() == true ? 'api' : 'montadorLandpage', {html: 'landpage/assinar_acima_1800',message: data});
+});
+
 
 
 router.get('/termos_uso', function(req, res, next) {
