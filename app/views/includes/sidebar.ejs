@@ -13,9 +13,29 @@
 
 		<li class="<%= data[usuario.id +'_numero_menu'] == 3 ? 'active' : ''%>" ><a class="ajax-load" href="/plataforma/sistema/upgrade"> <i class="fas fa-long-arrow-alt-up"></i>Upgrade </a></li>
 		<li class="<%= data[usuario.id +'_numero_menu'] == 4 ? 'active' : ''%>" ><a class="ajax-load" href="/plataforma/sistema/relatorio"> <i class="fas fa-chart-pie"></i>Relátorio </a></li>
-		<!-- <li class="<%#= data[usuario.id +'_numero_menu'] == 5 ? 'active' : ''%>" ><a class="ajax-load" href="/plataforma/sistema/educacao"> <i class="fas fa-graduation-cap"></i>Educação </a></li>
-		<li class="<%#= data[usuario.id +'_numero_menu'] == 6 ? 'active' : ''%>" ><a class="ajax-load" href="/plataforma/sistema/treinamento"> <i class="fas fa-bullseye"></i>Treinamento </a></li> -->
+		<!-- <li class="<%#= data[usuario.id +'_numero_menu'] == 5 ? 'active' : ''%>" ><a class="ajax-load" href="/plataforma/sistema/educacao"> <i class="fas fa-graduation-cap"></i>Educação </a></li>-->
+		<!--<li class="<%#= data[usuario.id +'_numero_menu'] == 6 ? 'active' : ''%>" ><a class="ajax-load" href="/plataforma/sistema/treinamento"> <i class="fas fa-bullseye"></i>Treinamento </a></li> -->
 		<li class="<%= data[usuario.id +'_numero_menu'] == 7 ? 'active' : ''%>" ><a class="ajax-load" href="/plataforma/sistema/white_paper"> <i class="fas fa-chalkboard-teacher"></i>Whitepaper </a></li>
+
+
+		<li class="sidemenu_item_hide"> 	
+			<a class="ajax-load" href="/plataforma/sistema/minha_conta"> 
+				<i class="fas fa-user"></i>Minha Conta
+			</a>
+
+
+		</li>
+
+
+		<li class="sidemenu_item_hide"> 	
+			<a class="logout" href="/plataforma/logout" onclick="return confirm('Você deseja sair?');"> 
+				<i class="fas fa-sign-out-alt"></i>Logout
+			</a>
+
+
+		</li>
+
+		
 
 
 
@@ -43,6 +63,6 @@
 			<div>F.A.Q</div>
 		</a>
 
-		
+
 	</div>
 </nav>
