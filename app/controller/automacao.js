@@ -157,6 +157,24 @@ router.get('/popup-sincronizar-estrategia-propria', function(req, res, next) {
 });
 
 
+router.post('/limpar_sincronizacao_pitch', function(req, res, next) {
+	console.log('estou no limpar sincronizacao pitch !!!!!!!!!!');
+	console.log('pppppppppppppppppppppppppppppppppppppppppppppp');
+
+
+	usuarioCorretoraModel.deleteMany({id_usuario:mongoose.Types.ObjectId(req.session.usuario.id)},function(err){
+		usuarioParametrosAlgoritmoModel.deleteMany({id_usuario:mongoose.Types.ObjectId(req.session.usuario.id)},function(err){
+			usuarioStatusModel.findOneAndUpdate({id_usuario:mongoose.Types.ObjectId(req.session.usuario.id)},{'$set':{'conta':'Não Sincronizado','algoritmo':'Não Sincronizado'}},function(err){
+				res.json(data);
+			});
+		});
+	});
+
+
+
+});
+
+
 
 router.post('/adicionar_conta_usuario_corretora', function(req, res, next) {
 
@@ -351,26 +369,26 @@ router.post('/sincronizar_estrategia_algoritmo', function(req, res, next) {
 		data_cadastro:nova_data
 	});
 
-	console.log('uuuuuuuuuuuuuuuuuu parametrosUsuario uuuuuuuuuuuuuuuuuuu');
-	console.log(parametrosUsuario);
-	console.log('uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu');
+console.log('uuuuuuuuuuuuuuuuuu parametrosUsuario uuuuuuuuuuuuuuuuuuu');
+console.log(parametrosUsuario);
+console.log('uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu');
 
-	parametrosUsuario.save(function (err) {
-		if (err) {
-			return handleError(err);
-		}else{
+parametrosUsuario.save(function (err) {
+	if (err) {
+		return handleError(err);
+	}else{
 
-			var nova_data = new Date();
+		var nova_data = new Date();
 
-			usuarioStatusModel.findOneAndUpdate({id_usuario:mongoose.Types.ObjectId(req.session.usuario.id)},{'$set':{'algoritmo':'Sincronizando','data_atualizacao':nova_data}},function(err){
-				res.json(data);
+		usuarioStatusModel.findOneAndUpdate({id_usuario:mongoose.Types.ObjectId(req.session.usuario.id)},{'$set':{'algoritmo':'Sincronizando','data_atualizacao':nova_data}},function(err){
+			res.json(data);
 
-			});
+		});
 
 
 
-		}
-	});
+	}
+});
 
 
 

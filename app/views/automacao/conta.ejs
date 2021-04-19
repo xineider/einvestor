@@ -41,6 +41,13 @@
 								<div class="alert alert-warning text-center">
 									Status: <strong>Sincronizando</strong> isso pode levar até 3 dias úteis.
 
+									<% if(usuario.nivel == 4){%>
+									<div class="margin-t-10">
+										<button class="btn btn-primary ajax-submit" data-href="/plataforma/sistema/automacao/limpar_sincronizacao_pitch/" data-action="/plataforma/sistema/">Limpar Sincronização</button>
+									</div>
+
+									<%}%>
+
 									<% if(data[usuario.id +'_usuario_parametros'].length == 0){ %>
 									Você precisa agora ir na aba Parâmetros para carregar sua estratégia:
 
