@@ -145,9 +145,9 @@ router.post('/enviar-formulario-conhecer', function(req, res, next) {
 
 
 	if(pretencao_investimento == '100k'){
-		pretencao_investimento = 0;
+		pretencao_investimento = 100000;
 	}else if(pretencao_investimento == '200k'){
-		pretencao_investimento = 0;
+		pretencao_investimento = 200000;
 	}else if(pretencao_investimento == '300k'){
 		pretencao_investimento = 300000;
 	}else if(pretencao_investimento == '500k'){

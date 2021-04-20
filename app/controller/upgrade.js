@@ -487,7 +487,7 @@ router.get('/relatorio/:algoritmo/:capital', function(req, res, next) {
 			data[req.session.usuario.id+'_porc_reais'] = porc_reais;
 
 
-			res.render(req.isAjaxRequest() == true ? 'api' : 'montador', {html: 'simulador/simulador_open', data: data, usuario: req.session.usuario});
+			res.render(req.isAjaxRequest() == true ? 'api' : 'montador', {html: 'upgrade/relatorio_open', data: data, usuario: req.session.usuario});
 			
 
 		}).sort({'_id':-1}).limit(1);

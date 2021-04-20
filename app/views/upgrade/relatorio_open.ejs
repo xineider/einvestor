@@ -1,0 +1,52 @@
+
+<%- include('../includes/navbar'); %>
+
+<div class="flex align-items-stretch">
+
+
+	<%- include('../includes/sidebar'); %>
+
+
+	<div class="page-content">
+
+		<section class="margin-bottom-sm">
+			<div class="container-fluid">
+				<div class="card">
+
+					<div class="row">
+						<div class="col-sm-12">
+
+
+							<div class="relatorio-container margin-t-20">
+
+								<div class="margin-t-10 margin-l-20 text-center">
+									<label class="inline primary-text f16">Porcentagem</label>
+
+									<div class="custom-control custom-switch inline">
+										<input type="checkbox" class="custom-control-input" id="relatorio_porcentagem_reais" name="reais">
+										<label class="custom-control-label f16 primary-text" for="relatorio_porcentagem_reais">Reais</label>
+									</div>
+								</div>
+
+
+								<%- include('../relatorio/gerador_relatorio'); %>
+
+
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</section>
+
+	</div>
+
+
+
+
+
+
+
+</div>
+
