@@ -201,51 +201,86 @@ router.get('/', function(req, res, next) {
 
 
 }else if(req.session.usuario.nivel == 2){
-	usuariosModel.find({id_parceiro:mongoose.Types.ObjectId(req.session.usuario.id)},function(err,data_usuarios){
-		data[req.session.usuario.id+'_usuarios']= data_usuarios;
-		console.log('-----------parceiro usuarios--------------------------------');
-		console.log(data_usuarios);
-		console.log('------------------------------------------------------------');
 
-		res.render(req.isAjaxRequest() == true ? 'api' : 'montador', {html: 'inicio/indexParceiro',  data: data, usuario: req.session.usuario});
+	usuarioStatusModel.find({id_usuario:mongoose.Types.ObjectId(req.session.usuario.id)},function(err,data_usuario_status){
 
-	});
+		var data_atualizacao_u = data_usuario_status[0].data_atualizacao;
+		var data_atualizacao_uf = moment(data_atualizacao_u).utc().format('DD/MM/YYYY');
+		data_usuario_status[0].data_atualizacao_f = data_atualizacao_uf;
+		data[req.session.usuario.id+'_usuario_status'] = data_usuario_status;
 
+
+		usuariosModel.find({id_parceiro:mongoose.Types.ObjectId(req.session.usuario.id)},function(err,data_usuarios){
+			data[req.session.usuario.id+'_usuarios']= data_usuarios;
+			console.log('-----------parceiro usuarios--------------------------------');
+			console.log(data_usuarios);
+			console.log('------------------------------------------------------------');
+
+			res.render(req.isAjaxRequest() == true ? 'api' : 'montador', {html: 'inicio/indexParceiro',  data: data, usuario: req.session.usuario});
+
+		});
+	}).sort({'_id':-1}).limit(1);
 
 
 }else if(req.session.usuario.nivel == 1){
 
-	usuariosModel.aggregate([
-	{
-		$match:{nivel:{$gt:1},deletado:false}
-	},
-	{
-		$lookup:{
-			from:'usuarios',
-			localField:'id_parceiro',
-			foreignField:'_id',
-			as:'parceiro'
+	usuarioStatusModel.find({id_usuario:mongoose.Types.ObjectId(req.session.usuario.id)},function(err,data_usuario_status){
 
-		}
-	},
-	{
-		$lookup:{
-			from:'usuario_corretora',
-			localField:'_id',
-			foreignField:'id_usuario',
-			as:'corretora'
+		console.log('-------------------------------');
+		console.log(data_usuario_status);
+		console.log('----------- administracao ------')
+
+		if(data_usuario_status.length > 0 ){
+			var data_atualizacao_u = data_usuario_status[0].data_atualizacao;
+			var data_atualizacao_uf = moment(data_atualizacao_u).utc().format('DD/MM/YYYY');
+			data_usuario_status[0].data_atualizacao_f = data_atualizacao_uf;
 		}
 
-	}
-	]).exec(function(err,data_usuarios){
+		data[req.session.usuario.id+'_usuario_status'] = data_usuario_status;
 
-		console.log('aaaaaaaaaaaaaaaaaaaaaaaaa administracao aaaaaaaaaaaaaaaaaaaaaa');
-		console.log(data_usuarios);
-		console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
-		data[req.session.usuario.id+'_usuarios']= data_usuarios;
-		res.render(req.isAjaxRequest() == true ? 'api' : 'montador', {html: 'administracao/administracao',  data: data, usuario: req.session.usuario});
 
-	});
+		usuariosModel.aggregate([
+		{
+			$match:{nivel:{$gt:1},deletado:false}
+		},
+		{
+			$lookup:{
+				from:'usuarios',
+				localField:'id_parceiro',
+				foreignField:'_id',
+				as:'parceiro'
+
+			}
+		},
+		{
+			$lookup:{
+				from:'usuario_corretora',
+				localField:'_id',
+				foreignField:'id_usuario',
+				as:'corretora'
+			}
+
+		},
+		{
+			$lookup:{
+				from:'usuario_status',
+				localField:'_id',
+				foreignField:'id_usuario',
+				as:'status'
+			}
+		}
+
+
+		]).exec(function(err,data_usuarios){
+
+			console.log('aaaaaaaaaaaaaaaaaaaaaaaaa administracao aaaaaaaaaaaaaaaaaaaaaa');
+			console.log(data_usuarios);
+			console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
+			data[req.session.usuario.id+'_usuarios']= data_usuarios;
+			res.render(req.isAjaxRequest() == true ? 'api' : 'montador', {html: 'administracao/administracao',  data: data, usuario: req.session.usuario});
+
+		});
+	}).sort({'_id':-1}).limit(1);
 }
 });
 
