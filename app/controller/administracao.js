@@ -58,7 +58,7 @@ router.get('/', function(req, res, next) {
 		}
 		]).exec(function(err,data_usuarios){
 
-			console.log('aaaaaaaaaaaaaaaaaaaaaaaaa administracao aaaaaaaaaaaaaaaaaaaaaa');
+			console.log('aaaaaaaaaaaaaaaaaaaaaaaaa administracao aaaaaaaaaaaaaaaaaaaaa');
 			console.log(data_usuarios);
 			console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
 			data[req.session.usuario.id+'_usuarios']= data_usuarios;
