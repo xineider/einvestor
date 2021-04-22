@@ -158,12 +158,16 @@ router.post('/enviar-formulario-conhecer', function(req, res, next) {
 		pretencao_investimento = 0;
 	}
 
-	var possui_30_dias = false;
+	var possui_30_dias = 'normal';
 
 
 	if(POST.acess_key == 'einvestor30g'){
 		console.log('é igual ao acess key');
-		possui_30_dias = true;
+		possui_30_dias = 'gratis';
+	}
+
+	if(POST.acess_key === 'investor3080'){
+		possui_30_dias = 'gratis_80'
 	}
 
 	console.log('novo_contato');
