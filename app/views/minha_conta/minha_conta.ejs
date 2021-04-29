@@ -78,23 +78,23 @@
 									<div class="mx-auto">
 
 										<div class="text-center margin-t-10">
-											<span class="margin-l-5">Data Fim Licença:</span>
+											<span class="margin-l-5">Dia do Vencimento/Cobrança:</span>
 											<%=data[usuario.id +'_usuario_licenca'][0].data_fim_uf%>
 										</div>
 
 										<div class="text-center margin-t-10">
-											<span class="margin-l-5">Seu Algoritmo Atual é:</span>
+											<span class="margin-l-5">Licença:</span>
 											<%= data[usuario.id +'_usuario_status'][0].nome_algoritmo_escolhido %>			
 										</div>
 
 										<div class="text-center margin-t-10">
-											<span class="margin-l-5">Seu Valor Aplicado é:</span>
+											<span class="margin-l-5">Valor Inicial Alocado:</span>
 											R$<%= data[usuario.id +'_usuario_status'][0].valor_aplicado_f %>			
 										</div>
 
 
 										<div class="text-center margin-t-10">
-											<span class="margin-l-5">Lote Máximo: WIN:<%= 5 * data[usuario.id +'_usuario_algoritmo'][0].algoritmo[0].multiplicador %> | WDO: <%= 3 * data[usuario.id +'_usuario_algoritmo'][0].algoritmo[0].multiplicador %></span>
+											<span class="margin-l-5">Lote Máximo: WIN: <%= 5 * data[usuario.id +'_usuario_algoritmo'][0].algoritmo[0].multiplicador %> | WDO: <%= 3 * data[usuario.id +'_usuario_algoritmo'][0].algoritmo[0].multiplicador %></span>
 										</div>
 
 
