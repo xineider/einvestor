@@ -10,7 +10,7 @@ $(document).ready(function () {
 			method: 'POST',
 			async: true,
 			data: post,
-			url: '/recuperar/senha',
+			url: '/plataforma/recuperar/senha',
 			beforeSend: function(request){
 				adicionarLoader();
 			},
