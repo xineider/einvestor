@@ -386,51 +386,103 @@ router.post('/criar-usuario-redirecionar', function(req, res, next) {
 											var capital_f = formCurrency.format(POST.capital);
 											var preco_f = formCurrency.format(data_algoritmo.preco);
 
+											if(gratis == false){
 
-											var html = cabecalho_email +
-											"<b>Olá " + POST.nome + ", estamos muito felizes em ter você aqui.</b>"+
-											"<br><b>Este é o seu login: </b>" + POST.email +
-											"<br><b>E este é o link de acesso do sistema:</b> <a href='http://einvestor.com.br/' target='_blank'>http://einvestor.com.br/</a>"+
-											"<br><br>Obrigado por escolher nosso sistema " + data_algoritmo.nome +
-											"<br><br>Valor " + preco_f + " do sistema plano mensal." +
-											"<br><br>Capital Inicial " +capital_f + 
-											"<br><br><span style='font-size:9px;'>Algo errado? Entre em contato conosco respondendo este e-mail.</span>" +
-											"<br><br><b>Agora vamos ao passo a passo para você ativar sua estratégia em sua conta:</b>"+
-											"<br><br><b>1º Passo:</b> Você precisa ter uma conta em uma das corretoras compatíveis, são elas: Modal Mais, Órama, Rico, Terra e XP Investimentos."+
-											"<br><br>Agora logado no sistema da sua corretora você precisa contratar/ativar a plataforma de negociação MetaTrader 5 conta real/produção, Netting. Após a contratação você receberá um e-mail da corretora com os dados de acesso."+
-											"<br><br>Você deve sempre checar com a corretora se o capital necessário informado ao contratar o nosso sistema já está alocado na conta da corretora e do MetaTrader 5 e se a mesma já está habilitada a realizar operações nos ativos futuros mini índice e mini dólar. Caso ainda não tenha capital na corretora basta enviar via TED de sua conta para a corretora conforme o indicado por ela, não se preocupe, todas são corretoras regulamentadas e muito seguras, e o capital só pode ser enviado e recebido por contas bancárias do mesmo titular da conta da corretora. Recomendamos a ativação da RLP para maior liquidez e custo zero de corretagem."+
-											"<br><br><b>2º Passo:</b> Faço o login no sistema <a href='http://einvestor.com.br/' target='_blank'>E-Investor</a> e conecte sua conta MetaTrader 5 operacional no menu automação e leia e aceite os termos para integração."+
-											"<br><br><b>3º Passo:</b> Após integrar sua conta, na sequência você vai configurar os parâmetros de sua estratégia, fazer a otimização e a integração do algoritmo em sua conta, leia os termos e aceite para integração."+
-											"<br><br><b>Feito isso é só esperar até 3 dias úteis para receber a confirmação de que está tudo certo e o sistema está conectado e pronto para automatizar as ordens da estratégia criada.</b>"+
-											"<br><br><b>Segurança</b>"+
-											"<br><br>O valor necessário para operações <b>fica em sua conta</b> da corretora de sua escolha, com total segurança, liquidez e controle único e exclusivo seu, apenas <b>integramos o sistema</b> a plataforma de negociação."+
-											"<br>Prezamos a transparência e responsabilidade quando o assunto é sério, visando entregar o máximo de experiência não só tecnológica, mas também informativa, por isso temos tudo que você precisa aqui em nossos <a href='http://einvestor.com.br/termos_uso' target='_blank'>Termos e condições de uso - Avisos legais e de responsabilidade.</a>"+
-											rodape_email;
 
-											var text = "<b>E-Investor</b>"+
-											"<b>Olá " + POST.nome + ", estamos muito felizes em ter você aqui.</b>"+
-											"<br><b>Este é o seu login: </b>" + POST.email +
-											"<br><b>E este é o link de acesso do sistema:</b> <a href='http://einvestor.com.br/' target='_blank'>http://einvestor.com.br/</a>"+
-											"<br><br>Obrigado por escolher nosso sistema " + data_algoritmo.nome +
-											"<br><br>Valor " + preco_f + " do sistema plano mensal." +
-											"<br><br>Capital Inicial " +capital_f + 
-											"<br><br><span>Algo errado? Entre em contato conosco respondendo este e-mail.</span>" +
-											"<br><br><b>Agora vamos ao passo a passo para você ativar sua estratégia em sua conta:</b>"+
-											"<br><br><b>1º Passo:</b> Você precisa ter uma conta em uma das corretoras compatíveis, são elas: Modal Mais, Órama, Rico, Terra e XP Investimentos."+
-											"<br><br>Agora logado no sistema da sua corretora você precisa contratar/ativar a plataforma de negociação MetaTrader 5 conta real/produção, Netting. Após a contratação você receberá um e-mail da corretora com os dados de acesso."+
-											"<br><br>Você deve sempre checar com a corretora se o capital necessário informado ao contratar o nosso sistema já está alocado na conta da corretora e do MetaTrader 5 e se a mesma já está habilitada a realizar operações nos ativos futuros mini índice e mini dólar. Caso ainda não tenha capital na corretora basta enviar via TED de sua conta para a corretora conforme o indicado por ela, não se preocupe, todas são corretoras regulamentadas e muito seguras, e o capital só pode ser enviado e recebido por contas bancárias do mesmo titular da conta da corretora. Recomendamos a ativação da RLP para maior liquidez e custo zero de corretagem."+
-											"<br><br><b>2º Passo:</b> Faço o login no sistema <a href='http://einvestor.com.br/' target='_blank'>E-Investor</a> e conecte sua conta MetaTrader 5 operacional no menu automação e leia e aceite os termos para integração."+
-											"<br><br><b>3º Passo:</b> Após integrar sua conta, na sequência você vai configurar os parâmetros de sua estratégia, fazer a otimização e a integração do algoritmo em sua conta, leia os termos e aceite para integração."+
-											"<br><br><b>Feito isso é só esperar até 3 dias úteis para receber a confirmação de que está tudo certo e o sistema está conectado e pronto para automatizar as ordens da estratégia criada.</b>"+
-											"<br><br><b>Segurança</b>"+
-											"<br><br>O valor necessário para operações <b>fica em sua conta</b> da corretora de sua escolha, com total segurança, liquidez e controle único e exclusivo seu, apenas <b>integramos o sistema</b> a plataforma de negociação."+
-											"<br>Prezamos a transparência e responsabilidade quando o assunto é sério, visando entregar o máximo de experiência não só tecnológica, mas também informativa, por isso temos tudo que você precisa aqui em nossos <a href='http://einvestor.com.br/termos_uso' target='_blank'>Termos e condições de uso - Avisos legais e de responsabilidade.</a>"+
-											rodape_email_t;
+												var html = cabecalho_email +
+												"<b>Olá " + POST.nome + ", estamos muito felizes em ter você aqui.</b>"+
+												"<br><b>Este é o seu login: </b>" + POST.email +
+												"<br><b>E este é o link de acesso do sistema:</b> <a href='http://einvestor.com.br/' target='_blank'>http://einvestor.com.br/</a>"+
+												"<br><br>Obrigado por escolher nosso sistema " + data_algoritmo.nome +
+												"<br><br>Valor " + preco_f + " do sistema plano mensal." +
+												"<br><br>Capital Inicial " +capital_f + 
+												"<br><br><span style='font-size:9px;'>Algo errado? Entre em contato conosco respondendo este e-mail.</span>" +
+												"<br><br><b>Agora vamos ao passo a passo para você ativar sua estratégia em sua conta:</b>"+
+												"<br><br><b>1º Passo:</b> Você precisa ter uma conta em uma das corretoras compatíveis, são elas: Modal Mais, Órama, Rico, Terra e XP Investimentos."+
+												"<br><br>Agora logado no sistema da sua corretora você precisa contratar/ativar a plataforma de negociação MetaTrader 5 conta real/produção, Netting. Após a contratação você receberá um e-mail da corretora com os dados de acesso."+
+												"<br><br>Você deve sempre checar com a corretora se o capital necessário informado ao contratar o nosso sistema já está alocado na conta da corretora e do MetaTrader 5 e se a mesma já está habilitada a realizar operações nos ativos futuros mini índice e mini dólar. Caso ainda não tenha capital na corretora basta enviar via TED de sua conta para a corretora conforme o indicado por ela, não se preocupe, todas são corretoras regulamentadas e muito seguras, e o capital só pode ser enviado e recebido por contas bancárias do mesmo titular da conta da corretora. Recomendamos a ativação da RLP para maior liquidez e custo zero de corretagem."+
+												"<br><br><b>2º Passo:</b> Faço o login no sistema <a href='http://einvestor.com.br/' target='_blank'>E-Investor</a> e conecte sua conta MetaTrader 5 operacional no menu automação e leia e aceite os termos para integração."+
+												"<br><br><b>3º Passo:</b> Após integrar sua conta, na sequência você vai configurar os parâmetros de sua estratégia, fazer a otimização e a integração do algoritmo em sua conta, leia os termos e aceite para integração."+
+												"<br><br><b>Feito isso é só esperar até 3 dias úteis para receber a confirmação de que está tudo certo e o sistema está conectado e pronto para automatizar as ordens da estratégia criada.</b>"+
+												"<br><br><b>Segurança</b>"+
+												"<br><br>O valor necessário para operações <b>fica em sua conta</b> da corretora de sua escolha, com total segurança, liquidez e controle único e exclusivo seu, apenas <b>integramos o sistema</b> a plataforma de negociação."+
+												"<br>Prezamos a transparência e responsabilidade quando o assunto é sério, visando entregar o máximo de experiência não só tecnológica, mas também informativa, por isso temos tudo que você precisa aqui em nossos <a href='http://einvestor.com.br/termos_uso' target='_blank'>Termos e condições de uso - Avisos legais e de responsabilidade.</a>"+
+												rodape_email;
 
-											control.SendMail(POST.email, titulo ,text,html);
+												var text = "<b>E-Investor</b>"+
+												"<b>Olá " + POST.nome + ", estamos muito felizes em ter você aqui.</b>"+
+												"<br><b>Este é o seu login: </b>" + POST.email +
+												"<br><b>E este é o link de acesso do sistema:</b> <a href='http://einvestor.com.br/' target='_blank'>http://einvestor.com.br/</a>"+
+												"<br><br>Obrigado por escolher nosso sistema " + data_algoritmo.nome +
+												"<br><br>Valor " + preco_f + " do sistema plano mensal." +
+												"<br><br>Capital Inicial " +capital_f + 
+												"<br><br><span>Algo errado? Entre em contato conosco respondendo este e-mail.</span>" +
+												"<br><br><b>Agora vamos ao passo a passo para você ativar sua estratégia em sua conta:</b>"+
+												"<br><br><b>1º Passo:</b> Você precisa ter uma conta em uma das corretoras compatíveis, são elas: Modal Mais, Órama, Rico, Terra e XP Investimentos."+
+												"<br><br>Agora logado no sistema da sua corretora você precisa contratar/ativar a plataforma de negociação MetaTrader 5 conta real/produção, Netting. Após a contratação você receberá um e-mail da corretora com os dados de acesso."+
+												"<br><br>Você deve sempre checar com a corretora se o capital necessário informado ao contratar o nosso sistema já está alocado na conta da corretora e do MetaTrader 5 e se a mesma já está habilitada a realizar operações nos ativos futuros mini índice e mini dólar. Caso ainda não tenha capital na corretora basta enviar via TED de sua conta para a corretora conforme o indicado por ela, não se preocupe, todas são corretoras regulamentadas e muito seguras, e o capital só pode ser enviado e recebido por contas bancárias do mesmo titular da conta da corretora. Recomendamos a ativação da RLP para maior liquidez e custo zero de corretagem."+
+												"<br><br><b>2º Passo:</b> Faço o login no sistema <a href='http://einvestor.com.br/' target='_blank'>E-Investor</a> e conecte sua conta MetaTrader 5 operacional no menu automação e leia e aceite os termos para integração."+
+												"<br><br><b>3º Passo:</b> Após integrar sua conta, na sequência você vai configurar os parâmetros de sua estratégia, fazer a otimização e a integração do algoritmo em sua conta, leia os termos e aceite para integração."+
+												"<br><br><b>Feito isso é só esperar até 3 dias úteis para receber a confirmação de que está tudo certo e o sistema está conectado e pronto para automatizar as ordens da estratégia criada.</b>"+
+												"<br><br><b>Segurança</b>"+
+												"<br><br>O valor necessário para operações <b>fica em sua conta</b> da corretora de sua escolha, com total segurança, liquidez e controle único e exclusivo seu, apenas <b>integramos o sistema</b> a plataforma de negociação."+
+												"<br>Prezamos a transparência e responsabilidade quando o assunto é sério, visando entregar o máximo de experiência não só tecnológica, mas também informativa, por isso temos tudo que você precisa aqui em nossos <a href='http://einvestor.com.br/termos_uso' target='_blank'>Termos e condições de uso - Avisos legais e de responsabilidade.</a>"+
+												rodape_email_t;
 
-											control.SendMail('suporte@einvestor.com.br', titulo ,text,html);
-											
+												control.SendMail(POST.email, titulo ,text,html);
+
+												control.SendMail('suporte@einvestor.com.br', titulo ,text,html);
+											}else{
+
+												var html = cabecalho_email +
+												"<b>Olá " + POST.nome + ", estamos muito felizes em ter você aqui.</b>"+
+												"<br>Parabéns! Você acaba de ativar seu período gratuito de 30 dias a contar a partir de hoje."+
+												"<br>Para continuar usando após o período gratuito você vai precisar fazer a contratação paga do sistema que preferir, mas não se preocupe vamos ajudar a lembrá-lo disso perto do término do período gratuito."+
+												"<br><br><b>Este é o seu login: </b>" + POST.email +
+												"<br><b>E este é o link de acesso do sistema:</b> <a href='http://einvestor.com.br/plataforma/sistema' target='_blank'>http://einvestor.com.br/</a>"+
+												"<br><br>Obrigado por escolher nosso sistema " + data_algoritmo.nome +
+												"<br><br>Capital inicial para utilização  " +capital_f + 
+												"<br><br>Valor da Licença " + preco_f + " do plano mensal." +
+												"<br><br><span style='font-size:9px;'>Algo errado? Entre em contato conosco respondendo este e-mail.</span>" +
+												"<br><br><b>Agora vamos ao passo a passo para você ativar sua estratégia em sua conta:</b>"+
+												"<br><br><b>1º Passo:</b> Você precisa ter uma conta em uma das corretoras compatíveis, são elas: Modal Mais, Órama, Rico, Terra e XP Investimentos."+
+												"<br><br>Agora logado no sistema da sua corretora você precisa contratar/ativar a plataforma de negociação MetaTrader 5 conta real/produção, Netting. Após a contratação você receberá um e-mail da corretora com os dados de acesso."+
+												"<br><br>Você deve sempre checar com a corretora se o capital necessário informado ao contratar o nosso sistema já está alocado na conta da corretora e do MetaTrader 5 e se a mesma já está habilitada a realizar operações nos ativos futuros mini índice e mini dólar. Caso ainda não tenha capital na corretora basta enviar via TED de sua conta para a corretora conforme o indicado por ela, não se preocupe, todas são corretoras regulamentadas e muito seguras, e o capital só pode ser enviado e recebido por contas bancárias do mesmo titular da conta da corretora. Recomendamos a ativação da RLP para maior liquidez e custo zero de corretagem."+
+												"<br><br><b>2º Passo:</b> Faço o login no sistema <a href='http://einvestor.com.br/' target='_blank'>E-Investor</a> e conecte sua conta MetaTrader 5 operacional no menu automação e leia e aceite os termos para integração."+
+												"<br><br><b>3º Passo:</b> Após integrar sua conta, na sequência você vai configurar os parâmetros de sua estratégia, fazer a otimização e a integração do algoritmo em sua conta, leia os termos e aceite para integração."+
+												"<br><br><b>Feito isso é só esperar até 3 dias úteis para receber a confirmação de que está tudo certo e o sistema está conectado e pronto para automatizar as ordens da estratégia criada.</b>"+
+												"<br><br><b>Segurança</b>"+
+												"<br><br>O valor necessário para operações <b>fica em sua conta</b> da corretora de sua escolha, com total segurança, liquidez e controle único e exclusivo seu, apenas <b>integramos o sistema</b> a plataforma de negociação."+
+												"<br>Prezamos a transparência e responsabilidade quando o assunto é sério, visando entregar o máximo de experiência não só tecnológica, mas também informativa, por isso temos tudo que você precisa aqui em nossos <a href='http://einvestor.com.br/termos_uso' target='_blank'>Termos e condições de uso - Avisos legais e de responsabilidade.</a>"+
+												rodape_email;
+
+												var text = "<b>E-Investor</b>"+
+												"<b>Olá " + POST.nome + ", estamos muito felizes em ter você aqui.</b>"+
+												"<br>Parabéns! Você acaba de ativar seu período gratuito de 30 dias a contar a partir de hoje."+
+												"<br>Para continuar usando após o período gratuito você vai precisar fazer a contratação paga do sistema que preferir, mas não se preocupe vamos ajudar a lembrá-lo disso perto do término do período gratuito."+
+												"<br><b>Este é o seu login: </b>" + POST.email +
+												"<br><br><b>E este é o link de acesso do sistema:</b> <a href='http://einvestor.com.br/plataforma/sistema' target='_blank'>http://einvestor.com.br/</a>"+
+												"<br><br>Obrigado por escolher nosso sistema " + data_algoritmo.nome +
+												"<br><br>Capital inicial para utilização  " +capital_f + 
+												"<br><br>Valor da Licença " + preco_f + " do plano mensal." + 
+												"<br><br><span>Algo errado? Entre em contato conosco respondendo este e-mail.</span>" +
+												"<br><br><b>Agora vamos ao passo a passo para você ativar sua estratégia em sua conta:</b>"+
+												"<br><br><b>1º Passo:</b> Você precisa ter uma conta em uma das corretoras compatíveis, são elas: Modal Mais, Órama, Rico, Terra e XP Investimentos."+
+												"<br><br>Agora logado no sistema da sua corretora você precisa contratar/ativar a plataforma de negociação MetaTrader 5 conta real/produção, Netting. Após a contratação você receberá um e-mail da corretora com os dados de acesso."+
+												"<br><br>Você deve sempre checar com a corretora se o capital necessário informado ao contratar o nosso sistema já está alocado na conta da corretora e do MetaTrader 5 e se a mesma já está habilitada a realizar operações nos ativos futuros mini índice e mini dólar. Caso ainda não tenha capital na corretora basta enviar via TED de sua conta para a corretora conforme o indicado por ela, não se preocupe, todas são corretoras regulamentadas e muito seguras, e o capital só pode ser enviado e recebido por contas bancárias do mesmo titular da conta da corretora. Recomendamos a ativação da RLP para maior liquidez e custo zero de corretagem."+
+												"<br><br><b>2º Passo:</b> Faço o login no sistema <a href='http://einvestor.com.br/' target='_blank'>E-Investor</a> e conecte sua conta MetaTrader 5 operacional no menu automação e leia e aceite os termos para integração."+
+												"<br><br><b>3º Passo:</b> Após integrar sua conta, na sequência você vai configurar os parâmetros de sua estratégia, fazer a otimização e a integração do algoritmo em sua conta, leia os termos e aceite para integração."+
+												"<br><br><b>Feito isso é só esperar até 3 dias úteis para receber a confirmação de que está tudo certo e o sistema está conectado e pronto para automatizar as ordens da estratégia criada.</b>"+
+												"<br><br><b>Segurança</b>"+
+												"<br><br>O valor necessário para operações <b>fica em sua conta</b> da corretora de sua escolha, com total segurança, liquidez e controle único e exclusivo seu, apenas <b>integramos o sistema</b> a plataforma de negociação."+
+												"<br>Prezamos a transparência e responsabilidade quando o assunto é sério, visando entregar o máximo de experiência não só tecnológica, mas também informativa, por isso temos tudo que você precisa aqui em nossos <a href='http://einvestor.com.br/termos_uso' target='_blank'>Termos e condições de uso - Avisos legais e de responsabilidade.</a>"+
+												rodape_email_t;
+
+												control.SendMail(POST.email, titulo ,text,html);
+
+												control.SendMail('suporte@einvestor.com.br', titulo ,text,html);
+
+											}
 
 
 
