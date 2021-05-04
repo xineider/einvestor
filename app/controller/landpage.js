@@ -44,7 +44,6 @@ const formCurrency = new Intl.NumberFormat('pt-BR', {
 function transformar_porcentagem(valor,robo,capital){
 	var arrumado = valor * robo / capital * 100;
 	arrumado = parseFloat(arrumado).toFixed(2).replace('.',',');
-
 	return arrumado;
 }
 
@@ -273,6 +272,13 @@ router.post('/criar-usuario-redirecionar', function(req, res, next) {
 
 			if(data_usuario.length == 0){
 
+				var gratis = false;
+
+				if(POST.gratis == '1'){
+					gratis = true;
+				}
+
+
 				const novo_usuario = new usuarioModel({ 						
 					nome:POST.nome,
 					email:POST.email,
@@ -281,6 +287,7 @@ router.post('/criar-usuario-redirecionar', function(req, res, next) {
 					foto:'',
 					cpf:POST.cpf,
 					nivel:3,
+					gratis:gratis,
 					deletado:false,
 					data_cadastro:new Date()
 				});
@@ -784,6 +791,7 @@ router.get('/relatorio/:algoritmo/:capital', function(req, res, next) {
 
 				var drawdown = ((formCurrency.format(data_relatorio[0].estrategias[i].drawdown * data_robo[0].multiplicador).replace('.','#')).replace(',','.')).replace('#',',');
 				data_relatorio[0].estrategias[i].drawdown_exib_reais = drawdown;
+
 				data_relatorio[0].estrategias[i].drawdown_exib_perc = transformar_porcentagem(data_relatorio[0].estrategias[i].drawdown,data_robo[0].multiplicador,capital);
 
 				var average_trade = ((formCurrency.format(data_relatorio[0].estrategias[i].average_trade * data_robo[0].multiplicador).replace('.','#')).replace(',','.')).replace('#',',');

@@ -8,6 +8,7 @@ const usuarioSchema = new mongoose.Schema({
 	foto:String,
 	cpf:String,
 	nivel: Number,
+	gratis:Boolean,
 	deletado:Boolean,
 	data_cadastro:Date
 });
