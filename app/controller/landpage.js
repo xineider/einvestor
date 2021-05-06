@@ -53,12 +53,12 @@ function transformar_porcentagem(valor,robo,capital){
 
 var cabecalho_email = "<div style='background:#fff;background-color:#fff;margin:0px auto; max-width:600px;'>"+
 "<div style='background:#fff;width:100%;'>"+
-"<img style='width:100%;' src='http://einvestor.com.br/public/images/pdf/00.png'>"+
+"<img style='width:100%;' src='https://einvestor.com.br/public/images/pdf/00.png'>"+
 "</div>"+
 "<div style='background:#f7f9fb;color:#000;width:100%;'>"+
 "<div style='padding:20px;font-size:13px;'>";
 
-var rodape_email = "<br><br><div><img style='max-width:250px;' src='http://einvestor.com.br/public/images/e_investor_logo.png'></div>"+
+var rodape_email = "<br><br><div><img style='max-width:250px;' src='https://einvestor.com.br/public/images/e_investor_logo.png'></div>"+
 "<br><br><span style='color:#666666;font-size:10px;'>A E-Investor é uma plataforma desenvolvida pela Innvicton Tecnologia, que desenvolve softwares e tecnologias quantitativas para usuários investidores. A Innvicton Tecnologia é uma empresa de desenvolvimento de software e não provê qualquer tipo de serviço de investimento ou corretagem nos mercados financeiros. Sistema desenvolvido exclusivamente para integração ao testador de estratégias da Metaquotes para geração de parâmetros de algoritmo pelo usuário com auxílio de Inteligência Artificial. Não atuamos como prestadora de informações de mercado, ou como receptora/transmissora de ordens de negociação para o sistema de distribuição de valores mobiliários. Esta plataforma, serviços e sistemas não constitui nem deve ser interpretado como oferta ou solicitação de compra ou venda de qualquer instrumento financeiro, ficando a decisão de investimento sempre a critério exclusivo do usuário com base em seu juízo de valor. O investidor deve consultar seu próprio assessor ou conselheiro jurídico, tributário, regulatório, técnico de negócios, de investimentos, financeiro e contábil, na medida que julgar necessário, para assessoria na escolha de definição de softwares, plataformas, sistemas, algoritmos, estratégias e setups. O investidor que realiza operações de renda variável é o único responsável pelas decisões de investimento ou de abstenção de investimento que tomar.</span>"+
 "<br><br><span style='color:#666666;font-size:10px;'>Os sistemas da E-Investor são totalmente parametrizáveis (White Box), contendo seus parâmetros abertos para preenchimento pelo usuário da maneira que ele preferir e julgar mais adequada, cabendo a cada usuário a tomada de decisão da estratégia ou setup que vai utilizar. Comercialização de estratégias automatizadas; CNAE 6202-3/00; Regulatório CVM conforme Item 15 Do Ofício-Circular CVM/SIN 02/19. Copyright - Innvicton Tecnologia - Todos os direitos reservados.</span>"+
 "<br><br><span style='color:#666666;font-size:10px;'>Empresas e tecnologias as quais utilizamos ou recomendamos não tem nenhuma ligação ou participação em qualquer negócio, produto ou serviço da E-Investor, e não obstante não tem ligação com este site, sistema ou conteúdo de nenhuma maneira comercial ou explícita.</span>"+
@@ -192,7 +192,7 @@ router.post('/enviar-formulario-conhecer', function(req, res, next) {
 	var html = cabecalho_email +
 	"<b>Olá " + POST.nome + ", estamos muito felizes em ter você aqui.</b>"+
 	"<br><br><b>Obrigado pelo seu interesse em nosso sistema, " + POST.email+ " é seu e-mail de cadastro inicial na E-Investor.</b>"+
-	"<br><br>Caso você ainda não tenha feito a compra de uma licença, poderá simular novamente <a href='http://einvestor.com.br/' target='_blank'>Clicando aqui.</a>" +
+	"<br><br>Caso você ainda não tenha feito a compra de uma licença, poderá simular novamente <a href='https://einvestor.com.br/' target='_blank'>Clicando aqui.</a>" +
 	"<br><br><span style='font-size:9px;'>Algo errado? Entre em contato conosco respondendo este e-mail.</span>"+
 	rodape_email;
 
@@ -200,7 +200,7 @@ router.post('/enviar-formulario-conhecer', function(req, res, next) {
 	var text = "<b>E-Investor</b>"+
 	"<br><b>Olá " + POST.nome + ", estamos muito felizes em ter você aqui.</b>"+
 	"<br><br><b>Obrigado pelo seu interesse em nosso sistema, " + POST.email+ " é seu e-mail de cadastro inicial na E-Investor.</b>"+
-	"<br><br>Caso você ainda não tenha feito a compra de uma licença, poderá simular novamente <a href='http://einvestor.com.br/' target='_blank'>Clicando aqui.</a>" +
+	"<br><br>Caso você ainda não tenha feito a compra de uma licença, poderá simular novamente <a href='https://einvestor.com.br/' target='_blank'>Clicando aqui.</a>" +
 	"<br><br><span>Algo errado? Entre em contato conosco respondendo este e-mail.</span>"+ rodape_email_t;
 
 
@@ -392,7 +392,7 @@ router.post('/criar-usuario-redirecionar', function(req, res, next) {
 												var html = cabecalho_email +
 												"<b>Olá " + POST.nome + ", estamos muito felizes em ter você aqui.</b>"+
 												"<br><b>Este é o seu login: </b>" + POST.email +
-												"<br><b>E este é o link de acesso do sistema:</b> <a href='http://einvestor.com.br/' target='_blank'>http://einvestor.com.br/</a>"+
+												"<br><b>E este é o link de acesso do sistema:</b> <a href='https://einvestor.com.br/' target='_blank'>https://einvestor.com.br/</a>"+
 												"<br><br>Obrigado por escolher nosso sistema " + data_algoritmo.nome +
 												"<br><br>Valor " + preco_f + " do sistema plano mensal." +
 												"<br><br>Capital Inicial " +capital_f + 
@@ -401,18 +401,18 @@ router.post('/criar-usuario-redirecionar', function(req, res, next) {
 												"<br><br><b>1º Passo:</b> Você precisa ter uma conta em uma das corretoras compatíveis, são elas: Modal Mais, Órama, Rico, Terra e XP Investimentos."+
 												"<br><br>Agora logado no sistema da sua corretora você precisa contratar/ativar a plataforma de negociação MetaTrader 5 conta real/produção, Netting. Após a contratação você receberá um e-mail da corretora com os dados de acesso."+
 												"<br><br>Você deve sempre checar com a corretora se o capital necessário informado ao contratar o nosso sistema já está alocado na conta da corretora e do MetaTrader 5 e se a mesma já está habilitada a realizar operações nos ativos futuros mini índice e mini dólar. Caso ainda não tenha capital na corretora basta enviar via TED de sua conta para a corretora conforme o indicado por ela, não se preocupe, todas são corretoras regulamentadas e muito seguras, e o capital só pode ser enviado e recebido por contas bancárias do mesmo titular da conta da corretora. Recomendamos a ativação da RLP para maior liquidez e custo zero de corretagem."+
-												"<br><br><b>2º Passo:</b> Faço o login no sistema <a href='http://einvestor.com.br/' target='_blank'>E-Investor</a> e conecte sua conta MetaTrader 5 operacional no menu automação e leia e aceite os termos para integração."+
+												"<br><br><b>2º Passo:</b> Faço o login no sistema <a href='https://einvestor.com.br/' target='_blank'>E-Investor</a> e conecte sua conta MetaTrader 5 operacional no menu automação e leia e aceite os termos para integração."+
 												"<br><br><b>3º Passo:</b> Após integrar sua conta, na sequência você vai configurar os parâmetros de sua estratégia, fazer a otimização e a integração do algoritmo em sua conta, leia os termos e aceite para integração."+
 												"<br><br><b>Feito isso é só esperar até 3 dias úteis para receber a confirmação de que está tudo certo e o sistema está conectado e pronto para automatizar as ordens da estratégia criada.</b>"+
 												"<br><br><b>Segurança</b>"+
 												"<br><br>O valor necessário para operações <b>fica em sua conta</b> da corretora de sua escolha, com total segurança, liquidez e controle único e exclusivo seu, apenas <b>integramos o sistema</b> a plataforma de negociação."+
-												"<br>Prezamos a transparência e responsabilidade quando o assunto é sério, visando entregar o máximo de experiência não só tecnológica, mas também informativa, por isso temos tudo que você precisa aqui em nossos <a href='http://einvestor.com.br/termos_uso' target='_blank'>Termos e condições de uso - Avisos legais e de responsabilidade.</a>"+
+												"<br>Prezamos a transparência e responsabilidade quando o assunto é sério, visando entregar o máximo de experiência não só tecnológica, mas também informativa, por isso temos tudo que você precisa aqui em nossos <a href='https://einvestor.com.br/termos_uso' target='_blank'>Termos e condições de uso - Avisos legais e de responsabilidade.</a>"+
 												rodape_email;
 
 												var text = "<b>E-Investor</b>"+
 												"<b>Olá " + POST.nome + ", estamos muito felizes em ter você aqui.</b>"+
 												"<br><b>Este é o seu login: </b>" + POST.email +
-												"<br><b>E este é o link de acesso do sistema:</b> <a href='http://einvestor.com.br/' target='_blank'>http://einvestor.com.br/</a>"+
+												"<br><b>E este é o link de acesso do sistema:</b> <a href='https://einvestor.com.br/' target='_blank'>https://einvestor.com.br/</a>"+
 												"<br><br>Obrigado por escolher nosso sistema " + data_algoritmo.nome +
 												"<br><br>Valor " + preco_f + " do sistema plano mensal." +
 												"<br><br>Capital Inicial " +capital_f + 
@@ -421,12 +421,12 @@ router.post('/criar-usuario-redirecionar', function(req, res, next) {
 												"<br><br><b>1º Passo:</b> Você precisa ter uma conta em uma das corretoras compatíveis, são elas: Modal Mais, Órama, Rico, Terra e XP Investimentos."+
 												"<br><br>Agora logado no sistema da sua corretora você precisa contratar/ativar a plataforma de negociação MetaTrader 5 conta real/produção, Netting. Após a contratação você receberá um e-mail da corretora com os dados de acesso."+
 												"<br><br>Você deve sempre checar com a corretora se o capital necessário informado ao contratar o nosso sistema já está alocado na conta da corretora e do MetaTrader 5 e se a mesma já está habilitada a realizar operações nos ativos futuros mini índice e mini dólar. Caso ainda não tenha capital na corretora basta enviar via TED de sua conta para a corretora conforme o indicado por ela, não se preocupe, todas são corretoras regulamentadas e muito seguras, e o capital só pode ser enviado e recebido por contas bancárias do mesmo titular da conta da corretora. Recomendamos a ativação da RLP para maior liquidez e custo zero de corretagem."+
-												"<br><br><b>2º Passo:</b> Faço o login no sistema <a href='http://einvestor.com.br/' target='_blank'>E-Investor</a> e conecte sua conta MetaTrader 5 operacional no menu automação e leia e aceite os termos para integração."+
+												"<br><br><b>2º Passo:</b> Faço o login no sistema <a href='https://einvestor.com.br/' target='_blank'>E-Investor</a> e conecte sua conta MetaTrader 5 operacional no menu automação e leia e aceite os termos para integração."+
 												"<br><br><b>3º Passo:</b> Após integrar sua conta, na sequência você vai configurar os parâmetros de sua estratégia, fazer a otimização e a integração do algoritmo em sua conta, leia os termos e aceite para integração."+
 												"<br><br><b>Feito isso é só esperar até 3 dias úteis para receber a confirmação de que está tudo certo e o sistema está conectado e pronto para automatizar as ordens da estratégia criada.</b>"+
 												"<br><br><b>Segurança</b>"+
 												"<br><br>O valor necessário para operações <b>fica em sua conta</b> da corretora de sua escolha, com total segurança, liquidez e controle único e exclusivo seu, apenas <b>integramos o sistema</b> a plataforma de negociação."+
-												"<br>Prezamos a transparência e responsabilidade quando o assunto é sério, visando entregar o máximo de experiência não só tecnológica, mas também informativa, por isso temos tudo que você precisa aqui em nossos <a href='http://einvestor.com.br/termos_uso' target='_blank'>Termos e condições de uso - Avisos legais e de responsabilidade.</a>"+
+												"<br>Prezamos a transparência e responsabilidade quando o assunto é sério, visando entregar o máximo de experiência não só tecnológica, mas também informativa, por isso temos tudo que você precisa aqui em nossos <a href='https://einvestor.com.br/termos_uso' target='_blank'>Termos e condições de uso - Avisos legais e de responsabilidade.</a>"+
 												rodape_email_t;
 
 												control.SendMail(POST.email, titulo ,text,html);
@@ -439,7 +439,7 @@ router.post('/criar-usuario-redirecionar', function(req, res, next) {
 												"<br>Parabéns! Você acaba de ativar seu período gratuito de 30 dias a contar a partir de hoje."+
 												"<br>Para continuar usando após o período gratuito você vai precisar fazer a contratação paga do sistema que preferir, mas não se preocupe vamos ajudar a lembrá-lo disso perto do término do período gratuito."+
 												"<br><br><b>Este é o seu login: </b>" + POST.email +
-												"<br><b>E este é o link de acesso do sistema:</b> <a href='http://einvestor.com.br/plataforma/sistema' target='_blank'>http://einvestor.com.br/</a>"+
+												"<br><b>E este é o link de acesso do sistema:</b> <a href='https://einvestor.com.br/plataforma/sistema' target='_blank'>https://einvestor.com.br/</a>"+
 												"<br><br>Obrigado por escolher nosso sistema " + data_algoritmo.nome +
 												"<br><br>Capital inicial para utilização  " +capital_f + 
 												"<br><br>Valor da Licença " + preco_f + " do plano mensal." +
@@ -448,12 +448,12 @@ router.post('/criar-usuario-redirecionar', function(req, res, next) {
 												"<br><br><b>1º Passo:</b> Você precisa ter uma conta em uma das corretoras compatíveis, são elas: Modal Mais, Órama, Rico, Terra e XP Investimentos."+
 												"<br><br>Agora logado no sistema da sua corretora você precisa contratar/ativar a plataforma de negociação MetaTrader 5 conta real/produção, Netting. Após a contratação você receberá um e-mail da corretora com os dados de acesso."+
 												"<br><br>Você deve sempre checar com a corretora se o capital necessário informado ao contratar o nosso sistema já está alocado na conta da corretora e do MetaTrader 5 e se a mesma já está habilitada a realizar operações nos ativos futuros mini índice e mini dólar. Caso ainda não tenha capital na corretora basta enviar via TED de sua conta para a corretora conforme o indicado por ela, não se preocupe, todas são corretoras regulamentadas e muito seguras, e o capital só pode ser enviado e recebido por contas bancárias do mesmo titular da conta da corretora. Recomendamos a ativação da RLP para maior liquidez e custo zero de corretagem."+
-												"<br><br><b>2º Passo:</b> Faço o login no sistema <a href='http://einvestor.com.br/' target='_blank'>E-Investor</a> e conecte sua conta MetaTrader 5 operacional no menu automação e leia e aceite os termos para integração."+
+												"<br><br><b>2º Passo:</b> Faço o login no sistema <a href='https://einvestor.com.br/' target='_blank'>E-Investor</a> e conecte sua conta MetaTrader 5 operacional no menu automação e leia e aceite os termos para integração."+
 												"<br><br><b>3º Passo:</b> Após integrar sua conta, na sequência você vai configurar os parâmetros de sua estratégia, fazer a otimização e a integração do algoritmo em sua conta, leia os termos e aceite para integração."+
 												"<br><br><b>Feito isso é só esperar até 3 dias úteis para receber a confirmação de que está tudo certo e o sistema está conectado e pronto para automatizar as ordens da estratégia criada.</b>"+
 												"<br><br><b>Segurança</b>"+
 												"<br><br>O valor necessário para operações <b>fica em sua conta</b> da corretora de sua escolha, com total segurança, liquidez e controle único e exclusivo seu, apenas <b>integramos o sistema</b> a plataforma de negociação."+
-												"<br>Prezamos a transparência e responsabilidade quando o assunto é sério, visando entregar o máximo de experiência não só tecnológica, mas também informativa, por isso temos tudo que você precisa aqui em nossos <a href='http://einvestor.com.br/termos_uso' target='_blank'>Termos e condições de uso - Avisos legais e de responsabilidade.</a>"+
+												"<br>Prezamos a transparência e responsabilidade quando o assunto é sério, visando entregar o máximo de experiência não só tecnológica, mas também informativa, por isso temos tudo que você precisa aqui em nossos <a href='https://einvestor.com.br/termos_uso' target='_blank'>Termos e condições de uso - Avisos legais e de responsabilidade.</a>"+
 												rodape_email;
 
 												var text = "<b>E-Investor</b>"+
@@ -461,7 +461,7 @@ router.post('/criar-usuario-redirecionar', function(req, res, next) {
 												"<br>Parabéns! Você acaba de ativar seu período gratuito de 30 dias a contar a partir de hoje."+
 												"<br>Para continuar usando após o período gratuito você vai precisar fazer a contratação paga do sistema que preferir, mas não se preocupe vamos ajudar a lembrá-lo disso perto do término do período gratuito."+
 												"<br><b>Este é o seu login: </b>" + POST.email +
-												"<br><br><b>E este é o link de acesso do sistema:</b> <a href='http://einvestor.com.br/plataforma/sistema' target='_blank'>http://einvestor.com.br/</a>"+
+												"<br><br><b>E este é o link de acesso do sistema:</b> <a href='https://einvestor.com.br/plataforma/sistema' target='_blank'>https://einvestor.com.br/</a>"+
 												"<br><br>Obrigado por escolher nosso sistema " + data_algoritmo.nome +
 												"<br><br>Capital inicial para utilização  " +capital_f + 
 												"<br><br>Valor da Licença " + preco_f + " do plano mensal." + 
@@ -470,12 +470,12 @@ router.post('/criar-usuario-redirecionar', function(req, res, next) {
 												"<br><br><b>1º Passo:</b> Você precisa ter uma conta em uma das corretoras compatíveis, são elas: Modal Mais, Órama, Rico, Terra e XP Investimentos."+
 												"<br><br>Agora logado no sistema da sua corretora você precisa contratar/ativar a plataforma de negociação MetaTrader 5 conta real/produção, Netting. Após a contratação você receberá um e-mail da corretora com os dados de acesso."+
 												"<br><br>Você deve sempre checar com a corretora se o capital necessário informado ao contratar o nosso sistema já está alocado na conta da corretora e do MetaTrader 5 e se a mesma já está habilitada a realizar operações nos ativos futuros mini índice e mini dólar. Caso ainda não tenha capital na corretora basta enviar via TED de sua conta para a corretora conforme o indicado por ela, não se preocupe, todas são corretoras regulamentadas e muito seguras, e o capital só pode ser enviado e recebido por contas bancárias do mesmo titular da conta da corretora. Recomendamos a ativação da RLP para maior liquidez e custo zero de corretagem."+
-												"<br><br><b>2º Passo:</b> Faço o login no sistema <a href='http://einvestor.com.br/' target='_blank'>E-Investor</a> e conecte sua conta MetaTrader 5 operacional no menu automação e leia e aceite os termos para integração."+
+												"<br><br><b>2º Passo:</b> Faço o login no sistema <a href='https://einvestor.com.br/' target='_blank'>E-Investor</a> e conecte sua conta MetaTrader 5 operacional no menu automação e leia e aceite os termos para integração."+
 												"<br><br><b>3º Passo:</b> Após integrar sua conta, na sequência você vai configurar os parâmetros de sua estratégia, fazer a otimização e a integração do algoritmo em sua conta, leia os termos e aceite para integração."+
 												"<br><br><b>Feito isso é só esperar até 3 dias úteis para receber a confirmação de que está tudo certo e o sistema está conectado e pronto para automatizar as ordens da estratégia criada.</b>"+
 												"<br><br><b>Segurança</b>"+
 												"<br><br>O valor necessário para operações <b>fica em sua conta</b> da corretora de sua escolha, com total segurança, liquidez e controle único e exclusivo seu, apenas <b>integramos o sistema</b> a plataforma de negociação."+
-												"<br>Prezamos a transparência e responsabilidade quando o assunto é sério, visando entregar o máximo de experiência não só tecnológica, mas também informativa, por isso temos tudo que você precisa aqui em nossos <a href='http://einvestor.com.br/termos_uso' target='_blank'>Termos e condições de uso - Avisos legais e de responsabilidade.</a>"+
+												"<br>Prezamos a transparência e responsabilidade quando o assunto é sério, visando entregar o máximo de experiência não só tecnológica, mas também informativa, por isso temos tudo que você precisa aqui em nossos <a href='https://einvestor.com.br/termos_uso' target='_blank'>Termos e condições de uso - Avisos legais e de responsabilidade.</a>"+
 												rodape_email_t;
 
 												control.SendMail(POST.email, titulo ,text,html);

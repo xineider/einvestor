@@ -19,12 +19,12 @@ const usuarioModel = require('../model/usuariosModel.js');
 
 var cabecalho_email = "<div style='background:#fff;background-color:#fff;margin:0px auto; max-width:600px;'>"+
 "<div style='background:#fff;width:100%;'>"+
-"<img style='width:100%;' src='http://einvestor.com.br/public/images/pdf/00.png'>"+
+"<img style='width:100%;' src='https://einvestor.com.br/public/images/pdf/00.png'>"+
 "</div>"+
 "<div style='background:#f7f9fb;color:#000;width:100%;'>"+
 "<div style='padding:20px;font-size:13px;'>";
 
-var rodape_email = "<br><br><div><img style='max-width:250px;' src='http://einvestor.com.br/public/images/e_investor_logo.png'></div>"+
+var rodape_email = "<br><br><div><img style='max-width:250px;' src='https://einvestor.com.br/public/images/e_investor_logo.png'></div>"+
 "<br><br><span style='color:#666666;font-size:10px;'>A E-Investor é uma plataforma desenvolvida pela Innvicton Tecnologia, que desenvolve softwares e tecnologias quantitativas para usuários investidores. A Innvicton Tecnologia é uma empresa de desenvolvimento de software e não provê qualquer tipo de serviço de investimento ou corretagem nos mercados financeiros. Sistema desenvolvido exclusivamente para integração ao testador de estratégias da Metaquotes para geração de parâmetros de algoritmo pelo usuário com auxílio de Inteligência Artificial. Não atuamos como prestadora de informações de mercado, ou como receptora/transmissora de ordens de negociação para o sistema de distribuição de valores mobiliários. Esta plataforma, serviços e sistemas não constitui nem deve ser interpretado como oferta ou solicitação de compra ou venda de qualquer instrumento financeiro, ficando a decisão de investimento sempre a critério exclusivo do usuário com base em seu juízo de valor. O investidor deve consultar seu próprio assessor ou conselheiro jurídico, tributário, regulatório, técnico de negócios, de investimentos, financeiro e contábil, na medida que julgar necessário, para assessoria na escolha de definição de softwares, plataformas, sistemas, algoritmos, estratégias e setups. O investidor que realiza operações de renda variável é o único responsável pelas decisões de investimento ou de abstenção de investimento que tomar.</span>"+
 "<br><br><span style='color:#666666;font-size:10px;'>Os sistemas da E-Investor são totalmente parametrizáveis (White Box), contendo seus parâmetros abertos para preenchimento pelo usuário da maneira que ele preferir e julgar mais adequada, cabendo a cada usuário a tomada de decisão da estratégia ou setup que vai utilizar. Comercialização de estratégias automatizadas; CNAE 6202-3/00; Regulatório CVM conforme Item 15 Do Ofício-Circular CVM/SIN 02/19. Copyright - Innvicton Tecnologia - Todos os direitos reservados.</span>"+
 "<br><br><span style='color:#666666;font-size:10px;'>Empresas e tecnologias as quais utilizamos ou recomendamos não tem nenhuma ligação ou participação em qualquer negócio, produto ou serviço da E-Investor, e não obstante não tem ligação com este site, sistema ou conteúdo de nenhuma maneira comercial ou explícita.</span>"+
@@ -127,7 +127,7 @@ router.post('/recuperar/senha', function(req, res, next) {
 					"Olá, você está recebendo este e-mail pois pediu para recuperar sua senha"+
 					"<br>Sua nova senha no E-Investor é: "+nova_senha+
 					"<br>Caso não pediu para recuperar a sua senha entre em contato conosco por este e-mail"+
-					"<br>Acesse a plataforma através do link: <a href='http://einvestor.com.br/plataforma/' target='_blank'>http://einvestor.com.br/plataforma/</a>"+
+					"<br>Acesse a plataforma através do link: <a href='https://einvestor.com.br/plataforma/' target='_blank'>https://einvestor.com.br/plataforma/</a>"+
 					'<br><br>Não mostre sua senha para ninguém. A sua conta é responsabilidade sua.'+
 					rodape_email;
 
@@ -135,7 +135,7 @@ router.post('/recuperar/senha', function(req, res, next) {
 					"<br><b>Olá, você está recebendo este e-mail pois pediu para recuperar sua senha"+
 					"<br>Sua nova senha no E-Investor é: "+nova_senha+
 					"<br>Caso não pediu para recuperar a sua senha entre em contato conosco por este e-mail"+
-					"<br>Acesse a plataforma através do link: <a href='http://einvestor.com.br/plataforma/' target='_blank'>http://einvestor.com.br/plataforma/</a>"+
+					"<br>Acesse a plataforma através do link: <a href='https://einvestor.com.br/plataforma/' target='_blank'>https://einvestor.com.br/plataforma/</a>"+
 					'<br><br>Não mostre sua senha para ninguém. A sua conta é responsabilidade sua.'+
 					rodape_email_t;
 
