@@ -6,9 +6,13 @@ const ultimos_dadosSchema = new mongoose.Schema({
 	telefone:String,
 	como_chegou:String,
 	acess_key:String,
+	responsavel_legal:String,
+	aluguel:Number,
 	capital:Number,
 	algoritmo:Number,
+	algoritmo_show:Number,
 	rentabilidade_aa:Number,
+	tipo_usuario:String,
 	deletado:Boolean,
 	data_cadastro:Date
 });

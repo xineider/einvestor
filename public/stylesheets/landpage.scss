@@ -59,7 +59,7 @@ $inverted-land-color:#FAFBFD;
 
 }
 
-.container_como_funciona_body{
+.container_como_funciona_body,.gray-light-background{
 	background: #f7f9fb;
 }
 
@@ -198,3 +198,103 @@ $inverted-land-color:#FAFBFD;
 		display: flex;
 	}
 }
+
+
+.btn-toggle-land{
+	text-transform: uppercase;
+	padding: 10px 20px;
+	font-weight: bold;
+	border-radius: 30px;
+}
+
+.btn-toggle-p-fisica{
+	background: #399c19;
+	border: 2px solid transparent;
+	color: #fff;
+
+	&:hover{
+		background: #2a820d;
+		color: #fff;
+	}
+
+}
+
+
+.btn-toggle-p-juridica{
+	
+	background: transparent;
+	border: 2px solid #399c19;
+	color:#399c19;
+
+	&:hover{
+		color: #56bd34;
+		border-color:#56bd34;
+	}
+
+}
+
+
+.btn-toggle-j-land{
+	background: #ffffff;
+	border: 2px solid #399c19;
+
+
+	&:hover,&.active{
+		background: #399c19;
+		color: #fff;
+	}
+
+
+
+
+}
+
+
+
+.green-landpage-color{
+	color:#399c19;
+}
+
+a.green-landpage-color:hover{
+	color: #2a820d;
+}
+
+
+@media(max-width: 540px){
+
+
+	.btn-toggle-p-juridica,.btn-toggle-p-fisica{
+		
+		display: block;
+		margin: 0 auto;
+
+
+	}
+}
+
+
+@media(min-width: 541px){
+	.btn-toggle-p-juridica,.btn-toggle-p-fisica{
+		
+		display: initial;
+		margin: inherit;
+		margin-left: 60px;
+
+
+	}
+
+}
+
+.preco_robo_hover_show{
+	display: none;
+}
+
+.btn-assinar-algoritmo-empresa:hover{
+	color: #ffffff;
+
+	.preco_robo_hover_show{
+		display: block;
+	}
+} 
+
+

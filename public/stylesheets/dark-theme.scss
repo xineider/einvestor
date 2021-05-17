@@ -1119,10 +1119,10 @@ nav#sidebar .sidebar-suporte{
 	border-radius:20px;	
 	display: inline-block;
 	border:1px solid #08337D;
-	height: 60px;
+	height: 50px;
 	padding: 10px;
 	font-size: 14px;
-	min-width: 170px;
+	min-width: 100px;
 	
 
 }
@@ -1133,7 +1133,7 @@ nav#sidebar .sidebar-suporte{
 	display: inline-block;
 	border:1px solid #08337D;
 	color:#fff;
-	height: 60px;
+	height: 50px;
 	padding: 10px;
 	font-size: 14px;
 	min-width: 150px;
@@ -1141,6 +1141,25 @@ nav#sidebar .sidebar-suporte{
 	width: 100%;
 
 }
+
+
+.escolha_algoritmo_assinar_container{
+	float: left;
+}
+
+.escolha_algoritmo_relatorio_new{
+	color:#08337D;
+	float: left;
+	margin-top: 15px;
+	margin-left: 10px;
+
+	i{
+		font-size:30px;
+	}
+
+}
+
+
 
 
 .escolha_algoritmo_relatorio{
@@ -1307,7 +1326,7 @@ nav#sidebar .sidebar-suporte{
 .sidebar-landpage-toggle {
 	color: #000;
 	margin-top: 18px;
-    margin-right: 5px;
+	margin-right: 5px;
 }
 
 .landpage_navbar_item,.landpage_navbar_item_f{

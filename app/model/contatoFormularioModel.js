@@ -7,6 +7,7 @@ const contatoFormularioSchema = new mongoose.Schema({
 	como_chegou:String,
 	investe_em_renda_variavel:String,
 	pretencao_investimento:String,
+	responsavel_legal:String,
 	deletado:Boolean,
 	data_cadastro:Date
 });

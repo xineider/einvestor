@@ -7,6 +7,8 @@ const usuarioSchema = new mongoose.Schema({
 	telefone:String,
 	foto:String,
 	cpf:String,
+	cnpj:String,
+	responsavel_legal:String,
 	nivel: Number,
 	gratis:Boolean,
 	deletado:Boolean,
