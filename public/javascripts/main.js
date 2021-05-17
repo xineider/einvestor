@@ -1712,12 +1712,29 @@ function VerificarForm(form) {
 		};
 	});
 
+
 	if($('#alterar_senha').val() != $('#confirmar_alterar_senha').val())
 	{
 		console.log('cai no segundo erro');
 		console.log('qtdErros:'+qtdErros);
 		AddErrorTexto($('#confirmar_alterar_senha'),'Senhas são diferentes');
 		qtdErros++;
+	}
+
+	console.log('length');
+	console.log($('#automacao_senha_corretora').length);
+
+	if($('#automacao_senha_corretora').length > 0 && $('#automacao_senha_primeiro_acesso_corretora').length > 0){
+
+		if($('#automacao_senha_corretora').val() == $('#automacao_senha_primeiro_acesso_corretora').val())
+		{
+			console.log('cai aqui no erro da corretora');
+			console.log($('#automacao_senha_corretora').val());
+			console.log('qtdErros:'+qtdErros);
+			AddErrorTexto($('#automacao_senha_primeiro_acesso_corretora'),'A nova senha não pode ser igual a antiga.');
+			qtdErros++;
+		}
+
 	}
 
 	if($('#nova_senha').val() != $('#confirmar_nova_senha').val())
