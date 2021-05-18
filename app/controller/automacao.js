@@ -225,10 +225,10 @@ router.post('/enviar-mail', function(req, res, next) {
 	"<br><br><span>Algo errado? Entre em contato conosco respondendo este e-mail.</span>"+ rodape_email_t;
 
 
-	control.SendMail('suporte@einvestor.com.br', titulo ,text,html);
-	control.SendMail('markosss13@gmail.com', titulo ,text,html);
+	// control.SendMail('suporte@einvestor.com.br', titulo ,text,html);
+	// control.SendMail('markosss13@gmail.com', titulo ,text,html);
 
-	res.json(data);
+	// res.json(data);
 
 
 });
