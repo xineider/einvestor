@@ -1846,15 +1846,15 @@ form label {
   color: #fff;
 }
 
-.checkbox-template:checked::before,
-.radio-template:checked::before {
-  background: #DB6574;
-}
+// .checkbox-template:checked::before,
+// .radio-template:checked::before {
+//   background: #003475;
+// }
 
-.checkbox-template:checked::after,
-.radio-template:checked::after {
-  opacity: 1;
-}
+// .checkbox-template:checked::after,
+// .radio-template:checked::after {
+//   opacity: 1;
+// }
 
 .radio-template::before {
   border-radius: 50%;

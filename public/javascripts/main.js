@@ -77,6 +77,7 @@ $(document).ready(function () {
 		console.log(form)
 
 		if (VerificarForm(form) == true) {
+			console.log('retornei true')
 			MountModal(modal, link);
 		}
 
@@ -360,6 +361,17 @@ $(document).ready(function () {
 		$('.ajax-load-to').removeClass('active');
 		$('#grafico_botao_tudo').removeClass('active');
 		$(this).addClass('active');
+	});
+
+
+	$(document).on('change', '#exibir_senha_primeiro_acesso', function(e) {
+		e.preventDefault();
+		if($('#exibir_senha_primeiro_acesso').is(':checked') == true){
+			$('#automacao_senha_primeiro_acesso_corretora').attr('type','text');
+		}else{
+			$('#automacao_senha_primeiro_acesso_corretora').attr('type','password');
+		}
+
 	});
 
 	$(document).on('change','.table-price-selector',function(e){
@@ -1703,6 +1715,8 @@ function VerificarForm(form) {
 	var qtdErros = 0;
 
 	var mediumRegex = new RegExp("^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})");
+
+
 	
 	form.find('input:enabled:not([type="hidden"])[required="true"]').each(function(){
 		console.log('tem + de um input');
@@ -1733,6 +1747,12 @@ function VerificarForm(form) {
 			console.log('qtdErros:'+qtdErros);
 			AddErrorTexto($('#automacao_senha_primeiro_acesso_corretora'),'A nova senha não pode ser igual a antiga.');
 			qtdErros++;
+		}else{
+			if(!(mediumRegex.test($('#automacao_senha_primeiro_acesso_corretora').val()))) {
+				AddErrorTexto($('#automacao_senha_primeiro_acesso_corretora'),'Por-favor colocar uma senha de pelo menos 6 dígitos com letras e números');
+				qtdErros++;
+			}
+
 		}
 
 	}

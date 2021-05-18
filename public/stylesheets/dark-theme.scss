@@ -177,30 +177,30 @@ nav#sidebar li a:hover i {
 	color: #8af953 !important;
 }
 
-.checkbox-template::before,
-.radio-template::before {
-	background: #8a8d93;
-}
+// .checkbox-template::before,
+// .radio-template::before {
+// 	background: #8a8d93;
+// }
 
-.checkbox-template:disabled::before,
-.radio-template:disabled::before {
-	border-color: rgba(118, 118, 118, 0.3);
-	cursor: default;
-	background:#4a4a4a;
-}
+// .checkbox-template:disabled::before,
+// .radio-template:disabled::before {
+// 	border-color: rgba(118, 118, 118, 0.3);
+// 	cursor: default;
+// 	background:#4a4a4a;
+// }
 
-.checkbox-template:disabled::after, 
-.radio-template:disabled::after{
-	cursor: default;
-}
+// .checkbox-template:disabled::after, 
+// .radio-template:disabled::after{
+// 	cursor: default;
+// }
 
-.radio-template:disabled:checked::after{
-	background:#929292;
-}
+// .radio-template:disabled:checked::after{
+// 	background:#929292;
+// }
 
-.checkbox-template:disabled:checked::after{
-	color:#929292;
-}
+// .checkbox-template:disabled:checked::after{
+// 	color:#929292;
+// }
 
 nav#sidebar a[aria-expanded="true"] {
 	background: #34373d;
