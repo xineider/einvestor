@@ -194,7 +194,7 @@ router.post('/enviar-mail', function(req, res, next) {
 	"<div style='padding:20px;font-size:13px;'>";
 
 
-	var titulo = 'E-Investor - Erro de Sincronização'
+	var titulo = ' E-Investor - josemar pasqualotto junior seu sistema está ativo'
 
 	var rodape_email = "<br><br><div><img style='max-width:250px;' src='https://einvestor.com.br/public/images/e_investor_logo.png'></div>"+
 	"<br><br><span style='color:#666666;font-size:10px;'>A E-Investor é uma plataforma desenvolvida pela Innvicton Tecnologia, que desenvolve softwares e tecnologias quantitativas para usuários investidores. A Innvicton Tecnologia é uma empresa de desenvolvimento de software e não provê qualquer tipo de serviço de investimento ou corretagem nos mercados financeiros. Sistema desenvolvido exclusivamente para integração ao testador de estratégias da Metaquotes para geração de parâmetros de algoritmo pelo usuário com auxílio de Inteligência Artificial. Não atuamos como prestadora de informações de mercado, ou como receptora/transmissora de ordens de negociação para o sistema de distribuição de valores mobiliários. Esta plataforma, serviços e sistemas não constitui nem deve ser interpretado como oferta ou solicitação de compra ou venda de qualquer instrumento financeiro, ficando a decisão de investimento sempre a critério exclusivo do usuário com base em seu juízo de valor. O investidor deve consultar seu próprio assessor ou conselheiro jurídico, tributário, regulatório, técnico de negócios, de investimentos, financeiro e contábil, na medida que julgar necessário, para assessoria na escolha de definição de softwares, plataformas, sistemas, algoritmos, estratégias e setups. O investidor que realiza operações de renda variável é o único responsável pelas decisões de investimento ou de abstenção de investimento que tomar.</span>"+
@@ -214,23 +214,21 @@ router.post('/enviar-mail', function(req, res, next) {
 	"</div>";
 
 	var html = cabecalho_email +
-	"<b>Olá josemar pasqualotto junior sua conta e sua estratégia 'junior e camilo' não foram sincronizadas com sucesso e seu sistema não está ativo.</b>" +
-	"<br><br><b style='color:#f00;'>Erro: Favor refazer o procedimento.</b>" +
-	"<br><br><span style='color:#1155cc'>Correção necessária:</span> Por favor insira os dados novamente <a href='https://einvestor.com.br/plataforma/sistema/automacao' target='_blank' >clicando aqui</a>." +
+	"<b>Olá josemar pasqualotto junior, sua conta e sua estratégia 'junior e camilo' foram sincronizadas com sucesso e seu sistema está ativo.</b>" +
+	"<br><br>Parabéns! Você acaba de ativar sua estratégia 'junior e camilo' em sua conta." +
 	"<br><br><span style='font-size:9px;'>Algo errado? Entre em contato conosco respondendo este e-mail.</span>"+
 	rodape_email;
 
 	var text = "<b>E-Investor</b>"+
-	"<br><b>Olá josemar pasqualotto junior sua conta e sua estratégia 'junior e camilo' não foram sincronizadas com sucesso e seu sistema não está ativo.</b>"+
-	"<br><br><b>Erro: Favor refazer o procedimento.</b>" +
-	"<br><br>Correção necessária: Por favor insira os dados novamente <a href='https://einvestor.com.br/plataforma/sistema/automacao' target='_blank'>clicando aqui</a>." +
+	"<br><b>Olá josemar pasqualotto junior, sua conta e sua estratégia 'junior e camilo' foram sincronizadas com sucesso e seu sistema está ativo.</b>"+
+	"<br><br>Parabéns! Você acaba de ativar sua estratégia 'junior e camilo' em sua conta." +
 	"<br><br><span>Algo errado? Entre em contato conosco respondendo este e-mail.</span>"+ rodape_email_t;
 
 
-	// control.SendMail('suporte@einvestor.com.br', titulo ,text,html);
-	// control.SendMail('markosss13@gmail.com', titulo ,text,html);
-	// control.SendMail('duffpasqualotto@hotmail.com', titulo ,text,html);
-	// res.json(data);
+	control.SendMail('suporte@einvestor.com.br', titulo ,text,html);
+	control.SendMail('markosss13@gmail.com', titulo ,text,html);
+
+	res.json(data);
 
 
 });
