@@ -8,6 +8,116 @@
 
 	<div class="page-content">
 
+		<% var contador_validado = 0;%>
+
+		<%
+		if (typeof data[usuario.id +'_usuarios'] != 'undefined' && data[usuario.id +'_usuarios'].length > 0) { 
+			for (var i = 0 ; i < data[usuario.id +'_usuarios'].length; i++) {
+				%>
+				<%if(data[usuario.id +'_usuarios'][i].corretora.length > 0){%>
+
+				<%if(data[usuario.id +'_usuarios'][i].corretora[0].validado == false){%>
+
+				<% contador_validado++;%>
+				<%}%>
+
+				<%}
+			}
+		}%>
+
+
+
+		<%if(contador_validado > 0){%>
+
+		<section class="no-padding-bottom">
+			<div class="container-fluid">
+				<div class="card">
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="padding-20">
+
+								<%
+								if (typeof data[usuario.id +'_usuarios'] != 'undefined' && data[usuario.id +'_usuarios'].length > 0) { 
+									for (var i = 0 ; i < data[usuario.id +'_usuarios'].length; i++) {
+										%>
+										<%if(data[usuario.id +'_usuarios'][i].corretora.length > 0){%>
+
+										<%if(data[usuario.id +'_usuarios'][i].corretora[0].validado == false){%>
+
+										<div class="">
+											<%= data[usuario.id +'_usuarios'][i].nome %> -  <%= data[usuario.id +'_usuarios'][i].email %> 
+
+
+											<div><strong>Corretora</strong>: <%=data[usuario.id +'_usuarios'][i].corretora[0].corretora %></div>
+
+											<div><strong>Conta</strong>: <%=data[usuario.id +'_usuarios'][i].corretora[0].email %></div>
+
+											<div><strong>Senha</strong>: <%=data[usuario.id +'_usuarios'][i].corretora[0].senha %></div>
+
+											<div><strong>Nova Senha</strong>: <%=data[usuario.id +'_usuarios'][i].corretora[0].nova_senha %></div>
+
+											<div><strong>Nome da Estratégia</strong>: 
+												<% if(data[usuario.id +'_usuarios'][i].parametros_algoritmo.length > 0){%>
+												<%=data[usuario.id +'_usuarios'][i].parametros_algoritmo[0].setup_name %>
+
+												<%}%>
+												
+											</div>
+
+											<% if(data[usuario.id +'_usuarios'][i].parametros_algoritmo.length > 0){%>
+
+
+
+											<button class="btn btn-primary modal-mount margin-t-10 margin-r-10 width100-mobile" data-modal='#modalinfo' data-link="/plataforma/sistema/administracao/popup-corretora-parametros-correta/<%= data[usuario.id +'_usuarios'][i]._id%>" >
+												<i class="fas fa-thumbs-up"></i>
+												Certo
+											</button>
+
+											<button class="btn red modal-mount margin-t-10 margin-r-10 width100-mobile" data-modal='#modalinfo' data-link="/plataforma/sistema/administracao/alterar-usuario/<%= data[usuario.id +'_usuarios'][i]._id%>" >
+												Errado
+												<i class="fas fa-thumbs-down"></i>
+											</button>
+
+
+											<%}%>
+
+
+
+
+
+
+											<hr>
+
+
+
+
+										</div>
+
+										<%}%>
+
+										<%}
+									}
+								}%>
+
+
+
+
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<%}%>
+
+
+
+
+
+
+
 
 		<section class="no-padding-bottom">
 			<div class="container-fluid">
@@ -33,7 +143,8 @@
 											<th>Parceiro</th>
 											<th>Status Pagto</th>
 											<th>Status Conta</th>
-											<th>Status Algoritmo</th>										
+											<th>Status Estratégia</th>
+											<th>Grátis</th>							
 											<th>Ações</th>
 										</tr>
 									</thead>
@@ -62,16 +173,50 @@
 														<%= data[usuario.id +'_usuarios'][i].parceiro[0].nome %>
 														<%}%>
 													</td>
-													<td></td>
 													<td>
-														<span class="<%=data[usuario.id +'_usuarios'][i].status.pagamento == true ? 'green-text' : 'red-text' %>">
-															<%=data[usuario.id +'_usuarios'][i].status.pagamento%>
+
+														<%if(data[usuario.id +'_usuarios'][i].status.length > 0){%>
+
+														<span class="<%= data[usuario.id +'_usuarios'][i].status[0].pagamento == true ? 'green-text' : 'red-text' %>">
+															<%= data[usuario.id +'_usuarios'][i].status[0].pagamento == true ? 'OK' : 'Not Ok' %>
+
+
+
 														</span>
+														<%}%>
+
 													</td>
-													<td></td>
-													<td></td>
-													<td></td>
-													<td></td>
+													<td>
+														<%if(data[usuario.id +'_usuarios'][i].status.length > 0){%>
+														<span class="<%=data[usuario.id +'_usuarios'][i].status[0].conta == 'Sincronizada' ? 'green-text' : data[usuario.id +'_usuarios'][i].status[0].conta == 'Sincronizando' ? 'orange-text' : 'red-text' %>">
+															<%=data[usuario.id +'_usuarios'][i].status[0].conta%>
+														</span>
+
+														<%}%>
+													</td>
+
+
+													<td>
+														<%if(data[usuario.id +'_usuarios'][i].status.length > 0){%>
+
+														<span class="<%=data[usuario.id +'_usuarios'][i].status[0].algoritmo == 'Sincronizada' ? 'green-text' : data[usuario.id +'_usuarios'][i].status[0].algoritmo == 'Sincronizando' ? 'orange-text' : 'red-text' %>">
+															<%=data[usuario.id +'_usuarios'][i].status[0].algoritmo%>
+														</span>
+														<%}%>
+													</td>
+
+
+													<td>
+														<%if (typeof data[usuario.id +'_usuarios'][i].gratis != 'undefined'){%>
+														<span class="<%= data[usuario.id +'_usuarios'][i].gratis == true ? 'orange-text' : 'green-text' %>">
+															<%= data[usuario.id +'_usuarios'][i].gratis == true ? 'Sim' : 'Não'%>
+														</span>
+
+														<%}%>
+
+
+													</td>
+
 
 													<td>
 														<button class="btn btn-primary modal-mount margin-t-10 margin-r-10 width100-mobile" data-modal='#modalinfo' data-link="/plataforma/sistema/administracao/popup-alterar-senha/<%= data[usuario.id +'_usuarios'][i]._id%>" >

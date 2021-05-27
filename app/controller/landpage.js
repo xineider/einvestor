@@ -170,7 +170,7 @@ router.post('/enviar-formulario-conhecer', function(req, res, next) {
 	var possui_30_dias = 'normal';
 
 
-	if(POST.acess_key == 'einvestor30g'){
+	if(POST.acess_key == 'einvestor30g' || POST.acess_key == 'investor30'){
 		console.log('é igual ao acess key');
 		possui_30_dias = 'gratis';
 	}

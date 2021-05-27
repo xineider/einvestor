@@ -268,9 +268,16 @@ router.get('/', function(req, res, next) {
 				foreignField:'id_usuario',
 				as:'status'
 			}
+		},
+		{
+			$lookup:{
+				from:'usuario_parametros_algoritmo',
+				localField:'_id',
+				foreignField:'id_usuario',
+				as:'parametros_algoritmo'
+			}
+
 		}
-
-
 		]).exec(function(err,data_usuarios){
 
 			console.log('aaaaaaaaaaaaaaaaaaaaaaaaa administracao aaaaaaaaaaaaaaaaaaaaaa');

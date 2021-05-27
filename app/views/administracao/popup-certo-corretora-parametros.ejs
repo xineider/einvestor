@@ -1,0 +1,30 @@
+	<%if(usuario.nivel == 1){%>
+
+	<div class="padding-10">
+		<h5>Conta e Corretoras Corretos</h5>
+
+		<div class="margin-b-10">
+			Você tem certeza que deseja validar a sincronização de <strong><%= data[usuario.id +'_usuario_sincronizacao_correto'].nome%></strong> com a conta <strong>nome da conta</strong> na corretora <strong>nome da corretora</strong>? 
+			<br>
+			Será enviado um e-mail para o <strong>email@usuário</strong> informando que foi sincronizado.
+		</div>
+
+		<form method="POST" action="" enctype="multipart/form-data">
+
+			<div class="modal-footer">
+
+				<input type="hidden" name="id_usuario" value="<%= data[usuario.id +'_usuario_sincronizacao_correto']._id%>">
+				
+				<button class="btn btn_modal btn_modal_close margin-r-10 pointer" data-dismiss="modal">Fechar</button>
+
+				<button type="button" data-href="/plataforma/sistema/administracao//" class="btn btn-primary ajax-submit-sucess-message" title="Confirmar sincronização" data-action="/plataforma/sistema/administracao" data-dismiss="modal" data-sucesso-id="#alert-sucess-alterar-senha-usuario">Sim</button>
+			</div>
+		</form>
+
+	</div>
+
+	<%}else{%>
+	<div class="padding=10">
+		Você não pode acessar essa funcionalidade!!!
+	</div>
+	<%}%>

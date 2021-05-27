@@ -166,7 +166,7 @@
 						<form>
 							<div class="form-group">
 								<label for="formControlRange"></label>
-								<input name="valor_minimo" type="range" min="80000" max="1500000" step="10000" class="form-control-range range-fisica" id="formControlRange">
+								<input name="valor_minimo" type="range" min="80000" max="2000000" step="10000" class="form-control-range range-fisica" id="formControlRange">
 							</div>
 						</form>
 
@@ -287,12 +287,6 @@
 	<% if( typeof message.regras_algoritmo != 'undefined'){ %>
 	var media_ano = <%=message.regras_algoritmo[0].media_ano%>;
 	var volatilidade = <%= message.regras_algoritmo[0].volatilidade %>;
-
-	const formCurrency = new Intl.NumberFormat('pt-BR', {
-		style: 'currency',
-		currency: 'BRL',
-		minimumFractionDigits: 2
-	});
 
 	console.log('media_ano: ' + media_ano);
 	console.log('volatilidade: ' + volatilidade);

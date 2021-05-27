@@ -9,14 +9,12 @@ var data = {};
 var app = express();
 app.use(require('express-is-ajax-request'));
 
-
-
-
-
 const mongoose = require('mongoose');
 
 
 var usuariosModel = require('../model/usuariosModel.js');
+
+var usuarioCorretoraModel = require('../model/usuarioCorretoraModel.js');
 
 var usuarioStatusModel = require('../model/usuarioStatusModel.js');
 var moment = require('moment');
@@ -55,12 +53,33 @@ router.get('/', function(req, res, next) {
 				as:'corretora'
 			}
 
+		},
+		{
+			$lookup:{
+				from:'usuario_status',
+				localField:'_id',
+				foreignField:'id_usuario',
+				as:'status'
+			}
+
+		},
+		{
+			$lookup:{
+				from:'usuario_parametros_algoritmo',
+				localField:'_id',
+				foreignField:'id_usuario',
+				as:'parametros_algoritmo'
+			}
+
 		}
 		]).exec(function(err,data_usuarios){
 
-			console.log('aaaaaaaaaaaaaaaaaaaaaaaaa administracao aaaaaaaaaaaaaaaaaaaaa');
+			console.log('qqqqqqqqqqq administracao qqqqqqqqqqqqqq');
 			console.log(data_usuarios);
-			console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
+			console.log('qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq');
+
+
+
 			data[req.session.usuario.id+'_usuarios']= data_usuarios;
 			res.render(req.isAjaxRequest() == true ? 'api' : 'montador', {html: 'administracao/administracao',  data: data, usuario: req.session.usuario});
 
@@ -71,12 +90,20 @@ router.get('/', function(req, res, next) {
 
 router.get('/adicionar-usuario', function(req, res, next) {
 
-	usuariosModel.find({nivel:2},function(err,data_parceiros){
-		data[req.session.usuario.id+'_parceiros']= data_parceiros;
-		data.link_sistema = '/sistema';
-		data[req.session.usuario.id+'_numero_menu'] = 1;
-		res.render(req.isAjaxRequest() == true ? 'api' : 'montador', {html: 'administracao/adicionar_usuario', data: data, usuario: req.session.usuario});
-	});
+	usuarioStatusModel.find({id_usuario:mongoose.Types.ObjectId(req.session.usuario.id)},function(err,data_usuario_status){
+
+		var data_atualizacao_u = data_usuario_status[0].data_atualizacao;
+		var data_atualizacao_uf = moment(data_atualizacao_u).utc().format('DD/MM/YYYY');
+		data_usuario_status[0].data_atualizacao_f = data_atualizacao_uf;
+		data[req.session.usuario.id+'_usuario_status'] = data_usuario_status;
+
+		usuariosModel.find({nivel:2},function(err,data_parceiros){
+			data[req.session.usuario.id+'_parceiros']= data_parceiros;
+			data.link_sistema = '/sistema';
+			data[req.session.usuario.id+'_numero_menu'] = 1;
+			res.render(req.isAjaxRequest() == true ? 'api' : 'montador', {html: 'administracao/adicionar_usuario', data: data, usuario: req.session.usuario});
+		});
+	}).sort({'_id':-1}).limit(1);
 });
 
 
@@ -85,16 +112,24 @@ router.get('/alterar-usuario/:id_usuario', function(req, res, next) {
 
 	id_usuario = req.params.id_usuario;
 
-	usuariosModel.findOne({'_id':id_usuario},function(err,data_usuario_e){
-		data[req.session.usuario.id+'_usuario_e']= data_usuario_e;
+	usuarioStatusModel.find({id_usuario:mongoose.Types.ObjectId(req.session.usuario.id)},function(err,data_usuario_status){
 
-		usuariosModel.find({nivel:2},function(err,data_parceiros){
-			data[req.session.usuario.id+'_parceiros']= data_parceiros;
-			data.link_sistema = '/sistema';
-			data[req.session.usuario.id+'_numero_menu'] = 1;
-			res.render(req.isAjaxRequest() == true ? 'api' : 'montador', {html: 'administracao/alterar_usuario', data: data, usuario: req.session.usuario});
+		var data_atualizacao_u = data_usuario_status[0].data_atualizacao;
+		var data_atualizacao_uf = moment(data_atualizacao_u).utc().format('DD/MM/YYYY');
+		data_usuario_status[0].data_atualizacao_f = data_atualizacao_uf;
+		data[req.session.usuario.id+'_usuario_status'] = data_usuario_status;
+
+		usuariosModel.findOne({'_id':id_usuario},function(err,data_usuario_e){
+			data[req.session.usuario.id+'_usuario_e']= data_usuario_e;
+
+			usuariosModel.find({nivel:2},function(err,data_parceiros){
+				data[req.session.usuario.id+'_parceiros']= data_parceiros;
+				data.link_sistema = '/sistema';
+				data[req.session.usuario.id+'_numero_menu'] = 1;
+				res.render(req.isAjaxRequest() == true ? 'api' : 'montador', {html: 'administracao/alterar_usuario', data: data, usuario: req.session.usuario});
+			});
 		});
-	});
+	}).sort({'_id':-1}).limit(1);
 });
 
 router.get('/carregar-parceiros', function(req, res, next) {
@@ -246,6 +281,43 @@ router.post('/adicionar-usuario', function(req, res, next) {
 	}
 
 });
+
+
+
+router.get('/popup-corretora-parametros-correta/:id_usuario', function(req, res, next) {
+	console.log(req.params.id_usuario);
+
+	id_usuario = req.params.id_usuario;
+
+	console.log('estou no popup-corretora-parametros-correta');
+	console.log('estou no popup-corretora-parametros-correta');
+	console.log('estou no popup-corretora-parametros-correta');
+
+
+	usuariosModel.findOne({'_id':id_usuario},function(err,data_usuario){
+		data[req.session.usuario.id+'_usuario_sincronizacao_correto']= data_usuario;
+
+
+		usuarioCorretoraModel.find({id_usuario:id_usuario},function(err,data_usuario_corretora){
+			console.log('data_usuario_corretora');
+			console.log(data_usuario_corretora);
+			console.log('data_usuario_corretora');
+			data[req.session.usuario.id+'_corretora_sincronizacao_correto']= data_usuario_corretora;
+
+			console.log('data_usuario');
+			console.log(data_usuario);
+
+			res.render(req.isAjaxRequest() == true ? 'api' : 'montador', {html: 'administracao/popup-certo-corretora-parametros', data: data, usuario: req.session.usuario});
+
+		}).sort({'_id':-1}).limit(1);
+	});
+
+
+
+
+});
+
+
 
 
 router.get('/popup-alterar-senha/:id_usuario', function(req, res, next) {

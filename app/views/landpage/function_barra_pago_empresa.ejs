@@ -1,8 +1,3 @@
-const formCurrencyEmpresa = new Intl.NumberFormat('pt-BR', {
-	style: 'currency',
-	currency: 'BRL',
-	minimumFractionDigits: 2
-});
 console.log('estou no function_barra_pago_empresa');
 var html_alg = '';
 
@@ -38,22 +33,22 @@ if (typeof message.algoritmo != 'undefined' && message.algoritmo.length > 0) {
 
 		var rentabilidade_aa_f = rentabilidade_aa_f1.replace('.',',');
 		
-		var rentabilidade_mensal_reais_F = formCurrencyEmpresa.format(rentabilidade_mensal);
+		var rentabilidade_mensal_reais_F = formCurrency.format(rentabilidade_mensal);
 
-		var rentablidade_aa_reais_F = formCurrencyEmpresa.format(rentabilidade_aa_reais);
+		var rentablidade_aa_reais_F = formCurrency.format(rentabilidade_aa_reais);
 
 
 
 		var volatilidade_algoritmo = volatilidade * <%=message.algoritmo[i].multiplicador%>;
 		var maximo_rebaixamento = volatilidade_algoritmo /  capital_base * 100;
 		maximo_rebaixamento = parseFloat(maximo_rebaixamento).toFixed(2).replace('.',',');
-		volatilidade_algoritmo = formCurrencyEmpresa.format(volatilidade_algoritmo);
+		volatilidade_algoritmo = formCurrency.format(volatilidade_algoritmo);
 
 		var preco_robo_base = <%=message.algoritmo[i].preco%>;
 
 		var preco_robo_m = preco_robo_base * multiplicador;
 
-		var preco_robo = formCurrencyEmpresa.format(preco_robo_m);
+		var preco_robo = formCurrency.format(preco_robo_m);
 
 		var largura = 30 - <%=i%> -2;
 

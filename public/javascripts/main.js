@@ -585,6 +585,20 @@ $(document).ready(function () {
 		SubmitAjaxClean(data, link, back);
 	});
 
+	
+
+
+	$(document).on('click', '.vindi-teste', function(e) {
+		e.preventDefault();
+		console.log('estou no vindi teste');
+		console.log('estou no vindi teste');
+		console.log('estou no vindi teste');
+		
+		VindiTeste();
+	});
+
+
+
 	$(document).on('click', '.carregar_parametros_algoritmo', function(e) {
 		e.preventDefault();
 		console.log('carregar_parametros_algoritmo');
@@ -1931,6 +1945,43 @@ function LogSistema(metodo,rota){
 
 	}
 }
+
+
+// function VindiTeste(){
+// 	console.log('estou na function do vindiTeste');
+
+
+// 	var profile = {
+// 		"holder_name": "José da Silva",
+// 		"card_expiration": "12/2018",
+// 		"card_number": "5167454851671773",
+// 		"card_cvv": "123",
+// 		"payment_method_code": "credit_card",
+// 		"payment_company_code": "mastercard"
+// 	} 
+
+
+// 	$.ajax({
+// 		type: "POST",
+// 		url: "https://app.vindi.com.br/api/v1/public/payment_profiles",
+// 		dataType: "json",
+// 		headers: { "Authorization": "Basic " + btoa("mZQyARqW9SUnyoSgeWx0dnt__Sd" + ":") },
+// 		data: profile,
+// 		success:function(data) {
+// 			console.log(data);
+// 			alert(data.payment_profile.gateway_token);
+// 		},error:function(request, status, error) {
+// 			console.log(error);
+// 			console.log(request.responseText);
+// 			alert('Erro ao cadastrar perfil de pagamento');
+// 		}
+// 	});
+
+
+
+// }
+
+
 
 function filtrarTabelaDataTablePt(tabela){
 	$(tabela).DataTable({			
