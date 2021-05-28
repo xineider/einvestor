@@ -1,0 +1,28 @@
+	<%if(usuario.nivel == 1){%>
+
+	<div class="padding-10">
+		<h5>Enviar E-mail usuário sem Parâmetros</h5>
+
+		<div class="margin-b-10">
+			Tem certeza que deseja enviar um e-mail para <strong><%= data[usuario.id +'_usuario_sincronizacao_correto'].nome%></strong> informando o usuário que ele não enviou os parâmetros da estratégia? O e-mail do mesmo é <strong><%= data[usuario.id +'_usuario_sincronizacao_correto'].email%></strong>
+		</div>
+
+		<form method="POST" action="" enctype="multipart/form-data">
+
+			<div class="modal-footer">
+
+				<input type="hidden" name="id_usuario" value="<%= data[usuario.id +'_usuario_sincronizacao_correto']._id%>">
+				
+				<button class="btn btn_modal btn_modal_close margin-r-10 pointer" data-dismiss="modal">Fechar</button>
+
+				<button type="button" data-href="/plataforma/sistema/administracao/enviar-email-usuario-sem-parametros" class="btn btn-primary ajax-submit-sucess-message" title="Confirmar sincronização" data-action="/plataforma/sistema/administracao" data-dismiss="modal" data-sucesso-id="#alert-sucess-alterar-senha-usuario">Sim envia o e-mail! <i class="far fa-envelope-open"></i></button>
+			</div>
+		</form>
+
+	</div>
+
+	<%}else{%>
+	<div class="padding=10">
+		Você não pode acessar essa funcionalidade!!!
+	</div>
+	<%}%>

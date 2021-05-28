@@ -9,285 +9,370 @@
 	<div class="page-content">
 
 		<% var contador_validado = 0;%>
+		<% var contador_parametros = 0;%>
 
 		<%
 		if (typeof data[usuario.id +'_usuarios'] != 'undefined' && data[usuario.id +'_usuarios'].length > 0) { 
 			for (var i = 0 ; i < data[usuario.id +'_usuarios'].length; i++) {
-				%>
-				<%if(data[usuario.id +'_usuarios'][i].corretora.length > 0){%>
+			%>
+			<%if(data[usuario.id +'_usuarios'][i].corretora.length > 0){%>
 
-				<%if(data[usuario.id +'_usuarios'][i].corretora[0].validado == false){%>
+			<%if(data[usuario.id +'_usuarios'][i].corretora[0].validado == false){%>
 
-				<% contador_validado++;%>
-				<%}%>
+			<% contador_validado++;%>
+			<%}%>
 
-				<%}
-			}
-		}%>
+			<%}
+		}
+	}%>
+
+	<%
+	if (typeof data[usuario.id +'_usuarios'] != 'undefined' && data[usuario.id +'_usuarios'].length > 0) { 
+		for (var i = 0 ; i < data[usuario.id +'_usuarios'].length; i++) {
+		%>
+		<%if(data[usuario.id +'_usuarios'][i].parametros_algoritmo.length > 0){%>
+
+		<%if(data[usuario.id +'_usuarios'][i].corretora.length == 0){%>
+
+		<% contador_parametros++;%>
+		<%}%>
+
+		<%}
+	}
+}%>
 
 
 
-		<%if(contador_validado > 0){%>
+<%if(contador_validado > 0){%>
 
-		<section class="no-padding-bottom">
-			<div class="container-fluid">
-				<div class="card">
-					<div class="row">
-						<div class="col-sm-12">
-							<div class="padding-20">
+<section class="no-padding-bottom">
+	<div class="container-fluid">
+		<div class="card">
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="padding-20">
 
+						<%
+						if (typeof data[usuario.id +'_usuarios'] != 'undefined' && data[usuario.id +'_usuarios'].length > 0) { 
+							for (var i = 0 ; i < data[usuario.id +'_usuarios'].length; i++) {
+							%>
+							<%if(data[usuario.id +'_usuarios'][i].corretora.length > 0){
+								for(var j=0; j<data[usuario.id +'_usuarios'][i].corretora.length;j++){
+								%>
+
+								<%if(data[usuario.id +'_usuarios'][i].corretora[j].validado == false){%>
+
+								<div class="">
+									<%= data[usuario.id +'_usuarios'][i].nome %> -  <%= data[usuario.id +'_usuarios'][i].email %> 
+
+
+									<div><strong>Corretora</strong>: <%=data[usuario.id +'_usuarios'][i].corretora[j].corretora %></div>
+
+									<div><strong>Conta</strong>: <%=data[usuario.id +'_usuarios'][i].corretora[j].email %></div>
+
+									<div><strong>Senha</strong>: <%=data[usuario.id +'_usuarios'][i].corretora[j].senha %></div>
+
+									<div><strong>Nova Senha</strong>: <%=data[usuario.id +'_usuarios'][i].corretora[j].nova_senha %></div>
+
+									<div>
+										<% if(data[usuario.id +'_usuarios'][i].parametros_algoritmo.length > 0){%>
+										<strong>Nome da Estratégia</strong>:<%=data[usuario.id +'_usuarios'][i].parametros_algoritmo[0].setup_name %>
+
+										<%}else{%>
+										<span class="orange-text">Usuário não enviou estratégia!!!</span>
+
+										<br>
+
+										<button class="btn orange modal-mount margin-t-10 margin-r-10 width100-mobile" data-modal='#modalinfo' data-link="/plataforma/sistema/administracao/popup-enviar-email-sem-parametros/<%= data[usuario.id +'_usuarios'][i]._id%>" >
+											<i class="fas fa-envelope"></i>
+											Enviar E-mail
+										</button>
+
+
+										<%}%>
+
+									</div>
+
+									<% if(data[usuario.id +'_usuarios'][i].parametros_algoritmo.length > 0){%>
+
+
+
+									<button class="btn btn-primary modal-mount margin-t-10 margin-r-10 width100-mobile" data-modal='#modalinfo' data-link="/plataforma/sistema/administracao/popup-corretora-parametros-correta/<%= data[usuario.id +'_usuarios'][i]._id%>" >
+										<i class="fas fa-thumbs-up"></i>
+										Certo
+									</button>
+
+									<button class="btn red modal-mount margin-t-10 margin-r-10 width100-mobile" data-modal='#modalinfo' data-link="/plataforma/sistema/administracao/popup-corretora-parametros-errada/<%= data[usuario.id +'_usuarios'][i]._id%>" >
+										Errado
+										<i class="fas fa-thumbs-down"></i>
+									</button>
+
+
+									<%}%>
+
+
+
+
+
+
+									<hr>
+
+
+
+
+								</div>
+
+								<%}%>
+
+								<%}
+							}
+						}
+					}%>
+
+
+
+
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</section>
+
+<%}%>
+
+<%if(contador_parametros > 0){%>
+
+<section class="no-padding-bottom">
+	<div class="container-fluid">
+		<div class="card">
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="padding-20">
+						<div class="">
+
+							<%
+							if (typeof data[usuario.id +'_usuarios'] != 'undefined' && data[usuario.id +'_usuarios'].length > 0) { 
+								for (var i = 0 ; i < data[usuario.id +'_usuarios'].length; i++) {
+								%>
+
+								<%if(data[usuario.id +'_usuarios'][i].corretora.length == 0){%>
+
+								<% if(data[usuario.id +'_usuarios'][i].parametros_algoritmo.length > 0){%>
+
+
+								<span class="red-text">Usuário não enviou conta!!!</span>
+
+								<div>
+									<%= data[usuario.id +'_usuarios'][i].nome %> -  <%= data[usuario.id +'_usuarios'][i].email %>
+								</div>
+
+								<button class="btn orange modal-mount margin-t-10 margin-r-10 width100-mobile" data-modal='#modalinfo' data-link="/plataforma/sistema/administracao/popup-enviar-email-sem-conta/<%= data[usuario.id +'_usuarios'][i]._id%>" >
+									<i class="fas fa-envelope"></i>
+									Enviar E-mail de Conta 
+								</button>
+
+								<div>
+									<strong>Nome da Estratégia</strong>:<%=data[usuario.id +'_usuarios'][i].parametros_algoritmo[0].setup_name %>
+								</div>
+
+								<hr>
+
+
+								<%}
+							}
+						}
+					}%>
+
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+</section>
+
+<%}%>
+
+
+
+
+
+
+
+
+<section class="no-padding-bottom">
+	<div class="container-fluid">
+		<div class="card">
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="padding-20">
+						<h4>
+							Usuários							
+						</h4>
+
+						<a class="btn btn-primary ajax-load margin-t-10 margin-r-10 width100-mobile" href="/plataforma/sistema/administracao/adicionar-usuario/" >
+							Adicionar Usuário
+						</a>
+
+
+						<table class="table centered highlight responsive-table cell-border tabela_filtrada" id="tabela_administracao">
+							<thead>
+								<tr>
+									<th>Nome</th>
+									<th>E-mail</th>
+									<th>Posição</th>
+									<th>Parceiro</th>
+									<th>Status Pagto</th>
+									<th>Status Conta</th>
+									<th>Status Estratégia</th>
+									<th>Grátis</th>							
+									<th>Ações</th>
+								</tr>
+							</thead>
+							<tbody>
 								<%
-								if (typeof data[usuario.id +'_usuarios'] != 'undefined' && data[usuario.id +'_usuarios'].length > 0) { 
+								if (typeof data[usuario.id +'_usuarios'] != 'undefined' && data[usuario.id +'_usuarios'].length > 0) {
 									for (var i = 0 ; i < data[usuario.id +'_usuarios'].length; i++) {
-										%>
-										<%if(data[usuario.id +'_usuarios'][i].corretora.length > 0){%>
+									%>
+									<tr>
+										<td>
+											<%= data[usuario.id +'_usuarios'][i].nome %>
+										</td>
+										<td>
+											<%= data[usuario.id +'_usuarios'][i].email %>
+										</td>
+										<td>
+											<%if( data[usuario.id +'_usuarios'][i].nivel == 3){%>
+											Cliente
+											<%}else{%>
+											Cliente/Parceiro
+											<%}%>
+										</td>
 
-										<%if(data[usuario.id +'_usuarios'][i].corretora[0].validado == false){%>
+										<td>
+											<%if( data[usuario.id +'_usuarios'][i].parceiro.length > 0){%>
+											<%= data[usuario.id +'_usuarios'][i].parceiro[0].nome %>
+											<%}%>
+										</td>
+										<td>
 
-										<div class="">
-											<%= data[usuario.id +'_usuarios'][i].nome %> -  <%= data[usuario.id +'_usuarios'][i].email %> 
+											<%if(data[usuario.id +'_usuarios'][i].status.length > 0){%>
 
-
-											<div><strong>Corretora</strong>: <%=data[usuario.id +'_usuarios'][i].corretora[0].corretora %></div>
-
-											<div><strong>Conta</strong>: <%=data[usuario.id +'_usuarios'][i].corretora[0].email %></div>
-
-											<div><strong>Senha</strong>: <%=data[usuario.id +'_usuarios'][i].corretora[0].senha %></div>
-
-											<div><strong>Nova Senha</strong>: <%=data[usuario.id +'_usuarios'][i].corretora[0].nova_senha %></div>
-
-											<div><strong>Nome da Estratégia</strong>: 
-												<% if(data[usuario.id +'_usuarios'][i].parametros_algoritmo.length > 0){%>
-												<%=data[usuario.id +'_usuarios'][i].parametros_algoritmo[0].setup_name %>
-
-												<%}%>
-												
-											</div>
-
-											<% if(data[usuario.id +'_usuarios'][i].parametros_algoritmo.length > 0){%>
+											<span class="<%= data[usuario.id +'_usuarios'][i].status[0].pagamento == true ? 'green-text' : 'red-text' %>">
+												<%= data[usuario.id +'_usuarios'][i].status[0].pagamento == true ? 'OK' : 'Not Ok' %>
 
 
 
-											<button class="btn btn-primary modal-mount margin-t-10 margin-r-10 width100-mobile" data-modal='#modalinfo' data-link="/plataforma/sistema/administracao/popup-corretora-parametros-correta/<%= data[usuario.id +'_usuarios'][i]._id%>" >
-												<i class="fas fa-thumbs-up"></i>
-												Certo
-											</button>
+											</span>
+											<%}%>
 
-											<button class="btn red modal-mount margin-t-10 margin-r-10 width100-mobile" data-modal='#modalinfo' data-link="/plataforma/sistema/administracao/alterar-usuario/<%= data[usuario.id +'_usuarios'][i]._id%>" >
-												Errado
-												<i class="fas fa-thumbs-down"></i>
-											</button>
+										</td>
+										<td>
+											<%if(data[usuario.id +'_usuarios'][i].status.length > 0){%>
+											<span class="<%=data[usuario.id +'_usuarios'][i].status[0].conta == 'Sincronizada' ? 'green-text' : data[usuario.id +'_usuarios'][i].status[0].conta == 'Sincronizando' ? 'orange-text' : 'red-text' %>">
+												<%=data[usuario.id +'_usuarios'][i].status[0].conta%>
+											</span>
 
+											<%}%>
+										</td>
+
+
+										<td>
+											<%if(data[usuario.id +'_usuarios'][i].status.length > 0){%>
+
+											<span class="<%=data[usuario.id +'_usuarios'][i].status[0].algoritmo == 'Sincronizada' ? 'green-text' : data[usuario.id +'_usuarios'][i].status[0].algoritmo == 'Sincronizando' ? 'orange-text' : 'red-text' %>">
+												<%=data[usuario.id +'_usuarios'][i].status[0].algoritmo%>
+											</span>
+											<%}%>
+										</td>
+
+
+										<td>
+											<%if (typeof data[usuario.id +'_usuarios'][i].gratis != 'undefined'){%>
+											<span class="<%= data[usuario.id +'_usuarios'][i].gratis == true ? 'orange-text' : 'green-text' %>">
+												<%= data[usuario.id +'_usuarios'][i].gratis == true ? 'Sim' : 'Não'%>
+											</span>
 
 											<%}%>
 
 
+										</td>
 
 
+										<td>
+											<button class="btn btn-primary modal-mount margin-t-10 margin-r-10 width100-mobile" data-modal='#modalinfo' data-link="/plataforma/sistema/administracao/popup-alterar-senha/<%= data[usuario.id +'_usuarios'][i]._id%>" >
+												Alterar Senha
+											</button>
+
+											<button class="btn btn-primary modal-mount margin-t-10 margin-r-10 width100-mobile" data-modal='#modalinfo' data-link="/plataforma/sistema/administracao/popup-excluir-usuario/<%= data[usuario.id +'_usuarios'][i]._id%>" >
+												Excluir Usuário
+											</button>
+
+											<a class="btn btn-primary ajax-load margin-t-10 margin-r-10 width100-mobile" href="/plataforma/sistema/administracao/alterar-usuario/<%= data[usuario.id +'_usuarios'][i]._id%>" >
+												Alterar Usuário
+											</a>
+										</td>
+
+									</tr>
+									<%
+								}
+							}
+						%>
+					</tbody>
+				</table>
 
 
-											<hr>
-
-
-
-
-										</div>
-
-										<%}%>
-
-										<%}
-									}
-								}%>
-
-
-
-
-
-							</div>
-						</div>
-					</div>
-				</div>
 			</div>
-		</section>
-
-		<%}%>
-
-
-
-
-
-
-
-
-		<section class="no-padding-bottom">
-			<div class="container-fluid">
-				<div class="card">
-					<div class="row">
-						<div class="col-sm-12">
-							<div class="padding-20">
-								<h4>
-									Usuários							
-								</h4>
-
-								<a class="btn btn-primary ajax-load margin-t-10 margin-r-10 width100-mobile" href="/plataforma/sistema/administracao/adicionar-usuario/" >
-									Adicionar Usuário
-								</a>
-
-
-								<table class="table centered highlight responsive-table cell-border tabela_filtrada" id="tabela_administracao">
-									<thead>
-										<tr>
-											<th>Nome</th>
-											<th>E-mail</th>
-											<th>Posição</th>
-											<th>Parceiro</th>
-											<th>Status Pagto</th>
-											<th>Status Conta</th>
-											<th>Status Estratégia</th>
-											<th>Grátis</th>							
-											<th>Ações</th>
-										</tr>
-									</thead>
-									<tbody>
-										<%
-										if (typeof data[usuario.id +'_usuarios'] != 'undefined' && data[usuario.id +'_usuarios'].length > 0) {
-											for (var i = 0 ; i < data[usuario.id +'_usuarios'].length; i++) {
-												%>
-												<tr>
-													<td>
-														<%= data[usuario.id +'_usuarios'][i].nome %>
-													</td>
-													<td>
-														<%= data[usuario.id +'_usuarios'][i].email %>
-													</td>
-													<td>
-														<%if( data[usuario.id +'_usuarios'][i].nivel == 3){%>
-														Cliente
-														<%}else{%>
-														Cliente/Parceiro
-														<%}%>
-													</td>
-
-													<td>
-														<%if( data[usuario.id +'_usuarios'][i].parceiro.length > 0){%>
-														<%= data[usuario.id +'_usuarios'][i].parceiro[0].nome %>
-														<%}%>
-													</td>
-													<td>
-
-														<%if(data[usuario.id +'_usuarios'][i].status.length > 0){%>
-
-														<span class="<%= data[usuario.id +'_usuarios'][i].status[0].pagamento == true ? 'green-text' : 'red-text' %>">
-															<%= data[usuario.id +'_usuarios'][i].status[0].pagamento == true ? 'OK' : 'Not Ok' %>
-
-
-
-														</span>
-														<%}%>
-
-													</td>
-													<td>
-														<%if(data[usuario.id +'_usuarios'][i].status.length > 0){%>
-														<span class="<%=data[usuario.id +'_usuarios'][i].status[0].conta == 'Sincronizada' ? 'green-text' : data[usuario.id +'_usuarios'][i].status[0].conta == 'Sincronizando' ? 'orange-text' : 'red-text' %>">
-															<%=data[usuario.id +'_usuarios'][i].status[0].conta%>
-														</span>
-
-														<%}%>
-													</td>
-
-
-													<td>
-														<%if(data[usuario.id +'_usuarios'][i].status.length > 0){%>
-
-														<span class="<%=data[usuario.id +'_usuarios'][i].status[0].algoritmo == 'Sincronizada' ? 'green-text' : data[usuario.id +'_usuarios'][i].status[0].algoritmo == 'Sincronizando' ? 'orange-text' : 'red-text' %>">
-															<%=data[usuario.id +'_usuarios'][i].status[0].algoritmo%>
-														</span>
-														<%}%>
-													</td>
-
-
-													<td>
-														<%if (typeof data[usuario.id +'_usuarios'][i].gratis != 'undefined'){%>
-														<span class="<%= data[usuario.id +'_usuarios'][i].gratis == true ? 'orange-text' : 'green-text' %>">
-															<%= data[usuario.id +'_usuarios'][i].gratis == true ? 'Sim' : 'Não'%>
-														</span>
-
-														<%}%>
-
-
-													</td>
-
-
-													<td>
-														<button class="btn btn-primary modal-mount margin-t-10 margin-r-10 width100-mobile" data-modal='#modalinfo' data-link="/plataforma/sistema/administracao/popup-alterar-senha/<%= data[usuario.id +'_usuarios'][i]._id%>" >
-															Alterar Senha
-														</button>
-
-														<button class="btn btn-primary modal-mount margin-t-10 margin-r-10 width100-mobile" data-modal='#modalinfo' data-link="/plataforma/sistema/administracao/popup-excluir-usuario/<%= data[usuario.id +'_usuarios'][i]._id%>" >
-															Excluir Usuário
-														</button>
-
-														<a class="btn btn-primary ajax-load margin-t-10 margin-r-10 width100-mobile" href="/plataforma/sistema/administracao/alterar-usuario/<%= data[usuario.id +'_usuarios'][i]._id%>" >
-															Alterar Usuário
-														</a>
-													</td>
-
-												</tr>
-												<%
-											}
-										}
-										%>
-									</tbody>
-								</table>
-
-
-							</div>
-						</div>
-
-
-					</div>
-				</div>
-			</div>
-		</section>
-
-
-
-		<section class="no-padding-bottom">
-			<div class="container-fluid">
-
-				<div class="row">
-					<div class="col-sm-12 col-md-6">
-						<div class="card">
-							<h5>Criador de Cupons</h5>
-
-
-
-
-						</div>
-
-
-					</div>
-				</div>
-			</div>
-		</section>
-
+		</div>
 
 
 	</div>
+</div>
+</div>
+</section>
+
+
+
+<section class="no-padding-bottom">
+	<div class="container-fluid">
+
+		<div class="row">
+			<div class="col-sm-12 col-md-6">
+				<div class="card">
+					<h5>Criador de Cupons</h5>
 
 
 
 
-	<%}else{%>
-	<div class="page-content">
-		<div class="container-fluid">
-			<div class="alert error-block margin-t-10">
-				Você não pode acessar essa página!
+				</div>
+
+
 			</div>
 		</div>
 	</div>
+</section>
 
 
-	<%}%>
+
+</div>
+
+
+
+
+<%}else{%>
+<div class="page-content">
+	<div class="container-fluid">
+		<div class="alert error-block margin-t-10">
+			Você não pode acessar essa página!
+		</div>
+	</div>
+</div>
+
+
+<%}%>
 
 </div>

@@ -279,6 +279,14 @@ $(document).ready(function () {
 		}
 	});
 
+	$(document).on('click', '.ajax-submit-no-verification-form', function(e) {
+		e.preventDefault();
+		var form = $(this).parents('form');
+		var post = form.serializeArray();
+		var link = $(this).data('href');
+		SubmitAjaxNoBack(post, link);
+	});
+
 	$(document).on('click', '.btn-continuar-conhecer', function(e) {
 		e.preventDefault();
 		var form = $(this).parents('form');
