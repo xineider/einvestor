@@ -164,7 +164,6 @@ router.get('/alterar-usuario/:id_usuario', function(req, res, next) {
 
 router.get('/carregar-parceiros', function(req, res, next) {
 	console.log('fui chamado o carregar-parceiros');
-	console.log('yay');
 	console.log('fffffffff');
 
 	usuariosModel.find({nivel:2},function(err,data_parceiros){
