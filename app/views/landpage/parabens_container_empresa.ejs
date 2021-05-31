@@ -29,12 +29,18 @@
 								<% if(message.ultimo_contato.acess_key == ''){%>
 								<span class="grey-text">Cobrança recorrente</span>
 
-								<% } else if(message.ultimo_contato.acess_key == 'einvestor30g'){ %>
+								<% } else if(message.ultimo_contato.acess_key == 'einvestor30g' || message.ultimo_contato.acess_key == 'investor30'){ %>
 								<span class="grey-text">30 dias gratuitos</span>
 								<%}%>
-								<div class="white-text f40 <%= message.ultimo_contato.acess_key == 'einvestor30g' ? 'text-decoration-line-meio' : ''  %>">
+								<div class="white-text f40 <%= 
+								message.ultimo_contato.acess_key == 'einvestor30g' || 
+								message.ultimo_contato.acess_key == 'investor30' || 
+								message.ultimo_contato.acess_key == 'freeinvestor' ? 'text-decoration-line-meio' : ''  %>">
 
-									R$<span class="price_algoritmo <%= message.ultimo_contato.acess_key == 'einvestor30g' ? 'text-decoration-line-meio' : ''  %>"></span>
+									R$<span class="price_algoritmo <%= 
+									message.ultimo_contato.acess_key == 'einvestor30g' || 
+									message.ultimo_contato.acess_key == 'investor30' || 
+									message.ultimo_contato.acess_key == 'freeinvestor' ? 'text-decoration-line-meio' : ''  %>"></span>
 								</div>
 
 							</div>
@@ -126,7 +132,7 @@
 											<input type="hidden" name="rentabilidade_aa" value="<%=message.ultimo_contato.rentabilidade_aa%>">
 
 
-											<input type="hidden" name="gratis" value="<%= message.ultimo_contato.acess_key == 'einvestor30g' ? '1':'2'%>">
+											<input type="hidden" name="gratis" value="<%= message.ultimo_contato.acess_key == 'einvestor30g' || message.ultimo_contato.acess_key == 'investor30' || message.ultimo_contato.acess_key == 'freeinvestor'  ? '1':'2'%>">
 											
 
 											

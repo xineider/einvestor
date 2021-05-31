@@ -179,6 +179,10 @@ router.post('/enviar-formulario-conhecer', function(req, res, next) {
 		possui_30_dias = 'gratis_80'
 	}
 
+	if(POST.acess_key == 'freeinvestor'){
+		possui_30_dias = 'freeinvestor';
+	}
+
 	console.log('novo_contato');
 	console.log(novo_contato);
 	console.log('ccccccccccccccccccccccccccccccc');
@@ -270,6 +274,9 @@ router.post('/enviar-formulario-conhecer-empresa', function(req, res, next) {
 	if(POST.acess_key == 'einvestor30g'){
 		console.log('é igual ao acess key');
 		possui_30_dias = 'gratis';
+	}
+	if(POST.acess_key == 'freeinvestor'){
+		possui_30_dias = 'freeinvestor';
 	}
 
 

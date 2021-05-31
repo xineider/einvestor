@@ -161,7 +161,7 @@
 
 						Capital: R$<span id="capital_inicial"></span>
 
-						<span class="none voce_possui_30_dias_gratuitos primary-text">Você possui 30 dias gratuitos</span>
+						<span class="none voce_possui_30_dias_gratuitos primary-text"></span>
 
 						<form>
 							<div class="form-group">
@@ -371,10 +371,15 @@
 						console.log('cai no gratis');
 
 						$('.possui_30_dias_g').val('1');
-
-
-						$('.voce_possui_30_dias_gratuitos').removeClass('none');
+						$('.voce_possui_30_dias_gratuitos').text('Você possui 30 dias gratuitos').removeClass('none');
 						<%-include('function_barra_gratis_fisico')%>;
+					}else if(data.possui_30dias == 'freeinvestor'){
+						console.log('cai no freeinvestor');
+						$('.possui_30_dias_g').val('1');
+						$('.voce_possui_30_dias_gratuitos').text('Você ativou um cupom de período gratuito').removeClass('none');
+						
+						<%-include('function_barra_gratis_fisico')%>;
+
 					}else{
 						console.log('cai no pago');
 						$('.possui_30_dias_g').val('2');

@@ -80,7 +80,7 @@ if (typeof message.algoritmo != 'undefined' && message.algoritmo.length > 0) {
 			'<div class="escolha_algoritmo_assinar_box">'+
 				'<div class="text-center margin-l-10">'+
 					'<div class="escolha_algoritmo_assinar_container">'+
-						'<button class="btn btn-assinar-algoritmo ajax-submit-form-other-load-to" data-form=".btn-continuar-conhecer" data-to="main_page_landpage" data-href="/assinar_30dias_gratuitos/<%= message.algoritmo[i].valor %>/'+capital+'/'+rentabilidade_aa_f1+'">'+
+						'<button data-link="/assinar_30dias" class="btn btn-assinar-algoritmo ajax-submit-form-other-link" data-form=".btn-continuar-conhecer" target="_blank" data-to="main_page_landpage" data-href="/assinar_30dias_gratuitos/<%= message.algoritmo[i].valor %>/'+capital+'/'+rentabilidade_aa_f1+'">'+
 							'Assinar <br>'+
 							preco_robo + '/mês' +
 						'</button>'+

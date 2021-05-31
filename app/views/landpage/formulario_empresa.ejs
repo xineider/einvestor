@@ -385,7 +385,44 @@
 						$('.possui_30_dias_g').val('1');
 
 
-						$('.voce_possui_30_dias_gratuitos').removeClass('none');
+						$('.voce_possui_30_dias_gratuitos').text('Você possui 30 dias gratuitos').removeClass('none');
+
+						if(capital <= 1000000){
+							$('.form-control-range').removeClass('range-empresa');
+							$('.form-control-range').addClass('range-fisica');
+
+
+							$('.form-control-range').prop({
+								'min': 80000,
+								'max': 2000000,
+								'step':10000
+							});
+
+							$('.form-control-range').val(capital);
+							<%-include('function_barra_gratis_empresa_menor2kk')%>;
+
+
+						}else{
+							console.log('estou no gratis e com valor maior que 2kk');
+							$('.form-control-range').removeClass('range-fisica');
+							$('.form-control-range').addClass('range-empresa');
+
+							$('.form-control-range').prop({
+								'min': 2000000,
+								'max': 500000000,
+								'step':1000000
+							});
+
+							<%-include('function_barra_gratis_empresa')%>;
+						}
+
+
+
+
+						
+					}else if(data.possui_30dias == 'freeinvestor'){
+						$('.possui_30_dias_g').val('1');
+						$('.voce_possui_30_dias_gratuitos').text('Você ativou um cupom de período gratuito').removeClass('none');
 
 						if(capital <= 1000000){
 							$('.form-control-range').removeClass('range-empresa');
@@ -416,9 +453,6 @@
 						}
 
 
-
-
-						
 					}else{
 						console.log('cai no pago');
 
