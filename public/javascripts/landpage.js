@@ -41,6 +41,17 @@ $(document).ready(function () {
 	});
 
 
+	$(document).on('click','.whatsapp-popup',function(e){
+		e.preventDefault();
+		$('.whatsapp-popup-box').toggleClass('active');
+	});
+
+	$(document).on('click','.whatsapp-popup-box-header-close',function(e){
+		e.preventDefault();
+		$('.whatsapp-popup-box').removeClass('active');
+	})
+
+
 	$(document).on('click','.btn-toggle-p-fisica',function(e){
 		e.preventDefault();
 		$(this).addClass('active');
