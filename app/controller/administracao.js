@@ -179,7 +179,7 @@ router.post('/adicionar-usuario', function(req, res, next) {
 	POST = req.body;
 	console.log('adicionar usuario');
 	console.log(POST);
-	console.log('aaaaaaaaaaaaaaaaa');
+	console.log('aaaaaaaaaaaaaaaa');
 
 	if(POST.email.length != 0){
 
