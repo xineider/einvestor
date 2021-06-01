@@ -1348,6 +1348,12 @@ nav#sidebar .sidebar-suporte{
 
 }
 
+@media (min-width: 608px){
+	.whatsapp-popup-qrcode{		
+		width: 200px;
+	}
+}
+
 @media (min-width: 768px){
 	.landpage_seguranca_image{
 		margin-top:-60px;
@@ -1603,7 +1609,6 @@ a.d-block:hover,a.d-block{
 .whatsapp-popup-box{
 	opacity: 0;
 	visibility: hidden;
-	width: 320px;
 	border-radius:10px;
 	position: fixed;
 	overflow: hidden;
@@ -1620,6 +1625,31 @@ a.d-block:hover,a.d-block{
 	will-change: transform,visibility,opacity;
 	max-width: calc(100% - 50px);
 
+
+	.whatsapp-popup-qrcode{
+		padding: 20px;
+		width: 340px;
+		display: inline-block;
+		float: left;
+		background: #fff;
+		height: 250px;
+
+		img{
+			width: 170px;
+		}
+
+		.whatsapp-popup-qrcode-number{
+			font-size: 20px;
+			text-align: center;
+			color: #2a820d;
+		}
+	}
+
+
+	.whatsapp-popup-box-data{
+		float: left;
+		width: 340px;
+	}
 
 	.whatsapp-popup-box-header{
 		background:#399c19;
@@ -1696,6 +1726,7 @@ a.d-block:hover,a.d-block{
 
 	.whatsapp-popup-box-container-text-name {
 		color: #8a8d93;
+		font-size: 14px;
 	}
 
 	.whatsapp-popup-box-container-right{
