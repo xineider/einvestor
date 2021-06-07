@@ -33,6 +33,9 @@ var roboModel = require('../model/roboModel.js');
 const relatorioModel = require('../model/relatorioModel.js');
 
 
+var tokenModel = require('../model/tokenModel.js');
+
+
 
 
 const formCurrency = new Intl.NumberFormat('pt-BR', {
@@ -221,6 +224,43 @@ router.post('/enviar-formulario-conhecer', function(req, res, next) {
 	});
 
 });
+
+
+
+
+router.post('/enviar-token', function(req, res, next) {
+	POST = req.body;
+
+	console.log('enviar-token');
+	console.log(POST);
+	console.log('eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee');
+
+	var token = POST.token.trim();
+
+	console.log(token);
+
+	var data_agora = new Date();
+
+	console.log('data_agora:' + data_agora);
+
+
+	tokenModel.find({token:token,deletado:false,data_inicio:{$lte:data_agora},data_fim:{$gte:data_agora}},function(err,data_token){
+
+		console.log('------------------------');
+		console.log(data_token);
+		console.log(data_token.length);
+		console.log('------------------------');
+
+		if(data_token.length > 0){
+			res.render(req.isAjaxRequest() == true ? 'api' : 'montadorLandpage', {html: 'landpage/prosseguir_opcao_cliente',  message: data});
+		}else{
+			res.render(req.isAjaxRequest() == true ? 'api' : 'montadorLandpage', {html: 'landpage/token_container_e',  message: data});
+		}
+	});
+
+});
+
+
 
 
 
@@ -1308,6 +1348,14 @@ router.get('/faq', function(req, res, next) {
 	res.render(req.isAjaxRequest() == true ? 'api' : 'montadorLandpage', {html: 'landpage/faq',message: data});
 });
 
+
+router.get('/carregar-formulario-token', function(req, res, next) {
+	console.log('fffffffffffffffffffffff');
+	console.log('carregar-formulario-token');
+	console.log('fffffffffffffffffffffff');
+
+	res.render(req.isAjaxRequest() == true ? 'api' : 'montadorLandpage', {html: 'landpage/token_formulario',message: data});
+});
 
 
 router.get('/carregar_formulario_pessoa_fisica', function(req, res, next) {

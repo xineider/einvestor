@@ -56,14 +56,14 @@ $(document).ready(function () {
 		e.preventDefault();
 		$(this).addClass('active');
 		$('.btn-toggle-p-juridica').removeClass('active');
-		LoadTo('/carregar_formulario_pessoa_fisica', 'container_prosseguir_tipo_cliente');
+		LoadTo('/carregar_formulario_pessoa_fisica', 'container_data_token');
 	});
 
 	$(document).on('click','.btn-toggle-p-juridica',function(e){
 		e.preventDefault();
 		$(this).addClass('active');
 		$('.btn-toggle-p-fisica').removeClass('active');
-		LoadTo('/carregar_formulario_pessoa_juridica', 'container_prosseguir_tipo_cliente');
+		LoadTo('/carregar_formulario_pessoa_juridica', 'container_data_token');
 	});
 
 
