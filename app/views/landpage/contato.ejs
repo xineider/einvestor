@@ -1,0 +1,81 @@
+<%-include('navbar_landpage');%>
+
+<div class="margin-t-20">
+
+	<section class="margin-bottom-sm">
+		<div class="container-fluid">
+			<div class="f2rem primary-text text-center">Entre em contato conosco para consultas e orçamentos.</div>
+
+
+
+			<div class="container-contato">
+				<form>
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="padding-10">
+								<div class="form-group">
+									<label for="nome">Nome</label>
+									<input type="text" class="form-control" name="nome"  aria-describedby="nome" required= "true" placeholder="Nome">
+								</div>
+
+								<div class="form-group">
+									<label for="empresa">Empresa</label>
+									<input class="form-control" name="empresa" aria-describedby="empresa" placeholder="Empresa">
+								</div>
+
+								<div class="form-group">
+									<label for="telefone">Telefone</label>
+									<input class="form-control tel" name="telefone" aria-describedby="telefone" required="true" placeholder="(99) 99999-9999">
+								</div>
+
+
+								<div class="form-group">
+									<label for="email">E-mail</label>
+									<input type="email" class="form-control" name="email" aria-describedby="email" required="true" placeholder="email@dominio.com.br">									
+								</div>
+
+
+								<div class="form-group">
+									<label for="como_chegou">Como chegou até nós?</label>
+									<input class="form-control" name="como_chegou" aria-describedby="como_chegou">
+								</div>
+
+								<div class="form-group">
+									<label for="como_chegou">Qual sua necessidade?</label>
+									<textarea class="form-control" name="qual_sua_necessidade" placeholder="Qual sua necessidade?" =></textarea>
+								</div>
+
+
+								<div class="text-center">
+									<button class="btn btn-primary w100 ajax-submit-sucess-message" data-href="/enviar-formulario-contato" data-sucesso-id="#alert-sucess-enviar-contato">Enviar</button>
+								</div>
+
+								<div id="alert-sucess-enviar-contato" class="alert alert-success w100 margin-t-20 none">
+									<b>Obrigado!</b>
+									<br>Já entraremos em contato com você
+								</div>
+
+
+
+
+							</div>
+						</div>
+
+
+					</div>
+
+				</form>
+
+			</div>
+
+		</div>
+
+	</section>
+
+</div>
+
+
+
+<%- include('whatsapp_box')%>
+
+

@@ -15,6 +15,8 @@ const regrasAlgoritmoModel = require('../model/regrasAlgoritmoModel.js');
 
 const contatoFormularioModel = require('../model/contatoFormularioModel.js');
 
+const contatoLandpageModel = require('../model/contatoLandpageModel.js');
+
 const usuarioModel = require('../model/usuariosModel.js');
 
 var usuarioStatusModel = require('../model/usuarioStatusModel.js');
@@ -226,6 +228,64 @@ router.post('/enviar-formulario-conhecer', function(req, res, next) {
 });
 
 
+router.post('/enviar-formulario-contato', function(req, res, next) {
+	POST = req.body;
+
+	console.log('enviar-formulario-contato');
+	console.log(POST);
+	console.log('eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee');
+
+	POST.email = POST.email.toLowerCase();
+	POST.email = POST.email.trim();
+
+
+	const novo_contato_l = new contatoLandpageModel({ 						
+		nome:POST.nome,
+		empresa:POST.empresa,
+		email:POST.email,
+		telefone:POST.telefone,
+		como_chegou:POST.como_chegou,
+		qual_sua_necessidade:POST.qual_sua_necessidade,
+		deletado:false,
+		data_cadastro:new Date()
+	});
+
+
+	var titulo = 'E-Investor - Contato ' + POST.nome;
+
+	var html = cabecalho_email +
+	"<br><b>Nome: </b> " + POST.nome + 
+	"<br><b>Empresa: </b> " + POST.empresa +
+	"<br><b>E-mail: </b>" + POST.email +
+	"<br><b>Telefone: </b>" + POST.telefone +
+	"<br><b>Como chegou: </b>" + POST.como_chegou +
+	"<br><b>Qual sua necessidade: </b><br>" + POST.qual_sua_necessidade +
+	"<br><br><span style='font-size:9px;'>Algo errado? Entre em contato conosco respondendo este e-mail.</span>"+
+	rodape_email;
+
+
+	var text = "<b>E-Investor</b>"+
+	"<br><b>Nome: </b> " + POST.nome + 
+	"<br><b>Empresa: </b> " + POST.empresa +
+	"<br><b>E-mail: </b>" + POST.email +
+	"<br><b>Telefone: </b>" + POST.telefone +
+	"<br><b>Como chegou: </b>" + POST.como_chegou +
+	"<br><b>Qual sua necessidade: </b><br>" + POST.qual_sua_necessidade +
+	"<br><br><span>Algo errado? Entre em contato conosco respondendo este e-mail.</span>"+ rodape_email_t;
+
+
+
+	control.SendMail('suporte@einvestor.com.br', titulo ,text,html);
+
+	novo_contato_l.save(function (err) {
+		if (err) {
+			return handleError(err);
+		}else{
+			res.json({});
+		}
+	});
+
+});
 
 
 router.post('/enviar-token', function(req, res, next) {
@@ -1348,6 +1408,14 @@ router.get('/faq', function(req, res, next) {
 	res.render(req.isAjaxRequest() == true ? 'api' : 'montadorLandpage', {html: 'landpage/faq',message: data});
 });
 
+
+router.get('/contato', function(req, res, next) {
+	console.log('qqqqqqqqqqqqqqqqqqqqqqqqqqqqq');
+	console.log('estou no contato');
+	console.log('qqqqqqqqqqqqqqqqqqqqqqqqqqqqq');
+	data.numero_menu = 5;
+	res.render(req.isAjaxRequest() == true ? 'api' : 'montadorLandpage', {html: 'landpage/contato',message: data});
+});
 
 router.get('/carregar-formulario-token', function(req, res, next) {
 	console.log('fffffffffffffffffffffff');
