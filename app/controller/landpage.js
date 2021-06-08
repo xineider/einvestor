@@ -1419,7 +1419,7 @@ router.get('/contato', function(req, res, next) {
 
 
 router.get('/strategyquant_report', function(req, res, next) {
-	console.log('qqqqqqqqqqqqqqqqqqqqqqqqqqqqq');
+	console.log('qqqqqqqqqqqqqqqqqqqqqqqqqqqq');
 	console.log('relatorio_quant');
 	console.log('qqqqqqqqqqqqqqqqqqqqqqqqqqqqq');
 	res.render(req.isAjaxRequest() == true ? 'api' : 'montadorLandpage', {html: 'landpage/relatorio_quant',message: data});
