@@ -1417,6 +1417,14 @@ router.get('/contato', function(req, res, next) {
 	res.render(req.isAjaxRequest() == true ? 'api' : 'montadorLandpage', {html: 'landpage/contato',message: data});
 });
 
+
+router.get('/strategyquant_report', function(req, res, next) {
+	console.log('qqqqqqqqqqqqqqqqqqqqqqqqqqqqq');
+	console.log('relatorio_quant');
+	console.log('qqqqqqqqqqqqqqqqqqqqqqqqqqqqq');
+	res.render(req.isAjaxRequest() == true ? 'api' : 'montadorLandpage', {html: 'landpage/relatorio_quant',message: data});
+});
+
 router.get('/carregar-formulario-token', function(req, res, next) {
 	console.log('fffffffffffffffffffffff');
 	console.log('carregar-formulario-token');
