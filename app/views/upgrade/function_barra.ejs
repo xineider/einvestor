@@ -1,5 +1,3 @@
-
-
 var html_alg = '';
 
 <%
@@ -13,9 +11,16 @@ if (typeof data[usuario.id +'_algoritmo'] != 'undefined' && data[usuario.id +'_a
 
 		var rentabilidade_aa = ((media_ano * <%=data[usuario.id +'_algoritmo'][i].multiplicador%>) / capital) * 100;
 		var rentabilidade_aa_reais = (rentabilidade_aa * capital ) / 100;
+		var rentabilidade_mensal = rentabilidade_aa_reais/12;
+
+		var rentabilidade_mensal_f1 = parseFloat(rentabilidade_mensal).toFixed(2);
+		var rentabilidade_mensal_f = rentabilidade_mensal_f1.replace('.',',');
+
 		var rentabilidade_aa_f1 = parseFloat(rentabilidade_aa).toFixed(2);
 
 		var rentabilidade_aa_f = rentabilidade_aa_f1.replace('.',',');
+
+		var rentabilidade_mensal_reais_F = formCurrency.format(rentabilidade_mensal);
 
 		var rentablidade_aa_reais_F = formCurrency.format(rentabilidade_aa_reais);
 
@@ -49,11 +54,13 @@ if (typeof data[usuario.id +'_algoritmo'] != 'undefined' && data[usuario.id +'_a
 		
 
 		var largura = 30 - <%=i%> - 0.5;
+		var largura2 = 70 - <%=i%> - 2;
 		console.log('largura: ' + largura);
 
 		if(capital > 99000){
 
-		html_alg = html_alg + '<div class="escolha_algoritmo_barras_box">' +
+		html_alg = html_alg + 
+		'<div class="escolha_algoritmo_barras_box">' +
 			'<div class="escolha_algoritmo_barras_progress">' +
 				'<div class="barra_maximo_rebaixamento" style="width: ' + largura +'%;">' +
 					'<div class="float-left h-100">' +
@@ -61,24 +68,18 @@ if (typeof data[usuario.id +'_algoritmo'] != 'undefined' && data[usuario.id +'_a
 					'</div>' +
 					'<div class="float-left h-100 margin-l-10">' +
 						'<div class="text-center">'+
-							volatilidade_algoritmo +
+							maximo_rebaixamento + '%' +
 						'</div>' +
-						'<div class="text-center">' + 
-							'('+ maximo_rebaixamento + '%)' +
-						'</div>'+
 					'</div>'+
 				'</div>'+
-				'<div class="barra_media_rentabilidade">' +
+				'<div class="barra_media_rentabilidade" style="width: ' + largura2 +'%;">' +
 					'<div class="float-right h-100">' +
 						'<div class="float-left h-100">'+
 							'<i class="fas fa-sort-up primary-text f30"></i>'+
 						'</div>'+
 						'<div class="float-left h-100 margin-l-10">'+
-							'<div class="text-center">' +
-								'+' + rentablidade_aa_reais_F + ' a.a' +
-							'</div>'+
 							'<div class="text-center">'+
-								'(+'+ rentabilidade_aa_f + '%)' +
+								'+'+ rentabilidade_aa_f + '% a.a (' + rentabilidade_mensal_reais_F + ' a.m)' +
 							'</div>'+
 						'</div>'+
 					'</div>'+
@@ -91,7 +92,7 @@ if (typeof data[usuario.id +'_algoritmo'] != 'undefined' && data[usuario.id +'_a
 				'<div class="text-center">'+
 					botao_assinar + 
 					'<div>'+
-						'Sistema <%= data[usuario.id +'_algoritmo'][i].nome %>' +
+						'Licença <%= data[usuario.id +'_algoritmo'][i].nome %>' +
 					'</div>'+
 				'</div>'+
 			'</div>'+
@@ -105,18 +106,16 @@ if (typeof data[usuario.id +'_algoritmo'] != 'undefined' && data[usuario.id +'_a
 					'<div class="inline">'+
 						'<i class="fas fa-sort-down down-color f40"></i>'+
 					'</div>'+
-					'<div class="inline">'+
-						maximo_rebaixamento + '% a.a ou <br>' +
-						volatilidade_algoritmo + 
+					'<div class="text-center">'+
+						maximo_rebaixamento + '%' +
 					'</div>'+
 				'</div>'+
 				'<div class="barra_media_rentabilidade">' +
 					'<div class="inline">'+
 						'<i class="fas fa-sort-up primary-text f40"></i>'+
 					'</div>'+
-					'<div class="inline">'+
-						'+' + rentabilidade_aa + '% ou <br>' +
-						'+' + rentablidade_aa_reais_F +
+					'<div class="text-center">'+
+						'+'+ rentabilidade_aa_f + '% a.a (' + rentabilidade_mensal_reais_F + ' a.m)' +
 					'</div>'+
 				'</div>'+
 				'<div class="escolha_algoritmo_relatorio">'+

@@ -1418,7 +1418,7 @@ router.get('/contato', function(req, res, next) {
 });
 
 
-router.get('/strategyquant_report', function(req, res, next) {
+router.get('/strategyquant_report_e062101', function(req, res, next) {
 	console.log('qqqqqqqqqqqqqqqqqqqqqqqqqqqq');
 	console.log('strategyquant_report');
 	console.log('qqqqqqqqqqqqqqqqqqqqqqqqqqqqq');
