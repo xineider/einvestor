@@ -18,6 +18,8 @@ var usuarioCorretoraModel = require('../model/usuarioCorretoraModel.js');
 
 var usuarioParametrosAlgoritmoModel = require('../model/usuarioParametrosAlgoritmoModel');
 
+var licencaModel = require('../model/licencaModel.js');
+
 var usuarioStatusModel = require('../model/usuarioStatusModel.js');
 var moment = require('moment');
 moment.locale('pt-br');
@@ -51,8 +53,11 @@ var rodape_email_t = "<br><br><span>A E-Investor é uma plataforma desenvolvida 
 
 
 
+router.get('/usuarios', function(req, res, next) {
 
-router.get('/', function(req, res, next) {
+	console.log('estou aqui no usuarios ..............................');
+
+	console.log('.....................................................');
 
 	usuarioStatusModel.find({id_usuario:mongoose.Types.ObjectId(req.session.usuario.id)},function(err,data_usuario_status){
 
@@ -60,6 +65,12 @@ router.get('/', function(req, res, next) {
 		var data_atualizacao_uf = moment(data_atualizacao_u).utc().format('DD/MM/YYYY');
 		data_usuario_status[0].data_atualizacao_f = data_atualizacao_uf;
 		data[req.session.usuario.id+'_usuario_status'] = data_usuario_status;
+
+
+		data.link_sistema = '/sistema';
+		data[req.session.usuario.id+'_numero_menu'] = 31;
+
+
 
 
 		usuariosModel.aggregate([
@@ -101,6 +112,15 @@ router.get('/', function(req, res, next) {
 				as:'parametros_algoritmo'
 			}
 
+		},
+		{
+			$lookup:{
+				from:'licenca',
+				localField:'_id',
+				foreignField:'id_usuario',
+				as:'licenca'
+			}
+
 		}
 		]).exec(function(err,data_usuarios){
 
@@ -108,14 +128,78 @@ router.get('/', function(req, res, next) {
 			console.log(data_usuarios);
 			console.log('qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq');
 
+			console.log('data_usuarios.length: ' + data_usuarios.length);
+
+
+
+
+			for(i=0; i<data_usuarios.length;i++){
+				console.log('batata');
+				console.log(i);
+
+				var data_cadastro = new Date(data_usuarios[i].data_cadastro);
+
+				var dia = data_cadastro.getDate();
+
+				var mes = data_cadastro.getMonth() + 1;
+
+				if(dia < 10){
+					dia = '0' + dia;
+				}
+
+				if(mes < 10){
+					mes = '0' + mes;
+				}
+
+				var data_f = dia + '/' + mes + '/' + data_cadastro.getFullYear();
+
+				data_usuarios[i].data_cadastro_f = data_f;
+
+
+				console.log('data_f: ' + data_f);
+
+				if(data_usuarios[i].licenca.length > 0){
+					var data_fim_licenca = new Date(data_usuarios[i].licenca[0].data_fim);
+
+					var dia_l = data_fim_licenca.getDate();
+
+					var mes_l = data_fim_licenca.getMonth() + 1;
+
+					if(dia_l < 10){
+						dia_l = '0' + dia_l;
+					}
+
+					if(mes_l < 10){
+						mes_l = '0' + mes_l;
+					}
+
+					var data_l_f = dia_l + '/' + mes_l + '/' + data_fim_licenca.getFullYear();
+
+					data_usuarios[i].licenca[0].data_fim_f = data_l_f;
+
+					console.log('data_l_f: ' + data_l_f);
+
+				}
+
+			}
+
+			console.log('data_usuarios[5].licenca');
+			console.log(data_usuarios[0].licenca.length);
+			console.log(data_usuarios[5].licenca.length);
 
 
 			data[req.session.usuario.id+'_usuarios']= data_usuarios;
-			res.render(req.isAjaxRequest() == true ? 'api' : 'montador', {html: 'administracao/administracao',  data: data, usuario: req.session.usuario});
+
+
+
+			res.render(req.isAjaxRequest() == true ? 'api' : 'montador', {html: 'administracao/usuarios',  data: data, usuario: req.session.usuario});
 
 		});
 	}).sort({'_id':-1}).limit(1);
 });
+
+
+
 
 
 router.get('/adicionar-usuario', function(req, res, next) {
@@ -525,6 +609,26 @@ router.get('/popup-enviar-email-sem-conta/:id_usuario', function(req, res, next)
 });
 
 
+router.get('/popup-ativacao-licenca/:id_usuario', function(req, res, next) {
+	console.log(req.params.id_usuario);
+
+	id_usuario = req.params.id_usuario;
+
+	console.log('estou no popup-ativacao-licenca');
+	console.log('estou no popup-ativacao-licenca');
+	console.log('estou no popup-ativacao-licenca');
+
+
+	usuariosModel.findOne({'_id':id_usuario},function(err,data_usuario){
+		data[req.session.usuario.id+'_usuario_ativacao_licenca']= data_usuario;
+		console.log('data_usuario');
+		console.log(data);
+		res.render(req.isAjaxRequest() == true ? 'api' : 'montador', {html: 'administracao/popup-ativar-licenca-usuario', data: data, usuario: req.session.usuario});
+	});
+});
+
+
+
 
 
 
@@ -810,6 +914,68 @@ router.post('/dessincronizar-conta-corretora', function(req, res, next) {
 	});
 
 });
+
+
+router.post('/ativacao-licenca-usuario', function(req, res, next) {
+
+	POST = req.body;
+
+	console.log('@@@@@@@@@@@ ativacao-licenca-usuario @@@@@@@@@@');
+	console.log(POST);
+	console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@');
+
+	usuariosModel.findOne({'_id':POST.id_usuario},function(err,data_usuario){
+		console.log('---------------------------');
+		console.log(data_usuario);
+		console.log('---------------------------');
+		console.log(data_usuario.nome);
+
+		licencaModel.find({id_usuario:POST.id_usuario},function(err,data_licenca){
+
+			var data_agora = new Date();
+			var data_fim_licenca = data_licenca[0].data_fim;
+
+			const diferenca_tempo = data_fim_licenca - data_agora;
+			const diferenca_dias = Math.ceil(diferenca_tempo / (1000 * 60 * 60 * 24));
+
+			console.log('diferenca_dias: ' + diferenca_dias);
+
+
+			usuarioStatusModel.find({id_usuario:POST.id_usuario},function(err,data_usuario_status){
+
+				console.log(data_usuario_status);
+
+
+				var titulo = 'Olá ' + data_usuario.nome + ' sua licença expira em ' + diferenca_dias + ' dias';
+
+				var html = cabecalho_email +
+				"<b>Olá " + data_usuario.nome + ", seu sistema requer atenção! Seu período de teste gratuito da licença " + data_usuario_status[0].nome_algoritmo_escolhido +" expira em "+diferenca_dias+" dias entre em contato com o <a target='_blank' href='https://web.whatsapp.com/send?phone=5548991234551'>suporte</a> para ativar uma licença de uso.</b>"+
+				"<br><br>Você sabia que pode solicitar apoio e marcar uma reunião com o nosso time de especialistas para tirar dúvidas? É isso mesmo, responda este e-mail solicitando uma reunião ou entre em contato conosco, será um prazer atendê-lo."+
+				"<br><br>+55 48 991 234 551"+
+				"<br><br><a target='_blank' href='https://wa.me/message/K43XOHX6X7JTM1 '>https://wa.me/message/K43XOHX6X7JTM1</a>"+
+				"<br><br><img style='width:150px;height:150px;' src='https://einvestor.com.br/public/images/qr_code_whatsapp.png'>"+
+				"<br><br><span style='font-size:9px;'>Algo errado? Entre em contato conosco respondendo este e-mail.</span>"+
+				rodape_email;
+
+
+				var text = "<b>E-Investor</b>"+
+				"<br><b>Olá " + data_usuario.nome + "ainda há a necessidade de enviar sua estratégia!</b>"+
+				"<br><br><b><span>Correção necessária:</span> Por favor <a href='https://einvestor.com.br/plataforma/sistema/automacao/parametros' target='_blank'>clique aqui</a> para finalizar o processo de automação.</b>"+
+				"<br><br><span>Algo errado? Entre em contato conosco respondendo este e-mail.</span>"+ rodape_email_t;
+
+
+				//control.SendMail(data_usuario.email, titulo ,text,html);
+				control.SendMail('suporte@einvestor.com.br', titulo ,text,html);
+
+
+			// usuariosModel.findOneAndUpdate({'_id':POST.id_usuario},{'$set':{'licenca_pedido_ativacao':true}},function(err){
+			// 	res.json(data);
+			// });
+		}).sort({'_id':-1}).limit(1);
+		}).sort({'_id':-1}).limit(1);
+	});
+});
+
 
 
 router.post('/enviar-email-usuario-sem-parametros', function(req, res, next) {

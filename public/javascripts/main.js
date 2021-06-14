@@ -830,6 +830,16 @@ $(document).ready(function () {
 		GetEndereco($(this).val(), $(this).closest('.row'));
 	});
 
+	$(document).on('click','.whatsapp-popup',function(e){
+		e.preventDefault();
+		$('.whatsapp-popup-box').toggleClass('active');
+	});
+
+	$(document).on('click','.whatsapp-popup-box-header-close',function(e){
+		e.preventDefault();
+		$('.whatsapp-popup-box').removeClass('active');
+	});
+
 
 
 	window.onpopstate = function() {

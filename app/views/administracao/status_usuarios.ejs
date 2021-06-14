@@ -211,12 +211,8 @@
 				<div class="col-sm-12">
 					<div class="padding-20">
 						<h4>
-							Usuários							
+							Status							
 						</h4>
-
-						<a class="btn btn-primary ajax-load margin-t-10 margin-r-10 width100-mobile" href="/plataforma/sistema/administracao/adicionar-usuario/" >
-							Adicionar Usuário
-						</a>
 
 
 						<table class="table centered highlight responsive-table cell-border tabela_filtrada" id="tabela_administracao">
@@ -224,7 +220,6 @@
 								<tr>
 									<th>Nome</th>
 									<th>E-mail</th>
-									<th>Posição</th>
 									<th>Parceiro</th>
 									<th>Status Pagto</th>
 									<th>Status Conta</th>
@@ -245,14 +240,6 @@
 										<td>
 											<%= data[usuario.id +'_usuarios'][i].email %>
 										</td>
-										<td>
-											<%if( data[usuario.id +'_usuarios'][i].nivel == 3){%>
-											Cliente
-											<%}else{%>
-											Cliente/Parceiro
-											<%}%>
-										</td>
-
 										<td>
 											<%if( data[usuario.id +'_usuarios'][i].parceiro.length > 0){%>
 											<%= data[usuario.id +'_usuarios'][i].parceiro[0].nome %>
@@ -305,16 +292,8 @@
 
 										<td>
 											<button class="btn btn-primary modal-mount margin-t-10 margin-r-10 width100-mobile" data-modal='#modalinfo' data-link="/plataforma/sistema/administracao/popup-alterar-senha/<%= data[usuario.id +'_usuarios'][i]._id%>" >
-												Alterar Senha
+												Alterar Status
 											</button>
-
-											<button class="btn btn-primary modal-mount margin-t-10 margin-r-10 width100-mobile" data-modal='#modalinfo' data-link="/plataforma/sistema/administracao/popup-excluir-usuario/<%= data[usuario.id +'_usuarios'][i]._id%>" >
-												Excluir Usuário
-											</button>
-
-											<a class="btn btn-primary ajax-load margin-t-10 margin-r-10 width100-mobile" href="/plataforma/sistema/administracao/alterar-usuario/<%= data[usuario.id +'_usuarios'][i]._id%>" >
-												Alterar Usuário
-											</a>
 										</td>
 
 									</tr>
@@ -334,28 +313,6 @@
 </div>
 </div>
 </section>
-
-
-
-<section class="no-padding-bottom">
-	<div class="container-fluid">
-
-		<div class="row">
-			<div class="col-sm-12 col-md-6">
-				<div class="card">
-					<h5>Criador de Cupons</h5>
-
-
-
-
-				</div>
-
-
-			</div>
-		</div>
-	</div>
-</section>
-
 
 
 </div>

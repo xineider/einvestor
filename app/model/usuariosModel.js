@@ -11,6 +11,7 @@ const usuarioSchema = new mongoose.Schema({
 	responsavel_legal:String,
 	nivel: Number,
 	gratis:Boolean,
+	licenca_pedido_ativacao:Boolean,
 	deletado:Boolean,
 	data_cadastro:Date
 });

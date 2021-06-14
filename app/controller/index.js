@@ -21,6 +21,8 @@ var regrasAlgoritmoModel = require('../model/regrasAlgoritmoModel.js');
 
 var usuarioParametrosAlgoritmoModel = require('../model/usuarioParametrosAlgoritmoModel');
 
+var licencaModel = require('../model/licencaModel.js');
+
 
 var usuarioStatusModel = require('../model/usuarioStatusModel.js');
 var moment = require('moment');
@@ -45,250 +47,168 @@ router.get('/', function(req, res, next) {
 	console.log(req.session.usuario);
 
 	if(req.session.usuario.nivel >= 3){
-		usuarioCorretoraModel.find({id_usuario:mongoose.Types.ObjectId(req.session.usuario.id)},function(err,data_usuario_corretora){
-			data[req.session.usuario.id+'_usuario_corretora']= data_usuario_corretora;
-			console.log(data_usuario_corretora);
 
-			usuarioParametrosAlgoritmoModel.find({id_usuario:mongoose.Types.ObjectId(req.session.usuario.id)},function(err,data_parametros_usuario){
-				data[req.session.usuario.id+'_usuario_parametros'] = data_parametros_usuario;
+		usuariosModel.find({_id:mongoose.Types.ObjectId(req.session.usuario.id)},function(err,data_usuario){
+			data[req.session.usuario.id+'_usuario']= data_usuario;
 
-				regrasAlgoritmoModel.find({},function(err,data_regras_algoritmo){
-					var data_atualizacao_r = data_regras_algoritmo[0].data_cadastro;
-					var dataFormatada_r = moment(data_atualizacao_r).utc().format('DD/MM/YYYY');
-					data[req.session.usuario.id+'_header_data_atualizada'] = dataFormatada_r;
+			usuarioCorretoraModel.find({id_usuario:mongoose.Types.ObjectId(req.session.usuario.id)},function(err,data_usuario_corretora){
+				data[req.session.usuario.id+'_usuario_corretora']= data_usuario_corretora;
+				console.log(data_usuario_corretora);
 
-					console.log('dataFormatada_r: ' + dataFormatada_r);
+				usuarioParametrosAlgoritmoModel.find({id_usuario:mongoose.Types.ObjectId(req.session.usuario.id)},function(err,data_parametros_usuario){
+					data[req.session.usuario.id+'_usuario_parametros'] = data_parametros_usuario;
 
+					regrasAlgoritmoModel.find({},function(err,data_regras_algoritmo){
+						var data_atualizacao_r = data_regras_algoritmo[0].data_cadastro;
+						var dataFormatada_r = moment(data_atualizacao_r).utc().format('DD/MM/YYYY');
+						data[req.session.usuario.id+'_header_data_atualizada'] = dataFormatada_r;
 
-					usuarioStatusModel.find({id_usuario:mongoose.Types.ObjectId(req.session.usuario.id)},function(err,data_usuario_status){
-
-						var data_atualizacao_u = data_usuario_status[0].data_atualizacao;
-						var data_atualizacao_uf = moment(data_atualizacao_u).utc().format('DD/MM/YYYY');
-						data_usuario_status[0].data_atualizacao_f = data_atualizacao_uf;
-						data[req.session.usuario.id+'_usuario_status'] = data_usuario_status;
+						console.log('dataFormatada_r: ' + dataFormatada_r);
 
 
+						usuarioStatusModel.find({id_usuario:mongoose.Types.ObjectId(req.session.usuario.id)},function(err,data_usuario_status){
 
-						usuarioAlgoritmoHistoricoModel.find({id_usuario:mongoose.Types.ObjectId(req.session.usuario.id)},function(err,data_usuario_algoritmo_historico){
+							var data_atualizacao_u = data_usuario_status[0].data_atualizacao;
+							var data_atualizacao_uf = moment(data_atualizacao_u).utc().format('DD/MM/YYYY');
+							data_usuario_status[0].data_atualizacao_f = data_atualizacao_uf;
 
+							var valor_aplicado_u = data_usuario_status[0].valor_aplicado;
+							var valor_aplicado_uf = valor_aplicado_u.toLocaleString('pt-br', {minimumFractionDigits: 2});
+							data_usuario_status[0].valor_aplicado_f = valor_aplicado_uf;
 
-							var data_header_grafico = {}
+							data[req.session.usuario.id+'_usuario_status'] = data_usuario_status;
 
-
-
-							if(data_usuario_algoritmo_historico.length > 0 ){
-
-								var melhor,pior;
-								var meses_positivos = 0;
-								var meses_negativos = 0;
-								var numero_operacoes_t = 0;
-
-								for(i=0;i < data_usuario_algoritmo_historico.length; i++){
-
-									if(melhor == undefined){
-										melhor = data_usuario_algoritmo_historico[i].porcentagem;
-									}
-
-									if(pior == undefined){
-										pior = data_usuario_algoritmo_historico[i].porcentagem;
-									}
-
-									if(data_usuario_algoritmo_historico[i].porcentagem > melhor){
-										melhor = data_usuario_algoritmo_historico[i].porcentagem;
-									}
-
-									if(data_usuario_algoritmo_historico[i].porcentagem < pior){
-										pior = data_usuario_algoritmo_historico[i].porcentagem;
-									}
-
-									if(data_usuario_algoritmo_historico[i].porcentagem>0){
-										meses_positivos++;
-									}
-
-									if(data_usuario_algoritmo_historico[i].porcentagem < 0){
-										meses_negativos++;
-									}
-
-									numero_operacoes_t = numero_operacoes_t + data_usuario_algoritmo_historico[i].numero_operacoes;
-
-
+							//get do robo para identificar o nome para o usuário, regra de 1x1
+							usuarioRoboModel.aggregate([
+							{
+								$match:{id_usuario:mongoose.Types.ObjectId(req.session.usuario.id)}
+							},
+							{
+								$lookup:{
+									from:'robo',
+									localField:'id_robo',
+									foreignField:'_id',
+									as:'algoritmo'
 								}
 
-								var melhor_exib = melhor.toString().replace('.',',');
-								var pior_exib = pior.toString().replace('.',',');
-
-								data_header_grafico = {melhor:melhor,melhor_exib:melhor_exib,pior:pior,pior_exib:pior_exib,meses_positivos:meses_positivos,meses_negativos:meses_negativos,numero_operacoes:numero_operacoes_t};
-
-
-
-
-
-							}else{
-								data_header_grafico = {melhor:0,melhor_exib:0,pior:0,pior_exib:0,meses_positivos:0,meses_negativos:0,numero_operacoes:0};
 							}
 
-							data[req.session.usuario.id+'_usuario_grafico_header'] = data_header_grafico;
-							usuarioAlgoritmoHistoricoModel.find({id_usuario:mongoose.Types.ObjectId(req.session.usuario.id)},function(err,data_usuario_algoritmo_historico_3meses){
-
-								console.log('data_usuario_algoritmo_historico_3meses');
-								console.log(data_usuario_algoritmo_historico_3meses);
-
-								data[req.session.usuario.id+'_usuario_grafico']= data_usuario_algoritmo_historico_3meses;
-
-								//get do robo para identificar o nome para o usuário, regra de 1x1
-								usuarioRoboModel.aggregate([
-								{
-									$match:{id_usuario:mongoose.Types.ObjectId(req.session.usuario.id)}
-								},
-								{
-									$lookup:{
-										from:'robo',
-										localField:'id_robo',
-										foreignField:'_id',
-										as:'algoritmo'
-									}
-
-								}
-
-								]).exec(function(err,data_algoritmo){
-
-									console.log('ggggggggggggggggggggggggggggggggggg');
-									console.log(data_algoritmo);
-									console.log('ggggggggggggggggggggggggggggggggggg');
-
-									console.log(data_algoritmo[0].algoritmo[0].nome);
-
-									var preco_robo = formCurrency.format(data_algoritmo[0].algoritmo[0].preco);
-
-
-									data_algoritmo[0].algoritmo[0].preco_exib = preco_robo;
+							]).exec(function(err,data_algoritmo){
 
 
 
-									// console.log('ggggggggggg data_algoritmo[0] gggggggggggggg');
-									// console.log(data_algoritmo[0]);
+
+								console.log('ggggggggggggggggggggggggggggggggggg');
+								console.log(data_algoritmo[0]);
+								console.log('ggggggggggggggggggggggggggggggggggg');
+
+								console.log(data_algoritmo[0].algoritmo[0].nome);
+
+								var preco_robo = formCurrency.format(data_algoritmo[0].algoritmo[0].preco);
+
+								data_algoritmo[0].algoritmo[0].preco_exib = preco_robo;
+								data_algoritmo[0].rentabilidade_aa_exib = data_algoritmo[0].rentabilidade_aa.toString().replace('.',',');
+
+								data[req.session.usuario.id+'_usuario_algoritmo'] = data_algoritmo;
+
+								licencaModel.find({id_usuario:mongoose.Types.ObjectId(req.session.usuario.id)},function(err,data_licenca){
 
 
-									data_algoritmo[0].rentabilidade_aa_exib = data_algoritmo[0].rentabilidade_aa.toString().replace('.',',');
+									var data_agora = new Date();
+									var data_fim_licenca = data_licenca[0].data_fim;
+
+									const diferenca_tempo = data_fim_licenca - data_agora;
+									const diferenca_dias = Math.ceil(diferenca_tempo / (1000 * 60 * 60 * 24));
+
+									data_licenca[0].diferenca_dias = diferenca_dias;
 
 
+									data[req.session.usuario.id+'_usuario_licenca'] = data_licenca;
 
-									// console.log('preco_robo: ' + preco_robo);
+									console.log('ddddddddddddddddddddddd');
+									console.log(data);
+									console.log('ddddddddddddddddddddddd');
 
-									// console.log('qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq');
-									// console.log(data);
-									// console.log('qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq');
-
-
-									
-
-
-									data[req.session.usuario.id+'_usuario_algoritmo'] = data_algoritmo;
-
-									// req.session.destroy(function(err) {
-									// 	console.log(err);
-									// });
-
-									// res.redirect('/');
 									res.render(req.isAjaxRequest() == true ? 'api' : 'montador', {html: 'inicio/index',  data: data, usuario: req.session.usuario});
-								});
-							}).sort({'_id':-1}).limit(3);
-						});
-					}).sort({'_id':-1}).limit(1);
-});
-}).sort({'_id':-1}).limit(1);
-}).sort({'_id':-1}).limit(1);
+								}).sort({'_id':-1}).limit(1);
 
 
-}else if(req.session.usuario.nivel == 2){
-
-	usuarioStatusModel.find({id_usuario:mongoose.Types.ObjectId(req.session.usuario.id)},function(err,data_usuario_status){
-
-		var data_atualizacao_u = data_usuario_status[0].data_atualizacao;
-		var data_atualizacao_uf = moment(data_atualizacao_u).utc().format('DD/MM/YYYY');
-		data_usuario_status[0].data_atualizacao_f = data_atualizacao_uf;
-		data[req.session.usuario.id+'_usuario_status'] = data_usuario_status;
-
-
-		usuariosModel.find({id_parceiro:mongoose.Types.ObjectId(req.session.usuario.id)},function(err,data_usuarios){
-			data[req.session.usuario.id+'_usuarios']= data_usuarios;
-			console.log('-----------parceiro usuarios--------------------------------');
-			console.log(data_usuarios);
-			console.log('------------------------------------------------------------');
-
-			res.render(req.isAjaxRequest() == true ? 'api' : 'montador', {html: 'inicio/indexParceiro',  data: data, usuario: req.session.usuario});
+							});
+						}).sort({'_id':-1}).limit(1);
+					});
+				}).sort({'_id':-1}).limit(1);
+			}).sort({'_id':-1}).limit(1);
 
 		});
-	}).sort({'_id':-1}).limit(1);
 
 
-}else if(req.session.usuario.nivel == 1){
+	}else if(req.session.usuario.nivel == 1){
 
-	usuarioStatusModel.find({id_usuario:mongoose.Types.ObjectId(req.session.usuario.id)},function(err,data_usuario_status){
+		usuarioStatusModel.find({id_usuario:mongoose.Types.ObjectId(req.session.usuario.id)},function(err,data_usuario_status){
 
-		console.log('-------------------------------');
-		console.log(data_usuario_status);
-		console.log('----------- administracao ------')
+			console.log('-------------------------------');
+			console.log(data_usuario_status);
+			console.log('----------- administracao ------')
 
-		if(data_usuario_status.length > 0 ){
-			var data_atualizacao_u = data_usuario_status[0].data_atualizacao;
-			var data_atualizacao_uf = moment(data_atualizacao_u).utc().format('DD/MM/YYYY');
-			data_usuario_status[0].data_atualizacao_f = data_atualizacao_uf;
-		}
-
-		data[req.session.usuario.id+'_usuario_status'] = data_usuario_status;
-
-
-		usuariosModel.aggregate([
-		{
-			$match:{nivel:{$gt:1},deletado:false}
-		},
-		{
-			$lookup:{
-				from:'usuarios',
-				localField:'id_parceiro',
-				foreignField:'_id',
-				as:'parceiro'
-
-			}
-		},
-		{
-			$lookup:{
-				from:'usuario_corretora',
-				localField:'_id',
-				foreignField:'id_usuario',
-				as:'corretora'
+			if(data_usuario_status.length > 0 ){
+				var data_atualizacao_u = data_usuario_status[0].data_atualizacao;
+				var data_atualizacao_uf = moment(data_atualizacao_u).utc().format('DD/MM/YYYY');
+				data_usuario_status[0].data_atualizacao_f = data_atualizacao_uf;
 			}
 
-		},
-		{
-			$lookup:{
-				from:'usuario_status',
-				localField:'_id',
-				foreignField:'id_usuario',
-				as:'status'
+			data[req.session.usuario.id+'_usuario_status'] = data_usuario_status;
+
+
+			usuariosModel.aggregate([
+			{
+				$match:{nivel:{$gt:1},deletado:false}
+			},
+			{
+				$lookup:{
+					from:'usuarios',
+					localField:'id_parceiro',
+					foreignField:'_id',
+					as:'parceiro'
+
+				}
+			},
+			{
+				$lookup:{
+					from:'usuario_corretora',
+					localField:'_id',
+					foreignField:'id_usuario',
+					as:'corretora'
+				}
+
+			},
+			{
+				$lookup:{
+					from:'usuario_status',
+					localField:'_id',
+					foreignField:'id_usuario',
+					as:'status'
+				}
+			},
+			{
+				$lookup:{
+					from:'usuario_parametros_algoritmo',
+					localField:'_id',
+					foreignField:'id_usuario',
+					as:'parametros_algoritmo'
+				}
+
 			}
-		},
-		{
-			$lookup:{
-				from:'usuario_parametros_algoritmo',
-				localField:'_id',
-				foreignField:'id_usuario',
-				as:'parametros_algoritmo'
-			}
+			]).exec(function(err,data_usuarios){
 
-		}
-		]).exec(function(err,data_usuarios){
+				console.log('aaaaaaaaaaaaaaaaaaaaaaaaa administracao aaaaaaaaaaaaaaaaaaaaaa');
+				console.log(data_usuarios);
+				console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
+				data[req.session.usuario.id+'_usuarios']= data_usuarios;
+				res.render(req.isAjaxRequest() == true ? 'api' : 'montador', {html: 'administracao/status_usuarios',  data: data, usuario: req.session.usuario});
 
-			console.log('aaaaaaaaaaaaaaaaaaaaaaaaa administracao aaaaaaaaaaaaaaaaaaaaaa');
-			console.log(data_usuarios);
-			console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
-			data[req.session.usuario.id+'_usuarios']= data_usuarios;
-			res.render(req.isAjaxRequest() == true ? 'api' : 'montador', {html: 'administracao/administracao',  data: data, usuario: req.session.usuario});
-
-		});
-	}).sort({'_id':-1}).limit(1);
-}
+			});
+		}).sort({'_id':-1}).limit(1);
+	}
 });
 
 

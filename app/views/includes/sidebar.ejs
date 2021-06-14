@@ -1,6 +1,29 @@
 <nav id="sidebar" class="">        
 	<ul class="list-unstyled">
+
+		<%if(usuario.nivel != 1){%>
 		<li class="<%= data[usuario.id +'_numero_menu'] == 1 ? 'active' : ''%>"><a class="ajax-load" href="/plataforma/sistema"> <i class="fas fa-home"></i>Home </a></li>
+
+		<%}%>
+
+		<% if(usuario.nivel == 1){%>
+
+		<li class="sidebar_second">Administração</li>
+		<div class="sidebar_second_box">
+			<li class="<%= data[usuario.id +'_numero_menu'] == 1 ? 'active' : ''%>"><a class="ajax-load" href="/plataforma/sistema"> Status </a></li>
+
+			<li class="<%= data[usuario.id +'_numero_menu'] == 31 ? 'active' : ''%>">
+				<a class="ajax-load" href="/plataforma/sistema/administracao/usuarios"> Usuários </a>
+			</li>
+			
+		</div>
+
+
+		<%}%>
+
+
+
+
 		<li class="<%= data[usuario.id +'_numero_menu'] == 2 ? 'active' : ''%>" ><a class="ajax-load" href="/plataforma/sistema/automacao"> <i class="fas fa-hand-pointer"></i>Automação </a></li>
 
 		<% if(usuario.nivel == 4){ %>
@@ -9,6 +32,8 @@
 		<li class="<%= data[usuario.id +'_numero_menu'] == 13 ? 'active' : ''%>" ><a class="ajax-load" href="/plataforma/sistema/sistemas"> <i class="fas fa-dove"></i>Sistemas </a></li>
 
 		<%}%>
+
+
 
 
 		<li class="<%= data[usuario.id +'_numero_menu'] == 3 ? 'active' : ''%>" ><a class="ajax-load" href="/plataforma/sistema/upgrade"> <i class="fas fa-long-arrow-alt-up"></i>Upgrade </a></li>

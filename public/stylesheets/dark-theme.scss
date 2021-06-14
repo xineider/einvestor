@@ -1336,111 +1336,7 @@ nav#sidebar .sidebar-suporte{
 }
 
 
-@media (min-width: 480px){
-	.logout_header,.minha_conta_header{
-		display: block;
-	}
 
-	.sidemenu_item_hide{
-		display: none;
-	}
-
-
-}
-
-@media (min-width: 608px){
-	.whatsapp-popup-qrcode{		
-		width: 200px;
-	}
-}
-
-@media (min-width: 768px){
-	.landpage_seguranca_image{
-		margin-top:-60px;
-	}
-}
-
-@media (min-width: 949px){
-	.escolha_algoritmo_barras_box{
-		height: 70px;
-		display: flex;
-	}
-
-	.escolha_algoritmo_barras_progress{
-		height:100%;
-		width: 80%;
-	}
-
-
-	.barra_maximo_rebaixamento{
-		border-radius:20px 0 0 20px;
-		border-right-color:transparent;
-		float: left;
-	}
-
-
-	.barra_media_rentabilidade{
-		border-radius:0 20px 20px 0px;
-		border-left-color:transparent;
-		float: left;
-		width: 65%;
-		margin-left: 5px;
-	}
-
-	.escolha_algoritmo_assinar_box{
-		width: 20%;
-		height: 100%;
-		margin-top:0px;
-	}
-
-	.escolha_algoritmo .escolha_algoritmo_lookout_image{
-		position: absolute;
-		z-index: 2;
-		margin-top: -150px;
-	}
-}
-
-@media(min-width: 699px){
-	.sidebar-landpage-toggle{
-		display: none;
-	}
-
-	.landpage_navbar_item{
-		display: inline-block;
-	}
-
-	.landpage_navbar_item_f{
-		display: flex;
-	}
-
-}
-
-
-@media (min-width: 1200px){
-	.sidebar-toggle{
-		display: none;
-	}
-
-	.header .header-items{
-		margin-right: 15px;
-	}
-}
-
-@media (min-width: 1200px){
-	.status_header{
-		display: flex;
-		font-size: 12px;
-		text-align: center;
-	}
-}
-
-
-@media (min-width: 1600px){
-	.col-xxl-3{
-		flex: 0 0 25%;
-		max-width: 25%;
-	}
-}
 
 nav#sidebar.menu_mobile{
 	position: absolute;
@@ -1632,7 +1528,7 @@ a.d-block:hover,a.d-block{
 		display: inline-block;
 		float: left;
 		background: #fff;
-		height: 250px;
+		height: 244px;
 
 		img{
 			width: 170px;
@@ -1743,4 +1639,181 @@ a.d-block:hover,a.d-block{
 		}
 	}
 
+}
+
+
+.sidebar_second{
+	margin-left:10px;
+	font-weight: bold;
+}
+
+
+.alert-icon-box-licenca{
+	position:absolute;
+	left:0;
+	top:0;
+	margin-top:10px;
+	margin-left:10px;
+
+	i{
+		font-size: 24px;
+			display: none;
+	}
+
+
+}
+
+.alert-licenca{
+	background:#e6e6e6;
+
+	.alert-icon-box-licenca{
+		i{
+			color: #ffa500;
+		}
+	}
+}
+
+.alert-danger{
+
+	.alert-icon-box-licenca{
+		i{
+			color: #ff6e7b;		
+		}
+	}
+
+
+}
+
+
+.btn-green{
+	background:#399c19;
+	color: #fff;
+
+	&:hover{
+		background: #2a820d;
+	}
+
+
+
+}
+
+
+.border-radius-20{
+	border-radius: 20px;;
+}
+
+
+@media (min-width: 480px){
+	.logout_header,.minha_conta_header{
+		display: block;
+	}
+
+	.sidemenu_item_hide{
+		display: none;
+	}
+
+
+}
+
+@media (min-width: 608px){
+	.whatsapp-popup-qrcode{		
+		width: 200px;
+	}
+}
+
+@media (min-width: 768px){
+	.landpage_seguranca_image{
+		margin-top:-60px;
+	}
+}
+
+@media (min-width: 949px){
+	.escolha_algoritmo_barras_box{
+		height: 70px;
+		display: flex;
+	}
+
+	.escolha_algoritmo_barras_progress{
+		height:100%;
+		width: 80%;
+	}
+
+
+	.barra_maximo_rebaixamento{
+		border-radius:20px 0 0 20px;
+		border-right-color:transparent;
+		float: left;
+	}
+
+
+	.barra_media_rentabilidade{
+		border-radius:0 20px 20px 0px;
+		border-left-color:transparent;
+		float: left;
+		width: 65%;
+		margin-left: 5px;
+	}
+
+	.escolha_algoritmo_assinar_box{
+		width: 20%;
+		height: 100%;
+		margin-top:0px;
+	}
+
+	.escolha_algoritmo .escolha_algoritmo_lookout_image{
+		position: absolute;
+		z-index: 2;
+		margin-top: -150px;
+	}
+}
+
+
+
+
+@media(min-width: 699px){
+	.sidebar-landpage-toggle{
+		display: none;
+	}
+
+	.landpage_navbar_item{
+		display: inline-block;
+	}
+
+	.landpage_navbar_item_f{
+		display: flex;
+	}
+
+}
+
+
+@media (min-width: 1200px){
+	.sidebar-toggle{
+		display: none;
+	}
+
+	.header .header-items{
+		margin-right: 15px;
+	}
+
+	.alert-icon-box-licenca i{
+		display: block;		
+	}
+}
+
+
+
+@media (min-width: 1200px){
+	.status_header{
+		display: flex;
+		font-size: 12px;
+		text-align: center;
+	}
+}
+
+
+@media (min-width: 1600px){
+	.col-xxl-3{
+		flex: 0 0 25%;
+		max-width: 25%;
+	}
 }

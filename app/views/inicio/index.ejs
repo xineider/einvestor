@@ -12,6 +12,77 @@
 		<%- include('popup_termos_uso');%>
 
 
+
+		<%if (typeof data[usuario.id +'_usuario'][0].gratis != 'undefined'){%>
+
+		<%if (typeof data[usuario.id +'_usuario'][0].licenca_pedido_ativacao != 'undefined'){%>
+
+		<% if(data[usuario.id +'_usuario'][0].licenca_pedido_ativacao == true){%>
+
+
+		<section class="no-padding-bottom">
+			<div class="container-fluid">
+
+
+
+				
+
+				<div class="alert <%= data[usuario.id +'_usuario_licenca'][0].diferenca_dias > 0 ? 'alert-licenca' : 'alert-danger' %> text-center">
+
+					<div class="alert-icon-box-licenca">
+						<i class="fas fa-exclamation-triangle"></i>
+					</div>
+
+					Olá <%= data[usuario.id +'_usuario'][0].nome %>, seu sistema requer atenção! Seu período de teste gratuito da licença <%= data[usuario.id +'_usuario_status'][0].nome_algoritmo_escolhido %> <%if(data[usuario.id +'_usuario_licenca'][0].diferenca_dias > 0){ %> expira em <%= data[usuario.id +'_usuario_licenca'][0].diferenca_dias %> dias. <%}else{%> expirou! <%}%><br> Clique na opção desejada, ou entre em contato com o <a target="_blank" href="https://web.whatsapp.com/send?phone=5548991234551">suporte</a>.
+
+
+
+					<div class="row">
+
+						<div class="col-sm-12 col-md-6">
+							<div class="margin-t-20"><strong>Licença Vigente: (E-I 024)</strong></div>
+
+							<div>
+								<button class="btn btn-green border-radius-20 ajax-submit-other-link margin-t-10" data-link="<%= data[usuario.id +'_usuario_algoritmo'][0].algoritmo[0].link_update %>" data-href="/plataforma/sistema/upgrade/usuario_deseja_upgrade/<%=data[usuario.id +'_usuario_algoritmo'][0].algoritmo[0].valor%>/<%= data[usuario.id +'_usuario_status'][0].valor_aplicado %>/<%=data[usuario.id +'_usuario_algoritmo'][0].rentabilidade_aa%>"><%=data[usuario.id +'_usuario_algoritmo'][0].algoritmo[0].preco_exib%>/mês</button>
+
+							</div>
+
+						</div>
+
+						<div class="col-sm-12 col-md-6">
+							<div class="margin-t-20"><strong>Upgrade:</strong></div>
+
+							<a class="btn border-radius-20 btn-primary ajax-load margin-t-10" href="/plataforma/sistema/upgrade">Clique aqui</a>
+						</div>
+
+					</div>
+
+
+				</div>
+
+
+
+
+				
+
+			</div>
+
+
+
+		</section>
+
+		<%}%>
+
+
+		<%}%>
+
+
+		<%}%>
+
+
+
+
+
 		<section class="no-padding-bottom">
 			<div class="container-fluid">
 				<div class="card margin-b-10">
@@ -46,6 +117,12 @@
 
 
 
+
+
+
+
+
+
 	</div>
 
 
@@ -54,11 +131,11 @@
 		$('.slide-item').slick({
 			dots: false
 		});
-	
+
 	</script>
 
 
-		
 
 
-	</div>
+
+</div>

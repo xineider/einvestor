@@ -1,0 +1,202 @@
+<%- include('../includes/navbar'); %>
+
+<div class="flex align-items-stretch">
+
+	<%- include('../includes/sidebar'); %>
+	<% if(usuario.nivel == 1){%>
+
+
+	<div class="page-content">
+
+
+		<section class="no-padding-bottom">
+			<div class="container-fluid">
+				<div class="card">
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="padding-20">
+								<h4>
+									Usuários							
+								</h4>
+
+								<a class="btn btn-primary ajax-load margin-t-10 margin-r-10 width100-mobile" href="/plataforma/sistema/administracao/adicionar-usuario/" >
+									Adicionar Usuário
+								</a>
+
+
+								<table class="table centered highlight responsive-table cell-border tabela_filtrada" id="tabela_administracao">
+									<thead>
+										<tr>
+											<th>Nome</th>
+											<th>E-mail</th>
+											<th>Parceiro</th>
+											<th>Status Pagto</th>
+											<th>Status Conta</th>
+											<th>Grátis</th>
+											<th>Data Cadastro</th>
+											<th>Data Fim Licença</th>					
+											<th>Ações</th>
+										</tr>
+									</thead>
+									<tbody>
+										<%
+										if (typeof data[usuario.id +'_usuarios'] != 'undefined' && data[usuario.id +'_usuarios'].length > 0) {
+											for (var i = 0 ; i < data[usuario.id +'_usuarios'].length; i++) {
+											%>
+											<tr>
+												<td>
+													<%= data[usuario.id +'_usuarios'][i].nome %>
+												</td>
+												<td>
+													<%= data[usuario.id +'_usuarios'][i].email %>
+												</td>
+												<td>
+													<%if( data[usuario.id +'_usuarios'][i].parceiro.length > 0){%>
+													<%= data[usuario.id +'_usuarios'][i].parceiro[0].nome %>
+													<%}%>
+												</td>
+												<td>
+
+													<%if(data[usuario.id +'_usuarios'][i].status.length > 0){%>
+
+													<span class="<%= data[usuario.id +'_usuarios'][i].status[0].pagamento == true ? 'green-text' : 'red-text' %>">
+														<%= data[usuario.id +'_usuarios'][i].status[0].pagamento == true ? 'OK' : 'Not Ok' %>
+
+
+
+													</span>
+													<%}%>
+
+												</td>
+												<td>
+													<%if(data[usuario.id +'_usuarios'][i].status.length > 0){%>
+													<span class="<%=data[usuario.id +'_usuarios'][i].status[0].conta == 'Sincronizada' ? 'green-text' : data[usuario.id +'_usuarios'][i].status[0].conta == 'Sincronizando' ? 'orange-text' : 'red-text' %>">
+														<%=data[usuario.id +'_usuarios'][i].status[0].conta%>
+													</span>
+
+													<%}%>
+												</td>
+
+
+												<td>
+													<%if (typeof data[usuario.id +'_usuarios'][i].gratis != 'undefined'){%>
+													<span class="<%= data[usuario.id +'_usuarios'][i].gratis == true ? 'orange-text' : 'green-text' %>">
+														<%= data[usuario.id +'_usuarios'][i].gratis == true ? 'Sim' : 'Não'%>
+													</span>
+
+													<%if (typeof data[usuario.id +'_usuarios'][i].licenca_pedido_ativacao != 'undefined'){%>
+													
+
+													
+													<br>Enviado Pedido de Licença? <br> 
+													<strong>
+														<%= data[usuario.id +'_usuarios'][i].licenca_pedido_ativacao == true ? 'Sim' : 'Não'%>
+													</strong>
+
+
+													<%}%>
+
+													<%}%>
+
+
+												</td>
+
+												<td>
+
+													<span class="none"><%= data[usuario.id +'_usuarios'][i].data_cadastro %></span>
+
+													<%= data[usuario.id +'_usuarios'][i].data_cadastro_f %>
+												</td>
+
+												<td>
+
+													<% if(data[usuario.id +'_usuarios'][i].licenca.length > 0){%>
+													<span class="none"><%= data[usuario.id +'_usuarios'][i].licenca[0].data_fim %></span>
+
+													<%= data[usuario.id +'_usuarios'][i].licenca[0].data_fim_f %>
+
+													<%}%>
+												</td>
+
+
+												<td>
+													<button class="btn btn-primary modal-mount margin-t-10 margin-r-10 width100-mobile" data-modal='#modalinfo' data-link="/plataforma/sistema/administracao/popup-alterar-senha/<%= data[usuario.id +'_usuarios'][i]._id%>" >
+														Alterar Senha
+													</button>
+
+													<button class="btn btn-primary modal-mount margin-t-10 margin-r-10 width100-mobile" data-modal='#modalinfo' data-link="/plataforma/sistema/administracao/popup-excluir-usuario/<%= data[usuario.id +'_usuarios'][i]._id%>" >
+														Excluir Usuário
+													</button>
+
+													<a class="btn btn-primary ajax-load margin-t-10 margin-r-10 width100-mobile" href="/plataforma/sistema/administracao/alterar-usuario/<%= data[usuario.id +'_usuarios'][i]._id%>" >
+														Alterar Usuário
+													</a>
+
+
+													<button class="btn btn-primary modal-mount margin-t-10 margin-r-10 width100-mobile" data-modal='#modalinfo' data-link="/plataforma/sistema/administracao/popup-ativacao-licenca/<%= data[usuario.id +'_usuarios'][i]._id%>" >
+														Enviar Mensagem Ativação Licença
+													</button>
+
+
+
+												</td>
+
+											</tr>
+											<%
+										}
+									}
+								%>
+							</tbody>
+						</table>
+
+
+					</div>
+				</div>
+
+
+			</div>
+		</div>
+	</div>
+</section>
+
+
+
+<section class="no-padding-bottom">
+	<div class="container-fluid">
+
+		<div class="row">
+			<div class="col-sm-12 col-md-6">
+				<div class="card">
+					<h5>Criador de Cupons</h5>
+
+
+
+
+				</div>
+
+
+			</div>
+		</div>
+	</div>
+</section>
+
+
+
+</div>
+
+
+
+
+<%}else{%>
+<div class="page-content">
+	<div class="container-fluid">
+		<div class="alert error-block margin-t-10">
+			Você não pode acessar essa página!
+		</div>
+	</div>
+</div>
+
+
+<%}%>
+
+</div>
