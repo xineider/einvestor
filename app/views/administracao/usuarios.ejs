@@ -133,9 +133,14 @@
 													</a>
 
 
+													<%if (typeof data[usuario.id +'_usuarios'][i].licenca_pedido_ativacao == 'undefined'){%>
+
+
 													<button class="btn btn-primary modal-mount margin-t-10 margin-r-10 width100-mobile" data-modal='#modalinfo' data-link="/plataforma/sistema/administracao/popup-ativacao-licenca/<%= data[usuario.id +'_usuarios'][i]._id%>" >
 														Enviar Mensagem Ativação Licença
 													</button>
+
+													<%}%>
 
 
 

@@ -964,14 +964,14 @@ router.post('/ativacao-licenca-usuario', function(req, res, next) {
 				"<br><br><span>Algo errado? Entre em contato conosco respondendo este e-mail.</span>"+ rodape_email_t;
 
 
-				//control.SendMail(data_usuario.email, titulo ,text,html);
+				control.SendMail(data_usuario.email, titulo ,text,html);
 				control.SendMail('suporte@einvestor.com.br', titulo ,text,html);
 
 
-			// usuariosModel.findOneAndUpdate({'_id':POST.id_usuario},{'$set':{'licenca_pedido_ativacao':true}},function(err){
-			// 	res.json(data);
-			// });
-		}).sort({'_id':-1}).limit(1);
+				usuariosModel.findOneAndUpdate({'_id':POST.id_usuario},{'$set':{'licenca_pedido_ativacao':true}},function(err){
+					res.json(data);
+				});
+			}).sort({'_id':-1}).limit(1);
 		}).sort({'_id':-1}).limit(1);
 	});
 });
