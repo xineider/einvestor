@@ -25,9 +25,24 @@
 								<h5 class="text-center">Minha Conta</h5>
 								<div class="block-body">
 									<div class="text-center margin-t-10">
+
+										<%if (typeof data[usuario.id +'_usuario_t'][0].cnpj != 'undefined'){%>
+										<span class="margin-l-5">Nome da Empresa:</span>
+
+										<%}else{%>
 										<span class="margin-l-5">Nome:</span>
+
+										<%}%>
 										<%=data[usuario.id +'_usuario_t'][0].nome%>
 									</div>
+
+									<%if (typeof data[usuario.id +'_usuario_t'][0].cnpj != 'undefined'){%>
+									<div class="text-center margin-t-10">
+										<span class="margin-l-5">CNPJ:</span>
+										<%=data[usuario.id +'_usuario_t'][0].cnpj%>
+									</div>
+
+									<%}%>
 
 									<div class="text-center margin-t-10">
 										<span class="margin-l-5">E-mail:</span>
@@ -38,6 +53,14 @@
 										<span class="margin-l-5">Telefone:</span>
 										<%=data[usuario.id +'_usuario_t'][0].telefone%>
 									</div>
+
+									<%if (typeof data[usuario.id +'_usuario_t'][0].cnpj != 'undefined'){%>
+									<div class="text-center margin-t-10">
+										<span class="margin-l-5">Responsável Legal:</span>
+										<%=data[usuario.id +'_usuario_t'][0].responsavel_legal%>
+									</div>
+
+									<%}%>
 
 									<div class="text-center margin-t-10">
 										<span class="margin-l-5">CPF:</span>

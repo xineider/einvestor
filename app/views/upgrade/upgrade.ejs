@@ -10,6 +10,37 @@
 		<%- include('../inicio/primeira_vez'); %>
 		<%- include('../inicio/popup_termos_uso');%>
 
+
+
+		<%if (typeof data[usuario.id +'_usuario_u'][0].cnpj != 'undefined'){%>
+
+		<section class="margin-bottom-sm">
+			<div class="container-fluid">
+				<div class="card">
+
+					<div class="text-center margin-t-10 margin-b-10 f24">
+						Por-favor entrar em contato com o <a target="_blank" href="https://web.whatsapp.com/send?phone=5548991234551">suporte</a> para que haja a possibilidade de upgrade!
+
+						<div class="primary-text">47 99123-4551</div>
+
+						<div class="text-center">
+							<img style="width: 150px;height:150px;" src="/public/images/qr_code_whatsapp.png">
+						</div>
+
+
+
+					</div>
+
+				</div>
+
+			</div>
+		</section>
+
+
+
+		<%}else{%>
+
+
 		<section class="margin-bottom-sm">
 			<div class="container-fluid">
 				<div class="card">
@@ -57,7 +88,7 @@
 								<div class="col-sm-12 col-md-8">
 
 
-									Capital: R$<span id="capital_inicial"><%= data[usuario.id +'_usuario_status'][0].valor_aplicado_f %></span>
+									<span class="f24">Capital: R$<span id="capital_inicial"><%= data[usuario.id +'_usuario_status'][0].valor_aplicado_f %></span></span>
 
 									<form>
 										<div class="form-group">
@@ -117,6 +148,9 @@
 				</div>
 			</div>
 		</section>
+
+
+		<%}%>
 
 	</div>
 

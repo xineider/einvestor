@@ -172,21 +172,31 @@ router.post('/enviar-formulario-conhecer', function(req, res, next) {
 		pretencao_investimento = 0;
 	}
 
-	var possui_30_dias = 'normal';
+	var possui_30_dias = 'erro';
+
+	var acess_key = POST.acess_key.trim();
+
+	console.log('acess_key:'+acess_key);
+
+	if(acess_key == ''){
+		possui_30_dias = 'normal';
+	}
 
 
-	if(POST.acess_key == 'einvestor30g' || POST.acess_key == 'investor30'){
+	if(acess_key == 'einvestor30g' || acess_key == 'investor30'){
 		console.log('é igual ao acess key');
 		possui_30_dias = 'gratis';
 	}
 
-	if(POST.acess_key === 'investor3080'){
+	if(acess_key === 'investor3080'){
 		possui_30_dias = 'gratis_80'
 	}
 
-	if(POST.acess_key == 'freeinvestor'){
+	if(acess_key == 'freeinvestor'){
 		possui_30_dias = 'freeinvestor';
 	}
+
+	console.log('possui_30_dias: ' + possui_30_dias);
 
 	console.log('novo_contato');
 	console.log(novo_contato);
@@ -368,16 +378,30 @@ router.post('/enviar-formulario-conhecer-empresa', function(req, res, next) {
 		pretencao_investimento = 100000000;
 	}
 
-	var possui_30_dias = 'normal';
+	var possui_30_dias = 'erro';
+
+	var acess_key = POST.acess_key.trim();
+
+	console.log('acess_key:'+acess_key);
+
+	if(acess_key == ''){
+		possui_30_dias = 'normal';
+	}
 
 
-	if(POST.acess_key == 'einvestor30g'){
+	if(acess_key == 'einvestor30g' || acess_key == 'investor30'){
 		console.log('é igual ao acess key');
 		possui_30_dias = 'gratis';
 	}
-	if(POST.acess_key == 'freeinvestor'){
+
+	if(acess_key === 'investor3080'){
+		possui_30_dias = 'gratis_80'
+	}
+
+	if(acess_key == 'freeinvestor'){
 		possui_30_dias = 'freeinvestor';
 	}
+
 
 
 	console.log('novo_contato');

@@ -106,12 +106,20 @@ router.get('/', function(req, res, next) {
 						regrasAlgoritmoModel.find({deletado:false},function(err,data_regras_algoritmo){
 							data[req.session.usuario.id+'_regras_algoritmo'] = data_regras_algoritmo;
 
+							usuarioModel.find({'_id':mongoose.Types.ObjectId(req.session.usuario.id)},function(err,data_usuario_u){
+								console.log('uuuuuuuu data_usuario uuuuuu');
+								console.log(data_usuario_u);
+								console.log('uuuuuuuuuuuuuuuuuuuuuuuuuuuu');
 
-							console.log('wwwwwwwwwwwwwwwwwwwww');
-							console.log(data);
-							console.log('wwwwwwwwwwwwwwwwwwwww');
+								data[req.session.usuario.id+'_usuario_u'] = data_usuario_u;
 
-							res.render(req.isAjaxRequest() == true ? 'api' : 'montador', {html: 'upgrade/upgrade', data: data, usuario: req.session.usuario});
+								console.log('wwwwwwwwwwwwwwwwwwwww');
+								console.log(data);
+								console.log('wwwwwwwwwwwwwwwwwwwww');
+								res.render(req.isAjaxRequest() == true ? 'api' : 'montador', {html: 'upgrade/upgrade', data: data, usuario: req.session.usuario});
+
+							}).sort({'_id':-1}).limit(1);
+
 						}).sort({'_id':-1}).limit(1);
 					}).sort({'_id':-1});
 				}).sort({'_id':-1}).limit(1);

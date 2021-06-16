@@ -159,7 +159,7 @@
 					<div class="col-sm-12 col-md-8">
 
 
-						Capital: R$<span id="capital_inicial"></span>
+						<span class="f24">Capital: R$<span id="capital_inicial"></span></span>
 
 						<span class="none voce_possui_30_dias_gratuitos primary-text"></span>
 
@@ -347,7 +347,7 @@
 				var capital = data.pretencao_investimento;
 
 
-				if(capital>0){
+				if(capital>0 && data.possui_30dias != 'erro'){
 					$(element).removeClass('none');
 					$('html,body').animate({
 						scrollTop: $(element).offset().top},
@@ -393,6 +393,12 @@
 					$('.mensagem_agredecimento_formulario').addClass('none');
 
 
+				}else if(data.possui_30dias == 'erro'){
+					console.log('cai no erro!');
+					$(element).addClass('none');
+					$('.mensagem_agredecimento_formulario').addClass('none');
+
+					$("input[name='acess_key']").focus().addClass('observe-post').parent().append('<div class="error text-center"> Access Key Inválido </div>');
 				}else{
 					$(element).addClass('none');
 					$('.mensagem_agredecimento_formulario').removeClass('none');
