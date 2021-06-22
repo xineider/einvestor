@@ -20,6 +20,8 @@ var usuarioParametrosAlgoritmoModel = require('../model/usuarioParametrosAlgorit
 
 var licencaModel = require('../model/licencaModel.js');
 
+var tokenModel = require('../model/tokenModel.js');
+
 var usuarioStatusModel = require('../model/usuarioStatusModel.js');
 var moment = require('moment');
 moment.locale('pt-br');
@@ -198,7 +200,71 @@ router.get('/usuarios', function(req, res, next) {
 	}).sort({'_id':-1}).limit(1);
 });
 
+router.get('/token', function(req, res, next) {
 
+	console.log('estou aqui no usuarios ..............................');
+
+	console.log('.....................................................');
+
+	usuarioStatusModel.find({id_usuario:mongoose.Types.ObjectId(req.session.usuario.id)},function(err,data_usuario_status){
+
+		var data_atualizacao_u = data_usuario_status[0].data_atualizacao;
+		var data_atualizacao_uf = moment(data_atualizacao_u).utc().format('DD/MM/YYYY');
+		data_usuario_status[0].data_atualizacao_f = data_atualizacao_uf;
+		data[req.session.usuario.id+'_usuario_status'] = data_usuario_status;
+
+
+		data.link_sistema = '/sistema';
+		data[req.session.usuario.id+'_numero_menu'] = 32;
+
+		var data_agora = new Date();
+
+
+		tokenModel.find({deletado:false,data_fim:{$gte:data_agora}},function(err,data_token){
+			console.log('nnnnnnnnnnnnnn data_token nnnnnnnnnnnnnnnnn');
+			console.log(data_token);
+			console.log('nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn');
+
+
+			for(i=0; i<data_token.length;i++){
+				var data_inicio = new Date(data_token[i].data_inicio);
+				var data_fim = new Date(data_token[i].data_fim);
+
+				var dia_i = data_inicio.getDate();
+				var dia_f = data_fim.getDate();
+
+				console.log('dia_f: ' + dia_f);
+
+				var mes_i = data_inicio.getMonth() + 1;
+				var mes_f = data_fim.getMonth() + 1;
+
+				if(dia_i < 10){
+					dia_i = '0' + dia_i;
+				}
+
+				if(dia_f < 10){
+					dia_f = '0' + dia_f;
+				}
+
+				if(mes_i < 10){
+					mes_i = '0' + mes_i;
+				}
+
+				if(mes_f < 10){
+					mes_f = '0' + mes_f;
+				}
+
+				var data_i = dia_i + '/' + mes_i + '/' + data_inicio.getFullYear();
+				var data_f = dia_f + '/' + mes_f + '/' + data_fim.getFullYear();
+				data_token[i].data_inicio_f = data_i;
+				data_token[i].data_fim_f = data_f;
+			}
+
+			data[req.session.usuario.id+'_token']= data_token;
+			res.render(req.isAjaxRequest() == true ? 'api' : 'montador', {html: 'administracao/token/token',  data: data, usuario: req.session.usuario});
+		}).sort({'_id':-1});
+	}).sort({'_id':-1}).limit(1);
+});
 
 
 
@@ -265,22 +331,20 @@ router.post('/enviar-token', function(req, res, next) {
 	console.log(POST);
 	console.log('eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee');
 
-	var token = POST.token.trim();
-
-	console.log(token);
-
 	var array_letras_maius = ['A','B','C','D','E','F','G','H','J','K','M','P','Q','R','S','T','U','X','Y','Z'];
 	var array_letras_minus = ['a','b','c','d','e','f','g','h','j','k','m','p','q','r','s','t','u','x','y','z'];
 
-	var data_inicio = new Date();
+	var data_inicio = new Date(2021,5,24);
 	data_inicio.setHours(0,0,0,0);
 	var data_fim = new Date();
 	data_fim.setHours(0,0,0,0);
 
-	var data_base = new Date();
+	var data_base = new Date(2021,5,24);
 	data_base.setHours(0,0,0,0);
 
 	console.log('data_base:' + data_base);
+
+	var array_insertMany = [];
 
 	for(i = 2; i<20;i = i+2){
 
@@ -306,11 +370,10 @@ router.post('/enviar-token', function(req, res, next) {
 
 
 		console.log('new_token: ' + new_token);
-		console.log('data_fim: ' + data_fim);
 		console.log('data_inicio:' + data_inicio);
+		console.log('data_fim: ' + data_fim);
 
-
-		const novo_token = new tokenModel({ 						
+		array_insertMany.push({
 			token:new_token,
 			data_inicio: data_inicio,
 			data_fim: data_fim,
@@ -318,19 +381,31 @@ router.post('/enviar-token', function(req, res, next) {
 			data_cadastro:new Date()
 		});
 
-		console.log(novo_token);
+		// console.log('======================================');
+		// console.log(array_insertMany);
+		// console.log('======================================');
 
-		console.log('----------------------------------------');
+		// const novo_token = new tokenModel({ 						
+		// 	token:new_token,
+		// 	data_inicio: data_inicio,
+		// 	data_fim: data_fim,
+		// 	deletado:false,
+		// 	data_cadastro:new Date()
+		// });
+
+		// console.log(novo_token);
+
+		// console.log('----------------------------------------');
 
 
 
-		novo_token.save(function (err) {
-			if (err) {
-				return handleError(err);
-			}else{
+		// novo_token.save(function (err) {
+		// 	if (err) {
+		// 		return handleError(err);
+		// 	}else{
 
-			}
-		});
+		// 	}
+		// });
 
 		
 
@@ -348,6 +423,10 @@ router.post('/enviar-token', function(req, res, next) {
 
 
 	}
+
+	console.log('--------insert many -------');
+	console.log(array_insertMany);
+	console.log('---------------------------');
 
 
 

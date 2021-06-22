@@ -1,0 +1,91 @@
+<%- include('../../includes/navbar'); %>
+
+<div class="flex align-items-stretch">
+
+	<%- include('../../includes/sidebar'); %>
+	<% if(usuario.nivel == 1){%>
+
+
+	<div class="page-content">
+
+
+		<section class="no-padding-bottom">
+			<div class="container-fluid">
+				<div class="card">
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="padding-20">
+								<h4>
+									Token							
+								</h4>
+
+<!-- 								<button class="btn btn-primary ajax-submit margin-t-10 margin-r-10 width100-mobile" data-href="/plataforma/sistema/administracao/enviar-token/" >
+									Adicionar Token
+								</button> -->
+
+
+								<table class="table centered highlight responsive-table cell-border tabela_filtrada" id="tabela_administracao">
+									<thead>
+										<tr>
+											<th>Token</th>
+											<th>Data Ínicio</th>
+											<th>Data Fim</th>
+										</tr>
+									</thead>
+									<tbody>
+
+										<%
+										if (typeof data[usuario.id +'_token'] != 'undefined' && data[usuario.id +'_token'].length > 0) {
+											for (var i = 0 ; i < data[usuario.id +'_token'].length; i++) {
+											%>
+											<tr>
+												<td>
+													<%= data[usuario.id +'_token'][i].token %>
+												</td>
+												<td>
+													<%= data[usuario.id +'_token'][i].data_inicio_f %>
+												</td>
+												<td>
+													<%= data[usuario.id +'_token'][i].data_fim_f %>
+												</td>
+
+											</tr>
+											<%}
+										}%>
+
+
+
+
+									</tbody>
+								</table>
+
+
+							</div>
+						</div>
+
+
+					</div>
+				</div>
+			</div>
+		</section>
+
+
+
+	</div>
+
+
+
+
+	<%}else{%>
+	<div class="page-content">
+		<div class="container-fluid">
+			<div class="alert error-block margin-t-10">
+				Você não pode acessar essa página!
+			</div>
+		</div>
+	</div>
+
+
+	<%}%>
+
+</div>
