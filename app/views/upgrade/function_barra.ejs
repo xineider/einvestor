@@ -43,12 +43,12 @@ if (typeof data[usuario.id +'_algoritmo'] != 'undefined' && data[usuario.id +'_a
 			//if(capital == <%=data[usuario.id +'_usuario_status'][0].valor_aplicado%>){
 				//var botao_assinar = '<div class="primary-background border-radius-10 inline padding-10 white-text">Assinado</div>';
 			//}else{
-			var botao_assinar = '<form><button class="btn btn-assinar-algoritmo ajax-submit-other-link" data-link="<%= data[usuario.id +'_algoritmo'][i].link_pagamento %>" data-href="/plataforma/sistema/upgrade/usuario_deseja_upgrade/<%= data[usuario.id +'_algoritmo'][i].valor %>/'+capital+'/'+rentabilidade_aa_f1+'">'+'Assinar <br>'+preco_robo + '/mês' +'</button></form>';
+			var botao_assinar = '<form><button class="btn btn-assinar-algoritmo ajax-submit-other-link" data-link="<%= data[usuario.id +'_algoritmo'][i].link_update %>" data-href="/plataforma/sistema/upgrade/usuario_deseja_upgrade/<%= data[usuario.id +'_algoritmo'][i].valor %>/'+capital+'/'+rentabilidade_aa_f1+'">'+'Assinar <br>'+preco_robo + '/mês' +'</button></form>';
 			//}
 
 
 		<%}else{%>
-			var botao_assinar = '<form><button class="btn btn-assinar-algoritmo ajax-submit-other-link" data-link="<%= data[usuario.id +'_algoritmo'][i].link_pagamento %>" data-href="/plataforma/sistema/upgrade/usuario_deseja_upgrade/<%= data[usuario.id +'_algoritmo'][i].valor %>/'+capital+'/'+rentabilidade_aa_f1+'">'+'Assinar <br>'+preco_robo + '/mês' +'</button></form>';
+			var botao_assinar = '<form><button class="btn btn-assinar-algoritmo ajax-submit-other-link" data-link="<%= data[usuario.id +'_algoritmo'][i].link_update %>" data-href="/plataforma/sistema/upgrade/usuario_deseja_upgrade/<%= data[usuario.id +'_algoritmo'][i].valor %>/'+capital+'/'+rentabilidade_aa_f1+'">'+'Assinar <br>'+preco_robo + '/mês' +'</button></form>';
 
 		<%}%> 
 		
