@@ -1025,21 +1025,16 @@ router.post('/ativacao-licenca-usuario', function(req, res, next) {
 				console.log(data_usuario_status);
 
 
-				var titulo = 'Olá ' + data_usuario.nome + ' sua licença expira em ' + diferenca_dias + ' dias';
+				var titulo = 'Olá ' + data_usuario.nome + ' sua licença expira hoje';
 
 				var html = cabecalho_email +
-				"<b>Olá " + data_usuario.nome + ", seu sistema requer atenção! Seu período de teste gratuito da licença " + data_usuario_status[0].nome_algoritmo_escolhido +" expira em "+diferenca_dias+" dias entre em contato com o <a target='_blank' href='https://web.whatsapp.com/send?phone=5548991234551'>suporte</a> para ativar uma licença de uso.</b>"+
-				"<br><br>Você sabia que pode solicitar apoio e marcar uma reunião com o nosso time de especialistas para tirar dúvidas? É isso mesmo, responda este e-mail solicitando uma reunião ou entre em contato conosco, será um prazer atendê-lo."+
-				"<br><br>+55 48 991 234 551"+
-				"<br><br><a target='_blank' href='https://wa.me/message/K43XOHX6X7JTM1 '>https://wa.me/message/K43XOHX6X7JTM1</a>"+
-				"<br><br><img style='width:150px;height:150px;' src='https://einvestor.com.br/public/images/qr_code_whatsapp.png'>"+
+				"<b>Olá " + data_usuario.nome + ", seu sistema requer atenção! Seu período de teste gratuito da licença " + data_usuario_status[0].nome_algoritmo_escolhido +" expira hoje. Evite a interrupção do serviço, <a href='https://einvestor.com.br/plataforma/sistema/' target='_blank'>clique aqui</a> para acessar a área logada e assinar o plano vigente ou fazer um upgrade na assinatura desejada. </b>"+
 				"<br><br><span style='font-size:9px;'>Algo errado? Entre em contato conosco respondendo este e-mail.</span>"+
 				rodape_email;
 
 
 				var text = "<b>E-Investor</b>"+
-				"<br><b>Olá " + data_usuario.nome + "ainda há a necessidade de enviar sua estratégia!</b>"+
-				"<br><br><b><span>Correção necessária:</span> Por favor <a href='https://einvestor.com.br/plataforma/sistema/automacao/parametros' target='_blank'>clique aqui</a> para finalizar o processo de automação.</b>"+
+				"<b>Olá " + data_usuario.nome + ", seu sistema requer atenção! Seu período de teste gratuito da licença " + data_usuario_status[0].nome_algoritmo_escolhido +" expira hoje. Evite a interrupção do serviço, <a href='https://einvestor.com.br/plataforma/sistema/' target='_blank'>clique aqui</a> para acessar a área logada e assinar o plano vigente ou fazer um upgrade na assinatura desejada. </b>"+
 				"<br><br><span>Algo errado? Entre em contato conosco respondendo este e-mail.</span>"+ rodape_email_t;
 
 
