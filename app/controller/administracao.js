@@ -1025,17 +1025,28 @@ router.post('/ativacao-licenca-usuario', function(req, res, next) {
 				console.log(data_usuario_status);
 
 
-				var titulo = 'Olá ' + data_usuario.nome + ' sua licença expira hoje';
+				var titulo = 'Olá ' + data_usuario.nome + ' seu sistema requer atenção!';
+
 
 				var html = cabecalho_email +
-				"<b>Olá " + data_usuario.nome + ", seu sistema requer atenção! Seu período de teste gratuito da licença " + data_usuario_status[0].nome_algoritmo_escolhido +" expira hoje. Evite a interrupção do serviço, <a href='https://einvestor.com.br/plataforma/sistema/' target='_blank'>clique aqui</a> para acessar a área logada e assinar o plano vigente ou fazer um upgrade na assinatura desejada. </b>"+
+				"<b>Olá " + data_usuario.nome + ", seu sistema requer atenção! Seu período de teste gratuito da licença " + data_usuario_status[0].nome_algoritmo_escolhido +" está prestes a acabar. Evite a interrupção do serviço, <a href='https://einvestor.com.br/plataforma/sistema/' target='_blank'>clique aqui</a> para acessar a área logada e assinar o plano vigente ou fazer um upgrade na assinatura desejada. </b>"+
 				"<br><br><span style='font-size:9px;'>Algo errado? Entre em contato conosco respondendo este e-mail.</span>"+
 				rodape_email;
 
-
 				var text = "<b>E-Investor</b>"+
-				"<b>Olá " + data_usuario.nome + ", seu sistema requer atenção! Seu período de teste gratuito da licença " + data_usuario_status[0].nome_algoritmo_escolhido +" expira hoje. Evite a interrupção do serviço, <a href='https://einvestor.com.br/plataforma/sistema/' target='_blank'>clique aqui</a> para acessar a área logada e assinar o plano vigente ou fazer um upgrade na assinatura desejada. </b>"+
+				"<b>Olá " + data_usuario.nome + ", seu sistema requer atenção! Seu período de teste gratuito da licença " + data_usuario_status[0].nome_algoritmo_escolhido +" está prestes a acabar. Evite a interrupção do serviço, <a href='https://einvestor.com.br/plataforma/sistema/' target='_blank'>clique aqui</a> para acessar a área logada e assinar o plano vigente ou fazer um upgrade na assinatura desejada. </b>"+
 				"<br><br><span>Algo errado? Entre em contato conosco respondendo este e-mail.</span>"+ rodape_email_t;
+
+
+				// var html = cabecalho_email +
+				// "<b>Olá " + data_usuario.nome + ", seu sistema requer atenção! Seu período de teste gratuito da licença " + data_usuario_status[0].nome_algoritmo_escolhido +" expira hoje. Evite a interrupção do serviço, <a href='https://einvestor.com.br/plataforma/sistema/' target='_blank'>clique aqui</a> para acessar a área logada e assinar o plano vigente ou fazer um upgrade na assinatura desejada. </b>"+
+				// "<br><br><span style='font-size:9px;'>Algo errado? Entre em contato conosco respondendo este e-mail.</span>"+
+				// rodape_email;
+
+
+				// var text = "<b>E-Investor</b>"+
+				// "<b>Olá " + data_usuario.nome + ", seu sistema requer atenção! Seu período de teste gratuito da licença " + data_usuario_status[0].nome_algoritmo_escolhido +" expira hoje. Evite a interrupção do serviço, <a href='https://einvestor.com.br/plataforma/sistema/' target='_blank'>clique aqui</a> para acessar a área logada e assinar o plano vigente ou fazer um upgrade na assinatura desejada. </b>"+
+				// "<br><br><span>Algo errado? Entre em contato conosco respondendo este e-mail.</span>"+ rodape_email_t;
 
 
 				control.SendMail(data_usuario.email, titulo ,text,html);
