@@ -287,6 +287,49 @@ router.get('/adicionar-usuario', function(req, res, next) {
 });
 
 
+
+router.get('/alterar-status/:id_usuario', function(req, res, next) {
+
+	console.log("alterar status ssssssssssssssss");
+	console.log("sssssssssssssssssssssssssssssss");
+
+
+	id_usuario = req.params.id_usuario;
+
+	usuarioStatusModel.find({id_usuario:mongoose.Types.ObjectId(req.session.usuario.id)},function(err,data_usuario_status){
+
+		var data_atualizacao_u = data_usuario_status[0].data_atualizacao;
+		var data_atualizacao_uf = moment(data_atualizacao_u).utc().format('DD/MM/YYYY');
+		data_usuario_status[0].data_atualizacao_f = data_atualizacao_uf;
+		data[req.session.usuario.id+'_usuario_status'] = data_usuario_status;
+
+		usuariosModel.findOne({'_id':id_usuario},function(err,data_usuario_e){
+			data[req.session.usuario.id+'_usuario_e']= data_usuario_e;
+
+			usuarioStatusModel.find({id_usuario:id_usuario},function(err,data_usuario_status_e){
+				var data_atualizacao_s = data_usuario_status_e[0].data_atualizacao;
+				var data_atualizacao_ufs = moment(data_atualizacao_s).utc().format('DD/MM/YYYY');
+				data_usuario_status_e[0].data_atualizacao_f = data_atualizacao_ufs;
+				
+				data[req.session.usuario.id+'_usuario_status_a']= data_usuario_status_e;
+
+				usuarioCorretoraModel.find({id_usuario:id_usuario},function(err,data_usuario_corretora_e){
+					data[req.session.usuario.id+'_usuario_corretora_a']= data_usuario_corretora_e;		
+					data.link_sistema = '/sistema';
+					data[req.session.usuario.id+'_numero_menu'] = 1;
+
+					console.log("alterar status usario");
+					console.log(data);
+					console.log('--------------------');
+					res.render(req.isAjaxRequest() == true ? 'api' : 'montador', {html: 'administracao/status/alterar_status', data: data, usuario: req.session.usuario});
+				}).sort({'_id':-1}).limit(1);
+			}).sort({'_id':-1}).limit(1);
+		}).sort({'_id':-1}).limit(1);
+	}).sort({'_id':-1}).limit(1);
+});
+
+
+
 router.get('/alterar-usuario/:id_usuario', function(req, res, next) {
 
 
@@ -334,19 +377,19 @@ router.post('/enviar-token', function(req, res, next) {
 	var array_letras_maius = ['A','B','C','D','E','F','G','H','J','K','M','P','Q','R','S','T','U','X','Y','Z'];
 	var array_letras_minus = ['a','b','c','d','e','f','g','h','j','k','m','p','q','r','s','t','u','x','y','z'];
 
-	var data_inicio = new Date(2021,5,24);
+	var data_inicio = new Date(2021,5,12);
 	data_inicio.setHours(0,0,0,0);
 	var data_fim = new Date();
 	data_fim.setHours(0,0,0,0);
 
-	var data_base = new Date(2021,5,24);
+	var data_base = new Date(2021,5,12);
 	data_base.setHours(0,0,0,0);
 
 	console.log('data_base:' + data_base);
 
 	var array_insertMany = [];
 
-	for(i = 2; i<20;i = i+2){
+	for(i = 2; i<80;i = i+2){
 
 
 
@@ -355,16 +398,16 @@ router.post('/enviar-token', function(req, res, next) {
 		const randomNumber = Math.floor(Math.random() * 10);
 		const randomNumber2 = Math.floor(Math.random() * 100);
 
-		
 
-		
-		
-		
+
+
+
+
 
 		data_fim.setDate(data_base.getDate() + i);
 		data_inicio.setDate(data_base.getDate() + i - 2);
-		
-		
+
+
 
 		var new_token = array_letras_minus[randomMinus] +  array_letras_maius[randomMaius] + randomNumber + data_inicio.getDate() + (data_inicio.getMonth() + 1) + randomNumber2 +array_letras_minus[randomNumber];
 
@@ -427,6 +470,13 @@ router.post('/enviar-token', function(req, res, next) {
 	console.log('--------insert many -------');
 	console.log(array_insertMany);
 	console.log('---------------------------');
+
+
+	// tokenModel.insertMany(array_insertMany, function(error, docs) {
+	// 		res.json(data);
+	// });
+
+	
 
 
 
@@ -764,6 +814,71 @@ router.get('/popup-excluir-usuario/:id_usuario', function(req, res, next) {
 });
 
 
+router.post('/alterar-status-usuario', function(req, res, next) {
+
+	POST = req.body;
+
+	console.log('alterar-status-usuario @@@@@@@@@@@@');
+	console.log(POST);
+	console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@');
+
+
+
+	var id_usuario_s = POST.id_usuario_status;
+
+	var sistema_online = false;
+
+	if(POST.sistema_online == 'ONLINE'){
+		sistema_online = true;
+	}
+
+	var pagamento = true;
+
+	if(POST.pagamento == 'Erro'){
+		pagamento = false;
+	}
+
+	console.log('--------------------');
+	console.log(sistema_online);
+
+	var validado = true;
+	var sincronizado = true;
+
+	if(POST.validado == 'Não'){
+		validado = false;
+	}
+
+	if(POST.sincronizado == 'Não'){
+		sincronizado = false;
+	}
+
+
+	var data_atualizacao_s = new Date();
+
+	usuarioStatusModel.findOneAndUpdate({'id_usuario':id_usuario_s},{'$set':{'sistema_online':sistema_online,pagamento:pagamento,'conta':POST.conta,'algoritmo':POST.algoritmo}},function(err){
+		if (err) {
+			return handleError(err);
+		}else{
+			usuarioCorretoraModel.findOneAndUpdate(
+				{'id_usuario':id_usuario_s},
+				{'$set':{'validado':validado,'sincronizado':sincronizado}},function(err){
+				}).sort({'_id':-1});			
+		}
+
+	});
+
+	if(POST.data_atualizacao == 'Sim'){
+
+		usuarioStatusModel.findOneAndUpdate({'id_usuario':id_usuario_s},{'$set':{'data_atualizacao':data_atualizacao_s}},function(err){
+		});
+
+	}
+
+	res.json(data);
+
+});
+
+
 
 router.post('/alterar-senha', function(req, res, next) {
 
@@ -1025,28 +1140,28 @@ router.post('/ativacao-licenca-usuario', function(req, res, next) {
 				console.log(data_usuario_status);
 
 
-				var titulo = 'Olá ' + data_usuario.nome + ' seu sistema requer atenção!';
-
-
-				var html = cabecalho_email +
-				"<b>Olá " + data_usuario.nome + ", seu sistema requer atenção! Seu período de teste gratuito da licença " + data_usuario_status[0].nome_algoritmo_escolhido +" está prestes a acabar. Evite a interrupção do serviço, <a href='https://einvestor.com.br/plataforma/sistema/' target='_blank'>clique aqui</a> para acessar a área logada e assinar o plano vigente ou fazer um upgrade na assinatura desejada. </b>"+
-				"<br><br><span style='font-size:9px;'>Algo errado? Entre em contato conosco respondendo este e-mail.</span>"+
-				rodape_email;
-
-				var text = "<b>E-Investor</b>"+
-				"<b>Olá " + data_usuario.nome + ", seu sistema requer atenção! Seu período de teste gratuito da licença " + data_usuario_status[0].nome_algoritmo_escolhido +" está prestes a acabar. Evite a interrupção do serviço, <a href='https://einvestor.com.br/plataforma/sistema/' target='_blank'>clique aqui</a> para acessar a área logada e assinar o plano vigente ou fazer um upgrade na assinatura desejada. </b>"+
-				"<br><br><span>Algo errado? Entre em contato conosco respondendo este e-mail.</span>"+ rodape_email_t;
+				var titulo = 'Olá ' + data_usuario.nome + ' sua licença expira hoje!';
 
 
 				// var html = cabecalho_email +
-				// "<b>Olá " + data_usuario.nome + ", seu sistema requer atenção! Seu período de teste gratuito da licença " + data_usuario_status[0].nome_algoritmo_escolhido +" expira hoje. Evite a interrupção do serviço, <a href='https://einvestor.com.br/plataforma/sistema/' target='_blank'>clique aqui</a> para acessar a área logada e assinar o plano vigente ou fazer um upgrade na assinatura desejada. </b>"+
+				// "<b>Olá " + data_usuario.nome + ", seu sistema requer atenção! Seu período de teste gratuito da licença " + data_usuario_status[0].nome_algoritmo_escolhido +" está prestes a acabar. Evite a interrupção do serviço, <a href='https://einvestor.com.br/plataforma/sistema/' target='_blank'>clique aqui</a> para acessar a área logada e assinar o plano vigente ou fazer um upgrade na assinatura desejada. </b>"+
 				// "<br><br><span style='font-size:9px;'>Algo errado? Entre em contato conosco respondendo este e-mail.</span>"+
 				// rodape_email;
 
-
 				// var text = "<b>E-Investor</b>"+
-				// "<b>Olá " + data_usuario.nome + ", seu sistema requer atenção! Seu período de teste gratuito da licença " + data_usuario_status[0].nome_algoritmo_escolhido +" expira hoje. Evite a interrupção do serviço, <a href='https://einvestor.com.br/plataforma/sistema/' target='_blank'>clique aqui</a> para acessar a área logada e assinar o plano vigente ou fazer um upgrade na assinatura desejada. </b>"+
+				// "<b>Olá " + data_usuario.nome + ", seu sistema requer atenção! Seu período de teste gratuito da licença " + data_usuario_status[0].nome_algoritmo_escolhido +" está prestes a acabar. Evite a interrupção do serviço, <a href='https://einvestor.com.br/plataforma/sistema/' target='_blank'>clique aqui</a> para acessar a área logada e assinar o plano vigente ou fazer um upgrade na assinatura desejada. </b>"+
 				// "<br><br><span>Algo errado? Entre em contato conosco respondendo este e-mail.</span>"+ rodape_email_t;
+
+
+				var html = cabecalho_email +
+				"<b>Olá " + data_usuario.nome + ", seu sistema requer atenção! Seu período de teste gratuito da licença " + data_usuario_status[0].nome_algoritmo_escolhido +" expira hoje. Evite a interrupção do serviço, <a href='https://einvestor.com.br/plataforma/sistema/' target='_blank'>clique aqui</a> para acessar a área logada e assinar o plano vigente ou fazer um upgrade na assinatura desejada. </b>"+
+				"<br><br><span style='font-size:9px;'>Algo errado? Entre em contato conosco respondendo este e-mail.</span>"+
+				rodape_email;
+
+
+				var text = "<b>E-Investor</b>"+
+				"<b>Olá " + data_usuario.nome + ", seu sistema requer atenção! Seu período de teste gratuito da licença " + data_usuario_status[0].nome_algoritmo_escolhido +" expira hoje. Evite a interrupção do serviço, <a href='https://einvestor.com.br/plataforma/sistema/' target='_blank'>clique aqui</a> para acessar a área logada e assinar o plano vigente ou fazer um upgrade na assinatura desejada. </b>"+
+				"<br><br><span>Algo errado? Entre em contato conosco respondendo este e-mail.</span>"+ rodape_email_t;
 
 
 				control.SendMail(data_usuario.email, titulo ,text,html);

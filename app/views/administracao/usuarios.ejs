@@ -32,7 +32,7 @@
 											<th>Parceiro</th>
 											<th>Status Pagto</th>
 											<th>Status Conta</th>
-											<th>Grátis</th>
+											<th>Pago</th>
 											<th>Data Cadastro</th>
 											<th>Data Fim Licença</th>					
 											<th>Ações</th>
@@ -81,7 +81,7 @@
 												<td>
 													<%if (typeof data[usuario.id +'_usuarios'][i].gratis != 'undefined'){%>
 													<span class="<%= data[usuario.id +'_usuarios'][i].gratis == true ? 'orange-text' : 'green-text' %>">
-														<%= data[usuario.id +'_usuarios'][i].gratis == true ? 'Sim' : 'Não'%>
+														<%= data[usuario.id +'_usuarios'][i].gratis == true ? 'Não' : 'Sim'%>
 													</span>
 
 													<%if (typeof data[usuario.id +'_usuarios'][i].licenca_pedido_ativacao != 'undefined'){%>
@@ -133,12 +133,23 @@
 													</a>
 
 
-													<%if (typeof data[usuario.id +'_usuarios'][i].licenca_pedido_ativacao == 'undefined'){%>
+
+													<%if (typeof data[usuario.id +'_usuarios'][i].gratis == 'undefined'){%>
 
 
 													<button class="btn btn-primary modal-mount margin-t-10 margin-r-10 width100-mobile" data-modal='#modalinfo' data-link="/plataforma/sistema/administracao/popup-ativacao-licenca/<%= data[usuario.id +'_usuarios'][i]._id%>" >
 														Enviar Mensagem Ativação Licença
 													</button>
+
+													<%}else if(typeof data[usuario.id +'_usuarios'][i].gratis != 'undefined'){%>
+
+													<% if(data[usuario.id +'_usuarios'][i].gratis == true){%>
+													<button class="btn btn-primary modal-mount margin-t-10 margin-r-10 width100-mobile" data-modal='#modalinfo' data-link="/plataforma/sistema/administracao/popup-ativacao-licenca/<%= data[usuario.id +'_usuarios'][i]._id%>" >
+														Enviar Mensagem Ativação Licença
+													</button>
+
+													<%}%>
+
 
 													<%}%>
 

@@ -1,0 +1,158 @@
+<%- include('../../includes/navbar'); %>
+
+<div class="flex align-items-stretch">
+
+	<%- include('../../includes/sidebar'); %>
+	<% if(usuario.nivel == 1){%>
+
+
+	<div class="page-content">
+
+
+		<section class="no-padding-bottom">
+			<div class="container-fluid">
+				<div class="card">
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="padding-20">
+								<a class="btn btn-primary ajax-load margin-b-10" href="/plataforma/sistema">Voltar</a>
+								<h5>
+									Alterar Status - <%= data[usuario.id +'_usuario_e'].nome %> - <%= data[usuario.id +'_usuario_e'].email %>					
+								</h5>
+
+
+
+								<form method="POST" action="" enctype="multipart/form-data">
+
+									<input name="id_usuario_status" type="hidden" value="<%= data[usuario.id +'_usuario_e']._id %>">
+
+									<div class="mb-3 row">
+										<label for="sistema_online" class="col-sm-2 col-form-label">Sistema Online</label>
+										<div class="col-sm-10">
+											<select class="form-control" name="sistema_online">
+												<option value="ONLINE" <%= data[usuario.id +'_usuario_status_a'][0].sistema_online == true ? 'selected' : '' %>>ONLINE</option>
+												<option value="OFFLINE" <%= data[usuario.id +'_usuario_status_a'][0].sistema_online == false ? 'selected' : '' %>>OFFLINE</option>
+											</select>
+										</div>
+
+									</div>
+
+									<div class="mb-3 row">
+										<label for="v" class="col-sm-2 col-form-label">Status Pagamento</label>
+										<div class="col-sm-10">
+											<select class="form-control" name="pagamento">
+												<option value="OK" <%= data[usuario.id +'_usuario_status_a'][0].pagamento == true ? 'selected' : '' %>>OK</option>
+												<option value="Erro" <%= data[usuario.id +'_usuario_status_a'][0].pagamento == false ? 'selected' : '' %>>Erro</option>
+											</select>
+										</div>
+									</div>
+
+									<div class="mb-3 row">
+										<label for="conta" class="col-sm-2 col-form-label">Status Conta</label>
+										<div class="col-sm-10">
+											<select class="form-control" name="conta">
+												<option value="Sincronizada" <%= data[usuario.id +'_usuario_status_a'][0].conta == 'Sincronizada' ? 'selected' : '' %>>Sincronizada</option>
+												<option value="Sincronizando" <%= data[usuario.id +'_usuario_status_a'][0].conta == 'Sincronizando' ? 'selected' : '' %>>Sincronizando</option>
+												<option value="Não Sincronizado" <%= data[usuario.id +'_usuario_status_a'][0].conta == 'Não Sincronizado' ? 'selected' : '' %>>Não Sincronizado</option>
+
+											</select>
+										</div>
+									</div>
+
+									<div class="mb-3 row">
+										<label for="algoritmo" class="col-sm-2 col-form-label">Status Algoritmo</label>
+										<div class="col-sm-10">
+											<select class="form-control" name="algoritmo">
+												<option value="Sincronizada" <%= data[usuario.id +'_usuario_status_a'][0].algoritmo == 'Sincronizada' ? 'selected' : '' %>>Sincronizada</option>
+												<option value="Sincronizando" <%= data[usuario.id +'_usuario_status_a'][0].algoritmo == 'Sincronizando' ? 'selected' : '' %>>Sincronizando</option>
+												<option value="Não Sincronizado" <%= data[usuario.id +'_usuario_status_a'][0].algoritmo == 'Não Sincronizado' ? 'selected' : '' %>>Não Sincronizado</option>
+
+											</select>
+										</div>
+									</div>
+
+
+									
+
+
+									<%if (data[usuario.id +'_usuario_corretora_a'].length > 0){%>
+
+									<div class="mb-3 row">
+										<label for="validado" class="col-sm-2 col-form-label">Validado</label>
+										<div class="col-sm-10">
+											<select class="form-control" name="validado">
+												<option value="Sim" <%= data[usuario.id +'_usuario_corretora_a'][0].validado == true ? 'selected' : '' %>>Sim</option>
+												<option value="Não" <%= data[usuario.id +'_usuario_corretora_a'][0].validado == false ? 'selected' : '' %>>Não</option>
+											</select>
+										</div>
+										<span class="padding-r-15 padding-l-15 margin-t-5">Se estiver validado quer dizer que passou por uma verificação da corretora(1° página inicial), se selecionar "Sim" será removido da página inicial a opção de validar a corretora. </span>
+									</div>
+
+									<%}%>
+
+
+
+									<%if (data[usuario.id +'_usuario_corretora_a'].length > 0){%>
+
+									<div class="mb-3 row">
+										<label for="sincronizado" class="col-sm-2 col-form-label">Sincronizado</label>
+										<div class="col-sm-10">
+											<select class="form-control" name="sincronizado">
+												<option value="Sim" <%= data[usuario.id +'_usuario_corretora_a'][0].sincronizado == true ? 'selected' : '' %>>Sim</option>
+												<option value="Não" <%= data[usuario.id +'_usuario_corretora_a'][0].sincronizado == false ? 'selected' : '' %>>Não</option>
+											</select>
+										</div>
+										<span class="padding-r-15 padding-l-15 margin-t-5">Se estiver sincronizado significa que a corretora foi sincronizada com sucesso e não houves problemas. </span>
+									</div>
+
+									<%}%>
+
+
+									<div class="mb-3 row">
+										<label for="data_atualizacao" class="col-sm-2 col-form-label">Data Atualização</label>
+										<div class="col-sm-10">
+											<select class="form-control" name="data_atualizacao">
+												<option value="Sim">Sim</option>
+												<option value="Não">Não</option>
+											</select>
+										</div>
+										<span class="padding-r-15 padding-l-15 margin-t-5">Se escolher sim essa opção alterará a data de atualização do usuário no cabeçalho do sistema.Se for não, a data de atualização permancerá a que está no momento, que é: <%= data[usuario.id +'_usuario_status_a'][0].data_atualizacao_f %></span>
+									</div>
+
+
+
+
+
+
+									<button type="button" data-href="/plataforma/sistema/administracao/alterar-status-usuario/" class="btn btn-primary ajax-submit" title="Salvar Status" data-action="/plataforma/sistema">Salvar Status</button>
+
+								</form>
+
+
+
+							</div>
+						</div>
+
+
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+
+
+
+
+	<%}else{%>
+	<div class="page-content">
+		<div class="container-fluid">
+			<div class="alert error-block margin-t-10">
+				Você não pode acessar essa página!
+			</div>
+		</div>
+	</div>
+
+
+	<%}%>
+
+</div>

@@ -1,8 +1,8 @@
-<%- include('../includes/navbar'); %>
+<%- include('../../includes/navbar'); %>
 
 <div class="flex align-items-stretch">
 
-	<%- include('../includes/sidebar'); %>
+	<%- include('../../includes/sidebar'); %>
 	<% if(usuario.nivel == 1){%>
 
 
@@ -221,10 +221,10 @@
 									<th>Nome</th>
 									<th>E-mail</th>
 									<th>Parceiro</th>
-									<th>Status Pagto</th>
+									<th>Status Sistema</th>
 									<th>Status Conta</th>
 									<th>Status Estratégia</th>
-									<th>Grátis</th>							
+									<th>Pago</th>							
 									<th>Ações</th>
 								</tr>
 							</thead>
@@ -249,11 +249,8 @@
 
 											<%if(data[usuario.id +'_usuarios'][i].status.length > 0){%>
 
-											<span class="<%= data[usuario.id +'_usuarios'][i].status[0].pagamento == true ? 'green-text' : 'red-text' %>">
-												<%= data[usuario.id +'_usuarios'][i].status[0].pagamento == true ? 'OK' : 'Not Ok' %>
-
-
-
+											<span class="<%= data[usuario.id +'_usuarios'][i].status[0].sistema_online == true ? 'green-text' : 'red-text' %>">
+												<%= data[usuario.id +'_usuarios'][i].status[0].sistema_online == true ? 'ON' : 'OFF' %>
 											</span>
 											<%}%>
 
@@ -281,7 +278,7 @@
 										<td>
 											<%if (typeof data[usuario.id +'_usuarios'][i].gratis != 'undefined'){%>
 											<span class="<%= data[usuario.id +'_usuarios'][i].gratis == true ? 'orange-text' : 'green-text' %>">
-												<%= data[usuario.id +'_usuarios'][i].gratis == true ? 'Sim' : 'Não'%>
+												<%= data[usuario.id +'_usuarios'][i].gratis == true ? 'Não' : 'Sim'%>
 											</span>
 
 											<%}%>
@@ -291,7 +288,7 @@
 
 
 										<td>
-											<button class="btn btn-primary modal-mount margin-t-10 margin-r-10 width100-mobile" data-modal='#modalinfo' data-link="/plataforma/sistema/administracao/popup-alterar-senha/<%= data[usuario.id +'_usuarios'][i]._id%>" >
+											<button class="btn btn-primary ajax-load margin-t-10 margin-r-10 width100-mobile" href="/plataforma/sistema/administracao/alterar-status/<%= data[usuario.id +'_usuarios'][i]._id%>" >
 												Alterar Status
 											</button>
 										</td>

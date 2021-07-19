@@ -204,7 +204,7 @@ router.get('/', function(req, res, next) {
 				console.log(data_usuarios);
 				console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
 				data[req.session.usuario.id+'_usuarios']= data_usuarios;
-				res.render(req.isAjaxRequest() == true ? 'api' : 'montador', {html: 'administracao/status_usuarios',  data: data, usuario: req.session.usuario});
+				res.render(req.isAjaxRequest() == true ? 'api' : 'montador', {html: 'administracao/status/status_usuarios',  data: data, usuario: req.session.usuario});
 
 			});
 		}).sort({'_id':-1}).limit(1);
