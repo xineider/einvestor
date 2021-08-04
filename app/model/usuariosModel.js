@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 
 const usuarioSchema = new mongoose.Schema({
+	id_parceiro:mongoose.Types.ObjectId,
 	nome: String,
 	email:String,
 	senha:String,
@@ -12,6 +13,7 @@ const usuarioSchema = new mongoose.Schema({
 	nivel: Number,
 	gratis:Boolean,
 	licenca_pedido_ativacao:Boolean,
+	licenca_expiracao:Number,
 	deletado:Boolean,
 	data_cadastro:Date
 });

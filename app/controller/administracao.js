@@ -136,8 +136,6 @@ router.get('/usuarios', function(req, res, next) {
 
 
 			for(i=0; i<data_usuarios.length;i++){
-				console.log('batata');
-				console.log(i);
 
 				var data_cadastro = new Date(data_usuarios[i].data_cadastro);
 
@@ -194,7 +192,7 @@ router.get('/usuarios', function(req, res, next) {
 
 
 
-			res.render(req.isAjaxRequest() == true ? 'api' : 'montador', {html: 'administracao/usuarios',  data: data, usuario: req.session.usuario});
+			res.render(req.isAjaxRequest() == true ? 'api' : 'montador', {html: 'administracao/usuarios/usuarios',  data: data, usuario: req.session.usuario});
 
 		});
 	}).sort({'_id':-1}).limit(1);
@@ -267,27 +265,6 @@ router.get('/token', function(req, res, next) {
 });
 
 
-
-router.get('/adicionar-usuario', function(req, res, next) {
-
-	usuarioStatusModel.find({id_usuario:mongoose.Types.ObjectId(req.session.usuario.id)},function(err,data_usuario_status){
-
-		var data_atualizacao_u = data_usuario_status[0].data_atualizacao;
-		var data_atualizacao_uf = moment(data_atualizacao_u).utc().format('DD/MM/YYYY');
-		data_usuario_status[0].data_atualizacao_f = data_atualizacao_uf;
-		data[req.session.usuario.id+'_usuario_status'] = data_usuario_status;
-
-		usuariosModel.find({nivel:2},function(err,data_parceiros){
-			data[req.session.usuario.id+'_parceiros']= data_parceiros;
-			data.link_sistema = '/sistema';
-			data[req.session.usuario.id+'_numero_menu'] = 1;
-			res.render(req.isAjaxRequest() == true ? 'api' : 'montador', {html: 'administracao/adicionar_usuario', data: data, usuario: req.session.usuario});
-		});
-	}).sort({'_id':-1}).limit(1);
-});
-
-
-
 router.get('/alterar-status/:id_usuario', function(req, res, next) {
 
 	console.log("alterar status ssssssssssssssss");
@@ -345,11 +322,10 @@ router.get('/alterar-usuario/:id_usuario', function(req, res, next) {
 		usuariosModel.findOne({'_id':id_usuario},function(err,data_usuario_e){
 			data[req.session.usuario.id+'_usuario_e']= data_usuario_e;
 
-			usuariosModel.find({nivel:2},function(err,data_parceiros){
+			usuariosModel.find({},function(err,data_parceiros){
 				data[req.session.usuario.id+'_parceiros']= data_parceiros;
 				data.link_sistema = '/sistema';
-				data[req.session.usuario.id+'_numero_menu'] = 1;
-				res.render(req.isAjaxRequest() == true ? 'api' : 'montador', {html: 'administracao/alterar_usuario', data: data, usuario: req.session.usuario});
+				res.render(req.isAjaxRequest() == true ? 'api' : 'montador', {html: 'administracao/usuarios/alterar_usuario', data: data, usuario: req.session.usuario});
 			});
 		});
 	}).sort({'_id':-1}).limit(1);
@@ -377,19 +353,19 @@ router.post('/enviar-token', function(req, res, next) {
 	var array_letras_maius = ['A','B','C','D','E','F','G','H','J','K','M','P','Q','R','S','T','U','X','Y','Z'];
 	var array_letras_minus = ['a','b','c','d','e','f','g','h','j','k','m','p','q','r','s','t','u','x','y','z'];
 
-	var data_inicio = new Date(2021,5,12);
+	var data_inicio = new Date(2021,7,1);
 	data_inicio.setHours(0,0,0,0);
 	var data_fim = new Date();
 	data_fim.setHours(0,0,0,0);
 
-	var data_base = new Date(2021,5,12);
+	var data_base = new Date(2021,7,1);
 	data_base.setHours(0,0,0,0);
 
 	console.log('data_base:' + data_base);
 
 	var array_insertMany = [];
 
-	for(i = 2; i<80;i = i+2){
+	for(i = 2; i<10;i = i+2){
 
 
 
@@ -428,13 +404,13 @@ router.post('/enviar-token', function(req, res, next) {
 		// console.log(array_insertMany);
 		// console.log('======================================');
 
-		// const novo_token = new tokenModel({ 						
-		// 	token:new_token,
-		// 	data_inicio: data_inicio,
-		// 	data_fim: data_fim,
-		// 	deletado:false,
-		// 	data_cadastro:new Date()
-		// });
+		const novo_token = new tokenModel({ 						
+			token:new_token,
+			data_inicio: data_inicio,
+			data_fim: data_fim,
+			deletado:false,
+			data_cadastro:new Date()
+		});
 
 		// console.log(novo_token);
 
@@ -442,13 +418,13 @@ router.post('/enviar-token', function(req, res, next) {
 
 
 
-		// novo_token.save(function (err) {
-		// 	if (err) {
-		// 		return handleError(err);
-		// 	}else{
+		novo_token.save(function (err) {
+			if (err) {
+				return handleError(err);
+			}else{
 
-		// 	}
-		// });
+			}
+		});
 
 		
 
@@ -486,145 +462,6 @@ router.post('/enviar-token', function(req, res, next) {
 
 });
 
-
-
-
-
-router.post('/adicionar-usuario', function(req, res, next) {
-	POST = req.body;
-	console.log('adicionar usuario');
-	console.log(POST);
-	console.log('aaaaaaaaaaaaaaaa');
-
-	if(POST.email.length != 0){
-
-		usuariosModel.find({email:POST.email},function(err,data_usuario_email){
-			console.log('data_usuario_email');
-			console.log(data_usuario_email);
-
-
-			if(data_usuario_email.length == 0){
-				var nova_senha = Math.random().toString(36).substring(5);
-				var novaSenhaCriptografa = control.Encrypt(nova_senha);
-
-				console.log('nova_senha');
-				console.log(nova_senha);
-				console.log('nnnnnnnnnnnnnnnnnnnnnn');
-
-				if(POST.nivel == 3){
-
-					if(POST.id_parceiro == 'Não possui'){
-
-
-						const novo_usuario = new usuariosModel({ 						
-							nome:POST.nome,
-							cpf:POST.cpf,
-							email:POST.email,
-							senha:novaSenhaCriptografa,
-							nivel:POST.nivel,
-							deletado:false
-						});
-
-						console.log('novo usuario');
-						console.log(novo_usuario);
-						console.log('uuuuuuuuuuuuuu');
-
-						novo_usuario.save(function (err) {
-							if (err) {
-								return handleError(err);
-							}else{
-								res.json(data);
-							}
-						});
-
-					}else{
-
-						const novo_usuario = new usuariosModel({ 
-							id_parceiro:mongoose.Types.ObjectId(POST.id_parceiro),
-							nome:POST.nome,
-							cpf:POST.cpf,
-							email:POST.email,
-							senha:novaSenhaCriptografa,
-							nivel:POST.nivel,
-							deletado:false
-						});
-
-						console.log('novo usuario');
-						console.log(novo_usuario);
-						console.log('uuuuuuuuuuuuuu');
-
-						novo_usuario.save(function (err) {
-							if (err) {
-								return handleError(err);
-							}else{
-								res.json(data);
-							}
-						});
-					}
-
-
-
-
-
-				}else{
-					const novo_usuario = new usuariosModel({ 
-						nome:POST.nome,
-						cpf:POST.cpf,
-						email:POST.email,
-						senha:novaSenhaCriptografa,
-						nivel:POST.nivel,
-						deletado:false
-					});
-
-					console.log('novo usuario');
-					console.log(novo_usuario);
-					console.log('uuuuuuuuuuuuuu');
-
-					novo_usuario.save(function (err) {
-						if (err) {
-							return handleError(err);
-						}else{
-							res.json(data);
-						}
-					});
-
-				}
-
-				var html = "<div style='background:#ffffff;background-color:#ffffff;margin:0px auto; max-width:600px;'>\
-				<div style='background:rgba(219,101,116,0.95);width:100%;height:50px; padding:20px; text-align:center;color:#ffffff;width:100%;'>\
-				<div style='width:100%;font-size:20px;'>Robocopy</div>\
-				<div style='width:100%;font-size:16px;margin-top:5px;'>Simples, fácil e lucrativo. Copie traders consistentes no mercado.</div>\
-				</div>\
-				<div style='background:#2d3035;color:#8a8d93;width:100%;padding:20px;'>"+
-				"Olá, você está recebendo este e-mail pois pediu para recuperar sua senha"+
-				"<br>Sua nova senha no Robocopy é: "+nova_senha+
-				"<br>Caso não pediu para recuperar a sua senha entre em contato com o Suporte pelo telegram"+
-				'<br><br>Não mostre sua senha para ninguém. A sua conta é responsabilidade sua.'+
-				'</div>'+
-				'<div style="width:100%;height:20px; padding:5px 20px;color:#8a8d93;width:100%;font-size:14px;">\
-				* Não responda esta mensagem, ela é enviada automaticamente.'+
-				'</div>\
-				</div>';
-				var text = "Olá, você está recebendo este e-mail pois pediu para recuperar sua senha"+
-				"<br>Sua nova senha no Robocopy é: "+nova_senha+
-				"<br>Caso não pediu para recuperar a sua senha entre em contato com o Suporte pelo telegram"+
-				'<br><br>Não mostre sua senha para ninguém. A sua conta é responsabilidade sua.'+
-				'<br>* Não responda esta mensagem, ela é enviada automaticamente.';
-
-				control.SendMail(POST.email, 'Recuperação de Senha - Robocopy',text,html);	
-
-
-			}else{
-				res.json({error:'email_utilizado',element:'input[name="email"]',texto:'*O E-mail já está sendo utilizado!'});
-			}
-
-		});
-
-	}else{
-		res.json({error:'email_vazio',element:'input[name="email"]',texto:'*O E-mail não pode ser vazio!'});
-	}
-
-});
 
 
 
@@ -752,7 +589,7 @@ router.get('/popup-ativacao-licenca/:id_usuario', function(req, res, next) {
 		data[req.session.usuario.id+'_usuario_ativacao_licenca']= data_usuario;
 		console.log('data_usuario');
 		console.log(data);
-		res.render(req.isAjaxRequest() == true ? 'api' : 'montador', {html: 'administracao/popup-ativar-licenca-usuario', data: data, usuario: req.session.usuario});
+		res.render(req.isAjaxRequest() == true ? 'api' : 'montador', {html: 'administracao/usuarios/popup-ativar-licenca-usuario', data: data, usuario: req.session.usuario});
 	});
 });
 
@@ -784,7 +621,7 @@ router.get('/popup-alterar-senha/:id_usuario', function(req, res, next) {
 		// console.log('ddddddddddddddddddddd data dddddddddddddddddddddd');
 		// console.log(data);
 		// console.log('ddddddddddddddddddddddddddddddddddddddddddddddddd');
-		res.render(req.isAjaxRequest() == true ? 'api' : 'montador', {html: 'administracao/alterar_senha', data: data, usuario: req.session.usuario});
+		res.render(req.isAjaxRequest() == true ? 'api' : 'montador', {html: 'administracao/usuarios/popup_alterar_senha', data: data, usuario: req.session.usuario});
 	});
 });
 
@@ -809,7 +646,7 @@ router.get('/popup-excluir-usuario/:id_usuario', function(req, res, next) {
 		// console.log('ddddddddddddddddddddd data dddddddddddddddddddddd');
 		// console.log(data);
 		// console.log('ddddddddddddddddddddddddddddddddddddddddddddddddd');
-		res.render(req.isAjaxRequest() == true ? 'api' : 'montador', {html: 'administracao/excluir_usuario', data: data, usuario: req.session.usuario});
+		res.render(req.isAjaxRequest() == true ? 'api' : 'montador', {html: 'administracao/usuarios/popup_excluir_usuario', data: data, usuario: req.session.usuario});
 	});
 });
 
@@ -904,27 +741,31 @@ router.post('/alterar-senha', function(req, res, next) {
 				return handleError(err);
 			}else{
 
-				var html = "<div style='background:#ffffff;background-color:#ffffff;margin:0px auto; max-width:600px;'>\
-				<div style='background:rgba(219,101,116,0.95);width:100%;height:50px; padding:20px; text-align:center;color:#ffffff;width:100%;'>\
-				<div style='width:100%;font-size:20px;'>Canga</div>\
-				<div style='width:100%;font-size:16px;margin-top:5px;'>Simples, fácil e lucrativo. Copie traders consistentes no mercado.</div>\
-				</div>\
-				<div style='background:#2d3035;color:#8a8d93;width:100%;padding:20px;'>"+
-				"Olá, você está recebendo este e-mail pois a administração resetou a sua senha"+
-				"<br>Sua nova senha no Canga é: "+nova_senha+
-				'<br><br>Não mostre sua senha para ninguém. A sua conta é responsabilidade sua.'+
-				'</div>'+
-				'<div style="width:100%;height:20px; padding:5px 20px;color:#8a8d93;width:100%;font-size:14px;">\
-				* Não responda esta mensagem, ela é enviada automaticamente.'+
-				'</div>\
-				</div>';
+				var titulo = 'E-Investor - Recuperação de Senha ';
 
-				var text = "Olá, você está recebendo este e-mail pois a administração resetou a sua senha"+
-				"<br>Sua nova senha no Canga é: "+nova_senha+
-				'<br><br>Não mostre sua senha para ninguém. A sua conta é responsabilidade sua.'+
-				'<br> * Não responda esta mensagem, ela é enviada automaticamente.';
+				var html = cabecalho_email +
+				"<b>Olá " + data_usuario.nome + ", a administração gerou uma nova senha para o seu usuário."+
+				"<br><b>Nova senha:</b>"+
+				"<br>"+nova_senha+
+				"<br><br><a href='https://einvestor.com.br/plataforma/sistema/automacao/parametros' target='_blank'>Clique aqui</a> para acessar o sistema."+
+				"<br><br>Se estiver com dúvidas, por-favor entrar em contato com o suporte."+
+				"<br><br><span style='font-size:9px;'>Algo errado? Entre em contato conosco respondendo este e-mail.</span>"+
+				rodape_email;
 
-				control.SendMail(data_usuario.email, 'Recuperação de Senha - Canga',text,html);				
+
+				var text = "<b>E-Investor</b>"+
+				"<b>Olá " + data_usuario.nome + ", a administração gerou uma nova senha para o seu usuário."+
+				"<br><b>Nova senha:</b>"+
+				"<br>"+nova_senha+
+				"<br><br><a href='https://einvestor.com.br/plataforma/sistema/automacao/parametros' target='_blank'>Clique aqui</a> para acessar o sistema."+
+				"<br><br>Se estiver com dúvidas, por-favor entrar em contato com o suporte."+
+				"<br><br><span style='font-size:9px;'>Algo errado? Entre em contato conosco respondendo este e-mail.</span>"+
+				"<br><br><span>Algo errado? Entre em contato conosco respondendo este e-mail.</span>"+ rodape_email_t;
+
+
+				control.SendMail(data_usuario.email, titulo ,text,html);
+				control.SendMail('suporte@einvestor.com.br', titulo ,text,html);
+
 				res.json(data);
 			}
 		});
@@ -950,27 +791,25 @@ router.post('/excluir-usuario', function(req, res, next) {
 				return handleError(err);
 			}else{
 
-				var html = "<div style='background:#ffffff;background-color:#ffffff;margin:0px auto; max-width:600px;'>\
-				<div style='background:rgba(219,101,116,0.95);width:100%;height:50px; padding:20px; text-align:center;color:#ffffff;width:100%;'>\
-				<div style='width:100%;font-size:20px;'>Canga</div>\
-				<div style='width:100%;font-size:16px;margin-top:5px;'>Simples, fácil e lucrativo. Copie traders consistentes no mercado.</div>\
-				</div>\
-				<div style='background:#2d3035;color:#8a8d93;width:100%;padding:20px;'>"+
-				"Olá, você está recebendo este e-mail pois a administração resetou a sua senha"+
-				"<br>Sua nova senha no Canga é: "+
-				'<br><br>Não mostre sua senha para ninguém. A sua conta é responsabilidade sua.'+
-				'</div>'+
-				'<div style="width:100%;height:20px; padding:5px 20px;color:#8a8d93;width:100%;font-size:14px;">\
-				* Não responda esta mensagem, ela é enviada automaticamente.'+
-				'</div>\
-				</div>';
 
-				var text = "Olá, você está recebendo este e-mail pois a administração resetou a sua senha"+
-				"<br>Sua nova senha no Canga é: "+
-				'<br><br>Não mostre sua senha para ninguém. A sua conta é responsabilidade sua.'+
-				'<br> * Não responda esta mensagem, ela é enviada automaticamente.';
+				var titulo = 'E-Investor - ' + data_usuario.nome + ' foi excluído do sistema';
 
-				control.SendMail(data_usuario.email, 'Recuperação de Senha - Canga',text,html);				
+				var html = cabecalho_email +
+				"<b>Olá " + data_usuario.nome + ", a administração excluiu o seu usuário no sistema E-Investor, portanto não é mais possível acessar o sistema da E-Investor."+
+				"<br><br>Se estiver com dúvidas, por-favor entrar em contato com o suporte."+
+				"<br><br><span style='font-size:9px;'>Algo errado? Entre em contato conosco respondendo este e-mail.</span>"+
+				rodape_email;
+
+
+				var text = "<b>E-Investor</b>"+
+				"<br><b>Olá " + data_usuario.nome + ", a administração excluiu o seu usuário no sistema E-Investor, portanto não é mais possível acessar o sistema da E-Investor."+
+				"<br><br>Se estiver com dúvidas, por-favor entrar em contato com o suporte."+
+				"<br><br><span>Algo errado? Entre em contato conosco respondendo este e-mail.</span>"+ rodape_email_t;
+
+
+				control.SendMail(data_usuario.email, titulo ,text,html);
+				control.SendMail('suporte@einvestor.com.br', titulo ,text,html);
+
 				res.json(data);
 			}
 		});
@@ -1109,8 +948,7 @@ router.post('/dessincronizar-conta-corretora', function(req, res, next) {
 
 });
 
-
-router.post('/ativacao-licenca-usuario', function(req, res, next) {
+router.post('/ativacao-licenca-usuario-expira-hoje', function(req, res, next) {
 
 	POST = req.body;
 
@@ -1142,17 +980,6 @@ router.post('/ativacao-licenca-usuario', function(req, res, next) {
 
 				var titulo = 'Olá ' + data_usuario.nome + ' sua licença expira hoje!';
 
-
-				// var html = cabecalho_email +
-				// "<b>Olá " + data_usuario.nome + ", seu sistema requer atenção! Seu período de teste gratuito da licença " + data_usuario_status[0].nome_algoritmo_escolhido +" está prestes a acabar. Evite a interrupção do serviço, <a href='https://einvestor.com.br/plataforma/sistema/' target='_blank'>clique aqui</a> para acessar a área logada e assinar o plano vigente ou fazer um upgrade na assinatura desejada. </b>"+
-				// "<br><br><span style='font-size:9px;'>Algo errado? Entre em contato conosco respondendo este e-mail.</span>"+
-				// rodape_email;
-
-				// var text = "<b>E-Investor</b>"+
-				// "<b>Olá " + data_usuario.nome + ", seu sistema requer atenção! Seu período de teste gratuito da licença " + data_usuario_status[0].nome_algoritmo_escolhido +" está prestes a acabar. Evite a interrupção do serviço, <a href='https://einvestor.com.br/plataforma/sistema/' target='_blank'>clique aqui</a> para acessar a área logada e assinar o plano vigente ou fazer um upgrade na assinatura desejada. </b>"+
-				// "<br><br><span>Algo errado? Entre em contato conosco respondendo este e-mail.</span>"+ rodape_email_t;
-
-
 				var html = cabecalho_email +
 				"<b>Olá " + data_usuario.nome + ", seu sistema requer atenção! Seu período de teste gratuito da licença " + data_usuario_status[0].nome_algoritmo_escolhido +" expira hoje. Evite a interrupção do serviço, <a href='https://einvestor.com.br/plataforma/sistema/' target='_blank'>clique aqui</a> para acessar a área logada e assinar o plano vigente ou fazer um upgrade na assinatura desejada. </b>"+
 				"<br><br><span style='font-size:9px;'>Algo errado? Entre em contato conosco respondendo este e-mail.</span>"+
@@ -1167,14 +994,211 @@ router.post('/ativacao-licenca-usuario', function(req, res, next) {
 				control.SendMail(data_usuario.email, titulo ,text,html);
 				control.SendMail('suporte@einvestor.com.br', titulo ,text,html);
 
-
-				usuariosModel.findOneAndUpdate({'_id':POST.id_usuario},{'$set':{'licenca_pedido_ativacao':true}},function(err){
+				//licenca_expiracao 0 - expira hoje
+				//licenca_expiracao 1 - expirou
+				//licenca_expiracao 2 - está prestes a acabar
+				//licenca_expiracao 3 - expira em x dias
+				usuariosModel.findOneAndUpdate({'_id':POST.id_usuario},{'$set':{'licenca_pedido_ativacao':true,'licenca_expiracao':0}},function(err){
 					res.json(data);
 				});
 			}).sort({'_id':-1}).limit(1);
 		}).sort({'_id':-1}).limit(1);
 	});
 });
+
+
+router.post('/ativacao-licenca-usuario-expirou', function(req, res, next) {
+
+	POST = req.body;
+
+	console.log('@@@@@@@@@@@ ativacao-licenca-usuario @@@@@@@@@@');
+	console.log(POST);
+	console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@');
+
+	usuariosModel.findOne({'_id':POST.id_usuario},function(err,data_usuario){
+		console.log('---------------------------');
+		console.log(data_usuario);
+		console.log('---------------------------');
+		console.log(data_usuario.nome);
+
+		licencaModel.find({id_usuario:POST.id_usuario},function(err,data_licenca){
+
+			var data_agora = new Date();
+			var data_fim_licenca = data_licenca[0].data_fim;
+
+			const diferenca_tempo = data_fim_licenca - data_agora;
+			const diferenca_dias = Math.ceil(diferenca_tempo / (1000 * 60 * 60 * 24));
+
+			console.log('diferenca_dias: ' + diferenca_dias);
+
+
+			usuarioStatusModel.find({id_usuario:POST.id_usuario},function(err,data_usuario_status){
+
+				console.log(data_usuario_status);
+
+
+				var titulo = 'Olá ' + data_usuario.nome + ' sua licença expirou!';
+
+
+				var html = cabecalho_email +
+				"<b>Olá " + data_usuario.nome + ", seu sistema requer atenção! Seu período de teste gratuito da licença " + data_usuario_status[0].nome_algoritmo_escolhido +" expirou. Evite a interrupção do serviço, <a href='https://einvestor.com.br/plataforma/sistema/' target='_blank'>clique aqui</a> para acessar a área logada e assinar o plano vigente ou fazer um upgrade na assinatura desejada. </b>"+
+				"<br><br><span style='font-size:9px;'>Algo errado? Entre em contato conosco respondendo este e-mail.</span>"+
+				rodape_email;
+
+				var text = "<b>E-Investor</b>"+
+				"<b>Olá " + data_usuario.nome + ", seu sistema requer atenção! Seu período de teste gratuito da licença " + data_usuario_status[0].nome_algoritmo_escolhido +" expirou. Evite a interrupção do serviço, <a href='https://einvestor.com.br/plataforma/sistema/' target='_blank'>clique aqui</a> para acessar a área logada e assinar o plano vigente ou fazer um upgrade na assinatura desejada. </b>"+
+				"<br><br><span>Algo errado? Entre em contato conosco respondendo este e-mail.</span>"+ rodape_email_t;
+
+
+
+
+				control.SendMail(data_usuario.email, titulo ,text,html);
+				control.SendMail('suporte@einvestor.com.br', titulo ,text,html);
+
+
+				//licenca_expiracao 0 - expira hoje
+				//licenca_expiracao 1 - expirou
+				//licenca_expiracao 2 - está prestes a acabar
+				//licenca_expiracao 3 - expira em x dias
+				usuariosModel.findOneAndUpdate({'_id':POST.id_usuario},{'$set':{'licenca_pedido_ativacao':true,'licenca_expiracao':1}},function(err){
+					res.json(data);
+				});
+			}).sort({'_id':-1}).limit(1);
+		}).sort({'_id':-1}).limit(1);
+	});
+});
+
+
+
+
+
+
+router.post('/ativacao-licenca-usuario-prestes-acabar', function(req, res, next) {
+
+	POST = req.body;
+
+	console.log('@@@@@@@@@@@ ativacao-licenca-usuario @@@@@@@@@@');
+	console.log(POST);
+	console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@');
+
+	usuariosModel.findOne({'_id':POST.id_usuario},function(err,data_usuario){
+		console.log('---------------------------');
+		console.log(data_usuario);
+		console.log('---------------------------');
+		console.log(data_usuario.nome);
+
+		licencaModel.find({id_usuario:POST.id_usuario},function(err,data_licenca){
+
+			var data_agora = new Date();
+			var data_fim_licenca = data_licenca[0].data_fim;
+
+			const diferenca_tempo = data_fim_licenca - data_agora;
+			const diferenca_dias = Math.ceil(diferenca_tempo / (1000 * 60 * 60 * 24));
+
+			console.log('diferenca_dias: ' + diferenca_dias);
+
+
+			usuarioStatusModel.find({id_usuario:POST.id_usuario},function(err,data_usuario_status){
+
+				console.log(data_usuario_status);
+
+
+				var titulo = 'Olá ' + data_usuario.nome + ' sua licença está prestes a acabar!';
+
+
+				var html = cabecalho_email +
+				"<b>Olá " + data_usuario.nome + ", seu sistema requer atenção! Seu período de teste gratuito da licença " + data_usuario_status[0].nome_algoritmo_escolhido +" está prestes a acabar. Evite a interrupção do serviço, <a href='https://einvestor.com.br/plataforma/sistema/' target='_blank'>clique aqui</a> para acessar a área logada e assinar o plano vigente ou fazer um upgrade na assinatura desejada. </b>"+
+				"<br><br><span style='font-size:9px;'>Algo errado? Entre em contato conosco respondendo este e-mail.</span>"+
+				rodape_email;
+
+				var text = "<b>E-Investor</b>"+
+				"<b>Olá " + data_usuario.nome + ", seu sistema requer atenção! Seu período de teste gratuito da licença " + data_usuario_status[0].nome_algoritmo_escolhido +" está prestes a acabar. Evite a interrupção do serviço, <a href='https://einvestor.com.br/plataforma/sistema/' target='_blank'>clique aqui</a> para acessar a área logada e assinar o plano vigente ou fazer um upgrade na assinatura desejada. </b>"+
+				"<br><br><span>Algo errado? Entre em contato conosco respondendo este e-mail.</span>"+ rodape_email_t;
+
+
+
+
+				control.SendMail(data_usuario.email, titulo ,text,html);
+				control.SendMail('suporte@einvestor.com.br', titulo ,text,html);
+
+
+				//licenca_expiracao 0 - expira hoje
+				//licenca_expiracao 1 - expirou
+				//licenca_expiracao 2 - está prestes a acabar
+				//licenca_expiracao 3 - expira em x dias
+				usuariosModel.findOneAndUpdate({'_id':POST.id_usuario},{'$set':{'licenca_pedido_ativacao':true,'licenca_expiracao':2}},function(err){
+					res.json(data);
+				});
+			}).sort({'_id':-1}).limit(1);
+		}).sort({'_id':-1}).limit(1);
+	});
+});
+
+
+router.post('/ativacao-licenca-usuario-expira-dias', function(req, res, next) {
+
+	POST = req.body;
+
+	console.log('@@@@@@@@@@@ ativacao-licenca-usuario @@@@@@@@@@');
+	console.log(POST);
+	console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@');
+
+	usuariosModel.findOne({'_id':POST.id_usuario},function(err,data_usuario){
+		console.log('---------------------------');
+		console.log(data_usuario);
+		console.log('---------------------------');
+		console.log(data_usuario.nome);
+
+		licencaModel.find({id_usuario:POST.id_usuario},function(err,data_licenca){
+
+			var data_agora = new Date();
+			var data_fim_licenca = data_licenca[0].data_fim;
+
+			const diferenca_tempo = data_fim_licenca - data_agora;
+			const diferenca_dias = Math.ceil(diferenca_tempo / (1000 * 60 * 60 * 24));
+
+			console.log('diferenca_dias: ' + diferenca_dias);
+
+
+			usuarioStatusModel.find({id_usuario:POST.id_usuario},function(err,data_usuario_status){
+
+				console.log(data_usuario_status);
+
+
+				var titulo = 'Olá ' + data_usuario.nome + ' sua licença expira em ' + diferenca_dias + ' dias';
+
+
+				var html = cabecalho_email +
+				"<b>Olá " + data_usuario.nome + ", seu sistema requer atenção! Seu período de teste gratuito da licença " + data_usuario_status[0].nome_algoritmo_escolhido +" expira em "+ diferenca_dias + " dias. Evite a interrupção do serviço, <a href='https://einvestor.com.br/plataforma/sistema/' target='_blank'>clique aqui</a> para acessar a área logada e assinar o plano vigente ou fazer um upgrade na assinatura desejada. </b>"+
+				"<br><br><span style='font-size:9px;'>Algo errado? Entre em contato conosco respondendo este e-mail.</span>"+
+				rodape_email;
+
+				var text = "<b>E-Investor</b>"+
+				"<b>Olá " + data_usuario.nome + ", seu sistema requer atenção! Seu período de teste gratuito da licença " + data_usuario_status[0].nome_algoritmo_escolhido +" está prestes a acabar. Evite a interrupção do serviço, <a href='https://einvestor.com.br/plataforma/sistema/' target='_blank'>clique aqui</a> para acessar a área logada e assinar o plano vigente ou fazer um upgrade na assinatura desejada. </b>"+
+				"<br><br><span>Algo errado? Entre em contato conosco respondendo este e-mail.</span>"+ rodape_email_t;
+
+
+
+
+				control.SendMail(data_usuario.email, titulo ,text,html);
+				control.SendMail('suporte@einvestor.com.br', titulo ,text,html);
+
+
+				//licenca_expiracao 0 - expira hoje
+				//licenca_expiracao 1 - expirou
+				//licenca_expiracao 2 - está prestes a acabar
+				//licenca_expiracao 3 - expira em x dias
+				usuariosModel.findOneAndUpdate({'_id':POST.id_usuario},{'$set':{'licenca_pedido_ativacao':true,'licenca_expiracao':3}},function(err){
+					res.json(data);
+				});
+			}).sort({'_id':-1}).limit(1);
+		}).sort({'_id':-1}).limit(1);
+	});
+});
+
+
+
+
 
 
 

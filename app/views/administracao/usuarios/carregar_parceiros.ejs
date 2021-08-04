@@ -1,15 +1,24 @@
 <% if(usuario.nivel == 1){%>
 
 <label for="nivel" class="col-sm-2 col-form-label">Parceiro</label>
+<%=data[usuario.id +'_usuario_e'].id_parceiro %>
 <div class="col-sm-10">
 	<select class="form-control" aria-label="Default select example" name="id_parceiro">
-		<option selected>Não possui</option>
+		<option>Não possui</option>
+
+		<%if(typeof data[usuario.id +'_usuario_e'].id_parceiro != 'undefined'){%>
+
+		
+
 		<% if (typeof data[usuario.id +'_parceiros'] != 'undefined' && data[usuario.id +'_parceiros'].length > 0) {
 			for (var i = 0 ; i < data[usuario.id +'_parceiros'].length; i++) {
 				%>
-				<option value="<%=data[usuario.id +'_parceiros'][i]._id  %>"><%=data[usuario.id +'_parceiros'][i].nome  %></option>
+				<option <%= data[usuario.id +'_usuario_e'].id_parceiro == data[usuario.id +'_parceiros'][i]._id ? 'selected': '' %> value="<%=data[usuario.id +'_parceiros'][i]._id  %>"><%=data[usuario.id +'_parceiros'][i].nome  %>
+					
+				</option>
 				<%}
 			}
+		}
 			%>
 
 

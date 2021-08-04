@@ -1,8 +1,8 @@
-<%- include('../includes/navbar'); %>
+<%- include('../../includes/navbar'); %>
 
 <div class="flex align-items-stretch">
 
-	<%- include('../includes/sidebar'); %>
+	<%- include('../../includes/sidebar'); %>
 	<% if(usuario.nivel == 1){%>
 
 
@@ -19,9 +19,9 @@
 									Usuários							
 								</h4>
 
-								<a class="btn btn-primary ajax-load margin-t-10 margin-r-10 width100-mobile" href="/plataforma/sistema/administracao/adicionar-usuario/" >
-									Adicionar Usuário
-								</a>
+								<div id="alert-sucess-excluir-usuario" class="alert alert-danger margin-t-10 none">
+									Usuário removido com sucesso!
+								</div>
 
 
 								<table class="table centered highlight responsive-table cell-border tabela_filtrada" id="tabela_administracao">
