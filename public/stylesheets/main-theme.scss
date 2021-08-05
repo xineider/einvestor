@@ -3397,6 +3397,7 @@ pre code {
     margin-right: 15px;
     margin-left: 15px;
   }
+
 }
 
 .card .list-group-item {
@@ -3534,10 +3535,27 @@ table{
   text-decoration: line-through;
 }
 
+.mensagem_progress_container{
+  margin-top:10px;
+  margin-bottom:20px;
+}
+
+.mensagem_progress_text{
+  position:absolute;
+  height: 24px;
+  left:50%;
+  transform: translate(-50%, 0);
+}
+
 
 /*Quando é responsivo*/
 
 @media (max-width: 768px){
+
+  .mensagem_progress_container{
+    margin-bottom:60px;
+  }
+
   .margin-t-20-mobile{
     margin-top:20px;
   }
@@ -3759,15 +3777,6 @@ table{
 }
 
 
-.mensagem_progress_container{
-  margin-top:10px;
-  margin-bottom:20px;
-}
 
 
-.mensagem_progress_text{
-  position:absolute;
-  height: 24px;
-  left:50%;
-  transform: translate(-50%, 0);
-}
+
