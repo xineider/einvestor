@@ -621,8 +621,8 @@ $(document).ready(function () {
 			$('.carregar_parametros_algoritmo').addClass('none');
 			$('.header_formulario_parametros').addClass('none');
 
-			$('.sincronizar_estrategia_otimizada').removeClass('none');
-			$('.mensagem_algoritmo_carregado').removeClass('none');
+			//$('.sincronizar_estrategia_otimizada').removeClass('none');
+			//$('.mensagem_algoritmo_carregado').removeClass('none');
 
 			$('.nome_estrategia').html(post[0].value);
 		}
@@ -1525,7 +1525,9 @@ function SubmitAjaxLoadToProgressBar(post, link, to) {
 			request.setRequestHeader("Authority-Moon-id", $('input[name="id_usuario_sessao"]').val());
 			request.setRequestHeader("Authority-Moon-nivel", $('input[name="nivel_usuario_sessao"]').val());
 			$('.progress').removeClass('none');
-			$('.mensagem_progress').removeClass('none');
+			$('.mensagem_progress_container').removeClass('none');
+
+			$('.mensagem_progress_text_0').fadeIn('fast');
 
 			// adicionarLoader();
 		},
@@ -1542,18 +1544,29 @@ function SubmitAjaxLoadToProgressBar(post, link, to) {
 				AddErrorTexto($(data['element']),data['texto']);	
 			}else if(data != undefined){
 				$('.'+to).empty();
-				
+				$('.progress-bar').css({'width':"100%",'transition':"13s"});
 
-				for(var i=0;i<=99;i++){
-					$('.progress-bar').css('width',i + '%');
-				};
+				var count = 1;				
+
+				var exibirTexto = setInterval(function() {
+    				showIframe(count);
+     				count++;
+     				console.log('count: ' + count);				    
+				    if (count == 4) {
+				    	console.log('cai aqui no if');
+				    	clearInterval(exibirTexto);
+				    }
+				  }, 3000);
+
+				
 
 
 				setTimeout(function(){
-					$('.progress-bar').css('width',100 + '%');
+
+					$('.progress-bar').css('width',100 + '%');					
 					$('.'+to).append(data);
 
-				}, 2000);
+				}, 12000);
 				
 			}
 			LogSistema('POST',link);
@@ -1566,15 +1579,26 @@ function SubmitAjaxLoadToProgressBar(post, link, to) {
 			setTimeout(function(){
 				$('.progress-bar').css('width','0%');
 				$('.progress').addClass('none');
-				$('.mensagem_progress').addClass('none');
-			}, 3000);
+				$('.mensagem_progress_text_3').fadeOut('fast');
+				$('.mensagem_progress_container').addClass('none');
+				console.log('removi a batata?');
+				$('.sincronizar_estrategia_otimizada').removeClass('none');
+				$('.mensagem_algoritmo_carregado').removeClass('none');
+
+
+			}, 13000);
 			
 			// removerLoader();
 		}
 	});
 }
 
+function showIframe(count) {
+	console.log('contador: '+ count); 
 
+    $('.mensagem_progress').fadeOut('fast');
+    $(".mensagem_progress_text_" + count).fadeIn('fast');
+  }
 
 
 function SubmitAjaxClean(post, link, back) {

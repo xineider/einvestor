@@ -3757,3 +3757,17 @@ table{
     outline: none;
   }
 }
+
+
+.mensagem_progress_container{
+  margin-top:10px;
+  margin-bottom:20px;
+}
+
+
+.mensagem_progress_text{
+  position:absolute;
+  height: 24px;
+  left:50%;
+  transform: translate(-50%, 0);
+}

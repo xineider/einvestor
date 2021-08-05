@@ -49,7 +49,7 @@
 												</div>
 											</div>
 
-											<button data-href="/plataforma/sistema/automacao/carregar_parametros_algoritmo/" class="btn btn-success-light margin-t-10 margin-b-10 w100 carregar_parametros_algoritmo border-radius-20" data-to='container_formulario'>Clique aqui para carregar o algoritmo otimizado por I.A											
+											<button data-href="/plataforma/sistema/automacao/carregar_parametros_algoritmo/" class="btn btn-success-light margin-t-10 margin-b-10 w100 carregar_parametros_algoritmo border-radius-20" data-to='container_formulario'>Clique aqui para carregar a otimização do algoritmo					
 											</button>
 
 											
@@ -82,10 +82,23 @@
 									<%}%>
 
 
-									<div class="progress none">
+									<div class="progress none w100">
 										<div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 0%;background-color:#7bc24d;"></div>
 									</div>
-									<div class="bold mensagem_progress none text-center green-light-text">Carregando Parâmetros...</div>
+
+									<div class="mensagem_progress_container none">
+
+									<div class="bold mensagem_progress mensagem_progress_text mensagem_progress_text_0 none text-center green-light-text">Iniciando Processo de Integração</div>
+
+									<div class="bold mensagem_progress mensagem_progress_text mensagem_progress_text_1 none text-center green-light-text">Conectado</div>
+
+									<div class="bold mensagem_progress mensagem_progress_text mensagem_progress_text_2 none text-center green-light-text">Otimizando Algoritmo</div>
+
+									<div class="bold mensagem_progress mensagem_progress_text mensagem_progress_text_3 none text-center green-light-text">Carregando Parâmetros Otimizados</div>
+
+									</div>
+
+
 
 
 
@@ -107,7 +120,7 @@
 											</div>
 
 
-											<button id="sincronizar_estrategia_otimizada" type="button" data-modal='#modalinfo' class="btn modal-mount btn-success-light float-right margin-t-10 margin-b-10 sincronizar_estrategia_otimizada none w100 pulse" title="Sincronizar" data-link="/plataforma/sistema/automacao/popup-sincronizar-estrategia-termos">Sincronizar Estratégia <span class="nome_estrategia"></span></button>
+											<button id="sincronizar_estrategia_otimizada" type="button" data-modal='#modalinfo' class="btn modal-mount btn-success-light float-right margin-t-10 margin-b-10 sincronizar_estrategia_otimizada none w100" title="Sincronizar" data-link="/plataforma/sistema/automacao/popup-sincronizar-estrategia-termos">Sincronizar Estratégia <span class="nome_estrategia"></span></button>
 
 											<%} %>
 

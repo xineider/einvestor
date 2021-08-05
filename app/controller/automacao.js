@@ -119,13 +119,23 @@ router.get('/parametros', function(req, res, next) {
 						data[req.session.usuario.id+'_select_parametros'] = data_select_parametros;
 
 						usuarioParametrosAlgoritmoModel.find({id_usuario:mongoose.Types.ObjectId(req.session.usuario.id),deletado:false},function(err,data_parametros_usuario){
+							console.log('************************* data_parametros_usuario ********************');
+							console.log(data_parametros_usuario);
+							console.log('**********************************************************************')
+
+							console.log("data_parametros_usuario.length: " + data_parametros_usuario.length);
+
+
+							if(data_parametros_usuario.length>0){
+								data[req.session.usuario.id+'_nome_estrategia'] = data_parametros_usuario[0].setup_name;
+							}
 							data[req.session.usuario.id+'_usuario_parametros'] = data_parametros_usuario;
 							data[req.session.usuario.id+'_mensagem_carregado'] = false;
 
 
-							console.log('wwwwwwwwwwwwwwwwwwwww');
-							console.log(data);
-							console.log('wwwwwwwwwwwwwwwwwwwww');
+							// console.log('wwwwwwwwwwwwwwwwwwwww');
+							// console.log(data);
+							// console.log('wwwwwwwwwwwwwwwwwwwww');
 							res.render(req.isAjaxRequest() == true ? 'api' : 'montador', {html: 'automacao/parametros', data: data, usuario: req.session.usuario});
 						}).sort({'_id':-1}).limit(1);;
 					}).sort({'_id':-1}).limit(1);
