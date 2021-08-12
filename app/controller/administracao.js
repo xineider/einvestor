@@ -353,113 +353,79 @@ router.post('/enviar-token', function(req, res, next) {
 	var array_letras_maius = ['A','B','C','D','E','F','G','H','J','K','M','P','Q','R','S','T','U','X','Y','Z'];
 	var array_letras_minus = ['a','b','c','d','e','f','g','h','j','k','m','p','q','r','s','t','u','x','y','z'];
 
-	var data_inicio = new Date(2021,7,1);
-	data_inicio.setHours(0,0,0,0);
-	var data_fim = new Date();
-	data_fim.setHours(0,0,0,0);
-
-	var data_base = new Date(2021,7,1);
-	data_base.setHours(0,0,0,0);
-
-	console.log('data_base:' + data_base);
-
-	var array_insertMany = [];
-
-	for(i = 2; i<10;i = i+2){
 
 
-
-		const randomMaius = Math.floor(Math.random() * 20);
-		const randomMinus = Math.floor(Math.random() * 20);
-		const randomNumber = Math.floor(Math.random() * 10);
-		const randomNumber2 = Math.floor(Math.random() * 100);
+	tokenModel.findOne({},function(err,data_token){
+		console.log('ttttttttttttttttttttttttttttttttttttttttt');
+		console.log(data_token);
+		console.log('tttttttttttttttttttttttttttttttttttttttttt');
 
 
 
 
+		var data_inicio = data_token.data_fim;
+		data_inicio.setHours(0,0,0,0);
+		var data_fim = new Date();
+		data_fim.setHours(0,0,0,0);
+
+		var data_base = data_token.data_fim;
+		data_base.setHours(0,0,0,0);
+
+		console.log('data_base:' + data_base);
+
+		var array_insertMany = [];
+
+		for(i = 2; i<12;i = i+2){
 
 
 
-		data_fim.setDate(data_base.getDate() + i);
-		data_inicio.setDate(data_base.getDate() + i - 2);
+			const randomMaius = Math.floor(Math.random() * 20);
+			const randomMinus = Math.floor(Math.random() * 20);
+			const randomNumber = Math.floor(Math.random() * 10);
+			const randomNumber2 = Math.floor(Math.random() * 100);
+
+			console.log("i: " + i);
+			console.log("data_base.getDate(): " + data_base.getDate());
+
+			
+			data_fim.setDate(data_inicio.getDate() + 2);
 
 
+			var new_token = array_letras_minus[randomMinus] +  array_letras_maius[randomMaius] + randomNumber + data_inicio.getDate() + (data_inicio.getMonth() + 1) + randomNumber2 +array_letras_minus[randomNumber];
 
-		var new_token = array_letras_minus[randomMinus] +  array_letras_maius[randomMaius] + randomNumber + data_inicio.getDate() + (data_inicio.getMonth() + 1) + randomNumber2 +array_letras_minus[randomNumber];
+
+			console.log('new_token: ' + new_token);
+			console.log('data_inicio:' + data_inicio);
+			console.log('data_fim: ' + data_fim);
+
+			array_insertMany.push({
+				token:new_token,
+				data_inicio: new Date(+data_inicio),
+				data_fim: new Date(+data_fim),
+				deletado:false,
+				data_cadastro:new Date()
+			});
+
+			data_inicio.setDate(data_inicio.getDate() + 2);
+
+			console.log('rrrrrrrrrrrr array_insertMany for rrrrrrrrrrrrrr');
+			console.log(array_insertMany);
+			console.log('rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr');
 
 
-		console.log('new_token: ' + new_token);
-		console.log('data_inicio:' + data_inicio);
-		console.log('data_fim: ' + data_fim);
+		}
 
-		array_insertMany.push({
-			token:new_token,
-			data_inicio: data_inicio,
-			data_fim: data_fim,
-			deletado:false,
-			data_cadastro:new Date()
+
+		console.log('======================================');
+		console.log(array_insertMany);
+		console.log('======================================');
+
+		tokenModel.insertMany(array_insertMany, function(error, docs) {
+			res.json(data);
 		});
 
-		// console.log('======================================');
-		// console.log(array_insertMany);
-		// console.log('======================================');
 
-		const novo_token = new tokenModel({ 						
-			token:new_token,
-			data_inicio: data_inicio,
-			data_fim: data_fim,
-			deletado:false,
-			data_cadastro:new Date()
-		});
-
-		// console.log(novo_token);
-
-		// console.log('----------------------------------------');
-
-
-
-		novo_token.save(function (err) {
-			if (err) {
-				return handleError(err);
-			}else{
-
-			}
-		});
-
-		
-
-
-
-
-
-
-
-
-		
-
-
-
-
-
-	}
-
-	console.log('--------insert many -------');
-	console.log(array_insertMany);
-	console.log('---------------------------');
-
-
-	// tokenModel.insertMany(array_insertMany, function(error, docs) {
-	// 		res.json(data);
-	// });
-
-	
-
-
-
-
-
-
-
+	}).sort({'_id':-1}).limit(1);
 });
 
 
