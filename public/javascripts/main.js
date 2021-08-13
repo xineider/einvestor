@@ -424,18 +424,32 @@ $(document).ready(function () {
 
 		console.log($(this).is(':checked'));
 
-			//reais
-			if($(this).is(':checked')){
-				$('.relatorio_dado_perc').addClass('none');
-				$('.relatorio_dado_real').removeClass('none');
-			}else{
-				$('.relatorio_dado_perc').removeClass('none');
-				$('.relatorio_dado_real').addClass('none');
-			}
+		//reais
+		if($(this).is(':checked')){
+			$('.relatorio_dado_perc').addClass('none');
+			$('.relatorio_dado_real').removeClass('none');
+		}else{
+			$('.relatorio_dado_perc').removeClass('none');
+			$('.relatorio_dado_real').addClass('none');
+		}
+	});
 
 
+	$(document).on('change','#relatorio_pro',function(e){
+		e.preventDefault();
+		console.log('estou alterando o switch do relatorio');
+		console.log($(this).val());
 
-		});
+		console.log($(this).is(':checked'));
+
+		//reais
+		if($(this).is(':checked')){
+			$('.relatorio-hide-normal').removeClass('none');
+		}else{
+			$('.relatorio-hide-normal').addClass('none');
+
+		}
+	});
 
 
 
@@ -1549,14 +1563,14 @@ function SubmitAjaxLoadToProgressBar(post, link, to) {
 				var count = 1;				
 
 				var exibirTexto = setInterval(function() {
-    				showIframe(count);
-     				count++;
-     				console.log('count: ' + count);				    
-				    if (count == 4) {
-				    	console.log('cai aqui no if');
-				    	clearInterval(exibirTexto);
-				    }
-				  }, 3000);
+					showIframe(count);
+					count++;
+					console.log('count: ' + count);				    
+					if (count == 4) {
+						console.log('cai aqui no if');
+						clearInterval(exibirTexto);
+					}
+				}, 3000);
 
 				
 
@@ -1596,9 +1610,9 @@ function SubmitAjaxLoadToProgressBar(post, link, to) {
 function showIframe(count) {
 	console.log('contador: '+ count); 
 
-    $('.mensagem_progress').fadeOut('fast');
-    $(".mensagem_progress_text_" + count).fadeIn('fast');
-  }
+	$('.mensagem_progress').fadeOut('fast');
+	$(".mensagem_progress_text_" + count).fadeIn('fast');
+}
 
 
 function SubmitAjaxClean(post, link, back) {

@@ -22,6 +22,19 @@
 								</div>
 
 
+
+								<%if(usuario.nivel == 4 || usuario.nivel == 1){%>
+								<div class="margin-t-10 margin-l-20 text-center">
+									<label class="inline primary-text f16">Normal</label>
+
+									<div class="custom-control custom-switch inline">
+										<input type="checkbox" class="custom-control-input" id="relatorio_pro" name="reais">
+										<label class="custom-control-label f16 primary-text" for="relatorio_pro">PRO</label>
+									</div>
+								</div>
+
+								<%}%>
+
 								<div class="margin-t-10 margin-l-20 text-center">
 									<label class="inline primary-text f16">Porcentagem</label>
 
@@ -30,6 +43,9 @@
 										<label class="custom-control-label f16 primary-text" for="relatorio_porcentagem_reais">Reais</label>
 									</div>
 								</div>
+
+
+
 
 
 								<%-include('gerador_relatorio');%>
