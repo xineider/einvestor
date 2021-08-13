@@ -126,7 +126,7 @@ router.get('/usuarios', function(req, res, next) {
 		}
 		]).exec(function(err,data_usuarios){
 
-			console.log('qqqqqqqqqqq administracao qqqqqqqqqqqqqq');
+			console.log('qqqqqqqqqqqq administracao qqqqqqqqqqqqqq');
 			console.log(data_usuarios);
 			console.log('qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq');
 
