@@ -1,0 +1,1114 @@
+<div class="w90 mx-auto">
+	
+
+	<h3 class="text-center margin-t-10 black-text uppercase">Quant Analyzer Portfolio Report</h4>
+		<h5 class="text-center black-text"><%=message.relatorio[0].titulo%></h5>
+
+		<div class="margin-t-20">
+			<h5 class="black-text bold">Symbols/Strategies in Portfolio</h5>
+
+			<div class="table-responsive">
+				<table class="relatorio_table table table-striped">
+					<thead>
+						<tr>
+							<th>Name</th>
+							<th>Net Profit</th>
+							<th>Drawdown</th>
+							<th>Trades</th>
+							<th>Profit Factor</th>
+							<th>Sharpe Ratio</th>
+							<th>Return/DD Ratio</th>
+							<th>AVG. Trade</th>
+						</tr>
+					</thead>
+					<tbody>
+						<%	if (typeof message.relatorio != 'undefined' && message.relatorio[0].estrategias.length > 0) {
+							for (var i = 0 ; i < message.relatorio[0].estrategias.length; i++) {  %>
+
+							<tr>
+								<td>
+									<%= message.relatorio[0].estrategias[i].nome %>
+								</td>
+								<td>
+
+									<span class="relatorio_dado_perc <%= message.porc_reais == 'porc' ? '' : 'none' %>">										
+										<%= message.relatorio[0].estrategias[i].net_profit_exib_perc %>%
+									</span>
+									<span class="relatorio_dado_real <%= message.porc_reais == 'reais' ? '' : 'none' %>">
+										<%= message.relatorio[0].estrategias[i].net_profit_exib_reais%>
+									</span>
+								</td>
+								<td>
+									<span class="relatorio_dado_perc <%= message.porc_reais == 'porc' ? '' : 'none' %>">
+										<%= message.relatorio[0].estrategias[i].drawdown_exib_perc %>%
+									</span>
+									<span class="relatorio_dado_real <%= message.porc_reais == 'reais' ? '' : 'none' %>">
+										<%= message.relatorio[0].estrategias[i].drawdown_exib_reais %>
+									</span>
+								</td>
+								<td>
+									<%= message.relatorio[0].estrategias[i].trades %>
+								</td>
+								<td>
+									<%= message.relatorio[0].estrategias[i].profit_factor %>
+								</td>
+								<td>
+									<%= message.relatorio[0].estrategias[i].sharpe_ratio %>
+								</td>
+								<td>
+									<%= message.relatorio[0].estrategias[i].return %>
+								</td>
+								<td>
+									<span class="relatorio_dado_perc <%= message.porc_reais == 'porc' ? '' : 'none' %>">
+										<%= message.relatorio[0].estrategias[i].average_trade_exib_perc %>%
+									</span>
+									<span class="relatorio_dado_real <%= message.porc_reais == 'reais' ? '' : 'none' %>">
+										<%= message.relatorio[0].estrategias[i].average_trade_exib_reais %>
+									</span>
+								</td>
+							</tr>
+
+							<% } 
+						}%>
+					</tbody>
+
+				</table>
+			</div>
+
+			<div class="margin-t-20 relatorio_estrategia_exibida">
+
+				<div class="row">
+					
+					<div class="col-sm-12 col-md-2 col-lg-3">
+						<div class="border-bottom-pontilhado">
+							<span class="f24 bold black-text margin-r-10">Total Profit</span>
+
+							<span class="f30 primary-text bold relatorio_dado_perc <%= message.porc_reais == 'porc' ? '' : 'none' %>"><%=message.relatorio[0].estrategias[2].net_profit_exib_perc %>%</span>
+
+							<span class="f30 primary-text bold relatorio_dado_real <%= message.porc_reais == 'reais' ? '' : 'none' %>"><%=message.relatorio[0].estrategias[2].net_profit_exib_reais %></span>
+						</div>
+						<div class="">
+							<span class="uppercase margin-r-10">YEARLY AVG RETURN</span>
+							<span class="f20 primary-text relatorio_dado_perc <%= message.porc_reais == 'porc' ? '' : 'none' %>"><%=message.relatorio[0].estrategias[2].year_average_exib_perc %>%</span>
+
+							<span class="f20 primary-text relatorio_dado_real <%= message.porc_reais == 'reais' ? '' : 'none' %>"><%=message.relatorio[0].estrategias[2].year_average_exib_reais %></span>
+						</div>
+					</div>
+
+					<div class="col-sm-12 col-md-10 col-lg-9">
+						<div class="row">
+							<div class="col-sm-12 col-md-3">
+
+								<div class="fake_input_group">
+									<label class="uppercase black-text margin-b-0 f12"># of Trades</label>
+									<div class="fake_input">
+										<%= message.relatorio[0].estrategias[2].trades %>
+									</div>
+								</div>
+
+							</div>
+
+							<div class="col-sm-12 col-md-3">
+
+								<div class="fake_input_group">
+									<label class="uppercase black-text margin-b-0 f12">Sharpe Ratio</label>
+									<div class="fake_input">
+										<%= message.relatorio[0].estrategias[2].sharpe_ratio %>
+									</div>
+								</div>
+
+							</div>
+
+							<div class="col-sm-12 col-md-3">
+
+								<div class="fake_input_group">
+									<label class="uppercase black-text margin-b-0 f12">Profit Factor</label>
+									<div class="fake_input">
+										<%= message.relatorio[0].estrategias[2].profit_factor %>
+									</div>
+								</div>
+
+							</div>
+
+							<div class="col-sm-12 col-md-3">
+
+								<div class="fake_input_group">
+									<label class="uppercase black-text margin-b-0 f12">Winning</label>
+									<div class="fake_input primary-text bold">
+										<%= message.relatorio[0].estrategias[2].winning %>%
+									</div>
+								</div>
+
+							</div>
+
+
+						</div>
+
+						<div class="row margin-t-10">
+							<div class="col-sm-12 col-md-3">
+
+								<div class="fake_input_group">
+									<label class="uppercase black-text margin-b-0 f12">Drawdown</label>
+									<div class="fake_input">
+										<span class="relatorio_dado_perc red-text <%= message.porc_reais == 'porc' ? '' : 'none' %>"><%= message.relatorio[0].estrategias[2].drawdown_exib_perc %>%</span>
+
+										<span class="relatorio_dado_real red-text <%= message.porc_reais == 'reais' ? '' : 'none' %>"><%= message.relatorio[0].estrategias[2].drawdown_exib_reais %></span>
+									</div>
+								</div>
+
+							</div>
+
+							<div class="col-sm-12 col-md-3">
+
+								<div class="fake_input_group">
+									<label class="uppercase black-text margin-b-0 f12">Daily Avg Profit</label>
+									<div class="fake_input">
+										<span class="relatorio_dado_perc <%= message.porc_reais == 'porc' ? '' : 'none' %>"><%= message.relatorio[0].estrategias[2].daily_profit_exib_perc %>%</span>
+
+										<span class="relatorio_dado_real <%= message.porc_reais == 'reais' ? '' : 'none' %>"><%= message.relatorio[0].estrategias[2].daily_profit_exib_reais %></span>
+									</div>
+								</div>
+
+							</div>
+
+							<!-- <div class="col-sm-12 col-md-3">
+
+								<div class="fake_input_group">
+									<label class="uppercase black-text margin-b-0 f12">Monthly Avg Profit</label>
+									<div class="fake_input bold primary-text">
+										<span class="relatorio_dado_perc <%#= message.porc_reais == 'porc' ? '' : 'none' %>"><%#= message.relatorio[0].estrategias[2].month_profit_exib_perc %>%</span>
+
+										<span class="relatorio_dado_real <%#= message.porc_reais == 'reais' ? '' : 'none' %>"><%#= message.relatorio[0].estrategias[2].month_profit_exib_reais %></span>
+									</div>
+								</div>
+
+							</div> -->
+
+							<div class="col-sm-12 col-md-3">
+
+								<div class="fake_input_group">
+									<label class="uppercase black-text margin-b-0 f12">Average Trade</label>
+									<div class="fake_input">
+										<span class="relatorio_dado_perc <%= message.porc_reais == 'porc' ? '' : 'none' %>"><%= message.relatorio[0].estrategias[2].average_trade_exib_perc %>%</span>
+
+										<span class="relatorio_dado_real <%= message.porc_reais == 'reais' ? '' : 'none' %>"><%= message.relatorio[0].estrategias[2].average_trade_exib_reais %></span>
+									</div>
+								</div>
+
+							</div>
+
+						</div>
+
+
+					</div>
+
+				</div>
+
+			</div>
+
+			<div class="margin-t-20 ">
+				<img class="w100" src="/public/images/imagem_relatorio.png">
+			</div>
+
+ 			<section class="margin-t-20 relatorio-hide-normal">
+				<h5 class="black-text bold">Resume Performance</h5>
+
+				<div class="table-responsive">
+					<table class="relatorio_table table table-striped">
+						<thead>
+							<tr>
+								<th>Period</th>
+								<th>Net Profit</th>
+								<th>Profit Factor</th>
+								<th>Trades</th>
+								<th>Wins</th>
+							</tr>
+						</thead>
+						<tbody>
+
+
+
+							<%	if (typeof message.relatorio != 'undefined' && message.relatorio[0].resume_performance.length > 0) {
+								for (var i = 0 ; i < message.relatorio[0].resume_performance.length; i++) {  %>
+
+
+
+
+								<tr>
+									<td>
+										<%= message.relatorio[0].resume_performance[i].period %>
+									</td>
+									<td>
+										<span class="relatorio_dado_perc <%= message.porc_reais == 'porc' ? '' : 'none' %>">
+											<%= message.relatorio[0].resume_performance[i].net_profit_exib_perc %>%
+										</span>
+										<span class="relatorio_dado_real <%= message.porc_reais == 'reais' ? '' : 'none' %>">
+											<%= message.relatorio[0].resume_performance[i].net_profit_exib_reais %>
+										</span>
+									</td>
+
+									<td>
+										<%= message.relatorio[0].resume_performance[i].profit_factor %>
+									</td>
+									<td>
+										<%= message.relatorio[0].resume_performance[i].trades %>
+									</td>
+									<td>
+										<%= message.relatorio[0].resume_performance[i].wins %>%
+									</td>
+								</tr>
+
+								<% } 
+							}%>
+						</tbody>
+					</table>
+				</div>
+
+
+			</section>
+
+			<section class="margin-t-20">
+				<h5 class="black-text bold border-bottom-solid">Correlation base on Profit/loss by Hour</h5>
+
+
+				<div class="row">
+					<div class="col-sm-3 black-text">
+						Lower correlation <br>
+						Better diversification
+					</div>
+
+					<div class="col-sm-6">
+						<div class="border-bottom-pontilhado-primary">
+							<div class="row primary-text f12">
+								<div class="col-sm-3">< 0.4 MODERATE</div>
+								<div class="col-sm-6">0.4 - 0.7 MODERATE HIGH</div>
+								<div class="col-sm-3">0. - 1.0 HIGH</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-3 black-text">
+						Higher correlation<br>
+						Worse diversification
+					</div>
+
+				</div>
+
+				<div class="table-responsive">
+					<table class="relatorio_table table table-striped">
+						<thead>
+							<tr>
+								<th></th>
+								<th>
+									<%= message.relatorio[0].estrategias[0].nome %>
+								</th>
+								<th>
+									<%= message.relatorio[0].estrategias[1].nome %>								
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+
+								<td>
+									<%= message.relatorio[0].estrategias[0].nome %>
+								</td>
+								<td></td>
+								<td class="secondary-color-background">
+									-0.16
+								</td>
+							</tr>
+
+							<tr>
+								<td><%= message.relatorio[0].estrategias[1].nome %></td>
+								<td class="secondary-color-background">-0.16</td>
+								<td></td>
+							</tr>
+
+
+						</tbody>
+
+
+					</table>
+				</div>
+
+
+
+
+
+			</section>
+
+
+
+ 			<section class="margin-t-20 relatorio-hide-normal">
+				<h5 class="black-text bold">Monthly Performance</h5>
+
+				<div class="table-responsive">
+					<table class="relatorio_table table table-striped">
+						<thead>
+							<tr>
+								<th>Year</th>
+								<th>Jan</th>
+								<th>Fev</th>
+								<th>Mar</th>
+								<th>Apr</th>
+								<th>May</th>
+								<th>Jun</th>
+								<th>Jul</th>
+								<th>Aug</th>
+								<th>Sep</th>
+								<th>Oct</th>
+								<th>Nov</th>
+								<th>Dec</th>
+								<th>YTD</th>
+							</tr>
+						</thead>
+
+						<tbody>
+
+
+
+							<%	if (typeof message.relatorio != 'undefined' && message.relatorio[0].monthly_performance.length > 0) {
+								for (var i = 0 ; i < message.relatorio[0].monthly_performance.length; i++) {  %>
+
+
+
+
+								<tr>
+									<td>
+										<%= message.relatorio[0].monthly_performance[i].year %>
+									</td>
+									<td>
+										<span class="relatorio_dado_perc <%= message.relatorio[0].monthly_performance[i].jan < 0 ? 'red-text' : ''%> <%= message.porc_reais == 'porc' ? '' : 'none' %>">
+											<%= message.relatorio[0].monthly_performance[i].jan_exib_perc %>%
+										</span>
+										<span class="relatorio_dado_real <%= message.porc_reais == 'reais' ? '' : 'none' %>">
+											<%= message.relatorio[0].monthly_performance[i].jan_exib_reais %>
+										</span>
+									</td>
+									<td>
+										<span class="relatorio_dado_perc <%= message.relatorio[0].monthly_performance[i].fev < 0 ? 'red-text' : ''%> <%= message.porc_reais == 'porc' ? '' : 'none' %>">
+											<%= message.relatorio[0].monthly_performance[i].fev_exib_perc %>%
+										</span>
+										<span class="relatorio_dado_real <%= message.relatorio[0].monthly_performance[i].fev < 0 ? 'red-text' : ''%> <%= message.porc_reais == 'reais' ? '' : 'none' %>">
+											<%= message.relatorio[0].monthly_performance[i].fev_exib_reais %>
+										</span>
+									</td>
+									<td>
+										<span class="relatorio_dado_perc <%= message.relatorio[0].monthly_performance[i].mar < 0 ? 'red-text' : ''%> <%= message.porc_reais == 'porc' ? '' : 'none' %>">
+											<%= message.relatorio[0].monthly_performance[i].mar_exib_perc %>%
+										</span>
+										<span class="relatorio_dado_real <%= message.relatorio[0].monthly_performance[i].mar < 0 ? 'red-text' : ''%> <%= message.porc_reais == 'reais' ? '' : 'none' %>">					
+											<%= message.relatorio[0].monthly_performance[i].mar_exib_reais %>
+										</span>
+									</td>
+									<td>
+										<span class="relatorio_dado_perc <%= message.relatorio[0].monthly_performance[i].apr < 0 ? 'red-text' : ''%> <%= message.porc_reais == 'porc' ? '' : 'none' %>">
+											<%= message.relatorio[0].monthly_performance[i].apr_exib_perc %>%
+										</span>
+										<span class="relatorio_dado_real <%= message.relatorio[0].monthly_performance[i].apr < 0 ? 'red-text' : ''%> <%= message.porc_reais == 'reais' ? '' : 'none' %>">
+											<%= message.relatorio[0].monthly_performance[i].apr_exib_reais %>
+										</span>
+									</td>
+									<td>
+										<span class="relatorio_dado_perc <%= message.relatorio[0].monthly_performance[i].may < 0 ? 'red-text' : ''%> <%= message.porc_reais == 'porc' ? '' : 'none'  %>">
+											<%= message.relatorio[0].monthly_performance[i].may_exib_perc %>%
+										</span>
+										<span class="relatorio_dado_real <%= message.relatorio[0].monthly_performance[i].may < 0 ? 'red-text' : ''%> <%= message.porc_reais == 'reais' ? '' : 'none' %>">
+											<%= message.relatorio[0].monthly_performance[i].may_exib_reais %>
+										</span>
+									</td>
+									<td>
+										<span class="relatorio_dado_perc <%= message.relatorio[0].monthly_performance[i].jun < 0 ? 'red-text' : ''%> <%= message.porc_reais == 'porc' ? '' : 'none' %>">
+											<%= message.relatorio[0].monthly_performance[i].jun_exib_perc %>%
+										</span>
+										<span class="relatorio_dado_real <%= message.relatorio[0].monthly_performance[i].jun < 0 ? 'red-text' : ''%> <%= message.porc_reais == 'reais' ? '' : 'none' %>">
+											<%= message.relatorio[0].monthly_performance[i].jun_exib_reais %>
+										</span>
+									</td>
+									<td>
+										<span class="relatorio_dado_perc <%= message.relatorio[0].monthly_performance[i].jul < 0 ? 'red-text' : ''%> <%= message.porc_reais == 'porc' ? '' : 'none' %>">
+											<%= message.relatorio[0].monthly_performance[i].jul_exib_perc %>%
+										</span>
+										<span class="relatorio_dado_real <%= message.relatorio[0].monthly_performance[i].jul < 0 ? 'red-text' : ''%> <%= message.porc_reais == 'reais' ? '' : 'none' %>">
+											<%= message.relatorio[0].monthly_performance[i].jul_exib_reais %>
+										</span>
+									</td>
+									<td>
+										<span class="relatorio_dado_perc <%= message.relatorio[0].monthly_performance[i].aug < 0 ? 'red-text' : ''%> <%= message.porc_reais == 'porc' ? '' : 'none' %>">
+											<%= message.relatorio[0].monthly_performance[i].aug_exib_perc %>%
+										</span>
+										<span class="relatorio_dado_real <%= message.relatorio[0].monthly_performance[i].aug < 0 ? 'red-text' : ''%> <%= message.porc_reais == 'reais' ? '' : 'none' %>">
+											<%= message.relatorio[0].monthly_performance[i].aug_exib_reais %>
+										</span>
+									</td>
+									<td>
+										<span class="relatorio_dado_perc <%= message.relatorio[0].monthly_performance[i].sep < 0 ? 'red-text' : ''%> <%= message.porc_reais == 'porc' ? '' : 'none' %>">
+											<%= message.relatorio[0].monthly_performance[i].sep_exib_perc %>%
+										</span>
+										<span class="relatorio_dado_real <%= message.relatorio[0].monthly_performance[i].sep < 0 ? 'red-text' : ''%> <%= message.porc_reais == 'reais' ? '' : 'none' %>">
+											<%= message.relatorio[0].monthly_performance[i].sep_exib_reais %>
+										</span>
+									</td>
+									<td>
+										<span class="relatorio_dado_perc <%= message.relatorio[0].monthly_performance[i].oct < 0 ? 'red-text' : ''%> <%= message.porc_reais == 'porc' ? '' : 'none' %>">
+											<%= message.relatorio[0].monthly_performance[i].oct_exib_perc %>%
+										</span>
+										<span class="relatorio_dado_real <%= message.relatorio[0].monthly_performance[i].oct < 0 ? 'red-text' : ''%> <%= message.porc_reais == 'reais' ? '' : 'none' %>">
+											<%= message.relatorio[0].monthly_performance[i].oct_exib_reais %>
+										</span>
+									</td>
+									<td>
+										<span class="relatorio_dado_perc <%= message.relatorio[0].monthly_performance[i].nov < 0 ? 'red-text' : ''%> <%= message.porc_reais == 'porc' ? '' : 'none' %>">
+											<%= message.relatorio[0].monthly_performance[i].nov_exib_perc %>%
+										</span>
+										<span class="relatorio_dado_real <%= message.relatorio[0].monthly_performance[i].nov < 0 ? 'red-text' : ''%> <%= message.porc_reais == 'reais' ? '' : 'none' %>">
+											<%= message.relatorio[0].monthly_performance[i].nov_exib_reais %>
+										</span>
+									</td>
+									<td>
+										<span class="relatorio_dado_perc <%= message.relatorio[0].monthly_performance[i].dec < 0 ? 'red-text' : ''%> <%= message.porc_reais == 'porc' ? '' : 'none' %>">
+											<%= message.relatorio[0].monthly_performance[i].dec_exib_perc %>%
+										</span>
+										<span class="relatorio_dado_real <%= message.relatorio[0].monthly_performance[i].dec < 0 ? 'red-text' : ''%> <%= message.porc_reais == 'reais' ? '' : 'none' %>" style="min-width: 110px;">
+											<%= message.relatorio[0].monthly_performance[i].dec_exib_reais %>
+										</span>
+									</td>
+									<td>
+										<span class="relatorio_dado_perc <%= message.relatorio[0].monthly_performance[i].ytd < 0 ? 'red-text' : ''%> <%= message.porc_reais == 'porc' ? '' : 'none' %>">
+											<%= message.relatorio[0].monthly_performance[i].ytd_exib_perc %>%
+										</span>
+										<span class="relatorio_dado_real <%= message.relatorio[0].monthly_performance[i].ytd < 0 ? 'red-text' : ''%> <%= message.porc_reais == 'reais' ? '' : 'none' %>">
+											<%= message.relatorio[0].monthly_performance[i].ytd_exib_reais %>
+										</span>
+									</td>
+								</tr>
+
+								<% } 
+							}%>
+						</tbody>
+
+					</table>
+				</div>
+
+			</section>
+
+			<section class="margin-t-20">
+				<h5 class="black-text bold border-bottom-solid">Stats</h5>
+
+				<div class="row margin-t-20">
+					<div class="col-sm-12 col-md-4">
+
+						<div class="fake_input_group">
+
+							<div class="row align-items-center">
+
+								<div class="col-sm-6">
+									<label class="black-text margin-b-0">Wins/Losses Ratio</label>
+								</div>
+								<div class="col-sm-6">								
+									<div class="fake_input w100 text-right">
+										<%= message.relatorio[0].stats[0].win_loss_ratio %>
+									</div>
+								</div>
+
+							</div>
+						</div>
+
+					</div>
+
+					<div class="col-sm-12 col-md-4">
+
+						<div class="fake_input_group">
+
+							<div class="row align-items-center">
+
+								<div class="col-sm-6">
+									<label class="black-text margin-b-0">Payout Ratio(Avg Win/Loss)</label>
+								</div>
+								<div class="col-sm-6">								
+									<div class="fake_input w100 text-right">
+										<%= message.relatorio[0].stats[0].payout_ratio %>
+									</div>
+								</div>
+
+							</div>
+						</div>
+
+					</div>
+
+
+					<div class="col-sm-12 col-md-4">
+
+						<div class="fake_input_group">
+
+							<div class="row align-items-center">
+
+								<div class="col-sm-6">
+									<label class="black-text margin-b-0">Average # Of Bars Trade</label>
+								</div>
+								<div class="col-sm-6">								
+									<div class="fake_input w100 text-right">
+										<%= message.relatorio[0].stats[0].average_of_bars %>
+									</div>
+								</div>
+
+							</div>
+						</div>
+
+					</div>
+
+				</div>
+
+				<div class="row margin-t-20">
+
+					<div class="col-sm-12 col-md-4">
+
+						<div class="fake_input_group">
+
+							<div class="row align-items-center">
+
+								<div class="col-sm-6">
+									<label class="black-text margin-b-0">AHPR</label>
+								</div>
+								<div class="col-sm-6">								
+									<div class="fake_input w100 text-right">
+										<%= message.relatorio[0].stats[0].ahpr %>
+									</div>
+								</div>
+
+							</div>
+						</div>
+
+					</div>
+
+					<div class="col-sm-12 col-md-4">
+
+						<div class="fake_input_group">
+
+							<div class="row align-items-center">
+
+								<div class="col-sm-6">
+									<label class="black-text margin-b-0">Z-Score</label>
+								</div>
+								<div class="col-sm-6">								
+									<div class="fake_input w100 text-right">
+										<%= message.relatorio[0].stats[0].z_score %>
+									</div>
+								</div>
+
+							</div>
+						</div>
+
+					</div>
+
+					<div class="col-sm-12 col-md-4">
+
+						<div class="fake_input_group">
+
+							<div class="row align-items-center">
+
+								<div class="col-sm-6">
+									<label class="black-text margin-b-0">Z-Probability</label>
+								</div>
+								<div class="col-sm-6">								
+									<div class="fake_input w100 text-right">
+										<%= message.relatorio[0].stats[0].z_probability %>%
+									</div>
+								</div>
+
+							</div>
+						</div>
+
+					</div>
+
+
+				</div>
+
+				<div class="row margin-t-20">
+
+					<div class="col-sm-12 col-md-4">
+
+						<div class="fake_input_group">
+
+							<div class="row align-items-center">
+
+								<div class="col-sm-6">
+									<label class="black-text margin-b-0">Expectancy</label>
+								</div>
+								<div class="col-sm-6">								
+									<div class="fake_input w100 text-right">
+										<%= message.relatorio[0].stats[0].expectancy %>
+									</div>
+								</div>
+
+							</div>
+						</div>
+
+					</div>
+
+
+					<div class="col-sm-12 col-md-4">
+
+						<div class="fake_input_group">
+
+							<div class="row align-items-center">
+
+								<div class="col-sm-6">
+									<label class="black-text margin-b-0">Deviation</label>
+								</div>
+								<div class="col-sm-6">								
+									<div class="fake_input w100 text-right">
+										<span class="relatorio_dado_perc <%= message.porc_reais == 'porc' ? '' : 'none' %>">
+											<%= message.relatorio[0].stats[0].deviation_exib_perc %>%
+										</span>
+										<span class="relatorio_dado_real <%= message.porc_reais == 'reais' ? '' : 'none' %>">
+											<%= message.relatorio[0].stats[0].deviation_exib_reais %>
+										</span>
+
+									</div>
+								</div>
+
+							</div>
+						</div>
+
+					</div>
+
+
+					<div class="col-sm-12 col-md-4">
+
+						<div class="fake_input_group">
+
+							<div class="row align-items-center">
+
+								<div class="col-sm-6">
+									<label class="black-text margin-b-0">Exposure</label>
+								</div>
+								<div class="col-sm-6">								
+									<div class="fake_input w100 text-right">
+										<%= message.relatorio[0].stats[0].exposure %>%
+									</div>
+								</div>
+
+							</div>
+						</div>
+
+					</div>
+
+
+
+				</div>
+
+				<div class="row margin-t-20">
+
+					<div class="col-sm-12 col-md-4">
+
+						<div class="fake_input_group">
+
+							<div class="row align-items-center">
+
+								<div class="col-sm-6">
+									<label class="black-text margin-b-0">Stagnation in Days</label>
+								</div>
+								<div class="col-sm-6">								
+									<div class="fake_input w100 text-right">
+										<%= message.relatorio[0].stats[0].stagnation_days %>
+									</div>
+								</div>
+
+							</div>
+						</div>
+
+					</div>
+
+					<div class="col-sm-12 col-md-4">
+
+						<div class="fake_input_group">
+
+							<div class="row align-items-center">
+
+								<div class="col-sm-6">
+									<label class="black-text margin-b-0">Stagnation in %</label>
+								</div>
+								<div class="col-sm-6">								
+									<div class="fake_input w100 text-right">
+										<%= message.relatorio[0].stats[0].stagnation_percentage %>%
+									</div>
+								</div>
+
+							</div>
+						</div>
+
+					</div>
+
+				</div>
+
+
+
+			</section>
+
+			<section class="margin-t-20">
+				<h5 class="black-text bold border-bottom-solid">Trades</h5>
+
+				<div class="row">
+
+					<div class="col-sm-12 col-md-6 col-xl-4 margin-t-20">
+
+						<div class="fake_input_group">
+
+							<div class="row align-items-center">
+
+								<div class="col-sm-6">
+									<label class="black-text margin-b-0">Total Trades</label>
+								</div>
+								<div class="col-sm-6">								
+									<div class="fake_input w100 text-right">
+										<%= message.relatorio[0].trades[0].total_trades %>
+									</div>
+								</div>
+
+							</div>
+						</div>
+
+					</div>
+
+					<div class="col-sm-12 col-md-6 col-xl-4 margin-t-20">
+
+						<div class="fake_input_group">
+
+							<div class="row align-items-center">
+
+								<div class="col-sm-6">
+									<label class="black-text margin-b-0"># of Wins</label>
+								</div>
+								<div class="col-sm-6">								
+									<div class="fake_input w100 text-right">
+										<%= message.relatorio[0].trades[0].wins %>
+									</div>
+								</div>
+
+							</div>
+						</div>
+
+					</div>
+
+					<div class="col-sm-12 col-md-6 col-xl-4 margin-t-20">
+
+						<div class="fake_input_group">
+
+							<div class="row align-items-center">
+
+								<div class="col-sm-6">
+									<label class="black-text margin-b-0"># of Losses</label>
+								</div>
+								<div class="col-sm-6">								
+									<div class="fake_input w100 text-right red-text">
+										<%= message.relatorio[0].trades[0].loss %>
+									</div>
+								</div>
+
+							</div>
+						</div>
+
+					</div>
+
+					<div class="col-sm-12 col-md-6 col-xl-4 margin-t-20">
+
+						<div class="fake_input_group">
+
+							<div class="row align-items-center">
+
+								<div class="col-sm-6">
+									<label class="black-text margin-b-0"># of Cancelled/Expired</label>
+								</div>
+								<div class="col-sm-6">								
+									<div class="fake_input w100 text-right">
+										<%= message.relatorio[0].trades[0].cancelled %>
+									</div>
+								</div>
+
+							</div>
+						</div>
+
+					</div>
+
+					<div class="col-sm-12 col-md-6 col-xl-4 margin-t-20">
+
+						<div class="fake_input_group">
+
+							<div class="row align-items-center">
+
+								<div class="col-sm-6">
+									<label class="black-text margin-b-0">Gross Profit</label>
+								</div>
+								<div class="col-sm-6">								
+									<div class="fake_input w100 text-right">
+										<span class="relatorio_dado_perc <%= message.porc_reais == 'porc' ? '' : 'none' %>">
+											<%= message.relatorio[0].trades[0].gross_profit_exib_perc %>%
+										</span>
+										<span class="relatorio_dado_real <%= message.porc_reais == 'reais' ? '' : 'none' %>">
+											<%= message.relatorio[0].trades[0].gross_profit_exib_reais %>
+										</span>
+									</div>
+								</div>
+
+							</div>
+						</div>
+
+					</div>
+
+					<div class="col-sm-12 col-md-6 col-xl-4 margin-t-20">
+
+						<div class="fake_input_group">
+
+							<div class="row align-items-center">
+
+								<div class="col-sm-6">
+									<label class="black-text margin-b-0">Gross Loss</label>
+								</div>
+								<div class="col-sm-6">								
+									<div class="fake_input w100 text-right red-text">
+										<span class="relatorio_dado_perc <%= message.porc_reais == 'porc' ? '' : 'none' %>">
+											<%= message.relatorio[0].trades[0].gross_loss_exib_perc %>%
+										</span>
+										<span class="relatorio_dado_real <%= message.porc_reais == 'reais' ? '' : 'none' %>">
+											<%= message.relatorio[0].trades[0].gross_loss_exib_reais %>
+										</span>
+									</div>
+								</div>
+
+							</div>
+						</div>
+
+					</div>
+
+					<div class="col-sm-12 col-md-6 col-xl-4 margin-t-20">
+
+						<div class="fake_input_group">
+
+							<div class="row align-items-center">
+
+								<div class="col-sm-6">
+									<label class="black-text margin-b-0">Average Win</label>
+								</div>
+								<div class="col-sm-6">								
+									<div class="fake_input w100 text-right">
+										<span class="relatorio_dado_perc <%= message.porc_reais == 'porc' ? '' : 'none' %>">
+											<%= message.relatorio[0].trades[0].average_win_exib_perc %>%
+										</span>
+										<span class="relatorio_dado_real <%= message.porc_reais == 'reais' ? '' : 'none' %>">
+											<%= message.relatorio[0].trades[0].average_win_exib_reais %>
+										</span>
+									</div>
+								</div>
+
+							</div>
+						</div>
+
+					</div>
+
+					<div class="col-sm-12 col-md-6 col-xl-4 margin-t-20">
+
+						<div class="fake_input_group">
+
+							<div class="row align-items-center">
+
+								<div class="col-sm-6">
+									<label class="black-text margin-b-0">Average Loss</label>
+								</div>
+								<div class="col-sm-6">								
+									<div class="fake_input w100 text-right red-text">
+										<span class="relatorio_dado_perc <%= message.porc_reais == 'porc' ? '' : 'none' %>">
+											<%= message.relatorio[0].trades[0].average_loss_exib_perc %>%
+										</span>
+										<span class="relatorio_dado_real <%= message.porc_reais == 'reais' ? '' : 'none' %>">
+											<%= message.relatorio[0].trades[0].average_loss_exib_reais %>
+										</span>
+									</div>
+								</div>
+
+							</div>
+						</div>
+
+					</div>
+
+					<div class="col-sm-12 col-md-6 col-xl-4 margin-t-20">
+
+						<div class="fake_input_group">
+
+							<div class="row align-items-center">
+
+								<div class="col-sm-6">
+									<label class="black-text margin-b-0">Largest Win</label>
+								</div>
+								<div class="col-sm-6">								
+									<div class="fake_input w100 text-right">
+										<span class="relatorio_dado_perc <%= message.porc_reais == 'porc' ? '' : 'none' %>">
+											<%= message.relatorio[0].trades[0].largest_win_exib_perc %>%
+										</span>
+										<span class="relatorio_dado_real <%= message.porc_reais == 'reais' ? '' : 'none' %>">
+											<%= message.relatorio[0].trades[0].largest_win_exib_reais %>
+										</span>
+									</div>
+								</div>
+
+							</div>
+						</div>
+
+					</div>
+
+					<div class="col-sm-12 col-md-6 col-xl-4 margin-t-20">
+
+						<div class="fake_input_group">
+
+							<div class="row align-items-center">
+
+								<div class="col-sm-6">
+									<label class="black-text margin-b-0">Largest Loss</label>
+								</div>
+								<div class="col-sm-6">								
+									<div class="fake_input w100 text-right red-text">
+										<span class="relatorio_dado_perc <%= message.porc_reais == 'porc' ? '' : 'none' %>">
+											<%= message.relatorio[0].trades[0].largest_loss_exib_perc %>%
+										</span>
+										<span class="relatorio_dado_real <%= message.porc_reais == 'reais' ? '' : 'none' %>">
+											<%= message.relatorio[0].trades[0].largest_loss_exib_reais %>
+										</span>
+									</div>
+								</div>
+
+							</div>
+						</div>
+
+					</div>
+
+					<div class="col-sm-12 col-md-6 col-xl-4 margin-t-20">
+
+						<div class="fake_input_group">
+
+							<div class="row align-items-center">
+
+								<div class="col-sm-6">
+									<label class="black-text margin-b-0">Max Consec Wins</label>
+								</div>
+								<div class="col-sm-6">								
+									<div class="fake_input w100 text-right">
+										<%= message.relatorio[0].trades[0].max_consec_wins %>
+									</div>
+								</div>
+
+							</div>
+						</div>
+
+					</div>
+
+					<div class="col-sm-12 col-md-6 col-xl-4 margin-t-20">
+
+						<div class="fake_input_group">
+
+							<div class="row align-items-center">
+
+								<div class="col-sm-6">
+									<label class="black-text margin-b-0">Max Consec Loss</label>
+								</div>
+								<div class="col-sm-6">								
+									<div class="fake_input w100 text-right red-text">
+										<%= message.relatorio[0].trades[0].max_consec_loss %>
+									</div>
+								</div>
+
+							</div>
+						</div>
+
+					</div>
+
+					<div class="col-sm-12 col-md-6 col-xl-4 margin-t-20">
+
+						<div class="fake_input_group">
+
+							<div class="row align-items-center">
+
+								<div class="col-sm-6">
+									<label class="black-text margin-b-0">Avg Consec Wins</label>
+								</div>
+								<div class="col-sm-6">								
+									<div class="fake_input w100 text-right">
+										<%= message.relatorio[0].trades[0].avg_consec_wins %>
+									</div>
+								</div>
+
+							</div>
+						</div>
+
+					</div>
+
+					<div class="col-sm-12 col-md-6 col-xl-4 margin-t-20">
+
+						<div class="fake_input_group">
+
+							<div class="row align-items-center">
+
+								<div class="col-sm-6">
+									<label class="black-text margin-b-0">Avg Consec Loss</label>
+								</div>
+								<div class="col-sm-6">								
+									<div class="fake_input w100 text-right red-text">
+										<%= message.relatorio[0].trades[0].avg_consec_loss %>
+									</div>
+								</div>
+
+							</div>
+						</div>
+
+					</div>
+
+				</div>
+
+
+			</section>
+
+
+			<section class="margin-t-20 border-top-gray">
+				<div class="text-center">Data powered by</div>
+				<div class="row margin-t-20 padding-b-20">
+					<div class="col-sm-12 col-md-4 text-center">
+						<img style="margin-top:-10px;" src="/public/images/xp_investimentos.png" class="w80">
+					</div>
+					<div class="col-sm-12 col-md-4 text-center">
+						<img src="/public/images/metaquotes.png" class="w80">
+					</div>
+					<div class="col-sm-12 col-md-4 text-center">
+						<img src="/public/images/strategy_quant.png" class="w80">
+					</div>
+
+				</div>
+
+
+			</section>
+
+			<section class="margin-t-20">
+
+				<small><p>Este relatório foi criado com base em um teste do passado (backtest) utilizando parâmetros selecionados
+					por otimização pelo sistema de I.A. (Inteligência Artificial) da Metaquotes Ltd. e compilado em relatório de
+					portfólio da StrategyQuant utilizando os dados dos ativos fornecidos pela XP Investimentos CCTVM S/A.
+					A responsabilidade de configuração e parametrização pertencem a cada usuário. Os desempenhos
+					anteriores não são, necessariamente, indicativos de resultados futuros e nenhuma declaração ou
+					garantia, de forma expressa ou implícita, é feita em relação a desempenhos futuros. O conteúdo
+					apresentado neste relatório de teste passado não se trata de recomendação, indicação, análise ou
+					aconselhamento de investimento. A rentabilidade passada (backtest) divulgada não considera impostos e
+				custos operacionais.</p></small>
+
+				<small><p>Consulte material e informações diretamente na página oficial dos sistemas utilizados:</p></small>
+
+				<a href="https://strategyquant.com/quantanalyzer" target="_blank">strategyquant.com/quantanalyzer</a><br>
+				<a href="https://strategyquant.com/" target="_blank">strategyquant.com</a><br>
+				<a href="https://www.metaquotes.net/en/metatrader5/algorithmic-trading/tester" target="_blank">metaquotes.net/en/metatrader5/algorithmic-trading/tester</a>
+
+
+
+			</section>
+
+
+		</div>
+
+
+	</div>
