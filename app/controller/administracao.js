@@ -365,8 +365,10 @@ router.post('/enviar-token', function(req, res, next) {
 
 		var data_inicio = data_token.data_fim;
 		data_inicio.setHours(0,0,0,0);
-		var data_fim = new Date();
+		var data_fim = new Date(data_inicio.getFullYear(),data_inicio.getMonth(),data_inicio.getDate());
 		data_fim.setHours(0,0,0,0);
+
+		console.log('data_fim: ' + data_fim);
 
 		var data_base = data_token.data_fim;
 		data_base.setHours(0,0,0,0);
