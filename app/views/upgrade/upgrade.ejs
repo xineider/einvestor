@@ -5,6 +5,8 @@
 
 	<%- include('../includes/sidebar'); %>
 
+	<% if(usuario.id != '60ca26bd4f7a4a001d341f3d'){%>
+
 	<div class="page-content">
 
 		<%- include('../inicio/primeira_vez'); %>
@@ -155,6 +157,18 @@
 		<%}%>
 
 	</div>
+
+	<%}else{%>
+	<div class="page-content">
+		<div class="container-fluid">
+			<div class="alert error-block margin-t-10">
+				Você não pode acessar essa página!
+			</div>
+		</div>
+	</div>
+
+
+	<%}%>
 
 
 

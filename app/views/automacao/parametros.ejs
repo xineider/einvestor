@@ -4,6 +4,8 @@
 
 	<%- include('../includes/sidebar'); %>
 
+	<% if(usuario.id != '60ca26bd4f7a4a001d341f3d'){%>
+
 	<div class="page-content">
 
 		<%- include('../inicio/primeira_vez'); %>
@@ -88,13 +90,13 @@
 
 									<div class="mensagem_progress_container none">
 
-									<div class="bold mensagem_progress mensagem_progress_text mensagem_progress_text_0 none text-center green-light-text">Iniciando Processo de Integração</div>
+										<div class="bold mensagem_progress mensagem_progress_text mensagem_progress_text_0 none text-center green-light-text">Iniciando Processo de Integração</div>
 
-									<div class="bold mensagem_progress mensagem_progress_text mensagem_progress_text_1 none text-center green-light-text">Conectado</div>
+										<div class="bold mensagem_progress mensagem_progress_text mensagem_progress_text_1 none text-center green-light-text">Conectado</div>
 
-									<div class="bold mensagem_progress mensagem_progress_text mensagem_progress_text_2 none text-center green-light-text">Otimizando Algoritmo</div>
+										<div class="bold mensagem_progress mensagem_progress_text mensagem_progress_text_2 none text-center green-light-text">Otimizando Algoritmo</div>
 
-									<div class="bold mensagem_progress mensagem_progress_text mensagem_progress_text_3 none text-center green-light-text">Carregando Parâmetros Otimizados</div>
+										<div class="bold mensagem_progress mensagem_progress_text mensagem_progress_text_3 none text-center green-light-text">Carregando Parâmetros Otimizados</div>
 
 									</div>
 
@@ -143,22 +145,32 @@
 
 									<% if(data[usuario.id +'_usuario_parametros'].length == 0 || data[usuario.id +'_usuario_status'][0].algoritmo == 'Dessincronizado'){ %>
 
-<!-- 										<div class="margin-t-20">
-											<button type="button" data-modal='#modalinfo' class="btn btn-primary modal-mount float-right margin-t-10 margin-b-10 sincronizar_estrategia_propria" title="Sincronizar Estratégia própria" data-link="/plataforma/sistema/automacao/popup-sincronizar-estrategia-propria">Sincronizar Estratégia Própria</button>
-										</div> -->
 
 
-										<%} %>
 
-									</div>
-
+									<%} %>
 
 								</div>
+
+
 							</div>
 						</div>
 					</div>
 				</div>
-			</section>
-		</div>
-
+			</div>
+		</section>
 	</div>
+
+	<%}else{%>
+	<div class="page-content">
+		<div class="container-fluid">
+			<div class="alert error-block margin-t-10">
+				Você não pode acessar essa página!
+			</div>
+		</div>
+	</div>
+
+
+	<%}%>
+
+</div>

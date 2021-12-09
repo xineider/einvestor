@@ -66,7 +66,7 @@ router.post('/', function(req, res, next) {
 	console.log(POST);
 	console.log('NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN');
 
-	usuarioModel.findOne({'email':POST.email,'senha':POST.senha},function(err,data_login){
+	usuarioModel.findOne({'email':POST.email,'senha':POST.senha,'deletado':false},function(err,data_login){
 		console.log('dddddddddddddddddddddddddddddd');
 		console.log('data_login');
 		console.log('dddddddddddddddddddddddddddddd');

@@ -26,9 +26,13 @@
 		<%}%>
 
 
-
+		<%# thiago%>
+		<% if(usuario.id != '60ca26bd4f7a4a001d341f3d'){%>
 
 		<li class="<%= data[usuario.id +'_numero_menu'] == 2 ? 'active' : ''%>" ><a class="ajax-load" href="/plataforma/sistema/automacao"> <i class="fas fa-hand-pointer"></i>Automação </a></li>
+
+		<%}%>
+
 
 		<% if(usuario.nivel == 4){ %>
 		<li class="<%= data[usuario.id +'_numero_menu'] == 12 ? 'active' : ''%>" ><a class="ajax-load" href="/plataforma/sistema/simulador"> <i class="fas fa-chart-bar"></i>Simulador </a></li>
@@ -39,9 +43,11 @@
 
 
 
-
+		<% if(usuario.id != '60ca26bd4f7a4a001d341f3d'){%>
 		<li class="<%= data[usuario.id +'_numero_menu'] == 3 ? 'active' : ''%>" ><a class="ajax-load" href="/plataforma/sistema/upgrade"> <i class="fas fa-long-arrow-alt-up"></i>Upgrade </a></li>
 		<li class="<%= data[usuario.id +'_numero_menu'] == 4 ? 'active' : ''%>" ><a class="ajax-load" href="/plataforma/sistema/relatorio"> <i class="fas fa-chart-pie"></i>Relátorio </a></li>
+
+		<%}%>
 		<!-- <li class="<%#= data[usuario.id +'_numero_menu'] == 5 ? 'active' : ''%>" ><a class="ajax-load" href="/plataforma/sistema/educacao"> <i class="fas fa-graduation-cap"></i>Educação </a></li>-->
 		<!--<li class="<%#= data[usuario.id +'_numero_menu'] == 6 ? 'active' : ''%>" ><a class="ajax-load" href="/plataforma/sistema/treinamento"> <i class="fas fa-bullseye"></i>Treinamento </a></li> -->
 		<li class="<%= data[usuario.id +'_numero_menu'] == 7 ? 'active' : ''%>" ><a class="ajax-load" href="/plataforma/sistema/white_paper"> <i class="fas fa-chalkboard-teacher"></i>Whitepaper </a></li>
