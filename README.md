@@ -10,7 +10,6 @@ Exemplo em <a target="_blank" href="https://e-investors.herokuapp.com/">https://
 Caso queira ver o sistema acessar:
 https://e-investors.herokuapp.com/plataforma/
 
-Usuário:
-test@einvestor.com.br
-Senha:
-admin
+Usuário:test@einvestor.com.br
+
+Senha:admin
